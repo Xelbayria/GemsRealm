@@ -1,0 +1,62 @@
+
+modLoader="javafml" #mandatory
+
+loaderVersion="[40,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+
+license="Supplementaries Team License v1.1"
+
+issueTrackerURL="https://github.com/Xelbayria/GemsRealm/issues" #optional
+
+[[mods]] #mandatory
+
+modId="gemsrealm" #mandatory
+
+version = "${version}"
+
+displayName="Gems Realm" #mandatory
+
+displayURL="https://www.curseforge.com/minecraft/mc-mods/gems-realm" #optional
+
+logoFile="logo.png" #optional
+
+credits="" #optional
+
+authors="Xel'Bayria" #optional
+
+description='''Ultimate Gems & Metals Compat Mod'''
+
+itemIcon="gemsrealm:all_gems" #catalogue icon
+
+
+[[dependencies.gemsrealm]] #optional
+
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="[41.0.100,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.gemsrealm]]
+
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20,1.21]"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.gemsrealm]]
+
+    modId="moonlight"
+    mandatory=true
+    versionRange="[1.20-2.13.50,]"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.gemsrealm]]
+
+    modId="everycomp"
+    mandatory=true
+    versionRange="[1.20-2.7.19,]"
+    ordering="AFTER"
+    side="BOTH"
+

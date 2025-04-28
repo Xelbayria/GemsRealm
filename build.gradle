@@ -1,6 +1,6 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "1.7-SNAPSHOT" apply false
+    id "dev.architectury.loom" version "1.9-SNAPSHOT" apply false
     id "com.matthewprenger.cursegradle" version "1.4.0"
     id "com.modrinth.minotaur" version "2.+"
     id "com.github.johnrengelman.shadow" version "7.1.2" apply false
@@ -42,19 +42,18 @@ subprojects {
         modrinth {
             projectId = "stone-zone"
             uploadFile = tasks.remapJar
-            gameVersions = [rootProject.minecraft_version]
+            gameVersions = [minecraft_version]
             loaders = [modLoader]
             changelog = changelogText
+            versionNumber = mod_version+'-'+modLoader
 
             if (modLoader == "fabric") {
-                versionName = mod_id +"-"+ mod_version + "-fabric"
                 dependencies {
                     required.project "fabric-api"
                     required.project "moonlight"
                     required.project "every-compat"
                 }
             } else {
-                versionName = mod_id +"-"+ mod_version
                 dependencies {
                     required.project "moonlight"
                     required.project "every-compat"
@@ -67,11 +66,11 @@ subprojects {
         curseforge {
             apiKey = env.CURSEFORGE_TOKEN
             project {
-                id = rootProject.project_id
+                id = project_id
                 changelog = changelogText
                 changelogType = 'markdown'
                 releaseType = 'release'
-                addGameVersion rootProject.minecraft_version
+                addGameVersion minecraft_version
                 addGameVersion modLoader.capitalize()
 
                 mainArtifact(tasks.remapJar) {
@@ -156,7 +155,7 @@ allprojects {
             allowInsecureProtocol = true
         }
 
-        maven { url 'https://jitpack.io' } // BCLib
+        maven { url = 'https://jitpack.io' } // BCLib
 
         maven { url = "https://api.modrinth.com/maven" }
 
@@ -164,12 +163,12 @@ allprojects {
 
         maven { url = "https://mvn.devos.one/releases" } // Porting Lib Releases
 
-        maven { url "https://maven.shedaniel.me/" } // Cloth Config
+        maven { url = "https://maven.shedaniel.me/" } // Cloth Config
 
         // Required for Create
         maven {
-            name "tterrag maven"
-            url "https://maven.tterrag.com/" // Create & Several Dependencies
+            name = "tterrag maven"
+            url = "https://maven.tterrag.com/" // Create & Several Dependencies
         }
         maven { // Forge Config API Port
             name = "Fuzs Mod Resources"
@@ -180,7 +179,7 @@ allprojects {
             content { includeGroup("com.jamieswhiteshirt") }
         }
         maven { // CC: Tweaked
-            url "https://squiddev.cc/maven"
+            url = "https://squiddev.cc/maven"
         }
         maven { // Unknown
             name = 'Ladysnake Mods'

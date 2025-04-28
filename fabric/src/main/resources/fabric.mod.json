@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "gemsrealm",
+  "version": "${version}",
+  "name": "Gems Realm",
+  "description": "Ultimate Gems & Metals Compat Mod",
+  "authors": [
+    "Xel'Bayria"
+  ],
+  "contact": {
+    "sources": "https://github.com/Xelbayria/GemsRealm"
+  },
+  "license": "Supplementaries Team License v1.1",
+  "icon": "logo.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.xelbayria.gems_realm.fabric.GemsRealmFabric"
+    ],
+    "modmenu": [
+      "net.xelbayria.gems_realm.modmenu.ModMenuCompat"
+    ]
+  },
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.20",
+    "moonlight": ">=1.20-2.13.50",
+    "everycomp": ">=1.20-2.7.19"
+  }
+}
