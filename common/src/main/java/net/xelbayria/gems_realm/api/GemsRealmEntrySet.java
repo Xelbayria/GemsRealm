@@ -8,15 +8,13 @@ import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.api.TabAddMode;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
-import net.mehvahdjukaar.moonlight.api.resources.SimpleTagBuilder;
-import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.xelbayria.gems_realm.misc.ModelUtils;
 import net.xelbayria.gems_realm.misc.SpriteHelper;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -24,17 +22,19 @@ import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.xelbayria.gems_realm.misc.TintConfiguration;
 import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Map;
 import java.util.function.*;
 
-public class GemsrealmEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
+public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
 
-    protected GemsrealmEntrySet(Class<T> type, String name, @Nullable String prefix, Function<T, B> blockSupplier,
+    protected TintConfiguration tintConfiguration;
+
+    protected GemsRealmEntrySet(Class<T> type, String name, @Nullable String prefix, Function<T, B> blockSupplier,
                                 Supplier<B> baseBlock, Supplier<T> baseType,
                                 @NotNull Supplier<ResourceKey<CreativeModeTab>> tab,
                                 TabAddMode tabMode, LootTableMode lootMode,
@@ -43,10 +43,12 @@ public class GemsrealmEntrySet<T extends BlockType, B extends Block> extends Sim
                                 @Nullable BiFunction<T, ResourceManager, Pair<List<Palette>,
                                         @Nullable McMetaFile>> paletteSupplier,
                                 @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
-                                boolean mergedPalette, boolean copyTint, Predicate<T> condition) {
+                                boolean mergedPalette, TintConfiguration tintConfig, boolean copyTint,
+                                Predicate<T> condition) {
 
         super(type, name, prefix, blockSupplier, baseBlock, baseType, tab, tabMode, lootMode, itemFactory, tileFactory,
                 renderType, paletteSupplier, extraTransform, mergedPalette, copyTint, condition);
+        this.tintConfiguration = tintConfig;
     }
 
     public static <T extends BlockType, B extends Block> Builder<T, B> of(Class<T> type, String name, String prefix, Supplier<B> baseBlock, Supplier<T> baseType, Function<T, B> blockSupplier) {
@@ -65,17 +67,14 @@ public class GemsrealmEntrySet<T extends BlockType, B extends Block> extends Sim
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone, "stone")
                 .replaceWithTextureFromChild("minecraft:block/cobblestone", "cobblestone")
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", "bricks")
-                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth_stone")
+                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth")
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, "polished")
                 .replaceWithTextureFromChild("minecraft:block/mossy_" + nameBaseStone + "_bricks", "mossy_bricks")
                 // Modifying models' parent & "elements"
                 .addModifier((s, blockId, blockType) -> {
-                    if (!blockId.getPath().contains("chest")) {
-                        JsonObject jsonObject = GsonHelper.parse(s);
-                        ModelUtils.addTintIndexToModelAndReplaceParent(jsonObject, module, nameBaseStone);
-                        return jsonObject.toString();
-                    }
-                    return s;
+                    JsonObject jsonObject = GsonHelper.parse(s);
+                    ModelUtils.addTintIndexToModelAndReplaceParent(new ResourceLocation("none"), jsonObject, module, nameBaseStone, tintConfiguration);
+                    return jsonObject.toString();
                 })
                 .andThen(super.makeModelTransformer(module, manager));
 
@@ -83,14 +82,14 @@ public class GemsrealmEntrySet<T extends BlockType, B extends Block> extends Sim
 
     @Override
     protected BlockTypeResTransformer<T> makeBlockStateTransformer(SimpleModule module, ResourceManager manager) {
-        String nameBaseStone = baseType.get().getTypeName();
+        String nameBaseType = baseType.get().getTypeName();
         return BlockTypeResTransformer.<T>create(module.getModId(), manager)
-                .addModifier((s, blockId, stoneType) ->
-                        s.replace("minecraft:block/" + nameBaseStone, getChildModelId("stone", stoneType, blockId)))
-                .addModifier((s, blockId, stoneType) ->
-                        s.replace("minecraft:block/" + nameBaseStone + "_bricks", getChildModelId("bricks", stoneType, blockId)))
-                .addModifier((s, blockId, stoneType) ->
-                        s.replace("minecraft:block/smooth_" + nameBaseStone, getChildModelId("smooth_stone", stoneType, blockId)))
+//                .addModifier((s, blockId, stoneType) ->
+//                        s.replace("minecraft:block/" + nameBaseType, getChildModelId("stone", stoneType, blockId)))
+//                .addModifier((s, blockId, stoneType) ->
+//                        s.replace("minecraft:block/" + nameBaseType + "_bricks", getChildModelId("bricks", stoneType, blockId)))
+//                .addModifier((s, blockId, stoneType) ->
+//                        s.replace("minecraft:block/smooth_" + nameBaseType, getChildModelId("smooth_stone", stoneType, blockId)))
                 .andThen(super.makeBlockStateTransformer(module, manager));
     }
 
@@ -101,39 +100,33 @@ public class GemsrealmEntrySet<T extends BlockType, B extends Block> extends Sim
     }
 
     @Override
-    public void generateTags(SimpleModule module, DynamicDataPack pack, ResourceManager manager) {
-        super.generateTags(module, pack, manager);
-
-        // Adding tag to a specific MetalType of all generated blocks
-        if (PlatHelper.isModLoaded("architects_palette")) {
-            SimpleTagBuilder tagBuilder = SimpleTagBuilder.of(new ResourceLocation("architects_palette:wizard_blocks"));
-            for (Map.Entry<T, B> e : blocks.entrySet()) {
-                T stoneType = e.getKey();
-                B block = e.getValue();
-                if (stoneType.getTypeName().equals("wardstone")) {
-                    tagBuilder.addEntry(block);
-                }
-            }
-
-            pack.addTag(tagBuilder, Registries.BLOCK);
-        }
-
+    public void generateModels(SimpleModule module, ResourceManager manager, ResourceSink sink) {
+        makeBlockStateTransformer(module, manager);
+        makeModelTransformer(module, manager);
+        super.generateModels(module, manager, sink);
     }
 
+//    @Override
+//    public void generateTags(SimpleModule module, DynamicDataPack pack, ResourceManager manager) {
+//        super.generateTags(module, pack, manager);
+//
+//    }
 
 
     //!! SUB-CLASS
     public static class Builder<T extends BlockType, B extends Block> extends SimpleEntrySet.Builder<T, B> {
 
+        protected TintConfiguration tintConfig = TintConfiguration.EMPTY;
+
         protected Builder(Class<T> type, String name, @Nullable String prefix, Supplier<T> baseType, Supplier<B> baseBlock, Function<T, B> blockFactory) {
             super(type, name, prefix, baseType, baseBlock, blockFactory);
         }
 
-        public GemsrealmEntrySet.Builder<T, B> createPaletteFromStone() {
+        public GemsRealmEntrySet.Builder<T, B> createPaletteFromStone() {
             return (Builder<T, B>) createPaletteFromChild("stone");
         }
 
-        public GemsrealmEntrySet.Builder<T, B> createPaletteFromBricks() {
+        public GemsRealmEntrySet.Builder<T, B> createPaletteFromBricks() {
             this.setPalette((blockType, manager) -> {
                 if (blockType.getChild("bricks") != null) {
                     return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
@@ -145,7 +138,7 @@ public class GemsrealmEntrySet<T extends BlockType, B extends Block> extends Sim
             return this;
         }
 
-        public GemsrealmEntrySet.Builder<T, B> createPaletteFromStoneChild(String childKey) {
+        public GemsRealmEntrySet.Builder<T, B> createPaletteFromStoneChild(String childKey) {
             this.setPalette((blockType, manager) -> {
                 if (blockType.getChild(childKey) != null) {
                     return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
@@ -158,17 +151,18 @@ public class GemsrealmEntrySet<T extends BlockType, B extends Block> extends Sim
         }
 
         @Override
-        public GemsrealmEntrySet<T, B> build() {
+        public GemsRealmEntrySet<T, B> build() {
             if (this.tab == null && PlatHelper.isDev()) {
                 throw new IllegalStateException("Tab for module " + this.name + " was null!");
             } else {
                 // all blocks could have tint as stone could be tinted themselves
                 this.copyParentTint();
 
-                GemsrealmEntrySet<T, B> e = new GemsrealmEntrySet<>(this.type, this.name, this.prefix, this.blockFactory, this.baseBlock,
+                GemsRealmEntrySet<T, B> e = new GemsRealmEntrySet<>(this.type, this.name, this.prefix, this.blockFactory, this.baseBlock,
                         this.baseType, this.tab, this.tabMode, this.lootMode, this.itemFactory,
                         this.tileHolder, this.renderType, this.palette, this.extraModelTransform,
-                        this.useMergedPalette, this.copyTint, this.condition);
+                        this.useMergedPalette, this.tintConfig, this.copyTint,
+                        this.condition);
                 e.recipeLocations.addAll(this.recipes);
                 e.tags.putAll(this.tags);
                 e.textures.addAll(this.textures);
@@ -176,7 +170,25 @@ public class GemsrealmEntrySet<T extends BlockType, B extends Block> extends Sim
                 return e;
             }
         }
-    }
 
+
+        /// Exclude mutiple textures in one parent file
+        public Builder<T, B> excludeMultipleTextureFromTinting(ResourceLocation parentId, String... textureKeys) {
+            if (this.tintConfig == TintConfiguration.EMPTY) {
+                this.tintConfig = TintConfiguration.createNew();
+            }
+            this.tintConfig.addParentAndTextureValues(parentId, textureKeys);
+            return this;
+        }
+
+        /// Exclude multiple textures in all parent files
+        public Builder<T, B> excludeTextureFromTinting(String... textureKeys) {
+            if (this.tintConfig == TintConfiguration.EMPTY) {
+                this.tintConfig = TintConfiguration.createNew();
+            }
+            this.tintConfig.addTextureValues(textureKeys);
+            return this;
+        }
+    }
 
 }
