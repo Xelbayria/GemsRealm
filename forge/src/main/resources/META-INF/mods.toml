@@ -52,7 +52,7 @@ itemIcon="gemsrealm:all_gems" #catalogue icon
 [[dependencies.gemsrealm]]
     modId="everycomp"
     mandatory=true
-    versionRange="[1.20-2.7.31,]"
+    versionRange="[1.20-2.8.2,]"
     ordering="AFTER"
     side="BOTH"
 
