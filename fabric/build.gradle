@@ -48,7 +48,7 @@ dependencies {
         }
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:moonlight:${moonlight_mavenVersion}-fabric") // v2.14.0
+        modImplementation("maven.modrinth:moonlight:${moonlight_mavenVersion}-fabric") // v2.14.1
     }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
@@ -81,7 +81,7 @@ dependencies {
     modRuntimeOnly("com.github.quiqueck:WunderLib:1.1.5") // BetterEnd
 //    modRuntimeOnly("com.terraformersmc.terraform-api:terraform-wood-api-v1:7.0.3") // Blockus
 
-        //- ~/fabric/mods LOCAL@
+        //- ~/fabric/mods LOCAL
 
         //- OTHER MAVENs - can be commented out or enabled
 //    modRuntimeOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
