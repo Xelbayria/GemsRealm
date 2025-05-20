@@ -148,7 +148,7 @@ allprojects {
         // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
         // See https://docs.gradle.org/current/userguide/declaring_repositories.html
         // for more information about repositories.
-        maven { url "https://maven.parchmentmc.org" }
+        maven { url = "https://maven.parchmentmc.org" }
 
         maven {
             url = "https://www.cursemaven.com"
@@ -166,14 +166,12 @@ allprojects {
         maven { url = "https://maven.shedaniel.me/" } // Cloth Config
 
         // Required for Create
-        maven {
-            name = "tterrag maven"
-            url = "https://maven.tterrag.com/" // Create & Several Dependencies
-        }
-        maven { // Forge Config API Port
-            name = "Fuzs Mod Resources"
-            url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
-        }
+        maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
+
+        maven { url = "https://maven.tterrag.com" } // Registrate
+
+        maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" } // Forge Config API Port
+
         maven { // Reach Entity Attributes
             url = "https://maven.jamieswhiteshirt.com/libs-release"
             content { includeGroup("com.jamieswhiteshirt") }
@@ -194,6 +192,10 @@ allprojects {
             url = "https://modmaven.dev"
         }
         // END -------------
+
+        maven { // Chipped
+            url = "https://maven.teamresourceful.com/repository/maven-public/"
+        }
     }
 
     tasks.withType(JavaCompile).configureEach {
