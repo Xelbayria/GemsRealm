@@ -1,5 +1,5 @@
 name: Suggest Mod
-description: Suggest mods to be added to Every Compat
+description: Suggest mods to be added to Gem Realms
 title: "[📦]: "
 labels: ["Module"]
 body:
@@ -15,7 +15,13 @@ body:
       options:
         - label: "See (LINK WILL BE ADDED IN FUTURE) if someone already suggested a mod that you are going to suggest. \nFOR NOW check out the issues"
           required: true
-        - label: "The mod MUST contain variant StoneType: STONE or other vanilla StoneTypes for ITEM or BLOCK"
+        - label: "For MetalType, The suggested mod must contain variant blocks and/or Raw blocks of IRON or GOLD"
+          required: true
+        - label: "For GemType, The suggested mod must contain variant blocks of either DIAMOND or EMERALD"
+          required: true
+        - label: "For CrystalType, The suggested mod must contain variant blocks of AMETHYST,"
+          required: true
+        - label: "For DustType, The suggested mod must contain variant blocks of REDSTONE_BLOCK"
           required: true
 
   - type: input
@@ -52,7 +58,7 @@ body:
     attributes:
       label: MODID
       description: "MODID of the mod"
-      placeholder: stoneworks
+      placeholder: somemoreblocks
     validations:
       required: true
 
@@ -61,7 +67,8 @@ body:
     attributes:
       label: "Types"
       description: "Type of blocks are in the mod?"
-      value: "**Block:**\n- ex: pillar\n- ex: block-name with stone_type\n\n**Item:**\n- <item-name with stone_type>"
+      value: "For MetalType (Variants of Regular Block): \n- somemoreblocks:cracked_cut_gold\n- somemoreblocks:cut_gold\n- somemoreblocks:gold_pillar\n- somemoreblocks:cracked_gold_bricks\n- somemoreblocks:gold_bricks
+"
     validations:
         required: true
 
@@ -70,6 +77,6 @@ body:
       label: Optional Information
       description: |
         A note that we should keep in mind regarding the mod
-      placeholder: "ex: Giacomo's Bookshelf can store books and, configurably, other items. Updates front texture\nthrough 4 stages (empty, slightly full, more full, completely full) depending on if 0, 1, 2, or 3+ books are stored"
+      placeholder: "ex: There is an item, gold_sheet used for crafting these blocks in the list above."
     validations:
       required: false
