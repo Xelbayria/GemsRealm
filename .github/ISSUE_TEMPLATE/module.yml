@@ -67,8 +67,7 @@ body:
     attributes:
       label: "Types"
       description: "Type of blocks are in the mod?"
-      value: "For MetalType (Variants of Regular Block): \n- somemoreblocks:cracked_cut_gold\n- somemoreblocks:cut_gold\n- somemoreblocks:gold_pillar\n- somemoreblocks:cracked_gold_bricks\n- somemoreblocks:gold_bricks
-"
+      placeholder: "For MetalType (Variants of Regular Block): \n- somemoreblocks:cracked_cut_gold\n- somemoreblocks:cut_gold\n- somemoreblocks:gold_pillar\n- somemoreblocks:cracked_gold_bricks\n- somemoreblocks:gold_bricks"
     validations:
         required: true
 
