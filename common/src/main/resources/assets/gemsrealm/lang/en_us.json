@@ -3,9 +3,12 @@
   "itemGroup.gemsrealm.gemsrealm": "Gems Realm",
   "item.gemsrealm.all_gems": "All Gems, Metal, Crystal, Redstone",
 
-  "block_type.mcwbridges.iron_bridge_pier": "%s Bridge Pier",
-  "block_type.mcwbridges.iron_bridge": "%s Bridge",
-  "block_type.mcwbridges.iron_bridge_stair": "%s Bridge Stair",
+  "item_type.minecraft.nugget": "%s Nugget",
+  "block_type.minecraft.bars": "%s Bars",
+
+  "block_type.mcwbridges.bridge": "%s Bridge",
+  "block_type.mcwbridges.bridge_stair": "%s Bridge Stair",
+  "block_type.mcwbridges.bridge_pier": "%s Bridge Support",
 
   "block_type.mcwfences.cheval_de_frise": "%s Cheval De Frise",
 
