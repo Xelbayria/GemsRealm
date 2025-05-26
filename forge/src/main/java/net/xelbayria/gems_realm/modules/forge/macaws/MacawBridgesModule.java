@@ -22,8 +22,8 @@ import net.xelbayria.gems_realm.api.set.MetalTypeRegistry;
 public class MacawBridgesModule extends GemsRealmModule {
 
     public final SimpleEntrySet<MetalType, Block> bridge;
-    public final SimpleEntrySet<MetalType, Block> bridge_pier;
     public final SimpleEntrySet<MetalType, Block> bridge_stair;
+    public final SimpleEntrySet<MetalType, Block> bridge_pier;
 
     public MacawBridgesModule(String modId) {
         super(modId, "mcb");
@@ -33,7 +33,7 @@ public class MacawBridgesModule extends GemsRealmModule {
                         getModBlock("iron_bridge"), MetalTypeRegistry::getIronType,
                         metalType -> new Iron_Bridge(standardMetalProperties())
                 )
-                .requiresChildren("ingot", "nugget") //REASON: recipes
+//                .requiresChildren("ingot", "nugget") //REASON: recipes
                 //TEXTURES: bridge_2
                 .addModelTransform(m -> m.addModifier(
                         (s, blockId, metalType) ->
@@ -55,32 +55,6 @@ public class MacawBridgesModule extends GemsRealmModule {
                 .build();
         this.addEntry(bridge);
 
-        bridge_pier = GemsRealmEntrySet.of(MetalType.class, "bridge_pier",
-                        getModBlock("iron_bridge_pier"), MetalTypeRegistry::getIronType,
-                        metalType -> new Bridge_Support(standardMetalProperties())
-                )
-                .requiresChildren("bars") //REASON: recipes
-                //TEXTURES: iron_block, bridge_1, bridge_2, bridge_3
-                .addModelTransform(m -> m.addModifier(
-                        (s, blockId, metalType) ->
-                                s.replace("mcwbridges:block/bridge_1",
-                                                metalType.createFullIdWith(GemsRealm.MOD_ID, "block", shortenedId(), "", "bridge_1"))
-                                .replace("mcwbridges:block/bridge_2",
-                                                metalType.createFullIdWith(GemsRealm.MOD_ID, "block", shortenedId(), "", "bridge_2"))
-                                .replace("mcwbridges:block/bridge_3",
-                                                metalType.createFullIdWith(GemsRealm.MOD_ID, "block", shortenedId(), "", "bridge_3"))
-                ))
-                // duplicated from bridge's because Some MetalType won't have children to generate bridge or bridge_pier
-                // what it mean if the blocks won't be generated, then the texture won't be, too
-                .addTextureC(modRes("block/bridge_1"), "block/iron_bridge_1")
-                .addTextureC(modRes("block/bridge_2"), "block/iron_bridge_2")
-                .addTextureC(modRes("block/bridge_3"), "block/iron_bridge_3")
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
-                .defaultRecipe()
-                .build();
-        this.addEntry(bridge_pier);
-
         bridge_stair = GemsRealmEntrySet.of(MetalType.class, "bridge_stair",
                         getModBlock("iron_bridge_stair"), MetalTypeRegistry::getIronType,
                         metalType -> new Bridge_Stairs(standardMetalProperties())
@@ -100,6 +74,28 @@ public class MacawBridgesModule extends GemsRealmModule {
                 .addRecipe(modRes("iron_bridge_stair_recycle"))
                 .build();
         this.addEntry(bridge_stair);
+
+        bridge_pier = GemsRealmEntrySet.of(MetalType.class, "bridge_pier",
+                        getModBlock("iron_bridge_pier"), MetalTypeRegistry::getIronType,
+                        metalType -> new Bridge_Support(standardMetalProperties())
+                )
+//                .requiresChildren("bars") //REASON: recipes
+                //TEXTURES: iron_block, bridge_1, bridge_2, bridge_3
+                .addModelTransform(m -> m.addModifier(
+                        (s, blockId, metalType) ->
+                                s.replace("mcwbridges:block/bridge_1",
+                                                metalType.createFullIdWith(GemsRealm.MOD_ID, "block", shortenedId(), "", "bridge_1"))
+                                .replace("mcwbridges:block/bridge_2",
+                                                metalType.createFullIdWith(GemsRealm.MOD_ID, "block", shortenedId(), "", "bridge_2"))
+                                .replace("mcwbridges:block/bridge_3",
+                                                metalType.createFullIdWith(GemsRealm.MOD_ID, "block", shortenedId(), "", "bridge_3"))
+                ))
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .setTabKey(tab)
+                .defaultRecipe()
+                .build();
+        this.addEntry(bridge_pier);
+
 
     }
 
