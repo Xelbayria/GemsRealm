@@ -1,5 +1,8 @@
 package net.xelbayria.gems_realm;
 
+import net.xelbayria.gems_realm.modules.minecraft.MinecraftModule;
+
+import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
 import static net.mehvahdjukaar.every_compat.EveryCompat.addOtherCompatMod;
 
 public class GemsRealmCommon {
@@ -19,8 +22,8 @@ public class GemsRealmCommon {
 
 //!! =================================================== Add Modules ================================================ \\
 
+        addIfLoaded("minecraft", () -> MinecraftModule::new);
 //        addIfLoaded("twigs", () -> TwigsModule::new);
-//        addIfLoaded("create", () -> CreateModule::new); //!! TEMP until FABRIC version is updated to v6.0.0
 //        addIfLoaded("bbb", () -> BuildingButBetterModule::new);
 //        addIfLoaded("blockus", () -> BlockusModule::new);
 //        addIfLoaded("stoneworks", () -> StoneworksModule::new);
