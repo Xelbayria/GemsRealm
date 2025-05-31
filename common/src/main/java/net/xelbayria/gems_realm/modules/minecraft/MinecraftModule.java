@@ -64,7 +64,8 @@ public class MinecraftModule extends GemsRealmModule {
                         getModItem("iron_nugget"), MetalTypeRegistry::getIronType,
                         metalType -> new Item(new Item.Properties())
                 )
-                .requiresChildren("ingot") //REASON: recipes
+                .requiresChildren("ingot") //REASON: recipes, textures
+                .createPaletteFromChild("ingot")
                 .addTexture(modRes("item/iron_nugget"))
                 .generateItemModels(new ResourceLocation("item/iron_nugget"))
                 .setTabKey(ingredients)
