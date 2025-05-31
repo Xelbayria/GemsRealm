@@ -5,9 +5,12 @@ import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.minecraft.resources.ResourceLocation;
+import net.xelbayria.gems_realm.api.intergration.CompatRockType;
+import net.xelbayria.gems_realm.api.set.GemTypeRegistry;
 import net.xelbayria.gems_realm.api.set.MetalTypeRegistry;
 import net.xelbayria.gems_realm.configs.GRConfigs;
 import net.xelbayria.gems_realm.misc.ModelUtils;
+import net.xelbayria.gems_realm.misc.SpriteHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,11 +24,12 @@ public class GemsRealm extends EveryCompat {
         GRConfigs.init();
         GRRegistry.init();
 
+//        BlockSetAPI.registerBlockSetDefinition(CrystalTypeRegistry.INSTANCE);
         BlockSetAPI.registerBlockSetDefinition(MetalTypeRegistry.INSTANCE);
-//        BlockSetAPI.registerBlockSetDefinition(GemTypeRegistry.INSTANCE);
-//        CompatStoneType.init();
+        BlockSetAPI.registerBlockSetDefinition(GemTypeRegistry.INSTANCE);
+        CompatRockType.init();
 
-//        PlatHelper.addCommonSetup(SpriteHelper::addHardcodedSprites);
+        PlatHelper.addCommonSetup(SpriteHelper::addHardcodedSprites);
 
         if (PlatHelper.getPhysicalSide().isClient()) {
             ClientHelper.addClientReloadListener(() -> (preparationBarrier, resourceManager, preparationsProfiler, reloadProfiler, backgroundExecutor, gameExecutor) ->
