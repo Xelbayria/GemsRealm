@@ -56,7 +56,7 @@ public class CompatRockType {
         simpleMetalFinder("crystalcraft_unlimited_java", "xernium", "ingot-crystalcraft_unlimited_java:xernium");
         simpleMetalFinder("crystalcraft_unlimited_java", "palladium", "ingot-crystalcraft_unlimited_java:palladium");
         simpleMetalFinder("crystalcraft_unlimited_java", "purple_gold", "ingot-crystalcraft_unlimited_java:purple_gold");
-//        simpleMetalFinder("crystalcraft_unlimited_java", "green_gold", "ingot-crystalcraft_unlimited_java:green_gold");
+//        simpleMetalFinder("crystalcraft_unlimited_java", "green_gold", "ingot-crystalcraft_unlimited_java:green_gold"); //@ Requested DEV to fix the filename that has 2 png as extension
         simpleMetalFinder("crystalcraft_unlimited_java", "cupronickel", "ingot-crystalcraft_unlimited_java:cupronickel");
         simpleMetalFinder("crystalcraft_unlimited_java", "pelenium", "ingot-crystalcraft_unlimited_java:pelenium");
         simpleMetalFinder("crystalcraft_unlimited_java", "maradonyx", "ingot-crystalcraft_unlimited_java:maradonyx");
