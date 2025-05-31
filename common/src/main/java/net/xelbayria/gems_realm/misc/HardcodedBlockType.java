@@ -1,8 +1,11 @@
 package net.xelbayria.gems_realm.misc;
 
+import net.mehvahdjukaar.moonlight.api.util.Utils;
+import net.minecraft.world.level.block.Block;
 import net.xelbayria.gems_realm.api.set.MetalType;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
 import java.util.Set;
 
 public class HardcodedBlockType {
@@ -17,13 +20,32 @@ public class HardcodedBlockType {
             "immersive_weathering", "chipped", "create_confectionery"
     );
 
+
+    public static final Set<String> BLACKLISTED_METALTYPES = Set.of(
+            //REASON: not a MetalType
+            "ms:blaze"
+    );
+
+    public static final Set<String> BLACKLISTED_GEMTYPES = Set.of(
+            //REASON: not a GemType
+    );
+
+    public static final Set<String> BLACKLISTED_CRYSTALTYPES = Set.of(
+            //REASON: not a CrystalType
+    );
+
+    public static final Set<String> BLACKLISTED_DUSTTYPES = Set.of(
+            //REASON: not a DustType
+    );
+
     @Nullable
-    public static Boolean isStoneBlockAlreadyRegistered(String blockName, MetalType metalType, String ModId, String shortenedId) {
+    public static Boolean isBlockAlreadyRegistered(String blockName, MetalType metalType, String ModId, String shortenedId) {
         stoneidentify = metalType.getId().toString();
         StoneTypeFromMod = metalType.getNamespace();
         modId = ModId;
         supportedBlockName = blockName;
         shortenedIdenfity = shortenedId;
+
 
             /// ========== EXCLUDE ========== \\\
         // EXAMPLE
@@ -32,30 +54,24 @@ public class HardcodedBlockType {
         // Exclude all of Vanilla Types
         if (metalType.isVanilla()) return true;
 
-        // The MetalType's texture is only white and no way for blocks to copy its color behavior
-        if (isStoneRegistryOf("", "", "", "rgbblocks:prismarine", "")) return true;
-
-        // Create: Dreams & Desires' cut_stone_bricks shouldn't be detected but was
-        if (isStoneRegistryOf("", "", "", "create_dd:cut_stone", "")) return true;
-
-        // Stone Expansion's stone is based on Minecraft's stone and shouldn't be included
-        if (isStoneRegistryOf("", "", "", "stoneexpansion:(cut|mossy|smooth|polished)_stone", "")) return true;
 
             /// ========== INCLUDE ========== \\\
         // EXAMPLE
 //        if (isStoneRegistryOf("create", "c", "create", "create:limestone", "limestone_pillar")) return false;
 
-        // The stone_squares block from Blockus is why stone_squares from Rechiseled got skipped
-        if (isStoneRegistryOf("rechiseled", "", "blockus", "", "squares")) return false;
+        // Minecraft & TerraFirmaCraft have similar MetalType that preventing the
+        if (isRockRegistryOf("minecraft", "", "", "tfc:gold", "nugget")) return false;
 
-        // Create's blocks aren't generated for Quark, Wetland-Whimsy, Geologic-Expansion because they both have LIMESTONE & Also fix the tag issue (#64)
-        if (isStoneRegistryOf("create", "", "", "quark:limestone|wetland_whimsy:limestone|geologicexpansion:limestone", "")) return false;
 
+            /// ========== SPECIAL ========== \\\
+
+        // The normal duplication system is not preventing the duplicated blocks between Supported mods and TFC due to TFC's unique IDs
+        if (isRockRegistryInTFC(metalType, supportedBlockName, "bars")) return true;
 
         return null;
     }
 
-    public static Boolean isStoneRegistryOf(String whichSupportedModId, String shortenedId, String stonetypeFromMod, String stoneTypeId, String whichSupportedBlockName) {
+    public static Boolean isRockRegistryOf(String whichSupportedModId, String shortenedId, String stonetypeFromMod, String stoneTypeId, String whichSupportedBlockName) {
 
         String[] expressions = {
                 whichSupportedModId,
@@ -82,6 +98,17 @@ public class HardcodedBlockType {
         }
 
         return true;
+    }
+
+    public static boolean isRockRegistryInTFC(MetalType metalType, String supportedBlockName, String childKey) {
+        Block block = metalType.getBlockOfThis(childKey);
+        if (metalType.getNamespace().equals("tfc") && Objects.nonNull(block)) {
+            String[] split = Utils.getID(block).getPath().split("/"); // tfc: metal / childKey / metalType
+            String baseName = split[2] +"_"+ childKey; // create a baseName: metalType _ childKey
+
+            return Objects.equals(baseName, supportedBlockName);
+        }
+        return false;
     }
 
 }

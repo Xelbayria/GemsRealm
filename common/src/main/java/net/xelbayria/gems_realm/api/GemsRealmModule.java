@@ -6,21 +6,20 @@ import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
 import net.xelbayria.gems_realm.GRRegistry;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.set.MetalType;
 import net.xelbayria.gems_realm.misc.HardcodedBlockType;
 import net.xelbayria.gems_realm.misc.ModelUtils;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
 import net.xelbayria.gems_realm.misc.TintConfiguration;
 
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Consumer;
 
 
@@ -53,17 +52,11 @@ public class GemsRealmModule extends SimpleModule {
         String blockName = blockId.substring(blockId.lastIndexOf("/") + 1);
 
         if (blockType instanceof MetalType metalType) {
-            Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(blockName, metalType, modId, shortenedId());
+            Boolean hardcoded = HardcodedBlockType.isBlockAlreadyRegistered(blockName, metalType, modId, shortenedId());
             if (hardcoded != null) return hardcoded;
         }
 
-        var isAlreadyRegistered = super.isEntryAlreadyRegistered(blockId, blockType, registry);
-        if (isAlreadyRegistered) {
-            //noinspection ConstantValue
-            return isAlreadyRegistered;
-        }
-
-        return false;
+        return super.isEntryAlreadyRegistered(blockId, blockType, registry);
     }
 
 
