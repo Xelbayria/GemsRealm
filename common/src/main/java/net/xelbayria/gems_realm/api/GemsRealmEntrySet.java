@@ -6,6 +6,7 @@ import net.mehvahdjukaar.every_compat.api.AbstractSimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.api.TabAddMode;
+import net.mehvahdjukaar.every_compat.misc.ModelConfiguration;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
@@ -13,8 +14,6 @@ import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
-import net.xelbayria.gems_realm.misc.ModelUtils;
-import net.xelbayria.gems_realm.misc.SpriteHelper;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -22,14 +21,18 @@ import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.xelbayria.gems_realm.misc.ModelUtils;
+import net.xelbayria.gems_realm.misc.SpriteHelper;
 import net.xelbayria.gems_realm.misc.TintConfiguration;
 import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.*;
 
+@SuppressWarnings("unused")
 public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
 
     protected TintConfiguration tintConfiguration;
@@ -40,15 +43,16 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
                                 TabAddMode tabMode, LootTableMode lootMode,
                                 @Nullable TriFunction<T, B, Item.Properties, Item> itemFactory,
                                 @Nullable ITileHolder tileFactory, @Nullable Object renderType,
-                                @Nullable BiFunction<T, ResourceManager, Pair<List<Palette>,
-                                        @Nullable McMetaFile>> paletteSupplier,
+                                @Nullable BiFunction<T, ResourceManager, Pair<List<Palette>, @Nullable McMetaFile>> paletteSupplier,
                                 @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
                                 boolean mergedPalette, TintConfiguration tintConfig, boolean copyTint,
-                                Predicate<T> condition) {
+                                Predicate<T> condition, ModelConfiguration modelConfig
+    ) {
 
         super(type, name, prefix, blockSupplier, baseBlock, baseType, tab, tabMode, lootMode, itemFactory, tileFactory,
-                renderType, paletteSupplier, extraTransform, mergedPalette, copyTint, condition);
+                renderType, paletteSupplier, extraTransform, mergedPalette, copyTint, condition, modelConfig);
         this.tintConfiguration = tintConfig;
+        this.modelConfiguration = modelConfig;
     }
 
     public static <T extends BlockType, B extends Block> Builder<T, B> of(Class<T> type, String name, String prefix, Supplier<B> baseBlock, Supplier<T> baseType, Function<T, B> blockSupplier) {
@@ -62,20 +66,25 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
     @Override
     protected BlockTypeResTransformer<T> makeModelTransformer(SimpleModule module, ResourceManager manager) {
         String nameBaseStone = baseType.get().getTypeName();
-        return BlockTypeResTransformer.<T>create(module.getModId(), manager)
-                //these need to be run first. idk why but its like that
+        BlockTypeResTransformer<T> transformer = BlockTypeResTransformer.create(module.getModId(), manager);
+        if (Objects.nonNull(extraModelTransform)) extraModelTransform.accept(transformer);
+
+        return transformer
+                //TEXTURES: these need to be run first
+                .replaceWithTextureFromChild("minecraft:block/anvil", "block")
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone, "stone")
                 .replaceWithTextureFromChild("minecraft:block/cobblestone", "cobblestone")
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", "bricks")
                 .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth")
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, "polished")
                 .replaceWithTextureFromChild("minecraft:block/mossy_" + nameBaseStone + "_bricks", "mossy_bricks")
-                // Modifying models' parent & "elements"
-                .addModifier((s, blockId, blockType) -> {
-                    JsonObject jsonObject = GsonHelper.parse(s);
-                    ModelUtils.addTintIndexToModelAndReplaceParent(new ResourceLocation("none"), jsonObject, module, nameBaseStone, tintConfiguration);
-                    return jsonObject.toString();
-                })
+                // Modifying parent & "elements" inside model files
+//                .addModifier((s, blockId, blockType) -> {
+//                    JsonObject jsonObject = GsonHelper.parse(s);
+//                    ModelUtils.addTintIndexToModelAndReplaceParent(new ResourceLocation("none"), jsonObject, module, nameBaseStone, tintConfiguration);
+//                    return jsonObject.toString();
+//                })
+                // Add modified model files to the resources
                 .andThen(super.makeModelTransformer(module, manager));
 
     }
@@ -114,6 +123,7 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
 
 
     //!! SUB-CLASS
+    @SuppressWarnings("unused")
     public static class Builder<T extends BlockType, B extends Block> extends SimpleEntrySet.Builder<T, B> {
 
         protected TintConfiguration tintConfig = TintConfiguration.EMPTY;
@@ -122,8 +132,8 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
             super(type, name, prefix, baseType, baseBlock, blockFactory);
         }
 
-        public GemsRealmEntrySet.Builder<T, B> createPaletteFromStone() {
-            return (Builder<T, B>) createPaletteFromChild("stone");
+        public GemsRealmEntrySet.Builder<T, B> createPaletteFromBlock() {
+            return (Builder<T, B>) createPaletteFromChild("block");
         }
 
         public GemsRealmEntrySet.Builder<T, B> createPaletteFromBricks() {
@@ -138,14 +148,14 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
             return this;
         }
 
-        public GemsRealmEntrySet.Builder<T, B> createPaletteFromStoneChild(String childKey) {
+        public GemsRealmEntrySet.Builder<T, B> createPaletteFromMetalChild(String childKey) {
             this.setPalette((blockType, manager) -> {
                 if (blockType.getChild(childKey) != null) {
                     return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
                     }, childKey, null, blockType, manager);
                 }
                 return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
-                }, "stone", null, blockType, manager);
+                }, "block", null, blockType, manager);
             });
             return this;
         }
@@ -155,19 +165,19 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
             if (this.tab == null && PlatHelper.isDev()) {
                 throw new IllegalStateException("Tab for module " + this.name + " was null!");
             } else {
-                // all blocks could have tint as stone could be tinted themselves
+                // all blocks could have tint as RockType could be tinted themselves
                 this.copyParentTint();
 
-                GemsRealmEntrySet<T, B> e = new GemsRealmEntrySet<>(this.type, this.name, this.prefix, this.blockFactory, this.baseBlock,
+                GemsRealmEntrySet<T, B> entry = new GemsRealmEntrySet<>(this.type, this.name, this.prefix, this.blockFactory, this.baseBlock,
                         this.baseType, this.tab, this.tabMode, this.lootMode, this.itemFactory,
                         this.tileHolder, this.renderType, this.palette, this.extraModelTransform,
                         this.useMergedPalette, this.tintConfig, this.copyTint,
-                        this.condition);
-                e.recipeLocations.addAll(this.recipes);
-                e.tags.putAll(this.tags);
-                e.textures.addAll(this.textures);
+                        this.condition, this.modelConfig);
+                entry.recipeLocations.addAll(this.recipes);
+                entry.tags.putAll(this.tags);
+                entry.textures.addAll(this.textures);
 
-                return e;
+                return entry;
             }
         }
 
