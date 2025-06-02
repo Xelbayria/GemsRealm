@@ -4,12 +4,13 @@ import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Objects;
+import java.util.Optional;
 
-import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_MODS;
+import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_METALTYPES;
 
 
 @SuppressWarnings("unused")
@@ -30,6 +31,14 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
         return getValue("iron");
     }
 
+    public static MetalType getGoldType() {
+        return getValue("gold");
+    }
+
+    public static MetalType getCopperType() {
+        return getValue("copper");
+    }
+
     public static Collection<MetalType> getTypes() {
         return INSTANCE.getValues();
     }
@@ -45,47 +54,71 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
 
     @Override
     public Optional<MetalType> detectTypeFromBlock(Block baseblock, ResourceLocation baseRes) {
-        String ingotPath = baseRes.getPath();
+        String blockPath = baseRes.getPath();
 
         // Support TerraFirmaCraft (TFC) & ArborFirmaCraft (AFC)
         if (baseRes.getNamespace().matches("tfc|afc")) {
-            if (ingotPath.matches("metal/ingot/\\w+")) {
-                int index = ingotPath.lastIndexOf("/");
-                String metalName = ingotPath.substring(index + 1); // Get bismuth from tfc:metal/ingot/bismuth
-                String blockPath = baseRes.getPath().replace("ingot", "block");
+            if (blockPath.matches("metal/block/\\w+(?<!slab|stairs)")) {
+                int index = blockPath.lastIndexOf("/");
+                String metalName = blockPath.substring(index + 1); // Get bismuth from tfc:metal/block/bismuth
 
-                Optional<Item> ingot = BuiltInRegistries.ITEM.getOptional(
-                        new ResourceLocation(baseRes.getNamespace(), ingotPath)
-                );
-                Optional<Block> block = BuiltInRegistries.BLOCK.getOptional(
-                        new ResourceLocation(baseRes.getNamespace(), blockPath)
+                Optional<Block> block = BuiltInRegistries.BLOCK.getOptional(baseRes);
+
+                // Ensure the detected block is actually MetalType
+                boolean hasIngot =  BuiltInRegistries.ITEM.containsKey(
+                        new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
                 );
 
-                if (ingot.isPresent() && block.isPresent()) {
-                    return Optional.of(new MetalType(baseRes.withPath(metalName), ingot.get(), block.get()));
-                }
-                else if (ingot.isPresent()) {
-                    return Optional.of(new MetalType(baseRes.withPath(metalName), ingot.get(), null));
+                if (block.isPresent() && hasIngot) {
+                    return Optional.of(new MetalType(baseRes.withPath(metalName), block.get()));
                 }
             }
         }
 
-        if (!BLACKLISTED_MODS.contains(baseRes.getNamespace())) {
-            if (ingotPath.matches("\\w+_ingot")) {
-                String metalName = ingotPath.replace("_ingot", "");
-                Optional<Item> ingot = BuiltInRegistries.ITEM.getOptional(
-                        new ResourceLocation(baseRes.getNamespace(), ingotPath)
-                );
-                Optional<Block> block = BuiltInRegistries.BLOCK.getOptional(
-                        new ResourceLocation(baseRes.getNamespace(), ingotPath)
+        // Support Mo' Shiz
+        if (baseRes.getNamespace().matches("ms")) {
+            if (blockPath.matches("resources/[a-z]+_block")) {
+                int index = blockPath.lastIndexOf("/");
+                // Get metalName from ms:resources/metalName_block
+                String metalName = blockPath.substring(index + 1).replace("_block", "");
+                ResourceLocation idBlockType = baseRes.withPath(metalName);
+
+                Optional<Block> block = BuiltInRegistries.BLOCK.getOptional(baseRes);
+
+                // Ensure the detected block is actually MetalType
+                boolean hasIngot =  BuiltInRegistries.ITEM.containsKey(
+                        new ResourceLocation(baseRes.getNamespace(), blockPath
+                                .replace("block", "ingot")
+                                .replace("resources", "gem")
+                        )
                 );
 
-                if (ingot.isPresent() && block.isPresent()) {
-                    return Optional.of(new MetalType(baseRes.withPath(metalName), ingot.get(), block.get()));
+                boolean isMetalTypeBlacklisted = !BLACKLISTED_METALTYPES.contains(idBlockType.toString());
+
+                if (block.isPresent() && hasIngot && isMetalTypeBlacklisted) {
+                    return Optional.of(new MetalType(idBlockType, block.get()));
                 }
-                else if (ingot.isPresent()) {
-                    return Optional.of(new MetalType(baseRes.withPath(metalName), ingot.get(), null));
-                }
+            }
+        }
+
+        // Default
+        if (blockPath.matches("\\w+_block") ) {
+            // Get metalName from namespace:metalName_block
+            String metalName = blockPath.replace("_block", "");
+            ResourceLocation idBlockType = baseRes.withPath(metalName);
+
+            //Ensure the detected block is actually MetalType
+            boolean hasIngot =  BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
+            );
+
+            boolean isMetalTypeBlacklisted = !BLACKLISTED_METALTYPES.contains(idBlockType.toString());
+
+            // Ensure no duplication happened for a MetalType in registry
+            if (Objects.isNull(get(idBlockType)) && hasIngot && isMetalTypeBlacklisted) {
+                Optional<Block> opt = BuiltInRegistries.BLOCK.getOptional(baseRes);
+
+                if (opt.isPresent()) return Optional.of(new MetalType(idBlockType, opt.get()));
             }
         }
         return Optional.empty();
@@ -93,8 +126,8 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
 
     @Override
     public void addTypeTranslations(AfterLanguageLoadEvent language) {
-        this.getValues().forEach((stoneType) -> {
-            if (language.isDefault()) language.addEntry(stoneType.getTranslationKey(), stoneType.getReadableName());
+        this.getValues().forEach((metalType) -> {
+            if (language.isDefault()) language.addEntry(metalType.getTranslationKey(), metalType.getReadableName());
         });
     }
 
