@@ -17,5 +17,22 @@
   "block_type.mcwwindows.window2": "Rectangle %s Window",
   "block_type.mcwwindows.four_window": "%s Four Window",
   "block_type.mcwwindows.pane_window": "%s Pane Window",
-  "block_type.mcwwindows.curtain_rod": "%s Curtain Rod"
+  "block_type.mcwwindows.curtain_rod": "%s Curtain Rod",
+
+  "item_type.create.backtank": "%s Backtank",
+  "item_type.create.backtank_placeable": "%s Backtank Placeable",
+  "item_type.create.sheet": "%s Sheet",
+  "block_type.create.casing": "%s Casing",
+  "block_type.create.door": "%s Door",
+  "block_type.create.ladder": "%s Ladder",
+  "block_type.create.scaffolding": "%s Scaffolding",
+  "block_type.create.shingles": "%s Shingles",
+  "block_type.create.shingle_slab": "%s Shingle Slab",
+  "block_type.create.shingle_stairs": "%s Shingle Stairs",
+  "block_type.create.tiles": "%s Tiles",
+  "block_type.create.tile_slab": "%s Tile Slab",
+  "block_type.create.tile_stairs": "%s Tile Stairs",
+  "block_type.create.table_cloth": "%s Table Cloth",
+  "block_type.create.ornate_window": "Ornate %s Window",
+  "block_type.create.ornate_window_pane": "Ornate %s Window Pane"
 }

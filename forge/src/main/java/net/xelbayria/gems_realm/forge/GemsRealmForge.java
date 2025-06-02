@@ -3,6 +3,7 @@ package net.xelbayria.gems_realm.forge;
 import net.minecraftforge.fml.common.Mod;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.GemsRealmCommon;
+import net.xelbayria.gems_realm.modules.forge.create.CreateModule;
 import net.xelbayria.gems_realm.modules.forge.macaws.MacawBridgesModule;
 import net.xelbayria.gems_realm.modules.forge.macaws.MacawFencesModule;
 import net.xelbayria.gems_realm.modules.forge.macaws.MacawWindowsModule;
@@ -34,7 +35,7 @@ public class GemsRealmForge extends GemsRealmCommon {
 //        addIfLoaded("mcwpaths", () -> MacawPathsModule::new);
 
         // General
-//        addIfLoaded("create", () -> CreateModule::new);
+        addIfLoaded("create", () -> CreateModule::new);
 //        addIfLoaded("rechiseled", () -> RechiseledModule::new);
 //        addIfLoaded("stonechest", () -> StoneChestModule::new);
 
