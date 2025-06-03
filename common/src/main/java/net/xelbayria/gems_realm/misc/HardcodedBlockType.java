@@ -28,6 +28,7 @@ public class HardcodedBlockType {
 
     public static final Set<String> BLACKLISTED_GEMTYPES = Set.of(
             //REASON: not a GemType
+            "minecraft:quartz"
     );
 
     public static final Set<String> BLACKLISTED_CRYSTALTYPES = Set.of(
