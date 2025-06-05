@@ -2,6 +2,13 @@
   "itemGroup.gemsrealm": "Gems Realm",
   "itemGroup.gemsrealm.gemsrealm": "Gems Realm",
   "item.gemsrealm.all_gems": "All Gems, Metal, Crystal, Redstone",
+  "tooltip.gemsrealm.metal_type": "Metal Type: %s",
+  "tooltip.gemsrealm.gem_type": "Gem Type: %s",
+  "tooltip.gemsrealm.crystal_type": "Crystal Type: %s",
+
+  "gem_type.crystalcraft_unlimited_java.saphire": "Sapphire",
+  "gem_type.crystalcraft_unlimited_java.pearl_item": "Pearl",
+  "gem_type.crystalcraft_unlimited_java.silicium": "Silicon",
 
   "item_type.minecraft.nugget": "%s Nugget",
   "block_type.minecraft.bars": "%s Bars",
