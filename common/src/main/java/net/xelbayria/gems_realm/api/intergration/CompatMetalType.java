@@ -4,32 +4,28 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.minecraft.resources.ResourceLocation;
 import net.xelbayria.gems_realm.GemsRealm;
-import net.xelbayria.gems_realm.api.set.GemType;
 import net.xelbayria.gems_realm.api.set.MetalType;
 
-import java.util.Objects;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import static net.xelbayria.gems_realm.api.intergration.CompatGemType.childKeySafe;
+import static net.xelbayria.gems_realm.api.intergration.CompatGemType.getChildKeyFrom;
 
-/// MetalType Detection detect a MetalType that met 2 requirements:
-        /// BASS_DRUM (sound)
-        /// blockID: nameStoneType_bricks - only 2 words
-// Put all undetected StoneTypes (including hardcoded ones) from mods in here to be included
-public class CompatRockType {
+/**
+ * Undetected MetalType that doesn't met 2 requirements:
+ *
+**/
+
+// Put all undetected CrystalTypes here
+public class CompatMetalType {
 
     public static void init() {
-    //!! METALTYPE
-
         // Mo' Shiz
         mediumMetalFinder("ms", "refined_quartz", "resources/refined_quartz_block");
         mediumMetalFinder("ms", "cast_iron", "resources/cast_iron_block");
 
-
-        // CrystalCraft (Unlimited Java)
+        // CrystalCraft-Unlimited-Java
         simpleMetalFinder("crystalcraft_unlimited_java", "titanium", "ingot-crystalcraft_unlimited_java:titanium");
         simpleMetalFinder("crystalcraft_unlimited_java", "uranium", "ingot-crystalcraft_unlimited_java:uranium");
-        simpleMetalFinder("crystalcraft_unlimited_java", "withered_steel", "ingot-crystalcraft_unlimited_java:withered_steel");
+        mediumMetalFinder("crystalcraft_unlimited_java", "withered_steel", "wither_block", "ingot-crystalcraft_unlimited_java:withered_steel");
         simpleMetalFinder("crystalcraft_unlimited_java", "bronze", "ingot-crystalcraft_unlimited_java:bronze");
         simpleMetalFinder("crystalcraft_unlimited_java", "silver", "ingot-crystalcraft_unlimited_java:silver");
         simpleMetalFinder("crystalcraft_unlimited_java", "platinum", "ingot-crystalcraft_unlimited_java:platinum");
@@ -56,7 +52,7 @@ public class CompatRockType {
         simpleMetalFinder("crystalcraft_unlimited_java", "xernium", "ingot-crystalcraft_unlimited_java:xernium");
         simpleMetalFinder("crystalcraft_unlimited_java", "palladium", "ingot-crystalcraft_unlimited_java:palladium");
         simpleMetalFinder("crystalcraft_unlimited_java", "purple_gold", "ingot-crystalcraft_unlimited_java:purple_gold");
-//        simpleMetalFinder("crystalcraft_unlimited_java", "green_gold", "ingot-crystalcraft_unlimited_java:green_gold"); //@ Requested DEV to fix the filename that has 2 png as extension
+        simpleMetalFinder("crystalcraft_unlimited_java", "green_gold", "ingot-crystalcraft_unlimited_java:green_gold");
         simpleMetalFinder("crystalcraft_unlimited_java", "cupronickel", "ingot-crystalcraft_unlimited_java:cupronickel");
         simpleMetalFinder("crystalcraft_unlimited_java", "pelenium", "ingot-crystalcraft_unlimited_java:pelenium");
         simpleMetalFinder("crystalcraft_unlimited_java", "maradonyx", "ingot-crystalcraft_unlimited_java:maradonyx");
@@ -64,7 +60,7 @@ public class CompatRockType {
         simpleMetalFinder("crystalcraft_unlimited_java", "neon_meteorite", "ingot-crystalcraft_unlimited_java:neon_meteorite");
         simpleMetalFinder("crystalcraft_unlimited_java", "lithium", "ingot-crystalcraft_unlimited_java:lithium");
         simpleMetalFinder("crystalcraft_unlimited_java", "silicium", "ingot-crystalcraft_unlimited_java:silicium");
-        simpleMetalFinder("crystalcraft_unlimited_java", "radium", "ingot-crystalcraft_unlimited_java:radium");
+        mediumMetalFinder("crystalcraft_unlimited_java", "radium", "radium_reactor", "ingot-crystalcraft_unlimited_java:radium");
         simpleMetalFinder("crystalcraft_unlimited_java", "technetium", "ingot-crystalcraft_unlimited_java:technetium");
         simpleMetalFinder("crystalcraft_unlimited_java", "ruthenium", "ingot-crystalcraft_unlimited_java:ruthenium");
         simpleMetalFinder("crystalcraft_unlimited_java", "rhodium", "ingot-crystalcraft_unlimited_java:rhodium");
@@ -88,9 +84,11 @@ public class CompatRockType {
         simpleMetalFinder("crystalcraft_unlimited_java", "molybdenum", "ingot-crystalcraft_unlimited_java:molybdenum_ingot");
         simpleMetalFinder("crystalcraft_unlimited_java", "europium", "ingot-crystalcraft_unlimited_java:europium_ingot");
         simpleMetalFinder("crystalcraft_unlimited_java", "calcium", "ingot-crystalcraft_unlimited_java:calcium_ingot");
+        // neon_meteorite - noBlock
+        // meteorite - noBlock
     }
 
-//!! MetalType
+    //!! GENERAL METHODS
     public static void simpleMetalFinder(String modId, String nameMetalType, String... nameChildren) {
         advancedMetalFinder(modId, nameMetalType, nameMetalType +"_block", nameChildren);
     }
@@ -99,16 +97,7 @@ public class CompatRockType {
         advancedMetalFinder(modId, nameMetalType, nameMetalBlock, nameChildren);
     }
 
-
-//!! GemType
-    public static void simpleGemFinder(String modId, String nameGemType) {
-        var gemtypeFinder = GemType.Finder.simple(modId, nameGemType, nameGemType);
-
-        BlockSetAPI.addBlockTypeFinder(GemType.class, gemtypeFinder);
-    }
-
-
-//!! ADVANCED FINDER
+    //!! ADVANCED FINDER
     public static void advancedMetalFinder(String modId, String nameMetalType, String nameMetalBlock,  String... nameChildren) {
         if (PlatHelper.isModLoaded(modId)) {
             var metaltypeFinder = MetalType.Finder.simple(modId, nameMetalType, nameMetalBlock);
@@ -128,64 +117,5 @@ public class CompatRockType {
             BlockSetAPI.addBlockTypeFinder(MetalType.class, metaltypeFinder);
         }
     }
-
-    public static void advancedGemFinder(String modId, String nameGemType, String nameGemBlock,  String... nameChildren) {
-        if (PlatHelper.isModLoaded(modId)) {
-            var gemtypeFinder = GemType.Finder.simple(modId, nameGemType, nameGemBlock);
-
-            for (String currentChild : nameChildren) {
-                String childKey = getChildKeyFrom(currentChild);
-                ResourceLocation childId = new ResourceLocation(currentChild.split("-")[1]);
-
-                if (currentChild.contains("-") && childKeySafe.contains(childKey)) {
-                    gemtypeFinder.addChild(childKey, childId);
-                }
-                else if (childKeySafe.contains(childKey)) gemtypeFinder.addChild(childKey, currentChild);
-                else GemsRealm.LOGGER.warn("CompatGemType: Incorrect childKey - {} for {}", childKey, currentChild);
-
-            }
-
-            BlockSetAPI.addBlockTypeFinder(GemType.class, gemtypeFinder);
-        }
-    }
-
-    /// Get the keyword from block: stone_bricks, key: bricks
-    @SuppressWarnings("RegExpAnonymousGroup")
-    public static String getChildKeyFrom(String childBlock) {
-        if (childBlock.contains("-")) {
-            return childBlock.split("-")[0];
-        }
-
-        String lastword = childBlock.substring(childBlock.lastIndexOf("_") + 1);
-
-        // With "bricks"
-        if (childBlock.matches("\\w+_bricks?(?:_[a-z]+)?")) {
-            Pattern pattern = Pattern.compile("\\w+_(bricks?)(_[a-z]+)?");
-            Matcher matcher = pattern.matcher(childBlock);
-            if (matcher.find()) {
-                String suffix = (Objects.isNull(matcher.group(2))) ? matcher.group(1) : matcher.group(1) + matcher.group(2);
-                return switch (suffix) {
-                    case "brick", "bricks" -> "bricks";
-                    case "brick_slab", "bricks_slab" -> "brick_slab";
-                    case "brick_stairs", "bricks_stairs" -> "brick_stairs";
-                    case "brick_wall", "bricks_wall" -> "brick_wall";
-                    default -> lastword;
-                };
-            }
-        }
-        // Default
-        return lastword;
-    }
-
-    private static final Set<String> childKeySafe = Set.of(
-            //BLOCK
-            "block", "stairs", "slab", "wall", "button", "pressure_plate", "smooth_stone",
-//            "cobblestone", "mossy_cobblestone",
-            "polished", "polished_stairs", "polished_slab",
-            "bricks", "brick_stairs", "brick_slab", "brick_wall", "cracked_bricks", "brick_tiles",
-            "mossy_bricks", "mossy_brick_slab", "mossy_brick_stairs", "mossy_brick_wall",
-            //ITEM
-            "ingot", "nugget"
-    );
 
 }
