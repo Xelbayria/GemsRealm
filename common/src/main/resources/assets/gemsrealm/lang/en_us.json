@@ -41,5 +41,19 @@
   "block_type.create.tile_stairs": "%s Tile Stairs",
   "block_type.create.table_cloth": "%s Table Cloth",
   "block_type.create.ornate_window": "Ornate %s Window",
-  "block_type.create.ornate_window_pane": "Ornate %s Window Pane"
+  "block_type.create.ornate_window_pane": "Ornate %s Window Pane",
+
+  "block_type.lapidary.bricks": "%s Bricks",
+  "block_type.lapidary.brick_stairs": "%s Brick Stairs",
+  "block_type.lapidary.brick_slab": "%s Brick Slab",
+  "block_type.lapidary.cut": "Cut %s",
+  "block_type.lapidary.cut_stairs": "Cut %s Stairs",
+  "block_type.lapidary.cut_slab": "Cut %s Slab",
+  "block_type.lapidary.tiles": "%s Tiles",
+  "block_type.lapidary.tile_stairs": "%s Tile Stairs",
+  "block_type.lapidary.tile_slab": "%s Tile Slab",
+  "block_type.lapidary.chiseled": "Chiseled %s",
+  "block_type.lapidary.pillar": "%s Pillar",
+  "block_type.lapidary.polished": "Polished %s"
+
 }
