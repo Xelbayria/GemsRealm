@@ -34,7 +34,7 @@ public final class ModelUtils {
         Matcher matcher = PATH_PATTERN.matcher(id.getPath());
 
         // Skip the ResourceLocation/Id's modification
-        if (!matcher.find() || id.getNamespace().contains("stonezone")) {
+        if (!matcher.find() || id.getNamespace().contains(GemsRealm.MOD_ID)) {
             return id;
         }
         return GemsRealm.res(matcher.group("folder") + "/" + id.getNamespace() + matcher.group("path"));
@@ -49,27 +49,25 @@ public final class ModelUtils {
 
     //same as above but with JsonObject. we could merge these 2 eventually. Just done this way so we dont have to parse those top layer models twice
     private static void replaceParent(JsonObject jsonObject, @Nullable SimpleModule module,
-                                      @Nullable String ignoreIfFromStone,
+                                      @Nullable String ignoreIfContainIron,
                                       TintConfiguration config) {
         // Inside the model file, modify the value of parent's
         if (jsonObject.has("parent")) {
             ResourceLocation oldRes = new ResourceLocation(jsonObject.get("parent").getAsString());
             String path = oldRes.getPath();
             int idx = path.lastIndexOf("/");
-            //this parent was already added as a block. This is very brittle ans should be done a better way by keeping track of the block we visited
-            if (ignoreIfFromStone != null && (idx != -1) && path.substring(idx + 1).contains(ignoreIfFromStone)
-                    && !path.contains("/parent/") && !path.contains("template")) {
-                return;
-            }
 
-            // Skip these models/item file
+            /// Skip the model files that do not need modification
+            if (ConditionHelper.excludeIf(oldRes, ignoreIfContainIron, idx)) return;
+
+            /// Skip these models/item file
             if (!oldRes.toString().matches("minecraft:(?:item/generated|builtin/generated|item/chest)")) {
                 ResourceLocation newRes = transformModelID(oldRes);
                 jsonObject.addProperty("parent", newRes.toString());
 
                 // Creating/Modifying the parent model files
                 if (module instanceof GemsRealmModule gemsrealmModule &&
-                        !(RESOLVED_PARENTS.contains(oldRes) || oldRes.getNamespace().matches("stonezone"))
+                        !(RESOLVED_PARENTS.contains(oldRes) || oldRes.getNamespace().matches(GemsRealm.MOD_ID))
                 ) {
                     gemsrealmModule.markModelForModification(oldRes, config);
                     RESOLVED_PARENTS.add(oldRes);
@@ -118,7 +116,7 @@ public final class ModelUtils {
     public static Map<ResourceLocation, JsonObject> readAllModelsAndParents(ResourceManager manager, Collection<ResourceLocation> models) {
         Map<ResourceLocation, JsonObject> jsonObjects = new HashMap<>();
         for (ResourceLocation res : models) {
-            if (!res.getNamespace().matches("stonezone")) {
+            if (!res.getNamespace().matches(GemsRealm.MOD_ID)) {
                 readJsonsRecursive(manager, res, jsonObjects);
             }
         }
