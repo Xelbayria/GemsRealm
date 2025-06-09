@@ -24,6 +24,7 @@ import java.util.function.Consumer;
 
 
 public class GemsRealmModule extends SimpleModule {
+
     public GemsRealmModule(String modId, String shortId) {
         super(modId, shortId, GemsRealm.MOD_ID);
     }
@@ -37,7 +38,7 @@ public class GemsRealmModule extends SimpleModule {
 
     @Override
     public String toString() {
-        return "GemsRealm " + LangBuilder.getReadableName(modId) + " Module";
+        return "GemsRealm: " + LangBuilder.getReadableName(modId) + " Module";
     }
 
     @Override
