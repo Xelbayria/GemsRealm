@@ -48,6 +48,7 @@ public class GemsRealmForge extends GemsRealmCommon {
 
         // General
         addIfLoaded("create", () -> CreateModule::new);
+        addMultipleIfLoaded("lapidary", () -> LapidaristModuleC::new, () -> LapidaristModuleD::new, () -> LapidaristModuleG::new, () -> LapidaristModuleM::new);
 //        addIfLoaded("rechiseled", () -> RechiseledModule::new);
 //        addIfLoaded("stonechest", () -> StoneChestModule::new);
 
