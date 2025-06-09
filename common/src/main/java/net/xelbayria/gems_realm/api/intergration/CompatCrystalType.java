@@ -21,25 +21,34 @@ public class CompatCrystalType {
         simpleCrystalFinder("crystalcraft_unlimited_java", "aura_quartz");
     }
 
+    //!! SIMPLE FINDER
+    /**
+     * @param modId - mod id of the mod
+     * @param nameCrystalType - name of CrystalType without "_block" or "_ingot"
+     * @param nameChildren - childkey-ID_of_the_children or nameCrystalType_ingot
+     */
     public static void simpleCrystalFinder(String modId, String nameCrystalType, String... nameChildren) {
         advancedCrystalFinder(modId, nameCrystalType, nameCrystalType + "_block", nameChildren);
     }
 
-    public static void mediumCrystalFinder(String modId, String nameCrystalType, String nameCrystalBlock, String... nameChildren) {
-        advancedCrystalFinder(modId, nameCrystalType, nameCrystalBlock, nameChildren);
-    }
-
     //!! ADVANCED FINDER
-    public static void advancedCrystalFinder(String modId, String nameCrystalType, String nameCrystalBlock,  String... nameChildren) {
+    /**
+     * @param modId - mod id of the mod
+     * @param nameCrystalType - name of CrystalType without "_block" or "_ingot"
+     * @param nameBlockCrystal - name of block for CrystalType. Usually with "_block"
+     * @param nameChildren - childkey-ID_of_the_children or nameCrystalType_ingot
+     */
+    public static void advancedCrystalFinder(String modId, String nameCrystalType, String nameBlockCrystal,  String... nameChildren) {
         if (PlatHelper.isModLoaded(modId)) {
-            var crystaltypeFinder = CrystalType.Finder.simple(modId, nameCrystalType, nameCrystalBlock);
+            var crystaltypeFinder = CrystalType.Finder.simple(modId, nameCrystalType, nameBlockCrystal);
 
             for (String currentChild : nameChildren) {
                 String childKey = getChildKeyFrom(currentChild);
                 String blockId = currentChild.split("-")[1];
-                ResourceLocation childId;
-                if (blockId.contains(":")) childId = new ResourceLocation(modId, blockId);
-                else childId = new ResourceLocation(blockId);
+                ResourceLocation childId = (blockId.contains(":"))
+                        ? new ResourceLocation(blockId)
+                        : new ResourceLocation(modId, blockId);
+
 
                 if (currentChild.contains("-") && childKeySafe.contains(childKey))
                     crystaltypeFinder.addChild(childKey, childId);
