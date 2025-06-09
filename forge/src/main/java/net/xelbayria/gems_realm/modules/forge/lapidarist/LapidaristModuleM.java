@@ -33,7 +33,7 @@ public class LapidaristModuleM extends GemsRealmModule {
 
         bricks = GemsRealmEntrySet.of(MetalType.class, "bricks",
                         getModBlock("gold_bricks"), MetalTypeRegistry::getGoldType,
-                        MetalType -> new Block(copyPropertiesSafe(MetalType))
+                        metalType -> new Block(copyPropertiesSafe(metalType))
                 )
                 .addTexture(modRes("block/gold_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -47,8 +47,8 @@ public class LapidaristModuleM extends GemsRealmModule {
 
         brick_stairs = GemsRealmEntrySet.of(MetalType.class, "brick_stairs",
                         getModBlock("gold_brick_stairs"), MetalTypeRegistry::getGoldType,
-                        MetalType -> new StairBlock(bricks.blocks.get(MetalType).defaultBlockState(),
-                                copyPropertiesSafe(MetalType)
+                        metalType -> new StairBlock(bricks.blocks.get(metalType).defaultBlockState(),
+                                copyPropertiesSafe(metalType)
                         )
                 )
                 .requiresFromMap(bricks.blocks) //REASON: recipes, textures
@@ -65,7 +65,7 @@ public class LapidaristModuleM extends GemsRealmModule {
 
         brick_slab = GemsRealmEntrySet.of(MetalType.class, "brick_slab",
                         getModBlock("gold_brick_slab"), MetalTypeRegistry::getGoldType,
-                        MetalType -> new SlabBlock(copyPropertiesSafe(MetalType))
+                        metalType -> new SlabBlock(copyPropertiesSafe(metalType))
                 )
                 .requiresFromMap(bricks.blocks) //REASON: recipes, textures
                 //TEXTURES: bricks
@@ -81,7 +81,7 @@ public class LapidaristModuleM extends GemsRealmModule {
 
         cut = GemsRealmEntrySet.of(MetalType.class, "", "cut",
                         getModBlock("cut_gold"), MetalTypeRegistry::getGoldType,
-                        MetalType -> new Block(copyPropertiesSafe(MetalType))
+                        metalType -> new Block(copyPropertiesSafe(metalType))
                 )
                 .requiresFromMap(bricks.blocks) //REASON: recipesrr
                 .addTexture(modRes("block/cut_gold"))
@@ -96,8 +96,8 @@ public class LapidaristModuleM extends GemsRealmModule {
 
         cut_stairs = GemsRealmEntrySet.of(MetalType.class, "stairs", "cut",
                         getModBlock("cut_gold_stairs"), MetalTypeRegistry::getGoldType,
-                        MetalType -> new StairBlock(cut.blocks.get(MetalType).defaultBlockState(),
-                                copyPropertiesSafe(MetalType)
+                        metalType -> new StairBlock(cut.blocks.get(metalType).defaultBlockState(),
+                                copyPropertiesSafe(metalType)
                         )
                 )
                 .requiresFromMap(cut.blocks) //REASON: recipes, textures
@@ -114,7 +114,7 @@ public class LapidaristModuleM extends GemsRealmModule {
 
         cut_slab = GemsRealmEntrySet.of(MetalType.class, "slab", "cut",
                         getModBlock("cut_gold_slab"), MetalTypeRegistry::getGoldType,
-                        MetalType -> new SlabBlock(copyPropertiesSafe(MetalType))
+                        metalType -> new SlabBlock(copyPropertiesSafe(metalType))
                 )
                 .requiresFromMap(cut.blocks) //REASON: recipes, textures
                 //TEXTURES: bricks
@@ -130,7 +130,7 @@ public class LapidaristModuleM extends GemsRealmModule {
 
         tiles = GemsRealmEntrySet.of(MetalType.class, "tiles",
                         getModBlock("gold_tiles"), MetalTypeRegistry::getGoldType,
-                        MetalType -> new Block(copyPropertiesSafe(MetalType))
+                        metalType -> new Block(copyPropertiesSafe(metalType))
                 )
                 .requiresFromMap(cut.blocks) //REASON: recipes
                 .addTexture(modRes("block/gold_tiles"))
@@ -145,8 +145,8 @@ public class LapidaristModuleM extends GemsRealmModule {
 
         tile_stairs = GemsRealmEntrySet.of(MetalType.class, "tile_stairs",
                         getModBlock("gold_tile_stairs"), MetalTypeRegistry::getGoldType,
-                        MetalType -> new StairBlock(tiles.blocks.get(MetalType).defaultBlockState(),
-                                copyPropertiesSafe(MetalType)
+                        metalType -> new StairBlock(tiles.blocks.get(metalType).defaultBlockState(),
+                                copyPropertiesSafe(metalType)
                         )
                 )
                 .requiresFromMap(tiles.blocks) //REASON: recipes, textures
@@ -163,7 +163,7 @@ public class LapidaristModuleM extends GemsRealmModule {
 
         tile_slab = GemsRealmEntrySet.of(MetalType.class, "tile_slab",
                         getModBlock("gold_tile_slab"), MetalTypeRegistry::getGoldType,
-                        MetalType -> new SlabBlock(copyPropertiesSafe(MetalType))
+                        metalType -> new SlabBlock(copyPropertiesSafe(metalType))
                 )
                 .requiresFromMap(tiles.blocks) //REASON: recipes, textures
                 //TEXTURES: bricks
@@ -179,7 +179,7 @@ public class LapidaristModuleM extends GemsRealmModule {
 
         chiseled = GemsRealmEntrySet.of(MetalType.class, "", "chiseled",
                         getModBlock("chiseled_gold"), MetalTypeRegistry::getGoldType,
-                        MetalType -> new Block(copyPropertiesSafe(MetalType))
+                        metalType -> new Block(copyPropertiesSafe(metalType))
                 )
                 .requiresFromMap(brick_slab.blocks) //REASON: recipes
                 .addTexture(modRes("block/chiseled_gold"))
@@ -194,7 +194,7 @@ public class LapidaristModuleM extends GemsRealmModule {
 
         pillar = GemsRealmEntrySet.of(MetalType.class, "pillar",
                         getModBlock("gold_pillar"), MetalTypeRegistry::getGoldType,
-                        MetalType -> new RotatedPillarBlock(copyPropertiesSafe(MetalType))
+                        metalType -> new RotatedPillarBlock(copyPropertiesSafe(metalType))
                 )
                 .addTexture(modRes("block/gold_pillar"))
                 .addTexture(modRes("block/gold_pillar_top"))
