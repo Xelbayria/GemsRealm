@@ -135,8 +135,8 @@ public class MetalType extends RockType {
                         });
                         return Optional.of(metalType);
                     }
-                } catch (Exception ignored) {
-                    GemsRealm.LOGGER.warn("Failed to find custom metal type {}: {}", id, ignored.getMessage());
+                } catch (Exception e) {
+                    GemsRealm.LOGGER.warn("Failed to find custom metal type {}: {}", id, e.getMessage());
                 }
 //                GemsRealm.LOGGER.warn("Failed to find custom metal type {}", id);
             }

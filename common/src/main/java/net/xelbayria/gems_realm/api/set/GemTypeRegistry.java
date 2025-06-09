@@ -5,12 +5,13 @@ import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
+import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_GEMTYPES;
 import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_MODS;
 
 public class GemTypeRegistry extends BlockTypeRegistry<GemType> {
@@ -18,47 +19,76 @@ public class GemTypeRegistry extends BlockTypeRegistry<GemType> {
     public static final GemTypeRegistry INSTANCE = new GemTypeRegistry();
 
     public GemTypeRegistry() {
-        super(GemType.class, "mud_type");
+        super(GemType.class, "gem_type");
 
-        this.addFinder(GemType.Finder.vanilla("mud"));
+        this.addFinder(GemType.Finder.vanilla("lapis"));
+        this.addFinder(GemType.Finder.vanilla("quartz"));
+        this.addFinder(GemType.Finder.vanilla("emerald"));
+        this.addFinder(GemType.Finder.vanilla("diamond"));
     }
 
-    public static GemType getMudType() {
-        return getValue("mud");
+    public static GemType getEmeraldType() {
+        return getValue("emerald");
+    }
+
+    public static GemType getDiamondType() {
+        return getValue("diamond");
     }
 
     public static Collection<GemType> getTypes() {
         return INSTANCE.getValues();
     }
 
-    public static GemType getValue(String mudTypeId) {
-        return INSTANCE.get(new ResourceLocation(mudTypeId));
+    public static GemType getValue(String gemTypeId) {
+        return INSTANCE.get(new ResourceLocation(gemTypeId));
     }
 
     @Override
     public GemType getDefaultType() {
-        return getMudType();
+        return getEmeraldType();
     }
 
     @Override
     public Optional<GemType> detectTypeFromBlock(Block baseblock, ResourceLocation baseRes) {
-        String path = baseRes.getPath();
+        String blockPath = baseRes.getPath();
 
-        if (
-                path.matches("[a-z]+_mud_bricks")
-                && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM
-                && !BLACKLISTED_MODS.contains(baseRes.getNamespace())
-        ) {
-            String mudName = path.substring(0, path.length() - 7); // get mudName from namespace:mudName_bricks
-            String mudAlt = mudName + "_mud"; // Some mods included "_mud" as the suffix
-            ResourceLocation idBlockType = baseRes.withPath(mudName);
-            ResourceLocation idBlockTypeAlt = baseRes.withPath(mudAlt);
+        /// Default
+        // Checking for word1_word2_TYPE_block - NOTE: word1, word2 can be present or not
+        if (blockPath.matches("^(?:rare|dark|black|white|cyan|pink|yellow|blue|green|purple|red|orange|brown|olive)?_?(?:ice|fire|star|blue)?_?[a-z]+_block$") ) {
+            String gemName = blockPath.replace("_block", ""); // get gemName from namespace:gemName_block
+            ResourceLocation idBlockType = baseRes.withPath(gemName);
 
-            if (Objects.isNull(get(idBlockType)) || Objects.isNull(get(idBlockTypeAlt))) {
-                var opt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(mudName));
-                var alt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(mudAlt));
-                if (opt.isPresent()) return Optional.of(new GemType(baseRes.withPath(mudName), opt.get()));
-                else if (alt.isPresent()) return Optional.of(new GemType(baseRes.withPath(mudAlt), alt.get()));
+            /// Ensure the detected block is actually GemType
+            boolean noMetalType = !BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
+            )
+                && !BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), "raw_"+ blockPath.replace("_block", ""))
+            );
+            boolean noDustType = !BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "dust"))
+            );
+            boolean hasOre = BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ore"))
+            ) || BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), "deepslate_"+ blockPath.replace("block", "ore"))
+            );
+            boolean hasGem = BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("_block", ""))
+            );
+
+            // Ensure there is no duplicated GemType in the list
+            if (Objects.isNull(get(idBlockType))
+                    && noMetalType
+                    && noDustType
+                    && hasOre
+                    && hasGem
+                    && !BLACKLISTED_GEMTYPES.contains(idBlockType.toString())
+                    && !BLACKLISTED_MODS.contains(baseRes.getNamespace())
+            ) {
+                Optional<Block> opt = BuiltInRegistries.BLOCK.getOptional(baseRes);
+
+                if (opt.isPresent()) return Optional.of(new GemType(idBlockType, opt.get()));
             }
 
         }
@@ -67,8 +97,8 @@ public class GemTypeRegistry extends BlockTypeRegistry<GemType> {
 
     @Override
     public void addTypeTranslations(AfterLanguageLoadEvent language) {
-        getValues().forEach((mudType) -> {
-            if (language.isDefault()) language.addEntry(mudType.getTranslationKey(), mudType.getReadableName());
+        getValues().forEach((gemType) -> {
+            if (language.isDefault()) language.addEntry(gemType.getTranslationKey(), gemType.getReadableName());
         });
     }
 
