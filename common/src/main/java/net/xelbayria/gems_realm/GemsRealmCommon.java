@@ -1,6 +1,9 @@
 package net.xelbayria.gems_realm;
 
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.xelbayria.gems_realm.modules.minecraft.MinecraftModule;
+
+import java.util.Set;
 
 import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
 import static net.mehvahdjukaar.every_compat.EveryCompat.addOtherCompatMod;
@@ -15,14 +18,14 @@ public class GemsRealmCommon {
 
     protected void addModules() {
 
-
 //!! =============================================== Add Other Compat Mods ========================================== \\
 //        addOtherCompatMod("rechiseledcreate", "create", "rechiseled");
 //        addOtherCompatMod("rechiseledae2", "ae2", "rechiseled");
 
 //!! =================================================== Add Modules ================================================ \\
 
-        addIfLoaded("minecraft", () -> MinecraftModule::new);
+        if (isModLoaded()) addIfLoaded("minecraft", () -> MinecraftModule::new);
+
 //        addIfLoaded("twigs", () -> TwigsModule::new);
 //        addIfLoaded("bbb", () -> BuildingButBetterModule::new);
 //        addIfLoaded("blockus", () -> BlockusModule::new);
@@ -33,5 +36,20 @@ public class GemsRealmCommon {
 
 //!! ====================================================== OTHERS ================================================== \\
 
+    }
+
+    public boolean isModLoaded() {
+        Set<String> list = Set.of(
+                //requires nuggets
+                "create", "mcwfences",
+                //requires nuggets, bars
+                "mcwbridges"
+        );
+
+        for (String modId : list) {
+            boolean isInstalled = PlatHelper.isModLoaded(modId);
+            if (isInstalled) return true;
+        }
+        return false;
     }
 }
