@@ -9,7 +9,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.StonecutterBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
@@ -31,7 +30,8 @@ public class MacawFencesModule extends GemsRealmModule {
                         getModBlock("iron_cheval_de_frise"), MetalTypeRegistry::getIronType,
                         metalType -> new StoneWiredFence(copyBarsSafe(metalType))
                 )
-                .requiresChildren("ingot", "nugget") //REASON: recipes
+                .requiresChildren("ingot") //REASON: recipes
+                //RECIPES: minecraft:nugget
                 //TEXTURES: block (original: anvil)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
