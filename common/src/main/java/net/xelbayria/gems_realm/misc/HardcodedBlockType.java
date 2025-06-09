@@ -28,7 +28,20 @@ public class HardcodedBlockType {
 
     public static final Set<String> BLACKLISTED_GEMTYPES = Set.of(
             //REASON: not a GemType
-            "minecraft:quartz"
+            "minecraft:redstone", "minecraft:coal",
+
+            "crystalcraft_unlimited_java:aluminium", "crystalcraft_unlimited_java:bismuth", "crystalcraft_unlimited_java:bronze",
+            "crystalcraft_unlimited_java:holmium", "crystalcraft_unlimited_java:iridium", "crystalcraft_unlimited_java:lead",
+            "crystalcraft_unlimited_java:lithium", "crystalcraft_unlimited_java:magnesium", "crystalcraft_unlimited_java:matizium",
+            "crystalcraft_unlimited_java:nickel", "crystalcraft_unlimited_java:orichalcum", "crystalcraft_unlimited_java:osmium",
+            "crystalcraft_unlimited_java:palintinium", "crystalcraft_unlimited_java:palladium", "crystalcraft_unlimited_java:pelenium",
+            "crystalcraft_unlimited_java:platinum", "crystalcraft_unlimited_java:silicium", "crystalcraft_unlimited_java:silver",
+            "crystalcraft_unlimited_java:tin", "crystalcraft_unlimited_java:titanium", "crystalcraft_unlimited_java:uranium",
+            "crystalcraft_unlimited_java:xernium", "crystalcraft_unlimited_java:yurium", "crystalcraft_unlimited_java:zinc",
+            "crystalcraft_unlimited_java:chloronium", "crystalcraft_unlimited_java:cobalt", "crystalcraft_unlimited_java:maradonyx",
+            "crystalcraft_unlimited_java:sulfur", "crystalcraft_unlimited_java:tungsten", "crystalcraft_unlimited_java:chrome",
+            "crystalcraft_unlimited_java:carnotite", "crystalcraft_unlimited_java:ilmenite", "crystalcraft_unlimited_java:pyrite",
+            "crystalcraft_unlimited_java:seaborgium"
     );
 
     public static final Set<String> BLACKLISTED_CRYSTALTYPES = Set.of(
