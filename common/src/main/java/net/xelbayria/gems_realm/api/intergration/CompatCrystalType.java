@@ -18,7 +18,7 @@ public class CompatCrystalType {
     public static void init() {
 
         // CrystalCraft-Unlimited-Java
-        simpleCrystalFinder("crystalcraft_unlimited_java", "aura_quartz");
+        simpleCrystalFinder("crystalcraft_unlimited_java", "aura_quartz", "cluster-aura_crystal");
     }
 
     //!! SIMPLE FINDER
