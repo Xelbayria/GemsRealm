@@ -22,17 +22,21 @@ public class GemsRealmClient {
             var compatModule = GemsRealm.getModuleOfItem(item);
             if (compatModule != null) {
                 if (blockTooltip) {
-                    MetalType metalType = MetalTypeRegistry.INSTANCE.getBlockTypeOf(item);
-                    if (metalType != null) {
-                        components.add(Component.translatable("tooltip.gemsrealm.metal_type", metalType.toString()).withStyle(ChatFormatting.AQUA));
+                    CrystalType crystalType = CrystalTypeRegistry.INSTANCE.getBlockTypeOf(item);
+                    if (crystalType != null) {
+                        components.add(Component.translatable("tooltip.gemsrealm.crystal_type", crystalType.toString()).withStyle(ChatFormatting.AQUA));
+                    }
+                    DustType dustType = DustTypeRegistry.INSTANCE.getBlockTypeOf(item);
+                    if (dustType != null) {
+                        components.add(Component.translatable("tooltip.gemsrealm.dust_type", dustType.toString()).withStyle(ChatFormatting.AQUA));
                     }
                     GemType gemType = GemTypeRegistry.INSTANCE.getBlockTypeOf(item);
                     if (gemType != null) {
                         components.add(Component.translatable("tooltip.gemsrealm.gem_type", gemType.toString()).withStyle(ChatFormatting.AQUA));
                     }
-                    CrystalType crystalType = CrystalTypeRegistry.INSTANCE.getBlockTypeOf(item);
-                    if (crystalType != null) {
-                        components.add(Component.translatable("tooltip.gemsrealm.crystal_type", crystalType.toString()).withStyle(ChatFormatting.AQUA));
+                    MetalType metalType = MetalTypeRegistry.INSTANCE.getBlockTypeOf(item);
+                    if (metalType != null) {
+                        components.add(Component.translatable("tooltip.gemsrealm.metal_type", metalType.toString()).withStyle(ChatFormatting.AQUA));
                     }
                 }
             }
