@@ -1,6 +1,5 @@
 package net.xelbayria.gems_realm.api;
 
-import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
 import net.mehvahdjukaar.every_compat.api.AbstractSimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
@@ -17,11 +16,9 @@ import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.xelbayria.gems_realm.misc.ModelUtils;
 import net.xelbayria.gems_realm.misc.SpriteHelper;
 import net.xelbayria.gems_realm.misc.TintConfiguration;
 import org.apache.commons.lang3.function.TriFunction;
@@ -148,7 +145,8 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
             return this;
         }
 
-        public GemsRealmEntrySet.Builder<T, B> createPaletteFromMetalChild(String childKey) {
+        /// Safe-fail: if a child is not found, then "block" will be used
+        public GemsRealmEntrySet.Builder<T, B> createPaletteFromTypeChild(String childKey) {
             this.setPalette((blockType, manager) -> {
                 if (blockType.getChild(childKey) != null) {
                     return AbstractSimpleEntrySet.makePaletteFromChild(p -> {

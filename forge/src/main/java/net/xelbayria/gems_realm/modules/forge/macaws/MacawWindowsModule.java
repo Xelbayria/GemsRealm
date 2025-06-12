@@ -1,6 +1,5 @@
 package net.xelbayria.gems_realm.modules.forge.macaws;
 
-import com.mcwwindows.kikoz.objects.CurtainRod;
 import com.mcwwindows.kikoz.objects.Shutter;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
@@ -8,8 +7,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.MetalType;
@@ -38,7 +35,7 @@ public class MacawWindowsModule extends GemsRealmModule {
                                 .requiresCorrectToolForDrops()
                         )
                 )
-                .createPaletteFromMetalChild("trapdoor")
+                .createPaletteFromTypeChild("trapdoor")
                 .requiresChildren("trapdoor") //REASON: recipes, textures
                 .addTexture(modRes("block/iron_shutter"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
