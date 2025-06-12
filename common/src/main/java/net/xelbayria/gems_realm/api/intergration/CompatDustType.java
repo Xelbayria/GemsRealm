@@ -53,9 +53,9 @@ public class CompatDustType {
             for (String currentChild : nameChildren) {
                 String childKey = getChildKeyFrom(currentChild);
                 String blockId = currentChild.split("-")[1];
-                ResourceLocation childId;
-                if (blockId.contains(":")) childId = new ResourceLocation(modId, blockId);
-                else childId = new ResourceLocation(blockId);
+                ResourceLocation childId = (blockId.contains(":"))
+                        ? new ResourceLocation(blockId)
+                        : new ResourceLocation(modId, blockId);
 
                 if (currentChild.contains("-") && childKeySafe.contains(childKey))
                     DustTypeFinder.addChild(childKey, childId);
