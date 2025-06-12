@@ -15,7 +15,7 @@ body:
       options:
         - label: "See (LINK WILL BE ADDED IN FUTURE) if someone already suggested a mod that you are going to suggest. \nFOR NOW check out the issues"
           required: true
-        - label: "For MetalType, The suggested mod must contain variant blocks and/or Raw blocks of IRON or GOLD"
+        - label: "For MetalType, The suggested mod must contain variant blocks of IRON or GOLD"
           required: true
         - label: "For GemType, The suggested mod must contain variant blocks of either DIAMOND or EMERALD"
           required: true
