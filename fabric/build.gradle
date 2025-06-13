@@ -75,6 +75,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4785838") // v1.1.8a | Rechiseled
     modRuntimeOnly("curse.maven:text-placeholder-api-1037459:6131409") // Mod-Menu
     modRuntimeOnly("curse.maven:bclib-495191:4971470") // v3.0.14 | BetterEnd
+    modRuntimeOnly("curse.maven:monolib-968432:6544054") // v2.1.0 | More-Beautiful-Torches
 
         //- OTHER MAVENS
     modRuntimeOnly("com.github.quiqueck:BCLib:3.0.14") // BetterEnd
@@ -103,15 +104,17 @@ dependencies {
 
         //+ REQUIRED - The modules access libaries from below - ONLY IN FABRIC
             // MACAW's
-    modCompileOnly("curse.maven:macaws-bridges-351725:5240495") //v3.0.0
+    modCompileOnly("curse.maven:macaws-bridges-351725:6528781") //v3.1.0
+    modImplementation("curse.maven:macaws-windows-363569:5589335") //v2.3.0
     modCompileOnly("curse.maven:macaws-paths-and-pavings-629153:5341073") //v1.0.5
-    modCompileOnly("curse.maven:macaws-windows-363569:5589335") //v2.3.0
-    modCompileOnly("curse.maven:macaws-roofs-352039:5554929") //v2.3.1
     modCompileOnly("curse.maven:macaws-fences-and-walls-453925:5442191") //v1.1.2
-    modCompileOnly("curse.maven:macaws-stairs-1119394:6155218") //v1.0.1
+//    modCompileOnly("curse.maven:macaws-roofs-352039:5554929") //v2.3.1
+//    modCompileOnly("curse.maven:macaws-stairs-1119394:6155218") //v1.0.1
 
-            // OTHERS
+            // GENERALS
+    modCompileOnly("curse.maven:catwalks-llc-916800:4769531")
     modCompileOnly("curse.maven:rechiseled-558998:5286340") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
+    modCompileOnly("curse.maven:iron-chests-for-fabric-498534:5083277")
 
 
 //!! ================================================= FOR TESTING ================================================== \\

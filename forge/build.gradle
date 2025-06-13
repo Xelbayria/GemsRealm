@@ -146,7 +146,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904750") // v8.1.25 | Stoneworks
 //    modRuntimeOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark
 //    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | Chipped
-//    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871") // v2.1.29 | ?
+//    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871") // v2.1.29 | ???
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled, Better-Archeology
 //    modRuntimeOnly("curse.maven:mantle-74924:6041712") // v1.11.28 | Tinkers-Construct
@@ -156,6 +156,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:architectury-api-419699:5137938") // v9.2.14 | ???
 //    modRuntimeOnly("curse.maven:justhammers-681606:6358769") // v20.1.5 | Atlantis
 //    modRuntimeOnly("curse.maven:geckolib-388172:6622543") // v4.7.1.3 | Atlantis
+//    modRuntimeOnly("curse.maven:monolib-968432:6544057") // v2.1.0 | More-Beautiful-Torches
 
         //- ~/forge/mods LOCAL
 
@@ -174,6 +175,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611947") // puzzles-lib
 //    modRuntimeOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1
 //    modRuntimeOnly("curse.maven:quark-243121:5594847") // Zeta
+//    modRuntimeOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib
 
         //+ REQUIRED - The modules access libaries from below - ONLY IN FORGE
 
@@ -191,7 +193,6 @@ dependencies {
             // GENERALS
 //    modCompileOnly("curse.maven:create-deco-509285:6373226")
     modCompileOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ] //!! NOT-STARTED
-    modCompileOnly("curse.maven:iron-chests-228756:4614852")
     modCompileOnly("curse.maven:create-deco-509285:6373226") // Create //!! NOT-STARTED
     modCompileOnly("curse.maven:lapidarist-610032:5921456")
 
@@ -199,7 +200,7 @@ dependencies {
 
     // GEMTYPE, METALTYPE, DUSTTYPE,
 //    modRuntimeOnly("curse.maven:the-age-of-ores-crystalcraft-unlimited-java-558675:6585995")
-    modRuntimeOnly("crystalcraft:Painite Block Texture Fix")
+    modRuntimeOnly("crystalcraft:Bismuth and Holmium fix v3")
     modRuntimeOnly("curse.maven:mo-shiz-mod-62536:5587177")
 
     // GEMTYPE, DUSTTYPE

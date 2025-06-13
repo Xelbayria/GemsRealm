@@ -55,6 +55,16 @@
   "block_type.lapidary.tile_slab": "%s Tile Slab",
   "block_type.lapidary.chiseled": "Chiseled %s",
   "block_type.lapidary.pillar": "%s Pillar",
-  "block_type.lapidary.polished": "Polished %s"
+  "block_type.lapidary.polished": "Polished %s",
+
+  "block_type.more_beautiful_torches.block_torch": "%s Block Torch",
+  "block_type.more_beautiful_torches.block_soul_torch": "%s Block Soul Torch",
+  "block_type.more_beautiful_torches.block_redstone_torch": "%s Block Redstone Torch",
+  "block_type.more_beautiful_torches.raw_block_torch": "Raw %s Block Torch",
+  "block_type.more_beautiful_torches.raw_block_soul_torch": "Raw %s Block Soul Torch",
+  "block_type.more_beautiful_torches.raw_block_redstone_torch": "Raw %s Block Redstone Torch",
+  "block_type.more_beautiful_torches.cluster_torch": "%s Cluster Torch",
+  "block_type.more_beautiful_torches.cluster_soul_torch": "%s Cluster Soul Torch",
+  "block_type.more_beautiful_torches.cluster_redstone_torch": "%s Cluster Redstone Torch"
 
 }
