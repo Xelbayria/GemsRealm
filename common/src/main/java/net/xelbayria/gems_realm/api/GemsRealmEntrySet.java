@@ -146,7 +146,7 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
         }
 
         /// Safe-fail: if a child is not found, then "block" will be used
-        public GemsRealmEntrySet.Builder<T, B> createPaletteFromTypeChild(String childKey) {
+        public GemsRealmEntrySet.Builder<T, B> createPaletteFromRockChild(String childKey) {
             this.setPalette((blockType, manager) -> {
                 if (blockType.getChild(childKey) != null) {
                     return AbstractSimpleEntrySet.makePaletteFromChild(p -> {

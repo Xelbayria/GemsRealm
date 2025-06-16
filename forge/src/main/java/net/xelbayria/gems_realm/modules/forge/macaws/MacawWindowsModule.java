@@ -35,7 +35,7 @@ public class MacawWindowsModule extends GemsRealmModule {
                                 .requiresCorrectToolForDrops()
                         )
                 )
-                .createPaletteFromTypeChild("trapdoor")
+                .createPaletteFromRockChild("trapdoor")
                 .requiresChildren("trapdoor") //REASON: recipes, textures
                 .addTexture(modRes("block/iron_shutter"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)

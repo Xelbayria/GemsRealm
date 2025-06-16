@@ -133,7 +133,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                                 ParticleTypes.FLAME
                         )
                 )
-                .createPaletteFromTypeChild("cluster")
+                .createPaletteFromRockChild("cluster")
                 .requiresChildren("cluster") //REASON: recipes, textures
                 .addTextureM(modRes("block/amethyst_cluster_torch"), GemsRealm.res("block/common_torch_m"))
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
@@ -166,7 +166,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                         getModBlock("amethyst_cluster_soul_wall_torch"), CrystalTypeRegistry::getAmethystType,
                         crystalType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
-                .createPaletteFromTypeChild("cluster")
+                .createPaletteFromRockChild("cluster")
                 .requiresChildren("cluster") //REASON: recipes, textures
                 .addTextureM(modRes("block/amethyst_cluster_soul_torch"), GemsRealm.res("block/common_torch_m"))
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
@@ -194,7 +194,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                         getModBlock("amethyst_cluster_redstone_wall_torch"), CrystalTypeRegistry::getAmethystType,
                         crystalType -> new RedstoneWallTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_WALL_TORCH))
                 )
-                .createPaletteFromTypeChild("cluster")
+                .createPaletteFromRockChild("cluster")
                 .requiresChildren("cluster") //REASON: recipes, textures
                 .addTextureM(modRes("block/amethyst_cluster_redstone_torch"), GemsRealm.res("block/common_redstone_torch_m"))
                 .addTextureM(modRes("block/amethyst_cluster_redstone_torch_off"), GemsRealm.res("block/common_torch_m"))

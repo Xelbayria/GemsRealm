@@ -13,8 +13,6 @@ import net.minecraft.world.level.block.*;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.set.CrystalType;
-import net.xelbayria.gems_realm.api.set.CrystalTypeRegistry;
 import net.xelbayria.gems_realm.api.set.MetalType;
 import net.xelbayria.gems_realm.api.set.MetalTypeRegistry;
 
@@ -135,7 +133,7 @@ public class MoreBeautifulTorchesModuleM extends GemsRealmModule {
                                 ParticleTypes.FLAME
                         )
                 )
-                .createPaletteFromTypeChild("raw_block")
+                .createPaletteFromRockChild("raw_block")
                 .requiresChildren("raw_block") //REASON: recipes, textures
                 .addTextureM(modRes("block/raw_gold_block_torch"), GemsRealm.res("block/common_torch_m"))
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
@@ -168,7 +166,7 @@ public class MoreBeautifulTorchesModuleM extends GemsRealmModule {
                         getModBlock("raw_gold_block_soul_wall_torch"), MetalTypeRegistry::getGoldType,
                         metalType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
-                .createPaletteFromTypeChild("raw_block")
+                .createPaletteFromRockChild("raw_block")
                 .requiresChildren("raw_block") //REASON: recipes, textures
                 .addTextureM(modRes("block/raw_gold_block_soul_torch"), GemsRealm.res("block/common_torch_m"))
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
@@ -196,7 +194,7 @@ public class MoreBeautifulTorchesModuleM extends GemsRealmModule {
                         getModBlock("raw_gold_block_redstone_wall_torch"), MetalTypeRegistry::getGoldType,
                         metalType -> new RedstoneWallTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_WALL_TORCH))
                 )
-                .createPaletteFromTypeChild("raw_block")
+                .createPaletteFromRockChild("raw_block")
                 .requiresChildren("raw_block") //REASON: recipes, textures
                 .addTextureM(modRes("block/raw_gold_block_redstone_torch"), GemsRealm.res("block/common_redstone_torch_m"))
                 .addTextureM(modRes("block/raw_gold_block_redstone_torch_off"), GemsRealm.res("block/common_torch_m"))
