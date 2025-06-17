@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 /**
  * Childkey Availability:
  * block,
- * cluster, glinted_cluster,
+ * cluster, glinted_cluster, budding
  * shard (ITEM)
 **/
 @SuppressWarnings("SameParameterValue")
@@ -42,6 +42,7 @@ public class CrystalType extends RockType {
             this.addChild("cluster", findRelatedBlock("", "cluster"));
             this.addChild("glinted_cluster", findRelatedBlock("glinted", "cluster"));
             this.addChild("lamp", findRelatedBlock("", "lamp"));
+            this.addChild("budding", findRelatedBlock("budding", ""));
             super.initializeChildrenBlocks();
 
     }
