@@ -23,8 +23,8 @@ public class MacawFencesModule extends GemsRealmModule {
     public final SimpleEntrySet<MetalType, Block> cheval_de_frise;
 
     public MacawFencesModule(String modId) {
-        super(modId, "");
-        ResourceLocation tab = modRes("");
+        super(modId, "mcf");
+        ResourceLocation tab = modRes("fenceitemgroup");
 
         cheval_de_frise = GemsRealmEntrySet.of(MetalType.class, "cheval_de_frise",
                         getModBlock("iron_cheval_de_frise"), MetalTypeRegistry::getIronType,
