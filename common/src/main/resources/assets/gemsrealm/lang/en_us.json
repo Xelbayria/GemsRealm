@@ -65,6 +65,10 @@
   "block_type.more_beautiful_torches.raw_block_redstone_torch": "Raw %s Block Redstone Torch",
   "block_type.more_beautiful_torches.cluster_torch": "%s Cluster Torch",
   "block_type.more_beautiful_torches.cluster_soul_torch": "%s Cluster Soul Torch",
-  "block_type.more_beautiful_torches.cluster_redstone_torch": "%s Cluster Redstone Torch"
+  "block_type.more_beautiful_torches.cluster_redstone_torch": "%s Cluster Redstone Torch",
+
+  "block_type.bad.block_bookshelf": "%s Block Bookshelf",
+  "block_type.bad.raw_block_bookshelf": "Raw %s Block Bookshelf",
+  "block_type.bad.budding_bookshelf": "Budding %s Bookshelf"
 
 }

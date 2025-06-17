@@ -195,6 +195,7 @@ dependencies {
     modCompileOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ] //!! NOT-STARTED
     modCompileOnly("curse.maven:create-deco-509285:6373226") // Create //!! NOT-STARTED
     modCompileOnly("curse.maven:lapidarist-610032:5921456")
+    modCompileOnly("curse.maven:more-beautiful-bookshelves-846508:4671697")
 
 //!! ================================================= FOR TESTING ================================================== \\
 

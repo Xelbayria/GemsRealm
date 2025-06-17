@@ -9,13 +9,11 @@ import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.GemsRealmClient;
 import net.xelbayria.gems_realm.GemsRealmCommon;
 import net.xelbayria.gems_realm.modules.forge.create.CreateModule;
-import net.xelbayria.gems_realm.modules.forge.lapidarist.LapidaristModuleC;
-import net.xelbayria.gems_realm.modules.forge.lapidarist.LapidaristModuleD;
-import net.xelbayria.gems_realm.modules.forge.lapidarist.LapidaristModuleG;
-import net.xelbayria.gems_realm.modules.forge.lapidarist.LapidaristModuleM;
+import net.xelbayria.gems_realm.modules.forge.lapidarist.*;
 import net.xelbayria.gems_realm.modules.forge.macaws.MacawBridgesModule;
 import net.xelbayria.gems_realm.modules.forge.macaws.MacawFencesModule;
 import net.xelbayria.gems_realm.modules.forge.macaws.MacawWindowsModule;
+import net.xelbayria.gems_realm.modules.forge.more_beautiful_bookshelves.*;
 
 import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
 import static net.xelbayria.gems_realm.GemsRealm.addMultipleIfLoaded;
@@ -42,15 +40,12 @@ public class GemsRealmForge extends GemsRealmCommon {
         addIfLoaded("mcwbridges", () -> MacawBridgesModule::new);
         addIfLoaded("mcwwindows", () -> MacawWindowsModule::new);
         addIfLoaded("mcwfences", () -> MacawFencesModule::new);
-//        addIfLoaded("mcwroofs", () -> MacawRoofsModule::new);
-//        addIfLoaded("mcwstairs", () -> MacawStairsModule::new);
-//        addIfLoaded("mcwpaths", () -> MacawPathsModule::new);
 
         // General
         addIfLoaded("create", () -> CreateModule::new);
         addMultipleIfLoaded("lapidary", () -> LapidaristModuleC::new, () -> LapidaristModuleD::new, () -> LapidaristModuleG::new, () -> LapidaristModuleM::new);
+        addMultipleIfLoaded("bad", () -> MoreBeautifulBookshelvesModuleC::new, () -> MoreBeautifulBookshelvesModuleD::new, () -> MoreBeautifulBookshelvesModuleG::new, () -> MoreBeautifulBookshelvesModuleM::new);
 //        addIfLoaded("rechiseled", () -> RechiseledModule::new);
-//        addIfLoaded("stonechest", () -> StoneChestModule::new);
 
 
 //!! ====================================================== OTHERS ================================================== \\
