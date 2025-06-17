@@ -69,8 +69,8 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
         return transformer
                 //TEXTURES: these need to be run first
                 .replaceWithTextureFromChild("minecraft:block/anvil", "block")
-                .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone, "stone")
-                .replaceWithTextureFromChild("minecraft:block/cobblestone", "cobblestone")
+                .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_block", "block")
+                .replaceWithTextureFromChild("minecraft:block/raw_" + nameBaseStone + "_block", "raw_block")
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", "bricks")
                 .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth")
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, "polished")
