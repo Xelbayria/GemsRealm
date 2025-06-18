@@ -5,6 +5,11 @@ import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.xelbayria.gems_realm.GemsRealmClient;
 import net.xelbayria.gems_realm.GemsRealmCommon;
+import net.xelbayria.gems_realm.modules.fabric.macaws.MacawBridgesModule;
+import net.xelbayria.gems_realm.modules.fabric.macaws.MacawFencesModule;
+import net.xelbayria.gems_realm.modules.fabric.macaws.MacawWindowsModule;
+
+import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
 
 public class GemsRealmFabric extends GemsRealmCommon implements ModInitializer {
 
@@ -24,17 +29,13 @@ public class GemsRealmFabric extends GemsRealmCommon implements ModInitializer {
 //!! =================================================== Add Modules ================================================ \\
 
         // Macaw's
-//        addIfLoaded("mcwbridges", () -> MacawBridgesModule::new);
-//        addIfLoaded("mcwfences", () -> MacawFencesModule::new);
-//        addIfLoaded("mcwwindows", () -> MacawWindowsModule::new);
-//        addIfLoaded("mcwroofs", () -> MacawRoofsModule::new);
-//        addIfLoaded("mcwstairs", () -> MacawStairsModule::new);
-//        addIfLoaded("mcwpaths", () -> MacawPathsModule::new);
+        addIfLoaded("mcwbridges", () -> MacawBridgesModule::new);
+        addIfLoaded("mcwfences", () -> MacawFencesModule::new);
+        addIfLoaded("mcwwindows", () -> MacawWindowsModule::new);
 
         // General
 //        addIfLoaded("rechiseled", () -> RechiseledModule::new);
 
-        //!! TEMP - Until Fabric version is updated to v6.0.0
 //        addIfLoaded("create", () -> CreateModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\
