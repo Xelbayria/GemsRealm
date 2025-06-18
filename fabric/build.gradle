@@ -85,10 +85,11 @@ dependencies {
         //- ~/fabric/mods LOCAL
 
         //- OTHER MAVENs - can be commented out or enabled
-//    modRuntimeOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
-//    modRuntimeOnly("com.jozufozu.flywheel:flywheel-fabric-${minecraft_version}:${flywheel_version}") // Create
 
         //+ REQUIRED - The modules access libaries from below - Only in FABRIC
+    modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
+    modCompileOnly("com.jozufozu.flywheel:flywheel-fabric-${minecraft_version}:${flywheel_fabric_version}") // Create
+//    modCompileOnly("net.createmod.ponder:Ponder-fabric-${minecraft_version}:${ponder_version}") // Create
     modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:5668908") // v1.1.17a | Rechiseled
 
 //!! =================================================== IMPORTS ==================================================== \\
@@ -105,21 +106,27 @@ dependencies {
         //+ REQUIRED - The modules access libaries from below - ONLY IN FABRIC
             // MACAW's
     modCompileOnly("curse.maven:macaws-bridges-351725:6528781") //v3.1.0
-    modImplementation("curse.maven:macaws-windows-363569:5589335") //v2.3.0
-    modCompileOnly("curse.maven:macaws-paths-and-pavings-629153:5341073") //v1.0.5
+    modCompileOnly("curse.maven:macaws-windows-363569:5589335") //v2.3.0
     modCompileOnly("curse.maven:macaws-fences-and-walls-453925:5442191") //v1.1.2
-//    modCompileOnly("curse.maven:macaws-roofs-352039:5554929") //v2.3.1
-//    modCompileOnly("curse.maven:macaws-stairs-1119394:6155218") //v1.0.1
 
             // GENERALS
-    modCompileOnly("curse.maven:catwalks-llc-916800:4769531")
-    modCompileOnly("curse.maven:rechiseled-558998:5286340") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
-    modCompileOnly("curse.maven:iron-chests-for-fabric-498534:5083277")
+    modCompileOnly("curse.maven:catwalks-llc-916800:4769531") //!! NOT STARTED
+    modCompileOnly("curse.maven:rechiseled-558998:5286340") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ] //!! NOT STARTED
+    modCompileOnly("com.simibubi.create:create-fabric-$minecraft_version:$create_fabric_version")
 
 
 //!! ================================================= FOR TESTING ================================================== \\
 
+    // GEMTYPE, CRYSTALTYPE
+    // spectrum
+
+    // METALTYPE, CRYSTALTYPE (has budding)
     modRuntimeOnly("curse.maven:betterend-413596:4971487") // BCLib
+    // clutter
+    // glowroot caves
+    //
+
+    // OTHERS
 //    modRuntimeOnly("curse.maven:mwtis-stone-expansion-907720:4767668")
 
 
