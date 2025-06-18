@@ -1,0 +1,109 @@
+package net.xelbayria.gems_realm.modules.fabric.macaws;
+
+import net.kikoz.mcwbridges.objects.Bridge_Stairs;
+import net.kikoz.mcwbridges.objects.Bridge_Support;
+import net.kikoz.mcwbridges.objects.Iron_Bridge;
+import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
+import net.xelbayria.gems_realm.GemsRealm;
+import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
+import net.xelbayria.gems_realm.api.GemsRealmModule;
+import net.xelbayria.gems_realm.api.set.MetalType;
+import net.xelbayria.gems_realm.api.set.MetalTypeRegistry;
+
+
+//SUPPORT: v3.1.0+
+public class MacawBridgesModule extends GemsRealmModule {
+
+    public final SimpleEntrySet<MetalType, Block> bridge;
+    public final SimpleEntrySet<MetalType, Block> bridge_stair;
+    public final SimpleEntrySet<MetalType, Block> bridge_pier;
+
+    public MacawBridgesModule(String modId) {
+        super(modId, "mcb");
+        ResourceLocation tab = modRes(modId); //FABRIC: bridges
+
+        bridge = GemsRealmEntrySet.of(MetalType.class, "bridge",
+                        getModBlock("iron_bridge"), MetalTypeRegistry::getIronType,
+                        metalType -> new Iron_Bridge(standardMetalProperties())
+                )
+//                .requiresChildren("ingot", "nugget") //REASON: recipes
+                //TEXTURES: bridge_2
+                .addModelTransform(m -> m.addModifier(
+                        (s, blockId, metalType) ->
+                                s.replace("mcwbridges:block/bridge_1",
+                                                metalType.createFullIdWith(GemsRealm.MOD_ID, "block", shortenedId(), "", "bridge_1"))
+                                        .replace("mcwbridges:block/bridge_2",
+                                                metalType.createFullIdWith(GemsRealm.MOD_ID, "block", shortenedId(), "", "bridge_2"))
+                                        .replace("mcwbridges:block/bridge_3",
+                                                metalType.createFullIdWith(GemsRealm.MOD_ID, "block", shortenedId(), "", "bridge_3"))
+                ))
+                .addTextureC(modRes("block/bridge_1"), "block/iron_bridge_1")
+                .addTextureC(modRes("block/bridge_2"), "block/iron_bridge_2")
+                .addTextureC(modRes("block/bridge_3"), "block/iron_bridge_3")
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(BlockTags.COMBINATION_STEP_SOUND_BLOCKS, Registries.BLOCK)
+                .addTag(modRes("metal_bridges"), Registries.BLOCK)
+                .setTabKey(tab)
+                .addRecipe(modRes("iron_bridge_middle"))
+                .build();
+        this.addEntry(bridge);
+
+        bridge_stair = GemsRealmEntrySet.of(MetalType.class, "bridge_stair",
+                        getModBlock("iron_bridge_stair"), MetalTypeRegistry::getIronType,
+                        metalType -> new Bridge_Stairs(standardMetalProperties())
+                )
+                .requiresFromMap(bridge.blocks) //REASON: recipes
+                //TEXTURES: iron_block, bridge_1, bridge_2
+                .addModelTransform(m -> m.addModifier(
+                        (s, blockId, metalType) ->
+                                s.replace("mcwbridges:block/bridge_1",
+                                                metalType.createFullIdWith(GemsRealm.MOD_ID, "block", shortenedId(), "", "bridge_1"))
+                                        .replace("mcwbridges:block/bridge_2",
+                                                metalType.createFullIdWith(GemsRealm.MOD_ID, "block", shortenedId(), "", "bridge_2"))
+                ))
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .setTabKey(tab)
+                .defaultRecipe()
+                .addRecipe(modRes("iron_bridge_stair_recycle"))
+                .build();
+        this.addEntry(bridge_stair);
+
+        bridge_pier = GemsRealmEntrySet.of(MetalType.class, "bridge_pier",
+                        getModBlock("iron_bridge_pier"), MetalTypeRegistry::getIronType,
+                        metalType -> new Bridge_Support(standardMetalProperties())
+                )
+//                .requiresChildren("bars") //REASON: recipes
+                //TEXTURES: iron_block, bridge_1, bridge_2, bridge_3
+                .addModelTransform(m -> m.addModifier(
+                        (s, blockId, metalType) ->
+                                s.replace("mcwbridges:block/bridge_1",
+                                                metalType.createFullIdWith(GemsRealm.MOD_ID, "block", shortenedId(), "", "bridge_1"))
+                                .replace("mcwbridges:block/bridge_2",
+                                                metalType.createFullIdWith(GemsRealm.MOD_ID, "block", shortenedId(), "", "bridge_2"))
+                                .replace("mcwbridges:block/bridge_3",
+                                                metalType.createFullIdWith(GemsRealm.MOD_ID, "block", shortenedId(), "", "bridge_3"))
+                ))
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .setTabKey(tab)
+                .defaultRecipe()
+                .build();
+        this.addEntry(bridge_pier);
+
+
+    }
+
+    public BlockBehaviour.Properties standardMetalProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.METAL)
+                .sound(SoundType.METAL)
+                .strength(3.0F, 5.0F)
+                .requiresCorrectToolForDrops();
+    }
+}
