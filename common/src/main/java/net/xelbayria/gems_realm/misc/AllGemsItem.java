@@ -5,6 +5,7 @@ import net.fabricmc.api.Environment;
 import net.mehvahdjukaar.moonlight.api.client.ICustomItemRendererProvider;
 import net.mehvahdjukaar.moonlight.api.client.ItemStackRenderer;
 import net.minecraft.world.item.Item;
+import net.xelbayria.gems_realm.api.set.GemType;
 
 import java.util.function.Supplier;
 
@@ -17,6 +18,6 @@ public class AllGemsItem extends Item implements ICustomItemRendererProvider {
     @Override
     @Environment(EnvType.CLIENT)
     public Supplier<ItemStackRenderer> getRendererFactory() {
-        return StoneTypeCycleItemRenderer::new;
+        return GemTypeCycleItemRenderer::new;
     }
 }
