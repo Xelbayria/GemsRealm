@@ -11,6 +11,8 @@ import static net.xelbayria.gems_realm.api.intergration.CompatGemType.getChildKe
 
 /**
  * Undetected DustType that doesn't met 2 requirements:
+ * the id of dust that don't have "_dust"
+ * the dust have no block
  **/
 // Put all undetected DustTypes here
 public class CompatDustType {
@@ -26,6 +28,7 @@ public class CompatDustType {
         simpleDustFinder("crystalcraft_unlimited_java", "chloronium", "dust-chloronium");
         simpleDustFinder("crystalcraft_unlimited_java", "whitestone", "dust-whitestone");
         simpleDustFinder("crystalcraft_unlimited_java", "blackstone", "dust-blackstone");
+        simpleDustFinder("crystalcraft_unlimited_java", "sulfur", "dust-sulfur");
 
     }
 
