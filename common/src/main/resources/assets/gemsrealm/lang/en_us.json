@@ -9,7 +9,7 @@
 
   "gem_type.crystalcraft_unlimited_java.saphire": "Sapphire",
   "gem_type.crystalcraft_unlimited_java.pearl_item": "Pearl",
-  "gem_type.crystalcraft_unlimited_java.silicium": "Silicon",
+  "metal_type.crystalcraft_unlimited_java.silicium": "Silicon",
 
   "item_type.minecraft.nugget": "%s Nugget",
   "block_type.minecraft.bars": "%s Bars",
