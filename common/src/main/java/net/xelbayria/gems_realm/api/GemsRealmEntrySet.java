@@ -62,19 +62,20 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
 
     @Override
     protected BlockTypeResTransformer<T> makeModelTransformer(SimpleModule module, ResourceManager manager) {
-        String nameBaseStone = baseType.get().getTypeName();
+        String nameBaseRock = baseType.get().getTypeName();
         BlockTypeResTransformer<T> transformer = BlockTypeResTransformer.create(module.getModId(), manager);
         if (Objects.nonNull(extraModelTransform)) extraModelTransform.accept(transformer);
 
         return transformer
                 //TEXTURES: these need to be run first
                 .replaceWithTextureFromChild("minecraft:block/anvil", "block")
-                .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_block", "block")
-                .replaceWithTextureFromChild("minecraft:block/raw_" + nameBaseStone + "_block", "raw_block")
-                .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", "bricks")
-                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth")
-                .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, "polished")
-                .replaceWithTextureFromChild("minecraft:block/mossy_" + nameBaseStone + "_bricks", "mossy_bricks")
+                .replaceWithTextureFromChild("minecraft:block/" + nameBaseRock + "_block", "block")
+                .replaceWithTextureFromChild("minecraft:block/raw_" + nameBaseRock + "_block", "raw_block")
+                .replaceWithTextureFromChild("minecraft:block/" + nameBaseRock + "_bricks", "bricks")
+                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseRock, "smooth")
+                .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseRock, "polished")
+                .replaceWithTextureFromChild("minecraft:block/mossy_" + nameBaseRock + "_bricks", "mossy_bricks")
+                .replaceWithTextureFromChild("minecraft:block/budding_" + nameBaseRock, "budding")
                 // Modifying parent & "elements" inside model files
 //                .addModifier((s, blockId, blockType) -> {
 //                    JsonObject jsonObject = GsonHelper.parse(s);
