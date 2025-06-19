@@ -40,7 +40,7 @@ subprojects {
 
     if (env.MODRINTH_TOKEN) {
         modrinth {
-            projectId = "stone-zone"
+            projectId = modrinth_id
             uploadFile = tasks.remapJar
             gameVersions = [minecraft_version]
             loaders = [modLoader]
@@ -66,7 +66,7 @@ subprojects {
         curseforge {
             apiKey = env.CURSEFORGE_TOKEN
             project {
-                id = project_id
+                id = curseforge_id
                 changelog = changelogText
                 changelogType = 'markdown'
                 releaseType = 'release'
@@ -84,41 +84,19 @@ subprojects {
                         requiredDependency("fabric-api")
                         requiredDependency("selene")
                         requiredDependency("every-compat")
-                        optionalDependency("building-but-better")
-                        optionalDependency("create-fabric")
-                        optionalDependency("decorative-blocks")
+//                        optionalDependency("create-fabric")
                         optionalDependency("macaws-bridges")
-                        optionalDependency("macaws-doors")
                         optionalDependency("macaws-fences-and-walls")
-                        optionalDependency("macaws-furniture")
-                        optionalDependency("macaws-lights-and-lamps")
-                        optionalDependency("macaws-paths-and-pavings")
-                        optionalDependency("macaws-roofs")
-                        optionalDependency("macaws-trapdoors")
                         optionalDependency("macaws-windows")
-                        optionalDependency("mighty-mail-fabric")
-                        optionalDependency("twigs")
                     }
                 } else {
                     relations {
                         requiredDependency("selene")
                         requiredDependency("every-compat")
-                        optionalDependency("buildersaddition")
-                        optionalDependency("building-but-better")
-                        optionalDependency("corail-pillar")
                         optionalDependency("create")
-                        optionalDependency("decorative-blocks")
                         optionalDependency("macaws-bridges")
-                        optionalDependency("macaws-doors")
                         optionalDependency("macaws-fences-and-walls")
-                        optionalDependency("macaws-furniture")
-                        optionalDependency("macaws-lights-and-lamps")
-                        optionalDependency("macaws-paths-and-pavings")
-                        optionalDependency("macaws-roofs")
-                        optionalDependency("macaws-trapdoors")
                         optionalDependency("macaws-windows")
-                        optionalDependency("mighty-mail")
-                        optionalDependency("twigs")
                     }
                 }
             }
