@@ -182,7 +182,7 @@ public class CompatGemType {
             "ingot", "nugget",
 
             //CrystalType
-            "cluster",
+            "cluster", "budding",
 
                 //ITEM
             "shard", "dust"
