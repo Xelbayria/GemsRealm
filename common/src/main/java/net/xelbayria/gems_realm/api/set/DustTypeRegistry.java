@@ -54,10 +54,18 @@ public class DustTypeRegistry extends BlockTypeRegistry<DustType> {
             boolean hasDust = BuiltInRegistries.ITEM.containsKey(
                     new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "dust"))
             );
+            boolean noWoodType = !BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "log"))
+            );
+            boolean noGemType = !BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("_block", ""))
+            );
 
             // Ensure there is no duplicated DustType in the list
             if (Objects.isNull(get(idBlockType))
                     && hasDust
+                    && noWoodType
+                    && noGemType
                     && !BLACKLISTED_DUSTTYPES.contains(idBlockType.toString())
                     && !BLACKLISTED_MODS.contains(baseRes.getNamespace())
             ) {
@@ -72,8 +80,8 @@ public class DustTypeRegistry extends BlockTypeRegistry<DustType> {
 
     @Override
     public void addTypeTranslations(AfterLanguageLoadEvent language) {
-        this.getValues().forEach((stoneType) -> {
-            if (language.isDefault()) language.addEntry(stoneType.getTranslationKey(), stoneType.getReadableName());
+        this.getValues().forEach((dustType) -> {
+            if (language.isDefault()) language.addEntry(dustType.getTranslationKey(), dustType.getReadableName());
         });
     }
 

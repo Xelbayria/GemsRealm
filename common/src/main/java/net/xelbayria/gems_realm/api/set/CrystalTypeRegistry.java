@@ -57,11 +57,15 @@ public class CrystalTypeRegistry extends BlockTypeRegistry<CrystalType> {
             boolean hasCluster = BuiltInRegistries.ITEM.containsKey(
                     new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "cluster"))
             );
+            boolean noWoodType = !BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "log"))
+            );
 
             // Ensure there is no duplicated CrystalType in the list
             if (Objects.isNull(get(idBlockType))
                     && hasCluster
                     && hasShard
+                    && noWoodType
                     && !BLACKLISTED_CRYSTALTYPES.contains(idBlockType.toString())
                     && !BLACKLISTED_MODS.contains(baseRes.getNamespace())
             ) {
@@ -76,8 +80,8 @@ public class CrystalTypeRegistry extends BlockTypeRegistry<CrystalType> {
 
     @Override
     public void addTypeTranslations(AfterLanguageLoadEvent language) {
-        this.getValues().forEach((stoneType) -> {
-            if (language.isDefault()) language.addEntry(stoneType.getTranslationKey(), stoneType.getReadableName());
+        this.getValues().forEach((crystalType) -> {
+            if (language.isDefault()) language.addEntry(crystalType.getTranslationKey(), crystalType.getReadableName());
         });
     }
 

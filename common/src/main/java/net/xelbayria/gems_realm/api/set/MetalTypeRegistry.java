@@ -25,7 +25,6 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
         this.addFinder(MetalType.Finder.vanilla("iron"));
         this.addFinder(MetalType.Finder.vanilla("gold"));
         this.addFinder(MetalType.Finder.vanilla("copper"));
-
     }
 
     public static MetalType getIronType() {
@@ -57,7 +56,7 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
     public Optional<MetalType> detectTypeFromBlock(Block baseblock, ResourceLocation baseRes) {
         String blockPath = baseRes.getPath();
 
-        // Support TerraFirmaCraft (TFC) & ArborFirmaCraft (AFC)
+        /// Support TerraFirmaCraft (TFC) & ArborFirmaCraft (AFC)
         if (baseRes.getNamespace().matches("tfc|afc")) {
             if (blockPath.matches("metal/block/\\w+(?<!slab|stairs)")) {
                 int index = blockPath.lastIndexOf("/");
@@ -76,7 +75,7 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
             }
         }
 
-        // Support Mo' Shiz
+        /// Support Mo' Shiz
         if (baseRes.getNamespace().matches("ms")) {
             if (blockPath.matches("resources/[a-z]+_block")) {
                 int index = blockPath.lastIndexOf("/");
@@ -113,10 +112,14 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
             boolean hasIngot = BuiltInRegistries.ITEM.containsKey(
                     new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
             );
+            boolean noWoodType = !BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "log"))
+            );
 
             // Ensure there is no duplicated MetalType in the list
             if (Objects.isNull(get(idBlockType))
                     && hasIngot
+                    && noWoodType
                     && !BLACKLISTED_METALTYPES.contains(idBlockType.toString())
                     && !BLACKLISTED_MODS.contains(baseRes.getNamespace())
             ) {

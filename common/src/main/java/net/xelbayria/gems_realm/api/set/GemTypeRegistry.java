@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.Block;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_GEMTYPES;
 import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_MODS;
@@ -68,21 +67,25 @@ public class GemTypeRegistry extends BlockTypeRegistry<GemType> {
             boolean noDustType = !BuiltInRegistries.ITEM.containsKey(
                     new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "dust"))
             );
+            boolean hasGemType = BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("_block", ""))
+            );
+            boolean noWoodType = !BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "log"))
+            );
             boolean hasOre = BuiltInRegistries.ITEM.containsKey(
                     new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ore"))
             ) || BuiltInRegistries.ITEM.containsKey(
                     new ResourceLocation(baseRes.getNamespace(), "deepslate_"+ blockPath.replace("block", "ore"))
-            );
-            boolean hasGem = BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("_block", ""))
             );
 
             // Ensure there is no duplicated GemType in the list
             if (Objects.isNull(get(idBlockType))
                     && noMetalType
                     && noDustType
+                    && noWoodType
+                    && hasGemType
                     && hasOre
-                    && hasGem
                     && !BLACKLISTED_GEMTYPES.contains(idBlockType.toString())
                     && !BLACKLISTED_MODS.contains(baseRes.getNamespace())
             ) {
