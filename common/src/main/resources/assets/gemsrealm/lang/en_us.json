@@ -1,6 +1,6 @@
 {
   "itemGroup.gemsrealm": "Gems Realm",
-  "itemGroup.gemsrealm.gemsrealm": "Gems Realm",
+  "itemGroup.gemsrealm.gems_realm": "Gems Realm",
   "item.gemsrealm.all_gems": "All Gems, Metal, Crystal, Redstone",
   "tooltip.gemsrealm.metal_type": "Metal Type: %s",
   "tooltip.gemsrealm.gem_type": "Gem Type: %s",

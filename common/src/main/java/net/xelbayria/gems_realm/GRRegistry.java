@@ -24,7 +24,7 @@ public class GRRegistry {
                     true,
                     builder -> builder.icon(() -> ALL_GEMS.get().getDefaultInstance())
                             .backgroundSuffix("item_search.png")
-                            .title(Component.translatable("itemGroup.gems_realm.gems_realm"))
+                            .title(Component.translatable("itemGroup.gemsrealm.gems_realm"))
                             .build())
             : null;
 }
