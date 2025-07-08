@@ -10,11 +10,10 @@ import java.util.Set;
 
 public class HardcodedBlockType {
 
-    public static String stoneidentify;
-    public static String StoneTypeFromMod;
-    public static String modId;
+    public static String blockIdentify;
+    public static String BlockTypeFromMod;
+    public static String supportedMod;
     public static String supportedBlockName;
-    public static String shortenedIdenfity;
 
     public static final Set<String> BLACKLISTED_MODS = Set.of(
             "immersive_weathering", "chipped", "create_confectionery"
@@ -23,7 +22,7 @@ public class HardcodedBlockType {
 
     public static final Set<String> BLACKLISTED_METALTYPES = Set.of(
             //REASON: not a MetalType
-            "ms:blaze"
+            "ms:blaze", "atlantis:raw_ancient_metal"
     );
 
     public static final Set<String> BLACKLISTED_GEMTYPES = Set.of(
@@ -41,7 +40,9 @@ public class HardcodedBlockType {
             "crystalcraft_unlimited_java:chloronium", "crystalcraft_unlimited_java:cobalt", "crystalcraft_unlimited_java:maradonyx",
             "crystalcraft_unlimited_java:sulfur", "crystalcraft_unlimited_java:tungsten", "crystalcraft_unlimited_java:chrome",
             "crystalcraft_unlimited_java:carnotite", "crystalcraft_unlimited_java:ilmenite", "crystalcraft_unlimited_java:pyrite",
-            "crystalcraft_unlimited_java:seaborgium"
+            "crystalcraft_unlimited_java:seaborgium",
+
+            "shadowlands:goo", "landsoficaria:sliver"
     );
 
     public static final Set<String> BLACKLISTED_CRYSTALTYPES = Set.of(
@@ -50,56 +51,58 @@ public class HardcodedBlockType {
 
     public static final Set<String> BLACKLISTED_DUSTTYPES = Set.of(
             //REASON: not a DustType
+            "betterend:ender"
     );
 
     @Nullable
-    public static Boolean isBlockAlreadyRegistered(String blockName, MetalType metalType, String ModId, String shortenedId) {
-        stoneidentify = metalType.getId().toString();
-        StoneTypeFromMod = metalType.getNamespace();
-        modId = ModId;
+    public static Boolean isMetalBlockAlreadyRegistered(String blockName, MetalType metalType, String ModId) {
+        blockIdentify = metalType.getId().toString();
+        BlockTypeFromMod = metalType.getNamespace();
+        supportedMod = ModId;
         supportedBlockName = blockName;
-        shortenedIdenfity = shortenedId;
 
 
             /// ========== EXCLUDE ========== \\\
-        // EXAMPLE
-//        if (isStoneRegistryOf("create", "c", "create", "create:limestone", "limestone_pillar")) return true;
 
         // Exclude all of Vanilla Types
         if (metalType.isVanilla()) return true;
 
 
             /// ========== INCLUDE ========== \\\
-        // EXAMPLE
-//        if (isStoneRegistryOf("create", "c", "create", "create:limestone", "limestone_pillar")) return false;
 
         // Minecraft & TerraFirmaCraft have similar MetalType that preventing the
-        if (isRockRegistryOf("minecraft", "", "", "tfc:gold", "nugget")) return false;
+        if (isBlockRegistryFrom("minecraft", "", "tfc:gold", "nugget")) return false;
 
 
             /// ========== SPECIAL ========== \\\
 
         // The normal duplication system is not preventing the duplicated blocks between Supported mods and TFC due to TFC's unique IDs
-        if (isRockRegistryInTFC(metalType, supportedBlockName, "bars")) return true;
+        if (isMetalRegistryInTFC(metalType, supportedBlockName, "bars")) return true;
 
         return null;
     }
 
-    public static Boolean isRockRegistryOf(String whichSupportedModId, String shortenedId, String stonetypeFromMod, String stoneTypeId, String whichSupportedBlockName) {
+    /**
+     * NOTE: BlockType represents Gem, Metal, Crystal, or Dust
+     *
+     * @param SupportedModId Id of Supported Mods That GemsRealm is supporting - Can be one OR more Ids
+     * @param blocktypeFromMod Id of mod that BlockType is from - Can be one or more Ids
+     * @param blocktypeId id of blockid, ex: "ms:bismuth" OR "ms:(bismuth|refined_iron)"
+     * @param supportedBlockId Id of block, ex: "chest" OR "redwood_chest" with blocktypeId
+    **/
+    public static Boolean isBlockRegistryFrom(String SupportedModId, String blocktypeFromMod, String blocktypeId, String supportedBlockId) {
 
         String[] expressions = {
-                whichSupportedModId,
-                shortenedId,
-                stonetypeFromMod,
-                stoneTypeId,
-                whichSupportedBlockName
+                SupportedModId,
+                blocktypeFromMod,
+                blocktypeId,
+                supportedBlockId
         };
 
         String[] values = {
-                modId,
-                shortenedIdenfity,
-                StoneTypeFromMod,
-                stoneidentify,
+                supportedMod,
+                BlockTypeFromMod,
+                blockIdentify,
                 supportedBlockName
         };
 
@@ -114,7 +117,7 @@ public class HardcodedBlockType {
         return true;
     }
 
-    public static boolean isRockRegistryInTFC(MetalType metalType, String supportedBlockName, String childKey) {
+    public static boolean isMetalRegistryInTFC(MetalType metalType, String supportedBlockName, String childKey) {
         Block block = metalType.getBlockOfThis(childKey);
         if (metalType.getNamespace().equals("tfc") && Objects.nonNull(block)) {
             String[] split = Utils.getID(block).getPath().split("/"); // tfc: metal / childKey / metalType

@@ -17,7 +17,6 @@ import net.xelbayria.gems_realm.misc.HardcodedBlockType;
 import net.xelbayria.gems_realm.misc.ModelUtils;
 import net.xelbayria.gems_realm.misc.TintConfiguration;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -53,7 +52,7 @@ public class GemsRealmModule extends SimpleModule {
         String blockName = blockId.substring(blockId.lastIndexOf("/") + 1);
 
         if (blockType instanceof MetalType metalType) {
-            Boolean hardcoded = HardcodedBlockType.isBlockAlreadyRegistered(blockName, metalType, modId, shortenedId());
+            Boolean hardcoded = HardcodedBlockType.isMetalBlockAlreadyRegistered(blockName, metalType, modId);
             if (hardcoded != null) return hardcoded;
         }
 
