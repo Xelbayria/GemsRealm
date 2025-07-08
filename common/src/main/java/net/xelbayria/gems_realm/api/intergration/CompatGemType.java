@@ -73,14 +73,14 @@ public class CompatGemType {
         advancedGemFinder("crystalcraft_unlimited_java", "snowflake_obsidian", "snowflake_block");
         simpleGemFinder("crystalcraft_unlimited_java", "ice_opal");
         advancedGemFinder("crystalcraft_unlimited_java", "matrix_opal", "matrix_block");
-        simpleGemFinder("crystalcraft_unlimited_java", "peacock_ore");
+        simpleGemFinder("crystalcraft_unlimited_java", "peacock");
+        simpleGemFinder("crystalcraft_unlimited_java", "peacock_topaz");
         simpleGemFinder("crystalcraft_unlimited_java", "smoky_quartz");
         simpleGemFinder("crystalcraft_unlimited_java", "soul_quartz");
         simpleGemFinder("crystalcraft_unlimited_java", "ghoul_quartz");
         simpleGemFinder("crystalcraft_unlimited_java", "blood_quartz");
         advancedGemFinder("crystalcraft_unlimited_java", "medusa_quartz", "medusa_block");
         advancedGemFinder("crystalcraft_unlimited_java", "dragon_scale", "dragon_block");
-        simpleGemFinder("crystalcraft_unlimited_java", "peacock_topaz");
         advancedGemFinder("crystalcraft_unlimited_java", "watermelon_tourmaline", "watermelon_block");
         advancedGemFinder("crystalcraft_unlimited_java", "orange_star_sapphire", "orange_star_block");
         simpleGemFinder("crystalcraft_unlimited_java", "star_sapphire");
