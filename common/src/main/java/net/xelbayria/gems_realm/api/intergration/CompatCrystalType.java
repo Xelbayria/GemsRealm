@@ -27,7 +27,7 @@ public class CompatCrystalType {
         simpleCrystalFinder("crystalcraft_unlimited_java", "aura_quartz", "CLUSTER-aura_crystal");
 
         // More Geodes Reforge
-        simpleCrystalFinder("geodes", "echo_crystal", "BUDDING-budding_echo_block", "SHARD-minecraft:echo_shard");
+        simpleCrystalFinder("geodes", "echo", "BUDDING-budding_echo_block", "SHARD-minecraft:echo_shard");
         simpleCrystalFinder("geodes", "gypsum_crystal");
         simpleCrystalFinder("geodes", "diamond_crystal");
         simpleCrystalFinder("geodes", "quartz_crystal");
