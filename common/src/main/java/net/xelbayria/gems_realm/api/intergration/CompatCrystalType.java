@@ -17,15 +17,29 @@ public class CompatCrystalType {
 
     public static void init() {
 
+        // Divine RPG
+        simpleCrystalFinder("divinerpg", "olivine");
+
+        // Biomes O' Plenty
+        simpleCrystalFinder("biomesoplenty", "rose_quartz");
+
         // CrystalCraft-Unlimited-Java
-        simpleCrystalFinder("crystalcraft_unlimited_java", "aura_quartz", "cluster-aura_crystal");
+        simpleCrystalFinder("crystalcraft_unlimited_java", "aura_quartz", "CLUSTER-aura_crystal");
+
+        // More Geodes Reforge
+        simpleCrystalFinder("geodes", "echo_crystal", "BUDDING-budding_echo_block", "SHARD-minecraft:echo_shard");
+        simpleCrystalFinder("geodes", "gypsum_crystal");
+        simpleCrystalFinder("geodes", "diamond_crystal");
+        simpleCrystalFinder("geodes", "quartz_crystal");
+        simpleCrystalFinder("geodes", "emerald_crystal");
+        simpleCrystalFinder("geodes", "lapis_crystal","CLUSTER-lapis_cluster");
     }
 
     //!! SIMPLE FINDER
     /**
-     * @param modId - mod id of the mod
-     * @param nameCrystalType - name of CrystalType without "_block" or "_ingot"
-     * @param nameChildren - childkey-ID_of_the_children or nameCrystalType_ingot
+     * @param modId mod-id of the mod
+     * @param nameCrystalType name of CrystalType without "_block"
+     * @param nameChildren "childkey-ID_of_the_children" or "nameCrystalType_shard"
      */
     public static void simpleCrystalFinder(String modId, String nameCrystalType, String... nameChildren) {
         advancedCrystalFinder(modId, nameCrystalType, nameCrystalType + "_block", nameChildren);
@@ -33,12 +47,12 @@ public class CompatCrystalType {
 
     //!! ADVANCED FINDER
     /**
-     * @param modId - mod id of the mod
-     * @param nameCrystalType - name of CrystalType without "_block" or "_ingot"
-     * @param nameBlockCrystal - name of block for CrystalType. Usually with "_block"
-     * @param nameChildren - childkey-ID_of_the_children or nameCrystalType_ingot
+     * @param modId mod id of the mod
+     * @param nameCrystalType name of CrystalType without "_block"
+     * @param nameBlockCrystal name of block for CrystalType. Usually with "_block"
+     * @param nameChildren childkey-ID_of_the_children or nameCrystalType_shard
      */
-    public static void advancedCrystalFinder(String modId, String nameCrystalType, String nameBlockCrystal,  String... nameChildren) {
+    public static void advancedCrystalFinder(String modId, String nameCrystalType, String nameBlockCrystal, String... nameChildren) {
         if (PlatHelper.isModLoaded(modId)) {
             var crystaltypeFinder = CrystalType.Finder.simple(modId, nameCrystalType, nameBlockCrystal);
 
