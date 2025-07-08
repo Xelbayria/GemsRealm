@@ -200,8 +200,7 @@ dependencies {
 //!! ================================================= FOR TESTING ================================================== \\
 
     // GEMTYPE, METALTYPE, DUSTTYPE,
-//    modRuntimeOnly("curse.maven:the-age-of-ores-crystalcraft-unlimited-java-558675:6585995")
-    modRuntimeOnly("crystalcraft:Bismuth and Holmium fix v3")
+//    modRuntimeOnly("curse.maven:the-age-of-ores-crystalcraft-unlimited-java-558675:6669135")
     modRuntimeOnly("curse.maven:mo-shiz-mod-62536:5587177")
 
     // GEMTYPE, DUSTTYPE
@@ -213,6 +212,7 @@ dependencies {
     // CRYSTALTYPE
 //    modRuntimeOnly("curse.maven:more-geodes-reforged-698475:5591834") // Kotlin-For-Forge
     modRuntimeOnly("curse.maven:galosphere-631098:4983871")
+    modRuntimeOnly("curse.maven:official-divinerpg-363543:5715606")
 
     // METALTYPE
 //    modRuntimeOnly("curse.maven:terrafirmacraft-302973:5943050") // patchouli
