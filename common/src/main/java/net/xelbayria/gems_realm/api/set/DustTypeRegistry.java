@@ -57,6 +57,9 @@ public class DustTypeRegistry extends BlockTypeRegistry<DustType> {
             boolean noWoodType = !BuiltInRegistries.ITEM.containsKey(
                     new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "log"))
             );
+            boolean noMetalType = !BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
+            );
             boolean noGemType = !BuiltInRegistries.ITEM.containsKey(
                     new ResourceLocation(baseRes.getNamespace(), blockPath.replace("_block", ""))
             );
@@ -65,6 +68,7 @@ public class DustTypeRegistry extends BlockTypeRegistry<DustType> {
             if (Objects.isNull(get(idBlockType))
                     && hasDust
                     && noWoodType
+                    && noMetalType
                     && noGemType
                     && !BLACKLISTED_DUSTTYPES.contains(idBlockType.toString())
                     && !BLACKLISTED_MODS.contains(baseRes.getNamespace())

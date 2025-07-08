@@ -112,14 +112,18 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
             boolean hasIngot = BuiltInRegistries.ITEM.containsKey(
                     new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
             );
-            boolean noWoodType = !BuiltInRegistries.ITEM.containsKey(
+            boolean noWoodType = !BuiltInRegistries.BLOCK.containsKey(
                     new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "log"))
+            );
+            boolean noGemType = !BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("_block", ""))
             );
 
             // Ensure there is no duplicated MetalType in the list
             if (Objects.isNull(get(idBlockType))
                     && hasIngot
                     && noWoodType
+                    && noGemType
                     && !BLACKLISTED_METALTYPES.contains(idBlockType.toString())
                     && !BLACKLISTED_MODS.contains(baseRes.getNamespace())
             ) {

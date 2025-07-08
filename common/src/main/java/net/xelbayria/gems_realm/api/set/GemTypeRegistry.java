@@ -58,34 +58,38 @@ public class GemTypeRegistry extends BlockTypeRegistry<GemType> {
             ResourceLocation idBlockType = baseRes.withPath(gemName);
 
             /// Ensure the detected block is actually GemType
+            boolean hasOre = BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ore"))
+            ) || BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), "deepslate_"+ blockPath.replace("block", "ore"))
+            );
+            boolean hasGem = BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("_block", ""))
+            );
+            boolean noWoodType = !BuiltInRegistries.BLOCK.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "log"))
+            );
+            boolean noCrystalType = !BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "cluster"))
+            );
+            boolean noDustType = !BuiltInRegistries.ITEM.containsKey(
+                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "dust"))
+            );
             boolean noMetalType = !BuiltInRegistries.ITEM.containsKey(
                     new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
             )
                 && !BuiltInRegistries.ITEM.containsKey(
                     new ResourceLocation(baseRes.getNamespace(), "raw_"+ blockPath.replace("_block", ""))
             );
-            boolean noDustType = !BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "dust"))
-            );
-            boolean hasGemType = BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("_block", ""))
-            );
-            boolean noWoodType = !BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "log"))
-            );
-            boolean hasOre = BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ore"))
-            ) || BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), "deepslate_"+ blockPath.replace("block", "ore"))
-            );
 
             // Ensure there is no duplicated GemType in the list
             if (Objects.isNull(get(idBlockType))
-                    && noMetalType
-                    && noDustType
-                    && noWoodType
-                    && hasGemType
                     && hasOre
+                    && hasGem
+                    && noWoodType
+                    && noCrystalType
+                    && noDustType
+                    && noMetalType
                     && !BLACKLISTED_GEMTYPES.contains(idBlockType.toString())
                     && !BLACKLISTED_MODS.contains(baseRes.getNamespace())
             ) {
