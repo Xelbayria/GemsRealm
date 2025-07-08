@@ -1,6 +1,7 @@
 package net.xelbayria.gems_realm.api.set;
 
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
+import net.mehvahdjukaar.moonlight.core.ClientConfigs;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -16,6 +17,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import static net.mehvahdjukaar.moonlight.api.set.DebugBlockTypes.appendToDebugFile;
+
 /**
  * Childkey Availability:
  * block,
@@ -25,11 +28,10 @@ import java.util.function.Supplier;
 @SuppressWarnings("SameParameterValue")
 public class CrystalType extends RockType {
 
-
-//    public final Block block;
-
     protected CrystalType(ResourceLocation id, Block blockCrystal) {
         super(id, blockCrystal);
+
+        if (ClientConfigs.BLOCKTYPES_DEBUG.get() && !this.isVanilla()) appendToDebugFile(getTranslationKey());
     }
 
     @Override
@@ -124,9 +126,11 @@ public class CrystalType extends RockType {
                     Block defaultKey = BuiltInRegistries.BLOCK.get(BuiltInRegistries.BLOCK.getDefaultKey()); // minecraft:air
                     if (blockCrystal != defaultKey && blockCrystal != null) {
                         var crystalType = new CrystalType(id, blockCrystal);
-                        childNames.forEach((key, value) ->
-                                crystalType.addChild(key, BuiltInRegistries.BLOCK.get(value))
-                        );
+                        childNames.forEach((key, value) -> {
+                            if (BuiltInRegistries.BLOCK.containsKey(value)) crystalType.addChild(key, BuiltInRegistries.BLOCK.get(value));
+                            else if (BuiltInRegistries.ITEM.containsKey(value)) crystalType.addChild(key, BuiltInRegistries.ITEM.get(value));
+                            else GemsRealm.LOGGER.warn("Failed to get children for GemType: {} - {}", id, key);
+                        });
                         return Optional.of(crystalType);
                     }
                 } catch (Exception e) {

@@ -1,6 +1,7 @@
 package net.xelbayria.gems_realm.api.set;
 
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
+import net.mehvahdjukaar.moonlight.core.ClientConfigs;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -16,6 +17,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import static net.mehvahdjukaar.moonlight.api.set.DebugBlockTypes.appendToDebugFile;
+
 /**
  * Childkey Availability:
  * block, raw_block, stairs, slab, fence
@@ -26,11 +29,10 @@ import java.util.function.Supplier;
 @SuppressWarnings("SameParameterValue")
 public class MetalType extends RockType {
 
-    public final Block block;
-
     protected MetalType(ResourceLocation id, Block block) {
         super(id, block);
-        this.block = block;
+
+        if (ClientConfigs.BLOCKTYPES_DEBUG.get() && !this.isVanilla()) appendToDebugFile(getTranslationKey());
     }
 
     @Override
@@ -129,9 +131,9 @@ public class MetalType extends RockType {
                     if (metalFinder != defaultKey && metalFinder != null) {
                         var metalType = new MetalType(id, metalFinder);
                         childNames.forEach((key, value) -> {
-                            if (BuiltInRegistries.ITEM.containsKey(value)) metalType.addChild(key, BuiltInRegistries.ITEM.get(value));
-                            else if (BuiltInRegistries.BLOCK.containsKey(value)) metalType.addChild(key, BuiltInRegistries.BLOCK.get(value));
-                            else GemsRealm.LOGGER.error("Failed to get children for MetalType: {} - {}", id, key);
+                            if (BuiltInRegistries.BLOCK.containsKey(value)) metalType.addChild(key, BuiltInRegistries.BLOCK.get(value));
+                            else if (BuiltInRegistries.ITEM.containsKey(value)) metalType.addChild(key, BuiltInRegistries.ITEM.get(value));
+                            else GemsRealm.LOGGER.warn("Failed to get children for MetalType: {} - {}", id, key);
                         });
                         return Optional.of(metalType);
                     }

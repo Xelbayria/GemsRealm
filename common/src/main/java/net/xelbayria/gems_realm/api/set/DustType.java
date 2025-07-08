@@ -1,6 +1,7 @@
 package net.xelbayria.gems_realm.api.set;
 
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
+import net.mehvahdjukaar.moonlight.core.ClientConfigs;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -16,6 +17,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import static net.mehvahdjukaar.moonlight.api.set.DebugBlockTypes.appendToDebugFile;
+
 /**
  * Childkey Availability:
  * block,
@@ -26,6 +29,8 @@ public class DustType extends RockType {
 
     protected DustType(ResourceLocation id, Block blockCrystal) {
         super(id, blockCrystal);
+
+        if (ClientConfigs.BLOCKTYPES_DEBUG.get() && !this.isVanilla()) appendToDebugFile(getTranslationKey());
     }
 
     @Override
@@ -108,9 +113,9 @@ public class DustType extends RockType {
                     if (blockDust != defaultKey && blockDust != null) {
                         var dustType = new DustType(id, blockDust);
                         childNames.forEach((key, value) -> {
-                                if (BuiltInRegistries.ITEM.containsKey(value)) dustType.addChild(key, BuiltInRegistries.ITEM.get(value));
-                                else if (BuiltInRegistries.BLOCK.containsKey(value)) dustType.addChild(key, BuiltInRegistries.BLOCK.get(value));
-                                else GemsRealm.LOGGER.error("Failed to get children for DustType: {} - {}", id, key);
+                                if (BuiltInRegistries.BLOCK.containsKey(value)) dustType.addChild(key, BuiltInRegistries.BLOCK.get(value));
+                                else if (BuiltInRegistries.ITEM.containsKey(value)) dustType.addChild(key, BuiltInRegistries.ITEM.get(value));
+                                else GemsRealm.LOGGER.warn("Failed to get children for DustType: {} - {}", id, key);
                         });
                         return Optional.of(dustType);
                     }
