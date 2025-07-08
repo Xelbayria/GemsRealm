@@ -17,6 +17,13 @@ import static net.xelbayria.gems_realm.api.intergration.CompatGemType.getChildKe
 public class CompatMetalType {
 
     public static void init() {
+
+        // Unusual End
+        simpleMetalFinder("unusualend", "pearlescent");
+
+        // Sea Dwellers
+        simpleMetalFinder("seadwellers", "depth");
+
         // Mo' Shiz
         advancedMetalFinder("ms", "refined_quartz", "resources/refined_quartz_block");
         advancedMetalFinder("ms", "cast_iron", "resources/cast_iron_block");
