@@ -31,6 +31,7 @@ public class GemsRealm extends EveryCompat {
     public static void init() {
         GRConfigs.init();
         GRRegistry.init();
+        SpriteHelper.initHardcodedSprite();
 
         BlockSetAPI.registerBlockSetDefinition(CrystalTypeRegistry.INSTANCE);
         CompatCrystalType.init();
@@ -43,8 +44,6 @@ public class GemsRealm extends EveryCompat {
 
         BlockSetAPI.registerBlockSetDefinition(GemTypeRegistry.INSTANCE);
         CompatGemType.init();
-
-        PlatHelper.addCommonSetup(SpriteHelper::addHardcodedSprites);
 
         if (PlatHelper.getPhysicalSide().isClient()) {
             ClientHelper.addClientReloadListener(() -> (preparationBarrier, resourceManager, preparationsProfiler, reloadProfiler, backgroundExecutor, gameExecutor) ->
