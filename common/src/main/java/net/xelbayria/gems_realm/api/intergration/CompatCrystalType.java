@@ -21,7 +21,7 @@ public class CompatCrystalType {
         simpleCrystalFinder("excessive_building", "prismarine_crystal", "SHARD-minecraft:prismarine_crystals");
 
         // Divine RPG
-        simpleCrystalFinder("divinerpg", "olivine");
+        simpleCrystalFinder("divinerpg", "olivine", "SHARD-olivine");
 
         // Biomes O' Plenty
         simpleCrystalFinder("biomesoplenty", "rose_quartz");
