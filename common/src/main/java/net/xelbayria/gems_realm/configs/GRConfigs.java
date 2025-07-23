@@ -12,6 +12,7 @@ public class GRConfigs {
     public static final ConfigSpec SPEC;
 
     public static final Supplier<Boolean> TAB_ENABLED;
+    public static final Supplier<Boolean> TAB_ITEM_SEARCH_ENABLED;
 
     static {
         ConfigBuilder builder = ConfigBuilder.create(GemsRealm.MOD_ID, ConfigType.COMMON);
@@ -20,6 +21,8 @@ public class GRConfigs {
 
         TAB_ENABLED = builder.comment("Puts all the added items into a new Every Compat tab instead of their own mod tabs. Be warned that if disabled it could cause some issue with some mods that have custom tabs")
                 .define("creative_tab", true);
+        TAB_ITEM_SEARCH_ENABLED = builder.comment("Allow the item_search or searchBar to be visible.")
+                .define("tab_item_search", true);
 
         builder.pop();
 

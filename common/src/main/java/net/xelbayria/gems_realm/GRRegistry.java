@@ -10,6 +10,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
+import static net.xelbayria.gems_realm.configs.GRConfigs.TAB_ITEM_SEARCH_ENABLED;
+
 public class GRRegistry {
 
     public static void init() {
@@ -21,9 +23,9 @@ public class GRRegistry {
     @Nullable
     public static final RegSupplier<CreativeModeTab> MOD_TAB = GRConfigs.TAB_ENABLED.get() ?
             RegHelper.registerCreativeModeTab(GemsRealm.res("gems_realm"),
-                    true,
+                    TAB_ITEM_SEARCH_ENABLED.get(), // searchBar
                     builder -> builder.icon(() -> ALL_GEMS.get().getDefaultInstance())
-                            .backgroundSuffix("item_search.png")
+                            .backgroundSuffix((TAB_ITEM_SEARCH_ENABLED.get()) ? "item_search.png" : "items.png")
                             .title(Component.translatable("itemGroup.gemsrealm.gems_realm"))
                             .build())
             : null;
