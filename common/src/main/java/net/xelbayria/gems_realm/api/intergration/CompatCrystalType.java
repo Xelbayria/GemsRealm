@@ -17,6 +17,9 @@ public class CompatCrystalType {
 
     public static void init() {
 
+        // Excessive Building
+        simpleCrystalFinder("excessive_building", "prismarine_crystal", "SHARD-minecraft:prismarine_crystals");
+
         // Divine RPG
         simpleCrystalFinder("divinerpg", "olivine");
 
