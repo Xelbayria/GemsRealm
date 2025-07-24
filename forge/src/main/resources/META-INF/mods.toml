@@ -51,8 +51,8 @@ itemIcon="gemsrealm:all_gems" #catalogue icon
 
 [[dependencies.gemsrealm]]
     modId="everycomp"
-    mandatory=true
-    versionRange="[1.20-2.8.8,]"
+    mandatory=false # GemsRealmForge will provide the message if everycomp is not installed
+    versionRange="[1.20-2.8.13,]"
     ordering="AFTER"
     side="BOTH"
 
