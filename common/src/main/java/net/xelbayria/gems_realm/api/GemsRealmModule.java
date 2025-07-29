@@ -12,10 +12,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.xelbayria.gems_realm.GRRegistry;
 import net.xelbayria.gems_realm.GemsRealm;
+import net.xelbayria.gems_realm.api.set.CrystalType;
+import net.xelbayria.gems_realm.api.set.DustType;
+import net.xelbayria.gems_realm.api.set.GemType;
 import net.xelbayria.gems_realm.api.set.MetalType;
-import net.xelbayria.gems_realm.misc.HardcodedBlockType;
-import net.xelbayria.gems_realm.misc.ModelUtils;
-import net.xelbayria.gems_realm.misc.TintConfiguration;
+import net.xelbayria.gems_realm.misc.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,17 +47,29 @@ public class GemsRealmModule extends SimpleModule {
     }
 
     @Override
-    public boolean isEntryAlreadyRegistered(String blockId, BlockType blockType, Registry<?> registry) {
+    public boolean isEntryAlreadyRegistered(String entrySetId, String blockId, BlockType blockType, Registry<?> registry) {
 
-        // blockId: gems_realm:twigs/strata/<gems_realm>_column | blockName: <gems_realm>_column
+        // blockId: gems_realm:twigs/strata/<name>_column | blockName: <name>_column
         String blockName = blockId.substring(blockId.lastIndexOf("/") + 1);
 
-        if (blockType instanceof MetalType metalType) {
-            Boolean hardcoded = HardcodedBlockType.isMetalBlockAlreadyRegistered(blockName, metalType, modId);
+        if (blockType instanceof DustType dustType) {
+            Boolean hardcoded = HardcodedDustType.isDustBlockAlreadyRegistered(entrySetId, blockName, dustType, modId);
+            if (hardcoded != null) return hardcoded;
+        }
+        else if (blockType instanceof CrystalType crystalType) {
+            Boolean hardcoded = HardcodedCrystalType.isCrystalBlockAlreadyRegistered(entrySetId, blockName, crystalType, modId);
+            if (hardcoded != null) return hardcoded;
+        }
+        else if (blockType instanceof GemType gemType) {
+            Boolean hardcoded = HardcodedGemType.isGemBlockAlreadyRegistered(entrySetId, blockName, gemType, modId);
+            if (hardcoded != null) return hardcoded;
+        }
+        else if (blockType instanceof MetalType metalType) {
+            Boolean hardcoded = HardcodedMetalType.isMetalBlockAlreadyRegistered(entrySetId, blockName, metalType, modId);
             if (hardcoded != null) return hardcoded;
         }
 
-        return super.isEntryAlreadyRegistered(blockId, blockType, registry);
+        return super.isEntryAlreadyRegistered(entrySetId, blockId, blockType, registry);
     }
 
 

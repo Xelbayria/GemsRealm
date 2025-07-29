@@ -1,11 +1,11 @@
 package net.xelbayria.gems_realm.misc;
 
-import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.resources.ResourceLocation;
+import net.xelbayria.gems_realm.api.set.CrystalType;
+import net.xelbayria.gems_realm.api.set.DustType;
+import net.xelbayria.gems_realm.api.set.GemType;
 import net.xelbayria.gems_realm.api.set.MetalType;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
 import java.util.Set;
 
 public class HardcodedBlockType {
@@ -54,46 +54,18 @@ public class HardcodedBlockType {
             "betterend:ender"
     );
 
-    @Nullable
-    public static Boolean isMetalBlockAlreadyRegistered(String blockName, MetalType metalType, String ModId) {
-        blockIdentify = metalType.getId().toString();
-        BlockTypeFromMod = metalType.getNamespace();
-        supportedMod = ModId;
-        supportedBlockName = blockName;
-
-
-            /// ========== EXCLUDE ========== \\\
-
-        // Exclude all of Vanilla Types
-        if (metalType.isVanilla()) return true;
-
-
-            /// ========== INCLUDE ========== \\\
-
-        // Minecraft & TerraFirmaCraft have similar MetalType that preventing the
-        if (isBlockRegistryFrom("minecraft", "", "tfc:gold", "nugget")) return false;
-
-
-            /// ========== SPECIAL ========== \\\
-
-        // The normal duplication system is not preventing the duplicated blocks between Supported mods and TFC due to TFC's unique IDs
-        if (isMetalRegistryInTFC(metalType, supportedBlockName, "bars")) return true;
-
-        return null;
-    }
-
     /**
      * NOTE: BlockType represents Gem, Metal, Crystal, or Dust
      *
-     * @param SupportedModId Id of Supported Mods That GemsRealm is supporting - Can be one OR more Ids
+     * @param supportedModId Id of Supported Mods That GemsRealm is supporting - Can be one OR more Ids
      * @param blocktypeFromMod Id of mod that BlockType is from - Can be one or more Ids
      * @param blocktypeId id of blockid, ex: "ms:bismuth" OR "ms:(bismuth|refined_iron)"
      * @param supportedBlockId Id of block, ex: "chest" OR "redwood_chest" with blocktypeId
     **/
-    public static Boolean isBlockRegistryFrom(String SupportedModId, String blocktypeFromMod, String blocktypeId, String supportedBlockId) {
+    public static Boolean isBlockRegistryFrom(String supportedModId, String blocktypeFromMod, String blocktypeId, String supportedBlockId) {
 
         String[] expressions = {
-                SupportedModId,
+                supportedModId,
                 blocktypeFromMod,
                 blocktypeId,
                 supportedBlockId
@@ -109,7 +81,7 @@ public class HardcodedBlockType {
         for (int idx = 0; idx < values.length; idx++ ) {
 
             if (!expressions[idx].isEmpty()) { // Skip the blank expressions
-                boolean isNotMatched = !(values[idx].matches(expressions[idx])|values[idx].contains(expressions[idx]));
+                boolean isNotMatched = !(values[idx].matches(expressions[idx]) || values[idx].contains(expressions[idx]));
                 if (isNotMatched) return false;
             }
         }
@@ -117,15 +89,53 @@ public class HardcodedBlockType {
         return true;
     }
 
-    public static boolean isMetalRegistryInTFC(MetalType metalType, String supportedBlockName, String childKey) {
-        Block block = metalType.getBlockOfThis(childKey);
-        if (metalType.getNamespace().equals("tfc") && Objects.nonNull(block)) {
-            String[] split = Utils.getID(block).getPath().split("/"); // tfc: metal / childKey / metalType
-            String baseName = split[2] +"_"+ childKey; // create a baseName: metalType _ childKey
 
-            return Objects.equals(baseName, supportedBlockName);
+    /// for mods that might add in vanilla namespace
+    // CrystalType
+    public static boolean isKnownVanillaCrystal(CrystalType crystalType){
+        ResourceLocation id = crystalType.getId();
+        if (id.getNamespace().equals("minecraft")) {
+            return VANILLA_CRYSTAL.contains(id.getPath());
         }
         return false;
     }
+    private static final Set<String> VANILLA_CRYSTAL = Set.of(
+            "amethyst"
+    );
 
+    // DustType
+    public static boolean isKnownVanillaDust(DustType dustType){
+        ResourceLocation id = dustType.getId();
+        if (id.getNamespace().equals("minecraft")) {
+            return VANILLA_DUST.contains(id.getPath());
+        }
+        return false;
+    }
+    private static final Set<String> VANILLA_DUST = Set.of(
+            "redstone"
+    );
+
+    // GemType
+    public static boolean isKnownVanillaGem(GemType gemType){
+        ResourceLocation id = gemType.getId();
+        if (id.getNamespace().equals("minecraft")) {
+            return VANILLA_GEM.contains(id.getPath());
+        }
+        return false;
+    }
+    private static final Set<String> VANILLA_GEM = Set.of(
+            "diamond", "emerald", "lapis_lazuli"
+    );
+
+    // MetalType
+    public static boolean isKnownVanillaMetal(MetalType metalType){
+        ResourceLocation id = metalType.getId();
+        if (id.getNamespace().equals("minecraft")) {
+            return VANILLA_METAL.contains(id.getPath());
+        }
+        return false;
+    }
+    private static final Set<String> VANILLA_METAL = Set.of(
+            "copper", "gold", "iron"
+    );
 }
