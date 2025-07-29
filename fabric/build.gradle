@@ -53,11 +53,17 @@ dependencies {
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     if (enable_everycomp_test.toBoolean()) {
-        //- Repository LOCAL
+        //- Repository LOCAL - Every Compat
         modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${everycomp_testVersion}-fabric.jar"))
+    } else if (enable_librarysection_test.toBoolean()) {
+        //- Repository LOCAL - Library Section
+        modImplementation(files(path + "\\WoodGood-Library\\fabric\\build\\libs\\everycomp-LS-${everycomp_testVersion}-fabric.jar"))
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.8.2
+        if (useLibrarySection_maven.toBoolean())
+            modImplementation("maven.modrinth:library-section:${everycomp_mavenVersion}-fabric") // v2.8.13
+        else
+            modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric")
     }
 
 //!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
@@ -68,14 +74,14 @@ dependencies {
 
 //!! ================================================= DEPENDENCIES ================================================= \\
         //- ONLY FOR TESTING - can be commented out or enabled
+    modRuntimeOnly("curse.maven:text-placeholder-api-1037459:6131409") // +Mod-Menu
 //    modRuntimeOnly("curse.maven:yungs-api-421850:5769972") // v4.0.6 | Better-Archeology
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904751") // v8.1.25 | Stoneworks
 //    modRuntimeOnly("curse.maven:forge-config-api-port-fabric-547434:5902421") // v8.1.25 | Stoneworks
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129312") // v1.1.1 | Rechiseled
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4785838") // v1.1.8a | Rechiseled
-    modRuntimeOnly("curse.maven:text-placeholder-api-1037459:6131409") // Mod-Menu
     modRuntimeOnly("curse.maven:bclib-495191:4971470") // v3.0.14 | BetterEnd
-    modRuntimeOnly("curse.maven:monolib-968432:6544054") // v2.1.0 | More-Beautiful-Torches
+//    modRuntimeOnly("curse.maven:monolib-968432:6544054") // v2.1.0 | More-Beautiful-Torches
 
         //- OTHER MAVENS
     modRuntimeOnly("com.github.quiqueck:BCLib:3.0.14") // BetterEnd

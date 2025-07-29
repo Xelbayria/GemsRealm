@@ -123,11 +123,17 @@ dependencies {
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     if (enable_everycomp_test.toBoolean()) {
-        //- Repository LOCAL
+        //- Repository LOCAL - Every Compat
         modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}-forge.jar"))
+    } else if (enable_librarysection_test.toBoolean()) {
+        //- Repository LOCAL - Library Section
+        modImplementation(files(path + "\\WoodGood-Library\\forge\\build\\libs\\everycomp-LS-${everycomp_testVersion}-forge.jar"))
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-forge") // v2.8.2
+        if (useLibrarySection_maven.toBoolean())
+            modImplementation("maven.modrinth:library-section:${everycomp_mavenVersion}-forge") // v2.8.13
+        else
+            modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-forge")
     }
 
 //!! TOOLS ---------------------------------------------------------------------------------------------------------- \\
@@ -160,8 +166,8 @@ dependencies {
         //- ~/forge/mods LOCAL
 
         //- OTHER MAVENs - can be commented out or enabled
-    modImplementation("software.bernie.geckolib:geckolib-forge-${minecraft_version}:4.7.3") // v4.7.3 | Atlantis, Fins-And-Tails
-    implementation("com.eliotlash.mclib:mclib:20") // GeckoLib
+//    modRuntimeOnly("software.bernie.geckolib:geckolib-forge-${minecraft_version}:4.7.3") // v4.7.3 | Atlantis, Fins-And-Tails
+//    forgeRuntimeLibrary("com.eliotlash.mclib:mclib:20") // GeckoLib
 
         //+ REQUIRED - The modules access libaries from below - Only in FORGE
     modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create

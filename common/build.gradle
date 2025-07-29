@@ -32,17 +32,24 @@ dependencies {
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     if (enable_everycomp_test.toBoolean()) {
-        //- Repository LOCAL
+        //- Repository LOCAL - Every Compat
         modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${everycomp_testVersion}-fabric.jar"))
+    } else if (enable_librarysection_test.toBoolean()) {
+        //- Repository LOCAL - Library Section
+        modImplementation(files(path + "\\WoodGood-Library\\fabric\\build\\libs\\everycomp-LS-${everycomp_testVersion}-fabric.jar"))
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.8.2
+        if (useLibrarySection_maven.toBoolean())
+            modImplementation("maven.modrinth:library-section:${everycomp_mavenVersion}-fabric") // v2.8.13
+        else
+            modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric")
     }
 
 //!! ================================================= DEPENDENCIES ================================================= \\
 
     //!! REQUIRED - The modules access libaries from below
     modCompileOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark
+    modCompileOnly("curse.maven:forge-config-api-port-fabric-547434:6325013") // v8.0.2 | Excessive-Building
 
 //!! =================================================== IMPORTS ==================================================== \\
     //- MODULES - don't need library from the mod, so it's fine to ignore
