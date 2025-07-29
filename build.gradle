@@ -54,7 +54,9 @@ subprojects {
                     required.project "every-compat"
                     optional.project "library-section"
                 }
-            } else {
+            }
+            //!! FORGE
+            else {
                 dependencies {
                     required.project "moonlight"
                     required.project "every-compat"
@@ -93,7 +95,9 @@ subprojects {
                         optionalDependency("macaws-windows")
                         optionalDependency("more-beautiful-torches")
                     }
-                } else {
+                }
+                //!! FORGE
+                else {
                     relations {
                         requiredDependency("selene")
                         requiredDependency("every-compat")
