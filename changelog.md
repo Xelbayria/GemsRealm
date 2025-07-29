@@ -22,6 +22,21 @@
 
 </div>
 
+### REQUIRED VERSION:
+- **Every Compat v2.8.14** - Same verison is applied to **Library Section**
+
+### UPDATED: 
+- **Gems Realm** (COMMON): 
+  - Added a config to disable the visibility of SearchBar in GemsRealm' tab
+  - Added new config to disable EntrySet, BlockTypes, or Module
+- **Lapidarist's DustType** (F): Corrected a typo in the namespace for tag
+- **DivineRPG** (CrystalType): added SHARD to olivine's children list
+- **Excessive Building** (UDBT): Added Prismarine-Crystal to CrystalType
+
+---
+
+## v2.8.1
+
 ### UPDATED: 
 - **Gems Realm** (COMMON): 
   - Fixed the crash - [#10](https://github.com/Xelbayria/GemsRealm/issues/10)
