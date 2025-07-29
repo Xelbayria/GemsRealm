@@ -52,11 +52,13 @@ subprojects {
                     required.project "fabric-api"
                     required.project "moonlight"
                     required.project "every-compat"
+                    optional.project "library-section"
                 }
             } else {
                 dependencies {
                     required.project "moonlight"
                     required.project "every-compat"
+                    optional.project "library-section"
                 }
             }
         }
@@ -84,19 +86,25 @@ subprojects {
                         requiredDependency("fabric-api")
                         requiredDependency("selene")
                         requiredDependency("every-compat")
-//                        optionalDependency("create-fabric")
+                        optionalDependency("library-section")
+                        optionalDependency("create-fabric")
                         optionalDependency("macaws-bridges")
                         optionalDependency("macaws-fences-and-walls")
                         optionalDependency("macaws-windows")
+                        optionalDependency("more-beautiful-torches")
                     }
                 } else {
                     relations {
                         requiredDependency("selene")
                         requiredDependency("every-compat")
+                        optionalDependency("library-section")
                         optionalDependency("create")
+                        optionalDependency("lapidarist")
                         optionalDependency("macaws-bridges")
                         optionalDependency("macaws-fences-and-walls")
                         optionalDependency("macaws-windows")
+                        optionalDependency("more-beautiful-bookshelves")
+                        optionalDependency("more-beautiful-torches")
                     }
                 }
             }
