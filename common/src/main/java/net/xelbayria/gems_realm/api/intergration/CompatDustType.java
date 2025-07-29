@@ -6,16 +6,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.set.DustType;
 
-import static net.xelbayria.gems_realm.api.intergration.CompatGemType.childKeySafe;
-import static net.xelbayria.gems_realm.api.intergration.CompatGemType.getChildKeyFrom;
-
 /**
  * Undetected DustType that doesn't met 2 requirements:
  * the id of dust that don't have "_dust"
  * the dust have no block
  **/
 // Put all undetected DustTypes here
-public class CompatDustType {
+public class CompatDustType extends CompatBlockType {
 
     public static void init() {
 

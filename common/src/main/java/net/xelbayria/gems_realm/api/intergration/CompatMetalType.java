@@ -6,15 +6,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.set.MetalType;
 
-import static net.xelbayria.gems_realm.api.intergration.CompatGemType.childKeySafe;
-import static net.xelbayria.gems_realm.api.intergration.CompatGemType.getChildKeyFrom;
-
 /** Undetected MetalType that doesn't met 2 requirements:
  * block - due to different name (important)
  * ingot
 **/
 // Put all undetected CrystalTypes here
-public class CompatMetalType {
+public class CompatMetalType extends CompatBlockType {
 
     public static void init() {
 

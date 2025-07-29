@@ -13,7 +13,7 @@ import static net.xelbayria.gems_realm.api.intergration.CompatGemType.getChildKe
  * Undetected CrystalType that doesn't met 2 requirements:
  **/
 // Put all undetected CrystalTypes here
-public class CompatCrystalType {
+public class CompatCrystalType extends CompatBlockType {
 
     public static void init() {
 
