@@ -15,6 +15,7 @@ import net.xelbayria.gems_realm.api.set.DustTypeRegistry;
 import net.xelbayria.gems_realm.api.set.GemTypeRegistry;
 import net.xelbayria.gems_realm.api.set.MetalTypeRegistry;
 import net.xelbayria.gems_realm.configs.GRConfigs;
+import net.xelbayria.gems_realm.configs.UnsafeDisablerConfigs;
 import net.xelbayria.gems_realm.misc.ModelUtils;
 import net.xelbayria.gems_realm.misc.SpriteHelper;
 import org.apache.logging.log4j.LogManager;
@@ -30,6 +31,7 @@ public class GemsRealm extends EveryCompat {
 
     public static void init() {
         GRConfigs.init();
+        UnsafeDisablerConfigs.init();
         GRRegistry.init();
         SpriteHelper.initHardcodedSprite();
 
