@@ -87,7 +87,7 @@ public class UnsafeDisablerConfigs {
 
         // Warning Message
         if (!crystalTypeList.get().isEmpty() || !dustTypeList.get().isEmpty() || !gemTypeList.get().isEmpty()
-                ||!metalTypeList.get().isEmpty() || !entrySetList.get().isEmpty() /*|| !modulesList.get().isEmpty()*/) {
+                ||!metalTypeList.get().isEmpty() || !entrySetList.get().isEmpty()) {
             EveryCompat.LOGGER.warn("""
                             \n
                             ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
