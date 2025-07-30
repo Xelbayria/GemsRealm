@@ -22,6 +22,13 @@
 
 </div>
 
+### UPDATED: 
+- **Gems Realm** (COMMON): Fixed the SERVER crash related to `gemsrealm-hazardous.toml` config - [#1006](https://github.com/MehVahdJukaar/WoodGood/issues/1006)
+
+---
+
+## v2.8.2
+
 ### REQUIRED VERSION:
 - **Every Compat v2.8.14** - Same verison is applied to **Library Section**
 
