@@ -13,9 +13,9 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.xelbayria.gems_realm.GRRegistry;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.set.CrystalType;
-import net.xelbayria.gems_realm.api.set.DustType;
 import net.xelbayria.gems_realm.api.set.GemType;
 import net.xelbayria.gems_realm.api.set.MetalType;
+import net.xelbayria.gems_realm.api.set.dust.DustType;
 import net.xelbayria.gems_realm.misc.*;
 
 import java.util.HashMap;

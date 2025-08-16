@@ -13,8 +13,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.set.DustType;
-import net.xelbayria.gems_realm.api.set.DustTypeRegistry;
+import net.xelbayria.gems_realm.api.set.dust.DustType;
+import net.xelbayria.gems_realm.api.set.dust.VanillaDustTypes;
 
 //SUPPORT: v2.1.1+
 public class MoreBeautifulBookshelvesModuleD extends GemsRealmModule {
@@ -26,7 +26,7 @@ public class MoreBeautifulBookshelvesModuleD extends GemsRealmModule {
         ResourceKey<CreativeModeTab> tab = CreativeModeTabs.BUILDING_BLOCKS;
 
         block_bookshelf = GemsRealmEntrySet.of(DustType.class, "block_bookshelf",
-                        getModBlock("redstone_block_bookshelf"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("redstone_block_bookshelf"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new ModBookshelfTwoTimes(BlockBehaviour.Properties.of()
                                 .sound(SoundType.STONE)
                                 .strength(0.5F)

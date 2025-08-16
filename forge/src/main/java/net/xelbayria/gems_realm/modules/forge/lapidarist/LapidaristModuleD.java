@@ -15,8 +15,8 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.set.DustType;
-import net.xelbayria.gems_realm.api.set.DustTypeRegistry;
+import net.xelbayria.gems_realm.api.set.dust.DustType;
+import net.xelbayria.gems_realm.api.set.dust.VanillaDustTypes;
 import org.jetbrains.annotations.NotNull;
 
 //SUPPORT: v
@@ -39,7 +39,7 @@ public class LapidaristModuleD extends GemsRealmModule {
         ResourceLocation tab = modRes("lapidary_tab");
 
         bricks = GemsRealmEntrySet.of(DustType.class, "bricks",
-                        getModBlock("redstone_bricks"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("redstone_bricks"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new PoweredBlock(copyPropertiesSafe(dustType))
                 )
                 .addTexture(modRes("block/redstone_bricks"))
@@ -52,7 +52,7 @@ public class LapidaristModuleD extends GemsRealmModule {
         this.addEntry(bricks);
 
         brick_stairs = GemsRealmEntrySet.of(DustType.class, "brick_stairs",
-                        getModBlock("redstone_brick_stairs"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("redstone_brick_stairs"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new CompatRedstoneStair(bricks.blocks.get(dustType).defaultBlockState(),
                                 copyPropertiesSafe(dustType)
                         )
@@ -69,7 +69,7 @@ public class LapidaristModuleD extends GemsRealmModule {
         this.addEntry(brick_stairs);
 
         brick_slab = GemsRealmEntrySet.of(DustType.class, "brick_slab",
-                        getModBlock("redstone_brick_slab"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("redstone_brick_slab"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new CompatRedstoneSlab(copyPropertiesSafe(dustType))
                 )
                 .requiresFromMap(bricks.blocks) //REASON: recipes. textures
@@ -84,7 +84,7 @@ public class LapidaristModuleD extends GemsRealmModule {
         this.addEntry(brick_slab);
 
         cut = GemsRealmEntrySet.of(DustType.class, "", "cut",
-                        getModBlock("cut_redstone"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("cut_redstone"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new PoweredBlock(copyPropertiesSafe(dustType))
                 )
                 .addTexture(modRes("block/cut_redstone"))
@@ -97,7 +97,7 @@ public class LapidaristModuleD extends GemsRealmModule {
         this.addEntry(cut);
 
         cut_stairs = GemsRealmEntrySet.of(DustType.class, "stairs", "cut",
-                        getModBlock("cut_redstone_stairs"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("cut_redstone_stairs"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new CompatRedstoneStair(cut.blocks.get(dustType).defaultBlockState(),
                                 copyPropertiesSafe(dustType)
                         )
@@ -114,7 +114,7 @@ public class LapidaristModuleD extends GemsRealmModule {
         this.addEntry(cut_stairs);
 
         cut_slab = GemsRealmEntrySet.of(DustType.class, "slab", "cut",
-                        getModBlock("cut_redstone_slab"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("cut_redstone_slab"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new CompatRedstoneSlab(copyPropertiesSafe(dustType))
                 )
                 .requiresFromMap(cut.blocks) //REASON: recipes, textures
@@ -129,7 +129,7 @@ public class LapidaristModuleD extends GemsRealmModule {
         this.addEntry(cut_slab);
 
         tiles = GemsRealmEntrySet.of(DustType.class, "tiles",
-                        getModBlock("redstone_tiles"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("redstone_tiles"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new PoweredBlock(copyPropertiesSafe(dustType))
                 )
                 .addTexture(modRes("block/redstone_tiles"))
@@ -142,7 +142,7 @@ public class LapidaristModuleD extends GemsRealmModule {
         this.addEntry(tiles);
 
         tile_stairs = GemsRealmEntrySet.of(DustType.class, "tile_stairs",
-                        getModBlock("redstone_tile_stairs"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("redstone_tile_stairs"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new CompatRedstoneStair(tiles.blocks.get(dustType).defaultBlockState(),
                                 copyPropertiesSafe(dustType)
                         )
@@ -159,7 +159,7 @@ public class LapidaristModuleD extends GemsRealmModule {
         this.addEntry(tile_stairs);
 
         tile_slab = GemsRealmEntrySet.of(DustType.class, "tile_slab",
-                        getModBlock("redstone_tile_slab"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("redstone_tile_slab"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new CompatRedstoneSlab(copyPropertiesSafe(dustType))
                 )
                 .requiresFromMap(tiles.blocks) //REASON: recipes, textures
@@ -174,7 +174,7 @@ public class LapidaristModuleD extends GemsRealmModule {
         this.addEntry(tile_slab);
 
         chiseled = GemsRealmEntrySet.of(DustType.class, "", "chiseled",
-                        getModBlock("chiseled_redstone"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("chiseled_redstone"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new Block(Utils.copyPropertySafe(dustType.block))
                 )
                 .addTexture(modRes("block/chiseled_redstone"))
@@ -187,7 +187,7 @@ public class LapidaristModuleD extends GemsRealmModule {
         this.addEntry(chiseled);
 
         pillar = GemsRealmEntrySet.of(DustType.class, "pillar",
-                        getModBlock("redstone_pillar"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("redstone_pillar"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new RotatedPillarBlock(Utils.copyPropertySafe(dustType.block))
                 )
                 .addTexture(modRes("block/redstone_pillar"))

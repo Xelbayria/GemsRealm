@@ -13,8 +13,8 @@ import net.minecraft.world.level.block.*;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.set.DustType;
-import net.xelbayria.gems_realm.api.set.DustTypeRegistry;
+import net.xelbayria.gems_realm.api.set.dust.DustType;
+import net.xelbayria.gems_realm.api.set.dust.VanillaDustTypes;
 
 //SUPPORT: v3.0.0+
 public class MoreBeautifulTorchesModuleD extends GemsRealmModule {
@@ -33,7 +33,7 @@ public class MoreBeautifulTorchesModuleD extends GemsRealmModule {
                 : modRes("morebeautifultorches_tab");
 
         wall_torch = GemsRealmEntrySet.of(DustType.class, "block_wall_torch",
-                        getModBlock("redstone_block_wall_torch"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("redstone_block_wall_torch"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.WALL_TORCH)
                                 .noCollission()
                                 .instabreak()
@@ -50,7 +50,7 @@ public class MoreBeautifulTorchesModuleD extends GemsRealmModule {
         this.addEntry(wall_torch);
 
         torch = GemsRealmEntrySet.of(DustType.class, "block_torch",
-                        getModBlock("redstone_block_torch"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("redstone_block_torch"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new TorchBlock(Utils.copyPropertySafe(Blocks.TORCH)
                                 .noCollission()
                                 .instabreak()
@@ -68,7 +68,7 @@ public class MoreBeautifulTorchesModuleD extends GemsRealmModule {
         this.addEntry(torch);
 
         soul_wall_torch = GemsRealmEntrySet.of(DustType.class, "block_soul_wall_torch",
-                        getModBlock("redstone_block_soul_wall_torch"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("redstone_block_soul_wall_torch"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
                 .addTextureM(modRes("block/redstone_block_soul_torch"), GemsRealm.res("block/common_torch_m"))
@@ -80,7 +80,7 @@ public class MoreBeautifulTorchesModuleD extends GemsRealmModule {
         this.addEntry(soul_wall_torch);
 
         soul_torch = GemsRealmEntrySet.of(DustType.class, "block_soul_torch",
-                        getModBlock("redstone_block_soul_torch"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("redstone_block_soul_torch"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new TorchBlock(Utils.copyPropertySafe(Blocks.SOUL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
                 //TEXTURES: soul_wall_torch
@@ -93,7 +93,7 @@ public class MoreBeautifulTorchesModuleD extends GemsRealmModule {
         this.addEntry(soul_torch);
 
         redstone_wall_torch = GemsRealmEntrySet.of(DustType.class, "block_redstone_wall_torch",
-                        getModBlock("redstone_block_redstone_wall_torch"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("redstone_block_redstone_wall_torch"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new RedstoneWallTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_WALL_TORCH))
                 )
                 .addTextureM(modRes("block/redstone_block_redstone_torch"), GemsRealm.res("block/common_redstone_torch_m"))
@@ -105,7 +105,7 @@ public class MoreBeautifulTorchesModuleD extends GemsRealmModule {
         this.addEntry(redstone_wall_torch);
 
         redstone_torch = GemsRealmEntrySet.of(DustType.class, "block_redstone_torch",
-                        getModBlock("redstone_block_redstone_torch"), DustTypeRegistry::getRedstoneType,
+                        getModBlock("redstone_block_redstone_torch"), () -> VanillaDustTypes.REDSTONE,
                         dustType -> new RedstoneTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_TORCH))
                 )
                 //TEXTURES: redstone_wall_torch

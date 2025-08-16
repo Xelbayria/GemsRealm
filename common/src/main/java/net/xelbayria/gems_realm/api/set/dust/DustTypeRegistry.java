@@ -1,44 +1,32 @@
-package net.xelbayria.gems_realm.api.set;
+package net.xelbayria.gems_realm.api.set.dust;
 
-import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
-import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 
 import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_DUSTTYPES;
 import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_MODS;
 
-@SuppressWarnings("unused")
 public class DustTypeRegistry extends BlockTypeRegistry<DustType> {
 
     public static final DustTypeRegistry INSTANCE = new DustTypeRegistry();
 
     public DustTypeRegistry() {
         super(DustType.class, "dust_type");
-
-        this.addFinder(DustType.Finder.vanilla("redstone"));
     }
 
-    public static DustType getRedstoneType() {
-        return getValue("redstone");
-    }
-
-    public static Collection<DustType> getTypes() {
-        return INSTANCE.getValues();
-    }
-
-    public static DustType getValue(String metalTypeId) {
-        return INSTANCE.get(new ResourceLocation(metalTypeId));
+    @Override
+    public DustType register(DustType vanillaType) {
+        return super.register(vanillaType);
     }
 
     @Override
     public DustType getDefaultType() {
-        return getRedstoneType();
+        return VanillaDustTypes.REDSTONE;
     }
 
     @Override
@@ -82,11 +70,21 @@ public class DustTypeRegistry extends BlockTypeRegistry<DustType> {
         return Optional.empty();
     }
 
-    @Override
-    public void addTypeTranslations(AfterLanguageLoadEvent language) {
-        this.getValues().forEach((dustType) -> {
-            if (language.isDefault()) language.addEntry(dustType.getTranslationKey(), dustType.getReadableName());
-        });
+
+    //shorthand for add finder. Gives a builder-like object that's meant to be configured inline
+    public DustType.Finder addSimpleFinder(ResourceLocation dustTypeId) {
+        DustType.Finder finder = new DustType.Finder(dustTypeId);
+        this.addFinder(finder);
+        return finder;
+    }
+
+    public DustType.Finder addSimpleFinder(String typeId) {
+        return addSimpleFinder(new ResourceLocation(typeId));
+    }
+
+    @SuppressWarnings("unused")
+    public DustType.Finder addSimpleFinder(String namespace, String nameDustType) {
+        return addSimpleFinder(new ResourceLocation(namespace, nameDustType));
     }
 
     @Override

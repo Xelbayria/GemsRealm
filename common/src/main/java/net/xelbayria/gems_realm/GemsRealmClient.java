@@ -8,6 +8,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.xelbayria.gems_realm.api.set.*;
+import net.xelbayria.gems_realm.api.set.dust.DustType;
+import net.xelbayria.gems_realm.api.set.dust.DustTypeRegistry;
 
 import java.util.List;
 

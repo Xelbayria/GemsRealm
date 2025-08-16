@@ -1,11 +1,10 @@
 package net.xelbayria.gems_realm.misc;
 
-import net.xelbayria.gems_realm.api.set.DustType;
+import net.xelbayria.gems_realm.api.set.dust.DustType;
 import org.jetbrains.annotations.Nullable;
 
 import static net.xelbayria.gems_realm.configs.UnsafeDisablerConfigs.dustTypeList;
 import static net.xelbayria.gems_realm.configs.UnsafeDisablerConfigs.entrySetList;
-import static net.xelbayria.gems_realm.misc.HardcodedBlockType.isKnownVanillaDust;
 
 public class HardcodedDustType extends HardcodedBlockType{
 
