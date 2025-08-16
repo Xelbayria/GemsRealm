@@ -9,6 +9,8 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -38,18 +40,18 @@ public abstract class RockType extends BlockType{
         this.addChild("fence", findChildBlocks("fence"));
         this.addChild("chiseled", findRelatedBlock("chiseled", ""));
 
-        Block bricks = this.findRelatedEntry("bricks", BuiltInRegistries.BLOCK);
+        Block bricks = this.findBrickEntry("", "");
         this.addChild("bricks", bricks);
         if (bricks != null) {
-            this.addChild("brick_stairs", findChildBricks( "stairs"));
-            this.addChild("brick_slab", findChildBricks( "slab"));
-            this.addChild("brick_wall", findChildBricks( "wall"));
-            this.addChild("brick_tiles", findChildBricks( "tiles"));
-            this.addChild("cracked_bricks", findRelatedBrick("cracked", ""));
-            this.addChild("mossy_bricks", findRelatedBrick("mossy", ""));
-            this.addChild("mossy_brick_slab", findRelatedBrick("mossy", "slab"));
-            this.addChild("mossy_brick_stairs", findRelatedBrick("mossy", "stairs"));
-            this.addChild("mossy_brick_wall", findRelatedBrick("mossy", "wall"));
+            this.addChild("brick_stairs", findBrickEntry("",  "stairs"));
+            this.addChild("brick_slab", findBrickEntry("",  "slab"));
+            this.addChild("brick_wall", findBrickEntry("",  "wall"));
+            this.addChild("brick_tiles", findBrickEntry("",  "tiles"));
+            this.addChild("cracked_bricks", findBrickEntry("cracked", ""));
+            this.addChild("mossy_bricks", findBrickEntry("mossy", ""));
+            this.addChild("mossy_brick_slab", findBrickEntry("mossy", "slab"));
+            this.addChild("mossy_brick_stairs", findBrickEntry("mossy", "stairs"));
+            this.addChild("mossy_brick_wall", findBrickEntry("mossy", "wall"));
         }
 
         Block smooth = findRelatedEntry("smooth", BuiltInRegistries.BLOCK);
@@ -71,22 +73,17 @@ public abstract class RockType extends BlockType{
     private @Nullable Block findChildBlocks(String suffix) {
         var first = this.findRelatedEntry("", suffix, BuiltInRegistries.BLOCK);
         if (first != null) return first;
-        return this.findRelatedEntry("",suffix + "s", BuiltInRegistries.BLOCK);
+        return this.findRelatedEntry("", suffix + "s", BuiltInRegistries.BLOCK);
     }
 
-    /// Concatenation: "brick_" + suffix
-    private @Nullable Block findChildBricks(String suffix) {
-        var first = this.findRelatedEntry("brick_" + suffix, BuiltInRegistries.BLOCK);
-        if (first != null) return first;
-        return this.findRelatedEntry("bricks_" + suffix, BuiltInRegistries.BLOCK);
-    }
-    /// Concatentation: prefix + "_brick" + "_" + suffix
-    private @Nullable Block findRelatedBrick(String prefix, String suffix) {
-        suffix = (suffix.isEmpty()) ? "" : "_" + suffix;
+    /// Checking the id for "bricks" or "brick"
+    private @Nullable Block findBrickEntry(String prefix, String suffix) {
+        String suffixed = (suffix.isEmpty()) ? "" : "_" + suffix;
 
-        var first = this.findRelatedEntry(prefix,"brick" + suffix, BuiltInRegistries.BLOCK);
+        Block first = this.findRelatedEntry(prefix, "brick" + suffixed, BuiltInRegistries.BLOCK);
         if (first != null) return first;
-        return this.findRelatedEntry(prefix,"bricks" + suffix, BuiltInRegistries.BLOCK);
+
+        return this.findRelatedEntry(prefix, "bricks" + suffixed, BuiltInRegistries.BLOCK);
     }
 
     protected @Nullable Block findRelatedBlock(String prefixOrInfix, String suffix) {
@@ -134,6 +131,21 @@ public abstract class RockType extends BlockType{
     @Override
     public ItemLike mainChild() {
         return block;
+    }
+
+    protected static ResourceLocation[] makeKnownIDConventions(ResourceLocation id, String... suffixKeyword) {
+        List<ResourceLocation> resources = new ArrayList<>();
+        for (String keyword : suffixKeyword) {
+            String path = id.getPath();
+            String namespace = id.getNamespace();
+
+            String suffixed = (keyword.isEmpty()) ? "" : "_" + keyword;
+            String prefixed = (keyword.isEmpty()) ? "" : keyword + "_";
+
+            resources.add(new ResourceLocation(namespace, path + suffixed));
+            resources.add(new ResourceLocation(namespace, prefixed + path));
+        }
+        return resources.toArray(new ResourceLocation[0]);
     }
 
 }
