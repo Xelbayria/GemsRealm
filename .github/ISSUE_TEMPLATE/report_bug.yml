@@ -43,17 +43,26 @@ body:
     id: gems_realm
     attributes:
       label: GemRealms Version
-      description: The current version of GemRealms
+      description: The current version of GemRealms you are using
       placeholder: ex. gems_realm-1.20-2.7.0
     validations:
       required: true
-     
+
   - type: input
     id: moonlight
     attributes:
       label: Moonlight Lib Version
-      description: The current version of Moonlight Lib
+      description: The current version of Moonlight Lib you are using
       placeholder: ex. moonlight-1.20-2.8.46-forge
+    validations:
+      required: true
+
+  - type: input
+    id: everycompat
+    attributes:
+      label: Every Compat Version
+      description: The current version of Every Compat you are using
+      placeholder: ex. everycomp-1.20-2.9.0-forge | everycomp-LS-1.20-2.9.0-forge
     validations:
       required: true
 
