@@ -87,8 +87,8 @@ public class CrystalType extends RockType {
         return found;
     }
 
-    public static Block findCrystal(ResourceLocation id) {
-        ResourceLocation[] tests = makeKnownIDConventions(id,  "", "block");
+    public static Block findCrystalBlock(ResourceLocation id) {
+        ResourceLocation[] tests = makeKnownIDConventions(id, "block");
         return Utils.findFirstInRegistry(BuiltInRegistries.BLOCK, tests);
     }
 
@@ -98,7 +98,7 @@ public class CrystalType extends RockType {
 
         public Finder(ResourceLocation id) {
             super(id, CrystalTypeRegistry.INSTANCE);
-            this.crystalBlock(() -> findCrystal(id));
+            this.crystalBlock(() -> findCrystalBlock(id));
         }
 
         public CrystalType.Finder crystalBlock(Supplier<Block> crystalFinder) {
