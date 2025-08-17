@@ -1,18 +1,20 @@
-package net.xelbayria.gems_realm.api.set;
+package net.xelbayria.gems_realm.api.set.crystal;
 
+import com.google.common.base.Preconditions;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
+import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.moonlight.core.ClientConfigs;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.xelbayria.gems_realm.GemsRealm;
+import net.xelbayria.gems_realm.api.set.RockType;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -46,7 +48,6 @@ public class CrystalType extends RockType {
             this.addChild("lamp", findRelatedBlock("", "lamp"));
             this.addChild("budding", findRelatedBlock("budding", ""));
             super.initializeChildrenBlocks();
-
     }
 
     @Override
@@ -86,18 +87,53 @@ public class CrystalType extends RockType {
         return found;
     }
 
-    public static class Finder implements SetFinder<CrystalType> {
+    public static Block findCrystal(ResourceLocation id) {
+        ResourceLocation[] tests = makeKnownIDConventions(id,  "", "block");
+        return Utils.findFirstInRegistry(BuiltInRegistries.BLOCK, tests);
+    }
 
-        private final Map<String, ResourceLocation> childNames = new HashMap<>();
-        private final Supplier<Block> blockCrystal;
-        private final ResourceLocation id;
+    public static class Finder extends SetFinderBuilder<CrystalType> {
 
-        public Finder(ResourceLocation id, Supplier<Block> blockCrystal) {
-            this.id = id;
-            this.blockCrystal = blockCrystal;
+        private Supplier<Block> blockCrystalFinder;
+
+        public Finder(ResourceLocation id) {
+            super(id, CrystalTypeRegistry.INSTANCE);
+            this.crystalBlock(() -> findCrystal(id));
         }
 
-        public static Finder vanilla(String nameCrystsal){
+        public CrystalType.Finder crystalBlock(Supplier<Block> mudFinder) {
+            this.blockCrystalFinder = mudFinder;
+            return this;
+        }
+
+        /// @param id Full Id of CrystalType as ResourceLocation
+        public CrystalType.Finder crystalBlock(ResourceLocation id) {
+            return this.crystalBlock(() -> BuiltInRegistries.BLOCK.getOptional(id)
+                    .orElseThrow(() -> new IllegalStateException("Failed to find crystal block: " + id))
+            );
+        }
+
+        /// @param nameMud name of Mud Block without modId or namespace
+        public CrystalType.Finder crystalBlock(String nameMud) {
+            return this.crystalBlock(Utils.idWithOptionalNamespace(nameMud, id.getNamespace()));
+        }
+
+        /**
+         * @param prefix include the underscore, "_" if the blockId has one
+         * @param suffix include the underscore, "_" if the blockId has one
+         */
+        public CrystalType.Finder crystalBlockAffix(String prefix, String suffix) {
+            return crystalBlock(prefix + id.getPath() + suffix);
+        }
+
+        /**
+         * @param suffix include the underscore, "_" if the blockId has one
+         */
+        public CrystalType.Finder crystalBlockSuffix(String suffix) {
+            return crystalBlock(id.getPath() + suffix);
+        }
+
+/*        public static Finder vanilla(String nameCrystsal){
             return simple("minecraft", nameCrystsal, nameCrystsal + "_block");
         }
 
@@ -115,26 +151,26 @@ public class CrystalType extends RockType {
 
         public void addChild(String childType, ResourceLocation childName) {
             this.childNames.put(childType, childName);
-        }
+        }*/
 
         @Override
         @ApiStatus.Internal
         public Optional<CrystalType> get() {
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
-                    Block blockCrystal = this.blockCrystal.get();
-                    Block defaultKey = BuiltInRegistries.BLOCK.get(BuiltInRegistries.BLOCK.getDefaultKey()); // minecraft:air
-                    if (blockCrystal != defaultKey && blockCrystal != null) {
-                        var crystalType = new CrystalType(id, blockCrystal);
-                        childNames.forEach((key, value) -> {
-                            if (BuiltInRegistries.BLOCK.containsKey(value)) crystalType.addChild(key, BuiltInRegistries.BLOCK.get(value));
-                            else if (BuiltInRegistries.ITEM.containsKey(value)) crystalType.addChild(key, BuiltInRegistries.ITEM.get(value));
-                            else GemsRealm.LOGGER.warn("Failed to get children for GemType: {} - {}", id, key);
-                        });
-                        return Optional.of(crystalType);
-                    }
+                    Block mud = Preconditions.checkNotNull(blockCrystalFinder.get(), "Manual Finder - failed to find a mud block for {}", id);
+                    var mudType = new CrystalType(id, mud);
+                    childNames.forEach((key, value) -> {
+                        try {
+                            ItemLike obj = Preconditions.checkNotNull(value.get());
+                            mudType.addChild(key, obj);
+                        } catch (Exception e) {
+                            GemsRealm.LOGGER.warn("Failed to get children for CrystalType: {} - {}. Ignored! ERROR: {}", id, key, e.getMessage());
+                        }
+                    });
+                    return Optional.of(mudType);
                 } catch (Exception e) {
-                    GemsRealm.LOGGER.warn("Failed to find custom crystal type {} - {}", id, e.getMessage());
+                    GemsRealm.LOGGER.warn("Failed to find custom CrystalType: {} - ", id, e);
                 }
             }
             return Optional.empty();

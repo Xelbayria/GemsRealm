@@ -1,11 +1,10 @@
 package net.xelbayria.gems_realm.misc;
 
-import net.xelbayria.gems_realm.api.set.CrystalType;
+import net.xelbayria.gems_realm.api.set.crystal.CrystalType;
 import org.jetbrains.annotations.Nullable;
 
 import static net.xelbayria.gems_realm.configs.UnsafeDisablerConfigs.crystalTypeList;
 import static net.xelbayria.gems_realm.configs.UnsafeDisablerConfigs.entrySetList;
-import static net.xelbayria.gems_realm.misc.HardcodedBlockType.isKnownVanillaCrystal;
 
 public class HardcodedCrystalType extends HardcodedBlockType {
 

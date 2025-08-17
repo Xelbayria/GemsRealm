@@ -9,8 +9,8 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.set.CrystalType;
-import net.xelbayria.gems_realm.api.set.CrystalTypeRegistry;
+import net.xelbayria.gems_realm.api.set.crystal.CrystalType;
+import net.xelbayria.gems_realm.api.set.crystal.VanillaCrystalTypes;
 
 //SUPPORT: v3.3+
 public class LapidaristModuleC extends GemsRealmModule {
@@ -27,7 +27,7 @@ public class LapidaristModuleC extends GemsRealmModule {
         ResourceLocation tab = modRes("lapidary_tab");
 
         polished = GemsRealmEntrySet.of(CrystalType.class, "", "polished",
-                        getModBlock("polished_amethyst"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("polished_amethyst"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(Utils.copyPropertySafe(crystalType.block))
                 )
                 .addTexture(modRes("block/polished_amethyst"))
@@ -40,7 +40,7 @@ public class LapidaristModuleC extends GemsRealmModule {
         this.addEntry(polished);
 
         chiseled = GemsRealmEntrySet.of(CrystalType.class, "", "chiseled",
-                        getModBlock("chiseled_amethyst"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("chiseled_amethyst"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(Utils.copyPropertySafe(crystalType.block))
                 )
                 .addTexture(modRes("block/chiseled_amethyst"))
@@ -54,7 +54,7 @@ public class LapidaristModuleC extends GemsRealmModule {
         this.addEntry(chiseled);
 
         pillar = GemsRealmEntrySet.of(CrystalType.class, "pillar",
-                        getModBlock("amethyst_pillar"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("amethyst_pillar"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new RotatedPillarBlock(copyPropertiesSafe(crystalType))
                 )
                 .addTexture(modRes("block/amethyst_pillar"))
@@ -69,7 +69,7 @@ public class LapidaristModuleC extends GemsRealmModule {
         this.addEntry(pillar);
 
         bricks = GemsRealmEntrySet.of(CrystalType.class, "bricks",
-                        getModBlock("amethyst_bricks"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("amethyst_bricks"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertiesSafe(crystalType))
                 )
                 .addTexture(modRes("block/amethyst_bricks"))
@@ -84,7 +84,7 @@ public class LapidaristModuleC extends GemsRealmModule {
         this.addEntry(bricks);
 
         brick_stairs = GemsRealmEntrySet.of(CrystalType.class, "brick_stairs",
-                        getModBlock("amethyst_brick_stairs"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("amethyst_brick_stairs"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new StairBlock(bricks.blocks.get(crystalType).defaultBlockState(),
                                 copyPropertiesSafe(crystalType)
                         )
@@ -103,7 +103,7 @@ public class LapidaristModuleC extends GemsRealmModule {
         this.addEntry(brick_stairs);
 
         brick_slab = GemsRealmEntrySet.of(CrystalType.class, "brick_slab",
-                        getModBlock("amethyst_brick_slab"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("amethyst_brick_slab"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new SlabBlock(copyPropertiesSafe(crystalType))
                 )
                 .requiresFromMap(bricks.blocks) //REASON: recipes, textures

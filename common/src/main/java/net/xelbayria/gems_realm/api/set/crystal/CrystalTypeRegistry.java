@@ -1,44 +1,33 @@
-package net.xelbayria.gems_realm.api.set;
+package net.xelbayria.gems_realm.api.set.crystal;
 
-import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
-import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 
 import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_CRYSTALTYPES;
 import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_MODS;
 
-@SuppressWarnings("unused")
+//@SuppressWarnings("unused")
 public class CrystalTypeRegistry extends BlockTypeRegistry<CrystalType> {
 
     public static final CrystalTypeRegistry INSTANCE = new CrystalTypeRegistry();
 
     public CrystalTypeRegistry() {
         super(CrystalType.class, "crystal_type");
-
-        this.addFinder(CrystalType.Finder.vanilla("amethyst"));
     }
 
-    public static CrystalType getAmethystType() {
-        return getValue("amethyst");
-    }
-
-    public static Collection<CrystalType> getTypes() {
-        return INSTANCE.getValues();
-    }
-
-    public static CrystalType getValue(String metalTypeId) {
-        return INSTANCE.get(new ResourceLocation(metalTypeId));
+    @Override
+    public CrystalType register(CrystalType vanillaType) {
+        return super.register(vanillaType);
     }
 
     @Override
     public CrystalType getDefaultType() {
-        return getAmethystType();
+        return VanillaCrystalTypes.AMETHYST;
     }
 
     @Override
@@ -86,11 +75,19 @@ public class CrystalTypeRegistry extends BlockTypeRegistry<CrystalType> {
         return Optional.empty();
     }
 
-    @Override
-    public void addTypeTranslations(AfterLanguageLoadEvent language) {
-        this.getValues().forEach((crystalType) -> {
-            if (language.isDefault()) language.addEntry(crystalType.getTranslationKey(), crystalType.getReadableName());
-        });
+    //shorthand for add finder. Gives a builder-like object that's meant to be configured inline
+    public CrystalType.Finder addSimpleFinder(ResourceLocation crystalTypeId) {
+        CrystalType.Finder finder = new CrystalType.Finder(crystalTypeId);
+        this.addFinder(finder);
+        return finder;
+    }
+
+    public CrystalType.Finder addSimpleFinder(String typeId) {
+        return addSimpleFinder(new ResourceLocation(typeId));
+    }
+
+    public CrystalType.Finder addSimpleFinder(String namespace, String nameCrystalType) {
+        return addSimpleFinder(new ResourceLocation(namespace, nameCrystalType));
     }
 
     @Override

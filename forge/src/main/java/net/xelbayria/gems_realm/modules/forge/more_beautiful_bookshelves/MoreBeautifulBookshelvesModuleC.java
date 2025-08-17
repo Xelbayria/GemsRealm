@@ -13,8 +13,10 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.set.CrystalType;
-import net.xelbayria.gems_realm.api.set.CrystalTypeRegistry;
+import net.xelbayria.gems_realm.api.set.crystal.CrystalType;
+import net.xelbayria.gems_realm.api.set.crystal.VanillaCrystalTypes;
+
+import static net.xelbayria.gems_realm.api.set.crystal.VanillaCrystalChildKeys.BUDDING;
 
 //SUPPORT: v2.1.1+
 public class MoreBeautifulBookshelvesModuleC extends GemsRealmModule {
@@ -27,7 +29,7 @@ public class MoreBeautifulBookshelvesModuleC extends GemsRealmModule {
         ResourceKey<CreativeModeTab> tab = CreativeModeTabs.BUILDING_BLOCKS;
 
         block_bookshelf = GemsRealmEntrySet.of(CrystalType.class, "block_bookshelf",
-                        getModBlock("amethyst_block_bookshelf"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("amethyst_block_bookshelf"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new ModBookshelfTwoTimes(BlockBehaviour.Properties.of()
                                 .sound(SoundType.METAL)
                                 .strength(0.5F)
@@ -44,15 +46,15 @@ public class MoreBeautifulBookshelvesModuleC extends GemsRealmModule {
         this.addEntry(block_bookshelf);
 
         budding_bookshelf = GemsRealmEntrySet.of(CrystalType.class, "bookshelf", "budding",
-                        getModBlock("budding_amethyst_bookshelf"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("budding_amethyst_bookshelf"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new ModBookshelfTwoTimes(BlockBehaviour.Properties.of()
                                 .sound(SoundType.METAL)
                                 .strength(0.5F)
                                 .requiresCorrectToolForDrops()
                         )
                 )
-                .createPaletteFromRockChild("budding")
-                .requiresChildren("budding") //REASON: recipes, textures
+                .createPaletteFromRockChild(BUDDING)
+                .requiresChildren(BUDDING) //REASON: recipes, textures
                 //TEXTURES: budding
                 .addTextureM(modRes("block/budding_amethyst_bookshelf"), GemsRealm.res("block/mbb/bookshelf_m"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)

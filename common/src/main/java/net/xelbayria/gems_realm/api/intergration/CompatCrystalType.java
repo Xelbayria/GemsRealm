@@ -1,82 +1,63 @@
 package net.xelbayria.gems_realm.api.intergration;
 
-import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
-import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.minecraft.resources.ResourceLocation;
-import net.xelbayria.gems_realm.GemsRealm;
-import net.xelbayria.gems_realm.api.set.CrystalType;
+import net.xelbayria.gems_realm.api.set.crystal.CrystalTypeRegistry;
+import org.jetbrains.annotations.ApiStatus;
 
-import static net.xelbayria.gems_realm.api.intergration.CompatGemType.childKeySafe;
-import static net.xelbayria.gems_realm.api.intergration.CompatGemType.getChildKeyFrom;
+import static net.xelbayria.gems_realm.api.set.crystal.VanillaCrystalChildKeys.*;
 
 /**
- * Undetected CrystalType that doesn't met 2 requirements:
+ * Put all undetected CrystalType here. The following reasons can be seen via Definition of REASONS
+ * And a few examples
  **/
 // Put all undetected CrystalTypes here
+@ApiStatus.Internal
 public class CompatCrystalType extends CompatBlockType {
 
-    public static void init() {
+    /* Defintion of REASONS:
+     *
+     * Spelling-Convention: a typo in the Id, no underscore
+     *
+     * Naming-Convention: Children has unique names that doesn't have "_cluster", "_shard", has different affix, or no affex
+     *
+     * Undetected-Children: CrystalType's children wasn't detected with Naming-Convention
+     *
+     * Vanilla-Children: CrystalType's Children is from Minecraft
+     *
+     * ModId-Children: CrystsalType's Children is from another mod aside its own mod
+     *
+     * 2-Words: The name of CrystalType is 2-Words instead of 1-Word
+     */
+    public static void init() {}
 
-        // Excessive Building
-        simpleCrystalFinder("excessive_building", "prismarine_crystal", "SHARD-minecraft:prismarine_crystals");
+    static {
 
-        // Divine RPG
-        simpleCrystalFinder("divinerpg", "olivine", "SHARD-olivine");
+        CrystalTypeRegistry crystalReg = CrystalTypeRegistry.INSTANCE;
 
-        // Biomes O' Plenty
-        simpleCrystalFinder("biomesoplenty", "rose_quartz");
+        // Excessive Building - REASON: Undetected-Children
+        crystalReg.addSimpleFinder("excessive_building:prismarine_crystal")
+                .childItem(SHARD, new ResourceLocation("minecraft:prismarine_crystals"));
 
-        // CrystalCraft-Unlimited-Java
-        simpleCrystalFinder("crystalcraft_unlimited_java", "aura_quartz", "CLUSTER-aura_crystal");
+        // Divine RPG - REASON: Undetected-Children
+        crystalReg.addSimpleFinder("divinerpg", "olivine")
+                .childItem(SHARD, "olivine");
+
+        // Biomes O' Plenty - REASON: 2-Words
+        crystalReg.addSimpleFinder("biomesoplenty:rose_quartz");
+
+        // CrystalCraft-Unlimited-Java - REASON: 2-Words
+        crystalReg.addSimpleFinder("crystalcraft_unlimited_java:aura_quartz")
+                .childBlock(CLUSTER, "aura_crystal");
 
         // More Geodes Reforge
-        simpleCrystalFinder("geodes", "echo", "BUDDING-budding_echo_block", "SHARD-minecraft:echo_shard");
-        simpleCrystalFinder("geodes", "gypsum_crystal");
-        simpleCrystalFinder("geodes", "diamond_crystal");
-        simpleCrystalFinder("geodes", "quartz_crystal");
-        simpleCrystalFinder("geodes", "emerald_crystal");
-        simpleCrystalFinder("geodes", "lapis_crystal","CLUSTER-lapis_cluster");
+        crystalReg.addSimpleFinder("geodes:echo")
+                .childItem(SHARD, new ResourceLocation("minecraft:echo_shard")) //REASON: Vanilla-Children
+                .childBlock(BUDDING, "budding_echo_block"); //REASON: Undetected-Children
+        crystalReg.addSimpleFinder("geodes:lapis_crystal") //REASON: Undetected-Children
+                .childBlock(CLUSTER, "lapis_cluster"); //REASON: 2-Words, Undetected-Children
+        crystalReg.addSimpleFinder("geodes:gypsum_crystal"); //REASON: 2-Words
+        crystalReg.addSimpleFinder("geodes:diamond_crystal"); //REASON: 2-Words
+        crystalReg.addSimpleFinder("geodes:quartz_crystal"); //REASON: 2-Words
+        crystalReg.addSimpleFinder("geodes:emerald_crystal"); //REASON: 2-Words
     }
-
-    //!! SIMPLE FINDER
-    /**
-     * @param modId mod-id of the mod
-     * @param nameCrystalType name of CrystalType without "_block"
-     * @param nameChildren "childkey-ID_of_the_children" or "nameCrystalType_shard"
-     */
-    public static void simpleCrystalFinder(String modId, String nameCrystalType, String... nameChildren) {
-        advancedCrystalFinder(modId, nameCrystalType, nameCrystalType + "_block", nameChildren);
-    }
-
-    //!! ADVANCED FINDER
-    /**
-     * @param modId mod id of the mod
-     * @param nameCrystalType name of CrystalType without "_block"
-     * @param nameBlockCrystal name of block for CrystalType. Usually with "_block"
-     * @param nameChildren childkey-ID_of_the_children or nameCrystalType_shard
-     */
-    public static void advancedCrystalFinder(String modId, String nameCrystalType, String nameBlockCrystal, String... nameChildren) {
-        if (PlatHelper.isModLoaded(modId)) {
-            var crystaltypeFinder = CrystalType.Finder.simple(modId, nameCrystalType, nameBlockCrystal);
-
-            for (String currentChild : nameChildren) {
-                String childKey = getChildKeyFrom(currentChild);
-                String blockId = currentChild.split("-")[1];
-                ResourceLocation childId = (blockId.contains(":"))
-                        ? new ResourceLocation(blockId)
-                        : new ResourceLocation(modId, blockId);
-
-
-                if (currentChild.contains("-") && childKeySafe.contains(childKey))
-                    crystaltypeFinder.addChild(childKey, childId);
-                else if (childKeySafe.contains(childKey))
-                    crystaltypeFinder.addChild(childKey, currentChild);
-                else
-                    GemsRealm.LOGGER.warn("CompatCrystalType: Incorrect childKey - {} for {}", childKey, currentChild);
-            }
-
-            BlockSetAPI.addBlockTypeFinder(CrystalType.class, crystaltypeFinder);
-        }
-    }
-
 }

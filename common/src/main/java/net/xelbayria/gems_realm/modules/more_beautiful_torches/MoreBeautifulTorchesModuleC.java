@@ -13,8 +13,9 @@ import net.minecraft.world.level.block.*;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.set.CrystalType;
-import net.xelbayria.gems_realm.api.set.CrystalTypeRegistry;
+import net.xelbayria.gems_realm.api.set.crystal.CrystalType;
+import net.xelbayria.gems_realm.api.set.crystal.VanillaCrystalChildKeys;
+import net.xelbayria.gems_realm.api.set.crystal.VanillaCrystalTypes;
 
 //SUPPORT: v3.0.0+
 public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
@@ -39,7 +40,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                 : modRes("morebeautifultorches_tab");
 
         block_wall_torch = GemsRealmEntrySet.of(CrystalType.class, "block_wall_torch",
-                        getModBlock("amethyst_block_wall_torch"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("amethyst_block_wall_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.WALL_TORCH)
                                 .noCollission()
                                 .instabreak()
@@ -56,7 +57,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
         this.addEntry(block_wall_torch);
 
         block_torch = GemsRealmEntrySet.of(CrystalType.class, "block_torch",
-                        getModBlock("amethyst_block_torch"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("amethyst_block_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new TorchBlock(Utils.copyPropertySafe(Blocks.TORCH)
                                 .noCollission()
                                 .instabreak()
@@ -74,7 +75,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
         this.addEntry(block_torch);
 
         block_soul_wall_torch = GemsRealmEntrySet.of(CrystalType.class, "block_soul_wall_torch",
-                        getModBlock("amethyst_block_soul_wall_torch"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("amethyst_block_soul_wall_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
                 .addTextureM(modRes("block/amethyst_block_soul_torch"), GemsRealm.res("block/common_torch_m"))
@@ -86,7 +87,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
         this.addEntry(block_soul_wall_torch);
 
         block_soul_torch = GemsRealmEntrySet.of(CrystalType.class, "block_soul_torch",
-                        getModBlock("amethyst_block_soul_torch"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("amethyst_block_soul_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new TorchBlock(Utils.copyPropertySafe(Blocks.SOUL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
                 //TEXTURES: soul_wall_torch
@@ -99,7 +100,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
         this.addEntry(block_soul_torch);
 
         block_redstone_wall_torch = GemsRealmEntrySet.of(CrystalType.class, "block_redstone_wall_torch",
-                        getModBlock("amethyst_block_redstone_wall_torch"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("amethyst_block_redstone_wall_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new RedstoneWallTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_WALL_TORCH))
                 )
                 .addTextureM(modRes("block/amethyst_block_redstone_torch"), GemsRealm.res("block/common_redstone_torch_m"))
@@ -111,7 +112,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
         this.addEntry(block_redstone_wall_torch);
 
         block_redstone_torch = GemsRealmEntrySet.of(CrystalType.class, "block_redstone_torch",
-                        getModBlock("amethyst_block_redstone_torch"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("amethyst_block_redstone_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new RedstoneTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_TORCH))
                 )
                 //TEXTURES: redstone_wall_torch
@@ -125,7 +126,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
 
         //!! cluster
         cluster_wall_torch = GemsRealmEntrySet.of(CrystalType.class, "cluster_wall_torch",
-                        getModBlock("amethyst_cluster_wall_torch"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("amethyst_cluster_wall_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.WALL_TORCH)
                                 .noCollission()
                                 .instabreak()
@@ -133,8 +134,8 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                                 ParticleTypes.FLAME
                         )
                 )
-                .createPaletteFromRockChild("cluster")
-                .requiresChildren("cluster") //REASON: recipes, textures
+                .createPaletteFromRockChild(VanillaCrystalChildKeys.CLUSTER)
+                .requiresChildren(VanillaCrystalChildKeys.CLUSTER) //REASON: recipes, textures
                 .addTextureM(modRes("block/amethyst_cluster_torch"), GemsRealm.res("block/common_torch_m"))
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
@@ -144,7 +145,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
         this.addEntry(cluster_wall_torch);
 
         cluster_torch = GemsRealmEntrySet.of(CrystalType.class, "cluster_torch",
-                        getModBlock("amethyst_cluster_torch"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("amethyst_cluster_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new TorchBlock(Utils.copyPropertySafe(Blocks.TORCH)
                                 .noCollission()
                                 .instabreak()
@@ -152,7 +153,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                                 ParticleTypes.FLAME
                         )
                 )
-                .requiresChildren("cluster") //REASON: recipes, textures
+                .requiresChildren(VanillaCrystalChildKeys.CLUSTER) //REASON: recipes, textures
                 //TEXTURES: wall_torch
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
@@ -163,11 +164,11 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
         this.addEntry(cluster_torch);
 
         cluster_soul_wall_torch = GemsRealmEntrySet.of(CrystalType.class, "cluster_soul_wall_torch",
-                        getModBlock("amethyst_cluster_soul_wall_torch"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("amethyst_cluster_soul_wall_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
-                .createPaletteFromRockChild("cluster")
-                .requiresChildren("cluster") //REASON: recipes, textures
+                .createPaletteFromRockChild(VanillaCrystalChildKeys.CLUSTER)
+                .requiresChildren(VanillaCrystalChildKeys.CLUSTER) //REASON: recipes, textures
                 .addTextureM(modRes("block/amethyst_cluster_soul_torch"), GemsRealm.res("block/common_torch_m"))
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
@@ -177,10 +178,10 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
         this.addEntry(cluster_soul_wall_torch);
 
         cluster_soul_torch = GemsRealmEntrySet.of(CrystalType.class, "cluster_soul_torch",
-                        getModBlock("amethyst_cluster_soul_torch"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("amethyst_cluster_soul_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new TorchBlock(Utils.copyPropertySafe(Blocks.SOUL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
-                .requiresChildren("cluster") //REASON: recipes, textures
+                .requiresChildren(VanillaCrystalChildKeys.CLUSTER) //REASON: recipes, textures
                 //TEXTURES: soul_wall_torch
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
@@ -191,11 +192,11 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
         this.addEntry(cluster_soul_torch);
 
         cluster_redstone_wall_torch = GemsRealmEntrySet.of(CrystalType.class, "cluster_redstone_wall_torch",
-                        getModBlock("amethyst_cluster_redstone_wall_torch"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("amethyst_cluster_redstone_wall_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new RedstoneWallTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_WALL_TORCH))
                 )
-                .createPaletteFromRockChild("cluster")
-                .requiresChildren("cluster") //REASON: recipes, textures
+                .createPaletteFromRockChild(VanillaCrystalChildKeys.CLUSTER)
+                .requiresChildren(VanillaCrystalChildKeys.CLUSTER) //REASON: recipes, textures
                 .addTextureM(modRes("block/amethyst_cluster_redstone_torch"), GemsRealm.res("block/common_redstone_torch_m"))
                 .addTextureM(modRes("block/amethyst_cluster_redstone_torch_off"), GemsRealm.res("block/common_torch_m"))
                 .noTab()
@@ -205,10 +206,10 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
         this.addEntry(cluster_redstone_wall_torch);
 
         cluster_redstone_torch = GemsRealmEntrySet.of(CrystalType.class, "cluster_redstone_torch",
-                        getModBlock("amethyst_cluster_redstone_torch"), CrystalTypeRegistry::getAmethystType,
+                        getModBlock("amethyst_cluster_redstone_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new RedstoneTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_TORCH))
                 )
-                .requiresChildren("cluster") //REASON: recipes, textures
+                .requiresChildren(VanillaCrystalChildKeys.CLUSTER) //REASON: recipes, textures
                 //TEXTURES: redstone_wall_torch
                 .setTabKey(tab)
                 .defaultRecipe()
