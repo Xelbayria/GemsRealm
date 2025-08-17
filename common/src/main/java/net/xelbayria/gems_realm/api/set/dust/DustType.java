@@ -90,13 +90,13 @@ public class DustType extends RockType {
         /// @param id Full Id of DustType as ResourceLocation
         public DustType.Finder dustBlock(ResourceLocation id) {
             return this.dustBlock(() -> BuiltInRegistries.BLOCK.getOptional(id)
-                    .orElseThrow(() -> new IllegalStateException("Failed to find dust block: " + id))
+                    .orElseThrow(() -> new IllegalStateException("Failed to find Dust Block: " + id))
             );
         }
 
-        /// @param nameDust name of dust Block without modId or namespace
-        public DustType.Finder dustBlock(String nameDust) {
-            return this.dustBlock(Utils.idWithOptionalNamespace(nameDust, id.getNamespace()));
+        /// @param nameDustBlock name of Dust Block without modId or namespace
+        public DustType.Finder dustBlock(String nameDustBlock) {
+            return this.dustBlock(Utils.idWithOptionalNamespace(nameDustBlock, id.getNamespace()));
         }
 
         /**

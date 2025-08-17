@@ -101,21 +101,21 @@ public class CrystalType extends RockType {
             this.crystalBlock(() -> findCrystal(id));
         }
 
-        public CrystalType.Finder crystalBlock(Supplier<Block> mudFinder) {
-            this.blockCrystalFinder = mudFinder;
+        public CrystalType.Finder crystalBlock(Supplier<Block> crystalFinder) {
+            this.blockCrystalFinder = crystalFinder;
             return this;
         }
 
         /// @param id Full Id of CrystalType as ResourceLocation
         public CrystalType.Finder crystalBlock(ResourceLocation id) {
             return this.crystalBlock(() -> BuiltInRegistries.BLOCK.getOptional(id)
-                    .orElseThrow(() -> new IllegalStateException("Failed to find crystal block: " + id))
+                    .orElseThrow(() -> new IllegalStateException("Failed to find Crystal Block: " + id))
             );
         }
 
-        /// @param nameMud name of Mud Block without modId or namespace
-        public CrystalType.Finder crystalBlock(String nameMud) {
-            return this.crystalBlock(Utils.idWithOptionalNamespace(nameMud, id.getNamespace()));
+        /// @param nameCrystalBlock name of Crystal Block without modId or namespace
+        public CrystalType.Finder crystalBlock(String nameCrystalBlock) {
+            return this.crystalBlock(Utils.idWithOptionalNamespace(nameCrystalBlock, id.getNamespace()));
         }
 
         /**
@@ -132,26 +132,6 @@ public class CrystalType extends RockType {
         public CrystalType.Finder crystalBlockSuffix(String suffix) {
             return crystalBlock(id.getPath() + suffix);
         }
-
-/*        public static Finder vanilla(String nameCrystsal){
-            return simple("minecraft", nameCrystsal, nameCrystsal + "_block");
-        }
-
-        public static Finder simple(String modId, String nameCrystsalType, String nameCrystalBlock) {
-            return simple(new ResourceLocation(modId, nameCrystsalType), new ResourceLocation(modId, nameCrystalBlock));
-        }
-
-        public static Finder simple(ResourceLocation nameCrystsal, ResourceLocation nameCrystalBlock) {
-            return new Finder(nameCrystsal, () -> BuiltInRegistries.BLOCK.get(nameCrystalBlock));
-        }
-
-        public void addChild(String childType, String childName) {
-            addChild(childType, new ResourceLocation(id.getNamespace(), childName));
-        }
-
-        public void addChild(String childType, ResourceLocation childName) {
-            this.childNames.put(childType, childName);
-        }*/
 
         @Override
         @ApiStatus.Internal
