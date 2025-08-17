@@ -7,14 +7,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.xelbayria.gems_realm.api.set.MetalType;
-import net.xelbayria.gems_realm.api.set.MetalTypeRegistry;
 import net.xelbayria.gems_realm.api.set.crystal.CrystalType;
 import net.xelbayria.gems_realm.api.set.crystal.CrystalTypeRegistry;
 import net.xelbayria.gems_realm.api.set.dust.DustType;
 import net.xelbayria.gems_realm.api.set.dust.DustTypeRegistry;
 import net.xelbayria.gems_realm.api.set.gem.GemType;
 import net.xelbayria.gems_realm.api.set.gem.GemTypeRegistry;
+import net.xelbayria.gems_realm.api.set.metal.MetalType;
+import net.xelbayria.gems_realm.api.set.metal.MetalTypeRegistry;
 
 import java.util.List;
 

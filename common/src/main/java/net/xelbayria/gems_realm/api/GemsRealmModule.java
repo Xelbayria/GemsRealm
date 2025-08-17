@@ -12,10 +12,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.xelbayria.gems_realm.GRRegistry;
 import net.xelbayria.gems_realm.GemsRealm;
-import net.xelbayria.gems_realm.api.set.MetalType;
 import net.xelbayria.gems_realm.api.set.crystal.CrystalType;
 import net.xelbayria.gems_realm.api.set.dust.DustType;
 import net.xelbayria.gems_realm.api.set.gem.GemType;
+import net.xelbayria.gems_realm.api.set.metal.MetalType;
 import net.xelbayria.gems_realm.misc.*;
 
 import java.util.HashMap;

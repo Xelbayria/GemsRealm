@@ -12,10 +12,12 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.set.MetalType;
-import net.xelbayria.gems_realm.api.set.MetalTypeRegistry;
+import net.xelbayria.gems_realm.api.set.metal.MetalType;
+import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
 
 import java.util.Objects;
+
+import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
 
 //SUPPORT: v1.1.2
 public class MacawFencesModule extends GemsRealmModule {
@@ -27,10 +29,10 @@ public class MacawFencesModule extends GemsRealmModule {
         ResourceLocation tab = modRes("fencesgroup");
 
         cheval_de_frise = GemsRealmEntrySet.of(MetalType.class, "cheval_de_frise",
-                        getModBlock("iron_cheval_de_frise"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_cheval_de_frise"), () -> VanillaMetalTypes.IRON,
                         metalType -> new StoneWiredFence(copyBarsSafe(metalType))
                 )
-                .requiresChildren("ingot") //REASON: recipes
+                .requiresChildren(INGOT) //REASON: recipes
                 //RECIPES: minecraft:nugget
                 //TEXTURES: block (original: anvil)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)

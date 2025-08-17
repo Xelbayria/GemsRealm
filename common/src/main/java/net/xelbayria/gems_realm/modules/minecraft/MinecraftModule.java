@@ -3,7 +3,6 @@ package net.xelbayria.gems_realm.modules.minecraft;
 import net.mehvahdjukaar.every_compat.api.ItemOnlyEntrySet;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -15,11 +14,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.set.MetalType;
-import net.xelbayria.gems_realm.api.set.MetalTypeRegistry;
+import net.xelbayria.gems_realm.api.set.metal.MetalType;
+import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
+
+import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
 
 //SUPPORT: v
 public class MinecraftModule extends GemsRealmModule {
@@ -33,7 +33,7 @@ public class MinecraftModule extends GemsRealmModule {
         ResourceKey<CreativeModeTab> ingredients = CreativeModeTabs.INGREDIENTS;
 
         bars = GemsRealmEntrySet.of(MetalType.class, "bars",
-                        getModBlock("iron_bars"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_bars"), () -> VanillaMetalTypes.IRON,
                         metalType -> new IronBarsBlock(BlockBehaviour.Properties.of()
                                 .requiresCorrectToolForDrops()
                                 .strength(5.0F, 6.0F)
@@ -41,7 +41,7 @@ public class MinecraftModule extends GemsRealmModule {
 
 
                 )
-                .requiresChildren("ingot") //REASON: recipes
+                .requiresChildren(INGOT) //REASON: recipes
                 .addTexture(modRes("block/iron_bars"))
                 .generateBlockModels(
                         new ResourceLocation("block/iron_bars_post"),
@@ -61,11 +61,11 @@ public class MinecraftModule extends GemsRealmModule {
         this.addEntry(bars);
 
         nugget = ItemOnlyEntrySet.builder(MetalType.class, "nugget",
-                        getModItem("iron_nugget"), MetalTypeRegistry::getIronType,
+                        getModItem("iron_nugget"), () -> VanillaMetalTypes.IRON,
                         metalType -> new Item(new Item.Properties())
                 )
-                .requiresChildren("ingot") //REASON: recipes, textures
-                .createPaletteFromChild("ingot")
+                .requiresChildren(INGOT) //REASON: recipes, textures
+                .createPaletteFromChild(INGOT)
                 .addTexture(modRes("item/iron_nugget"))
                 .generateItemModels(new ResourceLocation("item/iron_nugget"))
                 .setTabKey(ingredients)

@@ -2,7 +2,7 @@ package net.xelbayria.gems_realm.misc;
 
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.world.level.block.Block;
-import net.xelbayria.gems_realm.api.set.MetalType;
+import net.xelbayria.gems_realm.api.set.metal.MetalType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;

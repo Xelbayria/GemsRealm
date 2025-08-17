@@ -1,35 +1,35 @@
 package net.xelbayria.gems_realm.common_classes;
 
-import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.RPUtils;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Respriter;
 import net.mehvahdjukaar.moonlight.api.resources.textures.TextureImage;
 import net.mehvahdjukaar.moonlight.api.util.math.colors.HCLColor;
-import net.xelbayria.gems_realm.GemsRealm;
-import net.xelbayria.gems_realm.api.set.MetalType;
-import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
+import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.level.block.Block;
+import net.xelbayria.gems_realm.GemsRealm;
+import net.xelbayria.gems_realm.api.set.metal.MetalType;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CompatChestTexture {
 
-    public static void generateChestTexture(ClientDynamicResourcesHandler handler, ResourceManager manager,
+    public static void generateChestTexture(ResourceSink sink, ResourceManager manager,
                                             String shortenedID, MetalType metalType, Block block,
                                             ResourceLocation normalRLoc, ResourceLocation maskRLoc, ResourceLocation overlayRLoc,
                                             ResourceLocation trappedORLoc) {
-        generateChestTexture(handler, manager, shortenedID, metalType, block, normalRLoc, maskRLoc, overlayRLoc, trappedORLoc, 2);
+        generateChestTexture(sink, manager, shortenedID, metalType, block, normalRLoc, maskRLoc, overlayRLoc, trappedORLoc, 2);
     }
 
     /**
     * Generate a texture for chest and trapped_chest
     * @param removeDarkest 0: none removed, 1: removed once, 2: removed twice
     */
-    public static void generateChestTexture(ClientDynamicResourcesHandler handler, ResourceManager manager,
+    public static void generateChestTexture(ResourceSink sink, ResourceManager manager,
                                             String shortenedID, MetalType metalType, Block block,
                                             ResourceLocation normalRLoc, ResourceLocation maskRLoc, ResourceLocation overlayRLoc,
                                             ResourceLocation trappedORLoc, int removeDarkest) {
@@ -57,36 +57,23 @@ public class CompatChestTexture {
                     trapped_path += "_right";
                 }
 
-                try (TextureImage plankTexture = TextureImage.open(manager,
+                try (TextureImage metalTexture = TextureImage.open(manager,
                         RPUtils.findFirstBlockTextureLocation(manager, metalType.getBlockOfThis("block")))) {
 
-                    List<Palette> plankPalette = Palette.fromAnimatedImage(plankTexture);
+                    List<Palette> metalPalette = Palette.fromAnimatedImage(metalTexture);
 
-                    // Remove the lava color from brimwood_planks
-                    if (metalType.getId().toString().equals("regions_unexplored:brimwood")) {
-                        plankPalette.forEach(p -> {
-                            p.reduceUp();
-                            p.reduceUp();
-                            p.reduceUp();
-                            p.reduceUp();
-                        });
-                    }
-
-                    AnimationMetadataSection plankMeta = plankTexture.getMetadata();
+                    McMetaFile plankMeta = metalTexture.getMcMeta();
 
                     List<Palette> overlayPalette = new ArrayList<>();
-                    for (var p : plankPalette) {
+                    for (var p : metalPalette) {
                         var d1 = p.getDarkest();
                         var d2 = p.getDarkest();
 
-                        // brimwood_chest need to retain their darkness
-                        if (!metalType.getId().toString().equals("regions_unexplored:brimwood")) {
-                            switch (removeDarkest) {
-                                case 2:
-                                    p.remove(d2);
-                                case 1:
-                                    p.remove(d1);
-                            }
+                        switch (removeDarkest) {
+                            case 2:
+                                p.remove(d2);
+                            case 1:
+                                p.remove(d1);
                         }
 
                         var n1 = new HCLColor(d1.hcl().hue(), d1.hcl().chroma() * 0.75f, d1.hcl().luminance() * 0.4f, d1.hcl().alpha());
@@ -97,24 +84,24 @@ public class CompatChestTexture {
 
                     // Generating textures
                     ResourceLocation res = GemsRealm.res(path);
-                    if (!handler.alreadyHasTextureAtLocation(manager, res)) {
+                    if (!sink.alreadyHasTextureAtLocation(manager, res)) {
                         ResourceLocation trappedRes = GemsRealm.res(trapped_path);
 
-                        createChestTextures(handler, respriterNormal, respriterOverlay, plankMeta,
-                                plankPalette, overlayPalette, res, trappedRes, trapOverlay);
+                        createChestTextures(sink, respriterNormal, respriterOverlay, plankMeta,
+                                metalPalette, overlayPalette, res, trappedRes, trapOverlay);
                     }
 
                 } catch (Exception ex) {
-                    handler.getLogger().error("Failed to generate Chest block texture for for: {} - {}", block, ex);
+                    GemsRealm.LOGGER.error("Failed to generate Chest block texture for for: {} - {}", block, ex);
                 }
         } catch (Exception ex) {
-            handler.getLogger().error("Could not generate any Chest block texture: ", ex);
+            GemsRealm.LOGGER.error("Could not generate any Chest block texture: ", ex);
         }
     }
 
-    private static void createChestTextures(ClientDynamicResourcesHandler handler,
+    private static void createChestTextures(ResourceSink sink,
                                             Respriter respriter, Respriter respriterO,
-                                            AnimationMetadataSection baseMeta, List<Palette> basePalette,
+                                            McMetaFile baseMeta, List<Palette> basePalette,
                                             List<Palette> overlayPalette, ResourceLocation normalRLoc,
                                             ResourceLocation trappedRLoc, TextureImage trappedOverlay) {
 
@@ -125,10 +112,10 @@ public class CompatChestTexture {
         if (trappedOverlay != null) {
             TextureImage trapped = recoloredBase.makeCopy();
             trapped.applyOverlay(trappedOverlay.makeCopy());
-            handler.dynamicPack.addAndCloseTexture(trappedRLoc, trapped);
+            sink.addTexture(trappedRLoc, trapped);
         }
 
-        handler.dynamicPack.addAndCloseTexture(normalRLoc, recoloredBase);
+        sink.addTexture(normalRLoc, recoloredBase);
     }
 
 }

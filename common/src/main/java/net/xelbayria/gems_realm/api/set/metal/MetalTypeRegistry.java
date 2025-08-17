@@ -1,12 +1,10 @@
-package net.xelbayria.gems_realm.api.set;
+package net.xelbayria.gems_realm.api.set.metal;
 
-import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
-import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -21,35 +19,16 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
 
     public MetalTypeRegistry() {
         super(MetalType.class, "metal_type");
-
-        this.addFinder(MetalType.Finder.vanilla("iron"));
-        this.addFinder(MetalType.Finder.vanilla("gold"));
-        this.addFinder(MetalType.Finder.vanilla("copper"));
     }
 
-    public static MetalType getIronType() {
-        return getValue("iron");
-    }
-
-    public static MetalType getGoldType() {
-        return getValue("gold");
-    }
-
-    public static MetalType getCopperType() {
-        return getValue("copper");
-    }
-
-    public static Collection<MetalType> getTypes() {
-        return INSTANCE.getValues();
-    }
-
-    public static MetalType getValue(String metalTypeId) {
-        return INSTANCE.get(new ResourceLocation(metalTypeId));
+    @Override
+    public MetalType register(MetalType vanillaType) {
+        return super.register(vanillaType);
     }
 
     @Override
     public MetalType getDefaultType() {
-        return getIronType();
+        return VanillaMetalTypes.IRON;
     }
 
     @Override
@@ -135,11 +114,20 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
         return Optional.empty();
     }
 
-    @Override
-    public void addTypeTranslations(AfterLanguageLoadEvent language) {
-        this.getValues().forEach((metalType) -> {
-            if (language.isDefault()) language.addEntry(metalType.getTranslationKey(), metalType.getReadableName());
-        });
+
+    //shorthand for add finder. Gives a builder-like object that's meant to be configured inline
+    public MetalType.Finder addSimpleFinder(ResourceLocation metalTypeId) {
+        MetalType.Finder finder = new MetalType.Finder(metalTypeId);
+        this.addFinder(finder);
+        return finder;
+    }
+
+    public MetalType.Finder addSimpleFinder(String typeId) {
+        return addSimpleFinder(new ResourceLocation(typeId));
+    }
+
+    public MetalType.Finder addSimpleFinder(String namespace, String nameMetalType) {
+        return addSimpleFinder(new ResourceLocation(namespace, nameMetalType));
     }
 
     @Override

@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.set.MetalType;
+import net.xelbayria.gems_realm.api.set.metal.MetalType;
 
 import static com.simibubi.create.foundation.block.connected.CTSpriteShifter.getCT;
 

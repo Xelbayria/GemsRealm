@@ -13,8 +13,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.set.MetalType;
-import net.xelbayria.gems_realm.api.set.MetalTypeRegistry;
+import net.xelbayria.gems_realm.api.set.metal.MetalType;
+import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
+
+import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
 
 //SUPPORT: v2.0.2
 public class CreateDecoModule extends GemsRealmModule {
@@ -42,10 +44,10 @@ public class CreateDecoModule extends GemsRealmModule {
         ResourceLocation tab = modRes("");
 
         window = GemsRealmEntrySet.of(MetalType.class, "window",
-                        getModBlock("iron_window"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_window"), () -> VanillaMetalTypes.IRON,
                         this::makeWindow
                 )
-                .requiresChildren("ingot") //REASON: recipes
+                .requiresChildren(INGOT) //REASON: recipes
                 .addTexture(modRes("block/blanks_1"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -54,7 +56,7 @@ public class CreateDecoModule extends GemsRealmModule {
         this.addEntry(window);
 
         window_pane = GemsRealmEntrySet.of(MetalType.class, "window_pane",
-                        getModBlock("iron_window_pane"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_window_pane"), () -> VanillaMetalTypes.IRON,
                         metalType -> new ConnectedGlassPaneBlock(Utils.copyPropertySafe(Blocks.GLASS_PANE))
                 )
                 .requiresFromMap(window.blocks) //REASON: recipes
@@ -66,7 +68,7 @@ public class CreateDecoModule extends GemsRealmModule {
         this.addEntry(window_pane);
 
         bars_overlay = GemsRealmEntrySet.of(MetalType.class, "bars_overlay",
-                        getModBlock("iron_bars_overlay"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_bars_overlay"), () -> VanillaMetalTypes.IRON,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.block))
                 )
                 //RECIPES: create:sheet
@@ -79,7 +81,7 @@ public class CreateDecoModule extends GemsRealmModule {
         this.addEntry(bars_overlay);
 
         mesh_fence = GemsRealmEntrySet.of(MetalType.class, "mesh_fence",
-                        getModBlock("iron_mesh_fence"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_mesh_fence"), () -> VanillaMetalTypes.IRON,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.block))
                 )
                 //RECIPES: create:sheet
@@ -92,7 +94,7 @@ public class CreateDecoModule extends GemsRealmModule {
         this.addEntry(mesh_fence);
 
         catwalk = GemsRealmEntrySet.of(MetalType.class, "catwalk",
-                        getModBlock("iron_catwalk"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_catwalk"), () -> VanillaMetalTypes.IRON,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.block))
                 )
                 //RECIPES: create:sheet, minecraft:bars
@@ -105,7 +107,7 @@ public class CreateDecoModule extends GemsRealmModule {
         this.addEntry(catwalk);
 
         catwalk_stairs = GemsRealmEntrySet.of(MetalType.class, "catwalk_stairs",
-                        getModBlock("iron_catwalk_stairs"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_catwalk_stairs"), () -> VanillaMetalTypes.IRON,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.block))
                 )
                 .requiresFromMap(catwalk.blocks) //REASON: recipes
@@ -118,7 +120,7 @@ public class CreateDecoModule extends GemsRealmModule {
         this.addEntry(catwalk_stairs);
 
         catwalk_railing = GemsRealmEntrySet.of(MetalType.class, "catwalk_railing",
-                        getModBlock("iron_catwalk_railing"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_catwalk_railing"), () -> VanillaMetalTypes.IRON,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.block))
                 )
                 //RECIPES: create:sheet, minecraft:bars
@@ -131,7 +133,7 @@ public class CreateDecoModule extends GemsRealmModule {
         this.addEntry(catwalk_railing);
 
         support_wedge = GemsRealmEntrySet.of(MetalType.class, "support_wedge",
-                        getModBlock("iron_support_wedge"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_support_wedge"), () -> VanillaMetalTypes.IRON,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.block))
                 )
                 //RECIPES: create:sheet
@@ -144,10 +146,10 @@ public class CreateDecoModule extends GemsRealmModule {
         this.addEntry(support_wedge);
 
         facade = GemsRealmEntrySet.of(MetalType.class, "facade",
-                        getModBlock("iron_facade"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_facade"), () -> VanillaMetalTypes.IRON,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.block))
                 )
-                .requiresChildren("ingot") //REASON: recipes
+                .requiresChildren(INGOT) //REASON: recipes
                 .addTexture(modRes("block/blanks_9"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -156,10 +158,10 @@ public class CreateDecoModule extends GemsRealmModule {
         this.addEntry(facade);
 
         ladder = GemsRealmEntrySet.of(MetalType.class, "ladder",
-                        getModBlock("iron_ladder"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_ladder"), () -> VanillaMetalTypes.IRON,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.block))
                 )
-                .requiresChildren("ingot") //REASON: recipes
+                .requiresChildren(INGOT) //REASON: recipes
                 .addTexture(modRes("block/blanks_10"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -168,7 +170,7 @@ public class CreateDecoModule extends GemsRealmModule {
         this.addEntry(ladder);
 
         hull = GemsRealmEntrySet.of(MetalType.class, "hull",
-                        getModBlock("iron_hull"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_hull"), () -> VanillaMetalTypes.IRON,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.block))
                 )
                 .requiresChildren("create:sheet") //REASON: recipes
@@ -181,10 +183,10 @@ public class CreateDecoModule extends GemsRealmModule {
         this.addEntry(hull);
 
         support = GemsRealmEntrySet.of(MetalType.class, "support",
-                        getModBlock("iron_support"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_support"), () -> VanillaMetalTypes.IRON,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.block))
                 )
-                .requiresChildren("ingot") //REASON: recipes
+                .requiresChildren(INGOT) //REASON: recipes
                 .addTexture(modRes("block/blanks_12"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -193,7 +195,7 @@ public class CreateDecoModule extends GemsRealmModule {
         this.addEntry(support);
 
         yellow_lamp = GemsRealmEntrySet.of(MetalType.class, "lamp", "yellow",
-                        getModBlock("yellow_iron_lamp"), MetalTypeRegistry::getIronType,
+                        getModBlock("yellow_iron_lamp"), () -> VanillaMetalTypes.IRON,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.block))
                 )
                 //RECIPES: create:sheet, minecraft:nugget
@@ -205,7 +207,7 @@ public class CreateDecoModule extends GemsRealmModule {
         this.addEntry(yellow_lamp);
 
         red_lamp = GemsRealmEntrySet.of(MetalType.class, "lamp", "red",
-                        getModBlock("red_iron_lamp"), MetalTypeRegistry::getIronType,
+                        getModBlock("red_iron_lamp"), () -> VanillaMetalTypes.IRON,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.block))
                 )
                 //RECIPES: create:sheet, minecraft:nugget
@@ -217,7 +219,7 @@ public class CreateDecoModule extends GemsRealmModule {
         this.addEntry(red_lamp);
 
         green_lamp = GemsRealmEntrySet.of(MetalType.class, "lamp", "green",
-                        getModBlock("green_iron_lamp"), MetalTypeRegistry::getIronType,
+                        getModBlock("green_iron_lamp"), () -> VanillaMetalTypes.IRON,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.block))
                 )
                 //RECIPES: create:sheet, minecraft:nugget
@@ -229,7 +231,7 @@ public class CreateDecoModule extends GemsRealmModule {
         this.addEntry(green_lamp);
 
         blue_lamp = GemsRealmEntrySet.of(MetalType.class, "lamp", "blue",
-                        getModBlock("blue_iron_lamp"), MetalTypeRegistry::getIronType,
+                        getModBlock("blue_iron_lamp"), () -> VanillaMetalTypes.IRON,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.block))
                 )
                 //RECIPES: create:sheet, minecraft:nugget
@@ -241,7 +243,7 @@ public class CreateDecoModule extends GemsRealmModule {
         this.addEntry(blue_lamp);
 
         sheet_metal = GemsRealmEntrySet.of(MetalType.class, "sheet_metal",
-                        getModBlock("iron_sheet_metal"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_sheet_metal"), () -> VanillaMetalTypes.IRON,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.block))
                 )
                 //RECIPES: create:sheet

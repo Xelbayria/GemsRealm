@@ -1,7 +1,5 @@
 package net.xelbayria.gems_realm.common_classes;
 
-import net.xelbayria.gems_realm.api.set.MetalType;
-import net.xelbayria.gems_realm.api.set.MetalTypeRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
@@ -9,6 +7,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.xelbayria.gems_realm.api.set.metal.MetalType;
+import net.xelbayria.gems_realm.api.set.metal.MetalTypeRegistry;
+import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -21,7 +22,7 @@ public class CompatChestBlockEntity extends ChestBlockEntity {
     public CompatChestBlockEntity(BlockEntityType<?> arg, BlockPos pos, BlockState state) {
         super(arg, pos, state);
         MetalType stone = MetalTypeRegistry.INSTANCE.getBlockTypeOf(state.getBlock());
-        this.metalType = stone == null ? MetalTypeRegistry.getIronType() : stone;
+        this.metalType = stone == null ? VanillaMetalTypes.IRON : stone;
         this.trapped = state.getBlock() instanceof CompatTrappedChestBlock;
     }
 

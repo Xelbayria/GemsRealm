@@ -1,6 +1,8 @@
-package net.xelbayria.gems_realm.api.set;
+package net.xelbayria.gems_realm.api.set.metal;
 
+import com.google.common.base.Preconditions;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
+import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.moonlight.core.ClientConfigs;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -8,11 +10,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.xelbayria.gems_realm.GemsRealm;
+import net.xelbayria.gems_realm.api.set.RockType;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -38,11 +39,6 @@ public class MetalType extends RockType {
     @Override
     public String getTranslationKey() {
         return "metal_type." + this.getNamespace() + "." + this.getTypeName();
-    }
-
-    @Override
-    public ItemLike mainChild() {
-        return this.block;
     }
 
     @Override
@@ -89,36 +85,51 @@ public class MetalType extends RockType {
         return null;
     }
 
+    public static Block findMetalBlock(ResourceLocation id) {
+        ResourceLocation[] tests = makeKnownIDConventions(id,  "block");
+        return Utils.findFirstInRegistry(BuiltInRegistries.BLOCK, tests);
+    }
+
     //!! FINDER
-    public static class Finder implements SetFinder<MetalType> {
+    public static class Finder extends SetFinderBuilder<MetalType> {
 
-        private final Map<String, ResourceLocation> childNames = new HashMap<>();
-        private final Supplier<Block> metalFinder;
-        private final ResourceLocation id;
+        private Supplier<Block> blockMetalFinder;
 
-        public Finder(ResourceLocation id, Supplier<Block> metalBlock) {
-            this.id = id;
-            this.metalFinder = metalBlock;
+        public Finder(ResourceLocation id) {
+            super(id, MetalTypeRegistry.INSTANCE);
+            this.metalBlock(() -> findMetalBlock(id));
         }
 
-        public static Finder vanilla(String nameMetal){
-            return simple("minecraft", nameMetal, nameMetal + "_block");
+        public MetalType.Finder metalBlock(Supplier<Block> metalFinder) {
+            this.blockMetalFinder = metalFinder;
+            return this;
         }
 
-        public static Finder simple(String modId, String nameMetalType, String nameMetalBlock) {
-            return simple(new ResourceLocation(modId, nameMetalType), new ResourceLocation(modId, nameMetalBlock));
+        /// @param id Full Id of MetalType as ResourceLocation
+        public MetalType.Finder metalBlock(ResourceLocation id) {
+            return this.metalBlock(() -> BuiltInRegistries.BLOCK.getOptional(id)
+                    .orElseThrow(() -> new IllegalStateException("Failed to find Metal Block: " + id))
+            );
         }
 
-        public static Finder simple(ResourceLocation nameMetal, ResourceLocation nameMetalBlock) {
-            return new Finder(nameMetal, () -> BuiltInRegistries.BLOCK.get(nameMetalBlock));
+        /// @param nameMetalBlock name of Metal Block without modId or namespace
+        public MetalType.Finder metalBlock(String nameMetalBlock) {
+            return this.metalBlock(Utils.idWithOptionalNamespace(nameMetalBlock, id.getNamespace()));
         }
 
-        public void addChild(String childType, String childName) {
-            addChild(childType, new ResourceLocation(id.getNamespace(), childName));
+        /**
+         * @param prefix include the underscore, "_" if the blockId has one
+         * @param suffix include the underscore, "_" if the blockId has one
+         */
+        public MetalType.Finder metalBlockAffix(String prefix, String suffix) {
+            return metalBlock(prefix + id.getPath() + suffix);
         }
 
-        public void addChild(String childType, ResourceLocation childName) {
-            this.childNames.put(childType, childName);
+        /**
+         * @param suffix include the underscore, "_" if the blockId has one
+         */
+        public MetalType.Finder metalBlockSuffix(String suffix) {
+            return metalBlock(id.getPath() + suffix);
         }
 
         @Override
@@ -126,21 +137,20 @@ public class MetalType extends RockType {
         public Optional<MetalType> get() {
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
-                    Block metalFinder = this.metalFinder.get();
-                    Block defaultKey = BuiltInRegistries.BLOCK.get(BuiltInRegistries.BLOCK.getDefaultKey()); // minecraft:air
-                    if (metalFinder != defaultKey && metalFinder != null) {
-                        var metalType = new MetalType(id, metalFinder);
-                        childNames.forEach((key, value) -> {
-                            if (BuiltInRegistries.BLOCK.containsKey(value)) metalType.addChild(key, BuiltInRegistries.BLOCK.get(value));
-                            else if (BuiltInRegistries.ITEM.containsKey(value)) metalType.addChild(key, BuiltInRegistries.ITEM.get(value));
-                            else GemsRealm.LOGGER.warn("Failed to get children for MetalType: {} - {}", id, key);
-                        });
-                        return Optional.of(metalType);
-                    }
+                    Block metal = Preconditions.checkNotNull(blockMetalFinder.get(), "Manual Finder - failed to find a metal block for {}", id);
+                    var metalType = new MetalType(id, metal);
+                    childNames.forEach((key, value) -> {
+                        try {
+                            ItemLike obj = Preconditions.checkNotNull(value.get());
+                            metalType.addChild(key, obj);
+                        } catch (Exception e) {
+                            GemsRealm.LOGGER.warn("Failed to get children for MetalType: {} - {}. Ignored! ERROR: {}", id, key, e.getMessage());
+                        }
+                    });
+                    return Optional.of(metalType);
                 } catch (Exception e) {
-                    GemsRealm.LOGGER.warn("Failed to find custom metal type {}: {}", id, e.getMessage());
+                    GemsRealm.LOGGER.warn("Failed to find custom MetalType: {} - ", id, e);
                 }
-//                GemsRealm.LOGGER.warn("Failed to find custom metal type {}", id);
             }
             return Optional.empty();
         }

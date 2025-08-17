@@ -1,10 +1,10 @@
 package net.xelbayria.gems_realm.misc;
 
 import net.minecraft.resources.ResourceLocation;
-import net.xelbayria.gems_realm.api.set.MetalType;
 import net.xelbayria.gems_realm.api.set.crystal.CrystalType;
 import net.xelbayria.gems_realm.api.set.dust.DustType;
 import net.xelbayria.gems_realm.api.set.gem.GemType;
+import net.xelbayria.gems_realm.api.set.metal.MetalType;
 
 import java.util.Set;
 

@@ -9,8 +9,10 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.set.MetalType;
-import net.xelbayria.gems_realm.api.set.MetalTypeRegistry;
+import net.xelbayria.gems_realm.api.set.metal.MetalType;
+import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
+
+import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.TRAPDOOR;
 
 //SUPPORT: v2.3.0+
 //TODO: request the DEV to change "metal_curtain_rod" to "iron_curtain_rod"
@@ -29,14 +31,14 @@ public class MacawWindowsModule extends GemsRealmModule {
         ResourceLocation tab = modRes(modId); //!! FABRIC: modId
 
         shutter = GemsRealmEntrySet.of(MetalType.class, "shutter",
-                        getModBlock("iron_shutter"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_shutter"), () -> VanillaMetalTypes.IRON,
                         metalType -> new Shutter(Utils.copyPropertySafe(metalType.block)
                                 .strength(1.5F, 2.0F)
                                 .requiresCorrectToolForDrops()
                         )
                 )
-                .createPaletteFromRockChild("trapdoor")
-                .requiresChildren("trapdoor") //REASON: recipes, textures
+                .createPaletteFromRockChild(TRAPDOOR)
+                .requiresChildren(TRAPDOOR) //REASON: recipes, textures
                 .addTexture(modRes("block/iron_shutter"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)

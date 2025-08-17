@@ -10,7 +10,6 @@ import com.simibubi.create.content.decoration.palettes.WindowBlock;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlock;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlockEntity;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorRenderer;
-import com.simibubi.create.foundation.utility.Couple;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.mehvahdjukaar.every_compat.api.ItemOnlyEntrySet;
@@ -35,12 +34,12 @@ import net.minecraft.world.level.block.StairBlock;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.set.MetalType;
-import net.xelbayria.gems_realm.api.set.MetalTypeRegistry;
+import net.xelbayria.gems_realm.api.set.metal.MetalType;
+import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
 
 import java.util.function.Consumer;
 
-import static com.simibubi.create.AllPartialModels.FOLDING_DOORS;
+import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
 
 //SUPPORT: v6.0.5 //!! WAITING FOR THE RELEASE of v6.0-FABRIC
 @SuppressWarnings({"removal", "CommentedOutCode"})
@@ -69,10 +68,10 @@ public class CreateModule extends GemsRealmModule {
         ResourceLocation paletteTab = modRes("palettes");
 
         sheet = ItemOnlyEntrySet.builder(MetalType.class, "sheet",
-                        getModItem("iron_sheet"), MetalTypeRegistry::getIronType,
+                        getModItem("iron_sheet"), () -> VanillaMetalTypes.IRON,
                         metalType -> new Item(new Item.Properties())
                 )
-                .requiresChildren("ingot") //REASON: recipes
+                .requiresChildren(INGOT) //REASON: recipes
                 .addTexture(modRes("item/iron_sheet"))
                 .addTag(new ResourceLocation("forge:plates"), Registries.ITEM)
                 //TAG: forge:plates/<type>
@@ -82,11 +81,11 @@ public class CreateModule extends GemsRealmModule {
         this.addEntry(sheet);
 
         casing = GemsRealmEntrySet.of(MetalType.class, "casing",
-                        getModBlock("copper_casing"), MetalTypeRegistry::getCopperType,
+                        getModBlock("copper_casing"), () -> VanillaMetalTypes.COPPER,
                         metalType -> new CasingBlock(Utils.copyPropertySafe(metalType.block)
                                 .sound(metalType.getSound()))
                 )
-                .requiresChildren("ingot") //REASON: recipes
+                .requiresChildren(INGOT) //REASON: recipes
                 .addTextureM(modRes("block/copper_casing"), GemsRealm.res("block/c/copper_casing_m"))
                 .addTextureM(modRes("block/copper_casing_connected"), GemsRealm.res("block/c/copper_casing_connected_m"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -98,7 +97,7 @@ public class CreateModule extends GemsRealmModule {
         this.addEntry(casing);
 
         door = GemsRealmEntrySet.of(MetalType.class, "door",
-                        getModBlock("copper_door"), MetalTypeRegistry::getCopperType,
+                        getModBlock("copper_door"), () -> VanillaMetalTypes.COPPER,
                         metalType -> SlidingDoorBlock.metal(Utils.copyPropertySafe(metalType.block)
                                         .sound(metalType.getSound())
                                         .noOcclusion(),
@@ -120,10 +119,10 @@ public class CreateModule extends GemsRealmModule {
         this.addEntry(door);
 
         ladder = GemsRealmEntrySet.of(MetalType.class, "ladder",
-                        getModBlock("copper_ladder"), MetalTypeRegistry::getCopperType,
+                        getModBlock("copper_ladder"), () -> VanillaMetalTypes.COPPER,
                         metalType -> new MetalLadderBlock(Utils.copyPropertySafe(metalType.block))
                 )
-                .requiresChildren("ingot") //REASON: recipes
+                .requiresChildren(INGOT) //REASON: recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addTexture(modRes("block/ladder_copper"))
                 .addTexture(modRes("block/ladder_copper_hoop"))
@@ -138,10 +137,10 @@ public class CreateModule extends GemsRealmModule {
         this.addEntry(ladder);
 
         scaffolding = GemsRealmEntrySet.of(MetalType.class, "scaffolding",
-                        getModBlock("copper_scaffolding"), MetalTypeRegistry::getCopperType,
+                        getModBlock("copper_scaffolding"), () -> VanillaMetalTypes.COPPER,
                         metalType -> new MetalScaffoldingBlock(Utils.copyPropertySafe(metalType.block))
                 )
-                .requiresChildren("ingot") //REASON: recipes
+                .requiresChildren(INGOT) //REASON: recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addTexture(modRes("block/scaffold/copper_scaffold"))
                 .addTexture(modRes("block/scaffold/copper_scaffold_connected"))
@@ -157,10 +156,10 @@ public class CreateModule extends GemsRealmModule {
         this.addEntry(scaffolding);
 
         shingles = GemsRealmEntrySet.of(MetalType.class, "shingles",
-                        getModBlock("copper_shingles"), MetalTypeRegistry::getCopperType,
+                        getModBlock("copper_shingles"), () -> VanillaMetalTypes.COPPER,
                         metalType -> new Block(Utils.copyPropertySafe(metalType.block))
                 )
-                .requiresChildren("ingot") //REASON: recipes
+                .requiresChildren(INGOT) //REASON: recipes
                 .addTexture(modRes("block/copper/copper_shingles"))
                 .addTexture(modRes("block/copper/copper_roof_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -172,7 +171,7 @@ public class CreateModule extends GemsRealmModule {
         this.addEntry(shingles);
 
         shingle_slab = GemsRealmEntrySet.of(MetalType.class, "shingle_slab",
-                        getModBlock("copper_shingle_slab"), MetalTypeRegistry::getCopperType,
+                        getModBlock("copper_shingle_slab"), () -> VanillaMetalTypes.COPPER,
                         metalType -> new SlabBlock(Utils.copyPropertySafe(metalType.block))
                 )
                 .requiresFromMap(shingles.blocks) //REASON: recipes
@@ -189,7 +188,7 @@ public class CreateModule extends GemsRealmModule {
         this.addEntry(shingle_slab);
 
         shingle_stairs = GemsRealmEntrySet.of(MetalType.class, "shingle_stairs",
-                        getModBlock("copper_shingle_stairs"), MetalTypeRegistry::getCopperType,
+                        getModBlock("copper_shingle_stairs"), () -> VanillaMetalTypes.COPPER,
                         metalType -> new StairBlock(metalType.block.defaultBlockState(),
                                 Utils.copyPropertySafe(metalType.block))
                 )
@@ -207,10 +206,10 @@ public class CreateModule extends GemsRealmModule {
         this.addEntry(shingle_stairs);
 
         tiles = GemsRealmEntrySet.of(MetalType.class, "tiles",
-                        getModBlock("copper_tiles"), MetalTypeRegistry::getCopperType,
+                        getModBlock("copper_tiles"), () -> VanillaMetalTypes.COPPER,
                         metalType -> new Block(Utils.copyPropertySafe(metalType.block))
                 )
-                .requiresChildren("ingot") //REASON: recipes
+                .requiresChildren(INGOT) //REASON: recipes
                 //TEXTURES: shingles' copper_roof_top
                 .addTexture(modRes("block/copper/copper_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -222,7 +221,7 @@ public class CreateModule extends GemsRealmModule {
         this.addEntry(tiles);
 
         tile_slab = GemsRealmEntrySet.of(MetalType.class, "tile_slab",
-                        getModBlock("copper_tile_slab"), MetalTypeRegistry::getCopperType,
+                        getModBlock("copper_tile_slab"), () -> VanillaMetalTypes.COPPER,
                         metalType -> new SlabBlock(Utils.copyPropertySafe(metalType.block))
                 )
                 .requiresFromMap(tiles.blocks) //REASON: recipes
@@ -239,7 +238,7 @@ public class CreateModule extends GemsRealmModule {
         this.addEntry(tile_slab);
 
         tile_stairs = GemsRealmEntrySet.of(MetalType.class, "tile_stairs",
-                        getModBlock("copper_tile_stairs"), MetalTypeRegistry::getCopperType,
+                        getModBlock("copper_tile_stairs"), () -> VanillaMetalTypes.COPPER,
                         metalType -> new StairBlock(metalType.block.defaultBlockState(),
                                 Utils.copyPropertySafe(metalType.block))
                 )
@@ -257,11 +256,11 @@ public class CreateModule extends GemsRealmModule {
         this.addEntry(tile_stairs);
 
 //        table_cloth = GemsRealmEntrySet.of(MetalType.class, "table_cloth",
-//                        getModBlock("copper_table_cloth"), MetalTypeRegistry::getCopperType,
+//                        getModBlock("copper_table_cloth"), () -> VanillaMetalTypes.COPPER,
 //                        metalType -> new TableClothBlock(Utils.copyPropertySafe(metalType.block), metalType.getTypeName())
 //                )
 //                .addTile(getModTile("table_cloth"))
-//                .requiresChildren("ingot") //REASON: recipes
+//                .requiresChildren(INGOT) //REASON: recipes
 //                .addTextureM(modRes("block/table_cloth/copper"), GemsRealm.res("block/c/copper_table_cloth_m"))
 //                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
 //                .addTag(BlockTags.INSIDE_STEP_SOUND_BLOCKS, Registries.BLOCK)
@@ -277,7 +276,7 @@ public class CreateModule extends GemsRealmModule {
 /// In ValveHandleVisual where the AllPartialModels.VALVE_HANDLE is setting ResourceLocation for copper's texture
 /// one of options is to use mixin to change the ResourceLocation to replace copper's texture
 //        valve_handle = GemsRealmEntrySet.of(MetalType.class, "valve_handle",
-//                        getModBlock("copper_valve_handle", ValveHandleBlock.class), MetalTypeRegistry::getCopperType,
+//                        getModBlock("copper_valve_handle", ValveHandleBlock.class), () -> VanillaMetalTypes.COPPER,
 //                        metalType -> ValveHandleBlock.copper(Utils.copyPropertySafe(metalType.block))
 //                )
 //                .addTile(getModTile("valve_handle"))
@@ -294,7 +293,7 @@ public class CreateModule extends GemsRealmModule {
 //        this.addEntry(valve_handle);
 
         orante_window = GemsRealmEntrySet.of(MetalType.class, "window", "ornate",
-                        getModBlock("ornate_iron_window"), MetalTypeRegistry::getIronType,
+                        getModBlock("ornate_iron_window"), () -> VanillaMetalTypes.IRON,
                         this::makeWindow
                 )
 //                .requiresChildren("nugget") //REASON: recipes
@@ -310,7 +309,7 @@ public class CreateModule extends GemsRealmModule {
         this.addEntry(orante_window);
 
         ornate_window_pane = GemsRealmEntrySet.of(MetalType.class, "window_pane", "ornate",
-                        getModBlock("ornate_iron_window_pane"), MetalTypeRegistry::getIronType,
+                        getModBlock("ornate_iron_window_pane"), () -> VanillaMetalTypes.IRON,
                         metalType -> new ConnectedGlassPaneBlock(Utils.copyPropertySafe(Blocks.GLASS_PANE))
                 )
                 .requiresFromMap(orante_window.blocks)

@@ -14,8 +14,10 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.set.MetalType;
-import net.xelbayria.gems_realm.api.set.MetalTypeRegistry;
+import net.xelbayria.gems_realm.api.set.metal.MetalType;
+import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
+
+import static net.xelbayria.gems_realm.api.set.VanillaRockChildKeys.RAW_BLOCK;
 
 //SUPPORT: v2.1.1+
 public class MoreBeautifulBookshelvesModuleM extends GemsRealmModule {
@@ -28,7 +30,7 @@ public class MoreBeautifulBookshelvesModuleM extends GemsRealmModule {
         ResourceKey<CreativeModeTab> tab = CreativeModeTabs.BUILDING_BLOCKS;
 
         block_bookshelf = GemsRealmEntrySet.of(MetalType.class, "block_bookshelf",
-                        getModBlock("gold_block_bookshelf"), MetalTypeRegistry::getGoldType,
+                        getModBlock("gold_block_bookshelf"), () -> VanillaMetalTypes.GOLD,
                         metalType -> new ModBookshelfFourTimes(BlockBehaviour.Properties.of()
                                 .sound(SoundType.METAL)
                                 .strength(0.5F)
@@ -45,15 +47,15 @@ public class MoreBeautifulBookshelvesModuleM extends GemsRealmModule {
         this.addEntry(block_bookshelf);
 
         raw_block_bookshelf = GemsRealmEntrySet.of(MetalType.class, "block_bookshelf", "raw",
-                        getModBlock("raw_gold_block_bookshelf"), MetalTypeRegistry::getGoldType,
+                        getModBlock("raw_gold_block_bookshelf"), () -> VanillaMetalTypes.GOLD,
                         metalType -> new ModBookshelfTwoTimes(BlockBehaviour.Properties.of()
                                 .sound(SoundType.METAL)
                                 .strength(0.5F)
                                 .requiresCorrectToolForDrops()
                         )
                 )
-                .createPaletteFromRockChild("raw_block")
-                .requiresChildren("raw_block") //REASON: recipes, textures
+                .createPaletteFromRockChild(RAW_BLOCK)
+                .requiresChildren(RAW_BLOCK) //REASON: recipes, textures
                 //TEXTURES: raw_block
                 .addTextureM(modRes("block/raw_gold_block_bookshelf"), GemsRealm.res("block/mbb/bookshelf_m"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)

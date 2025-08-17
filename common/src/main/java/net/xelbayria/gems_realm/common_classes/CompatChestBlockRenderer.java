@@ -6,9 +6,6 @@ import com.mojang.math.Axis;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
-import net.xelbayria.gems_realm.GemsRealm;
-import net.xelbayria.gems_realm.api.set.MetalType;
-import net.xelbayria.gems_realm.api.set.MetalTypeRegistry;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -24,6 +21,10 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.ChestType;
+import net.xelbayria.gems_realm.GemsRealm;
+import net.xelbayria.gems_realm.api.set.metal.MetalType;
+import net.xelbayria.gems_realm.api.set.metal.MetalTypeRegistry;
+import net.xelbayria.gems_realm.misc.HardcodedBlockType;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -42,17 +43,17 @@ public class CompatChestBlockRenderer extends ChestRenderer<CompatChestBlockEnti
     //assumes standard naming here. Generalize if needed
     public CompatChestBlockRenderer(BlockEntityRendererProvider.Context context, String shortenedId) {
         super(context);
-        for (MetalType w : MetalTypeRegistry.getTypes()) {
-            if (w.isVanilla()) continue;
-            String path = "entity/chest/" + shortenedId + "/" + w.getAppendableId() + "_chest";
-            String trapped_path = "entity/chest/" + shortenedId + "/" + w.getAppendableId() + "_trapped_chest";
-            if (!w.isVanilla()) {
-                single.put(w, new Material(CHEST_SHEET, GemsRealm.res(path)));
-                left.put(w, new Material(CHEST_SHEET, GemsRealm.res(path + "_left")));
-                right.put(w, new Material(CHEST_SHEET, GemsRealm.res(path + "_right")));
-                trapped.put(w, new Material(CHEST_SHEET, GemsRealm.res(trapped_path)));
-                trapped_left.put(w, new Material(CHEST_SHEET, GemsRealm.res(trapped_path + "_left")));
-                trapped_right.put(w, new Material(CHEST_SHEET, GemsRealm.res(trapped_path + "_right")));
+        for (MetalType metalType : MetalTypeRegistry.getTypes()) {
+            if (HardcodedBlockType.isKnownVanillaMetal(metalType)) continue;
+            String path = "entity/chest/" + shortenedId + "/" + metalType.getAppendableId() + "_chest";
+            String trapped_path = "entity/chest/" + shortenedId + "/" + metalType.getAppendableId() + "_trapped_chest";
+            if (!metalType.isVanilla()) {
+                single.put(metalType, new Material(CHEST_SHEET, GemsRealm.res(path)));
+                left.put(metalType, new Material(CHEST_SHEET, GemsRealm.res(path + "_left")));
+                right.put(metalType, new Material(CHEST_SHEET, GemsRealm.res(path + "_right")));
+                trapped.put(metalType, new Material(CHEST_SHEET, GemsRealm.res(trapped_path)));
+                trapped_left.put(metalType, new Material(CHEST_SHEET, GemsRealm.res(trapped_path + "_left")));
+                trapped_right.put(metalType, new Material(CHEST_SHEET, GemsRealm.res(trapped_path + "_right")));
             }
         }
     }

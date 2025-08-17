@@ -14,8 +14,8 @@ import net.minecraft.world.level.material.MapColor;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.set.MetalType;
-import net.xelbayria.gems_realm.api.set.MetalTypeRegistry;
+import net.xelbayria.gems_realm.api.set.metal.MetalType;
+import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
 
 
 //SUPPORT: v3.1.0+
@@ -30,7 +30,7 @@ public class MacawBridgesModule extends GemsRealmModule {
         ResourceLocation tab = modRes(modId); //FABRIC: bridges
 
         bridge = GemsRealmEntrySet.of(MetalType.class, "bridge",
-                        getModBlock("iron_bridge"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_bridge"), () -> VanillaMetalTypes.IRON,
                         metalType -> new Iron_Bridge(standardMetalProperties())
                 )
 //                .requiresChildren("ingot", "nugget") //REASON: recipes
@@ -56,7 +56,7 @@ public class MacawBridgesModule extends GemsRealmModule {
         this.addEntry(bridge);
 
         bridge_stair = GemsRealmEntrySet.of(MetalType.class, "bridge_stair",
-                        getModBlock("iron_bridge_stair"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_bridge_stair"), () -> VanillaMetalTypes.IRON,
                         metalType -> new Bridge_Stairs(standardMetalProperties())
                 )
                 .requiresFromMap(bridge.blocks) //REASON: recipes
@@ -76,7 +76,7 @@ public class MacawBridgesModule extends GemsRealmModule {
         this.addEntry(bridge_stair);
 
         bridge_pier = GemsRealmEntrySet.of(MetalType.class, "bridge_pier",
-                        getModBlock("iron_bridge_pier"), MetalTypeRegistry::getIronType,
+                        getModBlock("iron_bridge_pier"), () -> VanillaMetalTypes.IRON,
                         metalType -> new Bridge_Support(standardMetalProperties())
                 )
 //                .requiresChildren("bars") //REASON: recipes
