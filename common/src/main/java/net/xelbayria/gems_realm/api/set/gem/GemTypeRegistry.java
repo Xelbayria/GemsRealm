@@ -1,12 +1,10 @@
-package net.xelbayria.gems_realm.api.set;
+package net.xelbayria.gems_realm.api.set.gem;
 
-import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
-import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -19,32 +17,16 @@ public class GemTypeRegistry extends BlockTypeRegistry<GemType> {
 
     public GemTypeRegistry() {
         super(GemType.class, "gem_type");
-
-        this.addFinder(GemType.Finder.vanilla("lapis"));
-        this.addFinder(GemType.Finder.vanilla("quartz"));
-        this.addFinder(GemType.Finder.vanilla("emerald"));
-        this.addFinder(GemType.Finder.vanilla("diamond"));
     }
 
-    public static GemType getEmeraldType() {
-        return getValue("emerald");
-    }
-
-    public static GemType getDiamondType() {
-        return getValue("diamond");
-    }
-
-    public static Collection<GemType> getTypes() {
-        return INSTANCE.getValues();
-    }
-
-    public static GemType getValue(String gemTypeId) {
-        return INSTANCE.get(new ResourceLocation(gemTypeId));
+    @Override
+    public GemType register(GemType vanillaType) {
+        return super.register(vanillaType);
     }
 
     @Override
     public GemType getDefaultType() {
-        return getEmeraldType();
+        return VanillaGemTypes.EMERALD;
     }
 
     @Override
@@ -102,11 +84,20 @@ public class GemTypeRegistry extends BlockTypeRegistry<GemType> {
         return Optional.empty();
     }
 
-    @Override
-    public void addTypeTranslations(AfterLanguageLoadEvent language) {
-        getValues().forEach((gemType) -> {
-            if (language.isDefault()) language.addEntry(gemType.getTranslationKey(), gemType.getReadableName());
-        });
+
+    //shorthand for add finder. Gives a builder-like object that's meant to be configured inline
+    public GemType.Finder addSimpleFinder(ResourceLocation gemTypeId) {
+        GemType.Finder finder = new GemType.Finder(gemTypeId);
+        this.addFinder(finder);
+        return finder;
+    }
+
+    public GemType.Finder addSimpleFinder(String typeId) {
+        return addSimpleFinder(new ResourceLocation(typeId));
+    }
+
+    public GemType.Finder addSimpleFinder(String namespace, String nameGemType) {
+        return addSimpleFinder(new ResourceLocation(namespace, nameGemType));
     }
 
     @Override

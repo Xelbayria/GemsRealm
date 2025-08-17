@@ -13,8 +13,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.set.GemType;
-import net.xelbayria.gems_realm.api.set.GemTypeRegistry;
+import net.xelbayria.gems_realm.api.set.gem.GemType;
+import net.xelbayria.gems_realm.api.set.gem.VanillaGemTypes;
 
 //SUPPORT: v2.1.1+
 public class MoreBeautifulBookshelvesModuleG extends GemsRealmModule {
@@ -26,7 +26,7 @@ public class MoreBeautifulBookshelvesModuleG extends GemsRealmModule {
         ResourceKey<CreativeModeTab> tab = CreativeModeTabs.BUILDING_BLOCKS;
 
         block_bookshelf = GemsRealmEntrySet.of(GemType.class, "block_bookshelf",
-                        getModBlock("diamond_block_bookshelf"), GemTypeRegistry::getDiamondType,
+                        getModBlock("diamond_block_bookshelf"), () -> VanillaGemTypes.DIAMOND,
                         gemType -> new ModBookshelfEightTimes(BlockBehaviour.Properties.of()
                                 .sound(SoundType.STONE)
                                 .strength(0.5F)

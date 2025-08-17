@@ -9,8 +9,8 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.set.GemType;
-import net.xelbayria.gems_realm.api.set.GemTypeRegistry;
+import net.xelbayria.gems_realm.api.set.gem.GemType;
+import net.xelbayria.gems_realm.api.set.gem.VanillaGemTypes;
 
 //SUPPORT: v3.3+
 public class LapidaristModuleG extends GemsRealmModule {
@@ -32,7 +32,7 @@ public class LapidaristModuleG extends GemsRealmModule {
         ResourceLocation tab = modRes("lapidary_tab");
 
         bricks = GemsRealmEntrySet.of(GemType.class, "bricks",
-                        getModBlock("diamond_bricks"), GemTypeRegistry::getDiamondType,
+                        getModBlock("diamond_bricks"), () -> VanillaGemTypes.DIAMOND,
                         gemType -> new Block(copyPropertiesSafe(gemType))
                 )
                 .addTexture(modRes("block/diamond_bricks"))
@@ -46,7 +46,7 @@ public class LapidaristModuleG extends GemsRealmModule {
         this.addEntry(bricks);
 
         brick_stairs = GemsRealmEntrySet.of(GemType.class, "brick_stairs",
-                        getModBlock("diamond_brick_stairs"), GemTypeRegistry::getDiamondType,
+                        getModBlock("diamond_brick_stairs"), () -> VanillaGemTypes.DIAMOND,
                         gemType -> new StairBlock(bricks.blocks.get(gemType).defaultBlockState(),
                                 copyPropertiesSafe(gemType)
                         )
@@ -64,7 +64,7 @@ public class LapidaristModuleG extends GemsRealmModule {
         this.addEntry(brick_stairs);
 
         brick_slab = GemsRealmEntrySet.of(GemType.class, "brick_slab",
-                        getModBlock("diamond_brick_slab"), GemTypeRegistry::getDiamondType,
+                        getModBlock("diamond_brick_slab"), () -> VanillaGemTypes.DIAMOND,
                         gemType -> new SlabBlock(copyPropertiesSafe(gemType))
                 )
                 .requiresFromMap(bricks.blocks) //REASON: recipes, textures
@@ -80,7 +80,7 @@ public class LapidaristModuleG extends GemsRealmModule {
         this.addEntry(brick_slab);
 
         cut = GemsRealmEntrySet.of(GemType.class, "", "cut",
-                        getModBlock("cut_diamond"), GemTypeRegistry::getDiamondType,
+                        getModBlock("cut_diamond"), () -> VanillaGemTypes.DIAMOND,
                         gemType -> new Block(copyPropertiesSafe(gemType))
                 )
                 .requiresFromMap(bricks.blocks) //REASON: recipesrr
@@ -95,7 +95,7 @@ public class LapidaristModuleG extends GemsRealmModule {
         this.addEntry(cut);
 
         cut_stairs = GemsRealmEntrySet.of(GemType.class, "stairs", "cut",
-                        getModBlock("cut_diamond_stairs"), GemTypeRegistry::getDiamondType,
+                        getModBlock("cut_diamond_stairs"), () -> VanillaGemTypes.DIAMOND,
                         gemType -> new StairBlock(cut.blocks.get(gemType).defaultBlockState(),
                                 copyPropertiesSafe(gemType)
                         )
@@ -113,7 +113,7 @@ public class LapidaristModuleG extends GemsRealmModule {
         this.addEntry(cut_stairs);
 
         cut_slab = GemsRealmEntrySet.of(GemType.class, "slab", "cut",
-                        getModBlock("cut_diamond_slab"), GemTypeRegistry::getDiamondType,
+                        getModBlock("cut_diamond_slab"), () -> VanillaGemTypes.DIAMOND,
                         gemType -> new SlabBlock(copyPropertiesSafe(gemType))
                 )
                 .requiresFromMap(cut.blocks) //REASON: recipes, textures
@@ -129,7 +129,7 @@ public class LapidaristModuleG extends GemsRealmModule {
         this.addEntry(cut_slab);
 
         tiles = GemsRealmEntrySet.of(GemType.class, "tiles",
-                        getModBlock("diamond_tiles"), GemTypeRegistry::getDiamondType,
+                        getModBlock("diamond_tiles"), () -> VanillaGemTypes.DIAMOND,
                         gemType -> new Block(copyPropertiesSafe(gemType))
                 )
                 .requiresFromMap(cut.blocks) //REASON: recipes
@@ -144,7 +144,7 @@ public class LapidaristModuleG extends GemsRealmModule {
         this.addEntry(tiles);
 
         tile_stairs = GemsRealmEntrySet.of(GemType.class, "tile_stairs",
-                        getModBlock("diamond_tile_stairs"), GemTypeRegistry::getDiamondType,
+                        getModBlock("diamond_tile_stairs"), () -> VanillaGemTypes.DIAMOND,
                         gemType -> new StairBlock(tiles.blocks.get(gemType).defaultBlockState(),
                                 copyPropertiesSafe(gemType)
                         )
@@ -162,7 +162,7 @@ public class LapidaristModuleG extends GemsRealmModule {
         this.addEntry(tile_stairs);
 
         tile_slab = GemsRealmEntrySet.of(GemType.class, "tile_slab",
-                        getModBlock("diamond_tile_slab"), GemTypeRegistry::getDiamondType,
+                        getModBlock("diamond_tile_slab"), () -> VanillaGemTypes.DIAMOND,
                         gemType -> new SlabBlock(copyPropertiesSafe(gemType))
                 )
                 .requiresFromMap(tiles.blocks) //REASON: recipes, textures
@@ -178,7 +178,7 @@ public class LapidaristModuleG extends GemsRealmModule {
         this.addEntry(tile_slab);
 
         chiseled = GemsRealmEntrySet.of(GemType.class, "", "chiseled",
-                        getModBlock("chiseled_diamond"), GemTypeRegistry::getDiamondType,
+                        getModBlock("chiseled_diamond"), () -> VanillaGemTypes.DIAMOND,
                         gemType -> new Block(copyPropertiesSafe(gemType))
                 )
                 .requiresFromMap(brick_slab.blocks) //REASON: recipes
@@ -193,7 +193,7 @@ public class LapidaristModuleG extends GemsRealmModule {
         this.addEntry(chiseled);
 
         pillar = GemsRealmEntrySet.of(GemType.class, "pillar",
-                        getModBlock("diamond_pillar"), GemTypeRegistry::getDiamondType,
+                        getModBlock("diamond_pillar"), () -> VanillaGemTypes.DIAMOND,
                         gemType -> new RotatedPillarBlock(copyPropertiesSafe(gemType))
                 )
                 .addTexture(modRes("block/diamond_pillar"))
