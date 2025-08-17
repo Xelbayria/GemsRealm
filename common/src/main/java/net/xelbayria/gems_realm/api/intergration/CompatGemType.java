@@ -22,7 +22,7 @@ public class CompatGemType extends CompatBlockType{
      *
      * Vanilla-Children: GemType's Children is from Minecraft
      *
-     * ModId-Children: CrystsalType's Children is from another mod aside its own mod
+     * ModId-Children: GemType's Children is from another mod aside its own mod
      *
      * 2-Words: The name of GemType is 2-Words instead of 1-Word
      *
