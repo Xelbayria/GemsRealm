@@ -3,6 +3,7 @@ package net.xelbayria.gems_realm.api.set;
 @SuppressWarnings("unused")
 public class VanillaRockChildKeys {
 
+    /// BLOCK
     public static final String BLOCK = "block";
     public static final String RAW_BLOCK = "raw_block";
     public static final String STAIRS = "stairs";
