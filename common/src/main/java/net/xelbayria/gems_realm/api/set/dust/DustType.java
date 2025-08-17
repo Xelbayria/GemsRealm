@@ -76,11 +76,9 @@ public class DustType extends RockType {
     public static class Finder extends SetFinderBuilder<DustType> {
 
         private Supplier<Block> blockDustFinder;
-        private final ResourceLocation id;
 
         public Finder(ResourceLocation id) {
             super(id, DustTypeRegistry.INSTANCE);
-            this.id = id;
             this.dustBlock(() -> findDustBlock(id));
         }
 
