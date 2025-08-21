@@ -3,7 +3,6 @@ package net.xelbayria.gems_realm.api.set.gem;
 import com.google.common.base.Preconditions;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.moonlight.core.ClientConfigs;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
@@ -15,14 +14,10 @@ import org.jetbrains.annotations.ApiStatus;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import static net.mehvahdjukaar.moonlight.api.set.DebugBlockTypes.appendToDebugFile;
-
 public class GemType extends RockType {
 
     protected GemType(ResourceLocation id, Block blockGem) {
         super(id, blockGem);
-
-        if (ClientConfigs.BLOCKTYPES_DEBUG.get() && !this.isVanilla()) appendToDebugFile(getTranslationKey());
     }
 
     @Override

@@ -1,8 +1,6 @@
 package net.xelbayria.gems_realm.api;
 
-import com.google.gson.JsonObject;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
-import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
@@ -16,10 +14,11 @@ import net.xelbayria.gems_realm.api.set.crystal.CrystalType;
 import net.xelbayria.gems_realm.api.set.dust.DustType;
 import net.xelbayria.gems_realm.api.set.gem.GemType;
 import net.xelbayria.gems_realm.api.set.metal.MetalType;
-import net.xelbayria.gems_realm.misc.*;
+import net.xelbayria.gems_realm.misc.HardcodedCrystalType;
+import net.xelbayria.gems_realm.misc.HardcodedDustType;
+import net.xelbayria.gems_realm.misc.HardcodedGemType;
+import net.xelbayria.gems_realm.misc.HardcodedMetalType;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Consumer;
 
 
@@ -82,28 +81,7 @@ public class GemsRealmModule extends SimpleModule {
                     entrySet.generateModels(this, resourceManager, resourceSink);
                 }
             });
-
-            // Creating custom parent model files
-            Map<ResourceLocation, JsonObject> models = ModelUtils.readAllModelsAndParents(resourceManager, modelsToModify.keySet());
-            for (var e : models.entrySet()) {
-                // Modifying the contents
-                JsonObject json = e.getValue();
-                ResourceLocation oldRes = e.getKey();
-                var tintConfig = modelsToModify.getOrDefault(oldRes, TintConfiguration.EMPTY);
-                ModelUtils.addTintIndexToModelAndReplaceParent(oldRes, json, null, null, tintConfig);
-                ResourceLocation newRes = ModelUtils.transformModelID(e.getKey());
-
-                // Add custom models to the resources
-                resourceSink.addJson(newRes, json, ResType.MODELS);
-            }
         });
     }
-
-    private final Map<ResourceLocation, TintConfiguration> modelsToModify = new HashMap<>();
-
-    public void markModelForModification(ResourceLocation oldRes, TintConfiguration config) {
-        modelsToModify.put(oldRes, config);
-    }
-
 
 }

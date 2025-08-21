@@ -5,7 +5,6 @@ import net.mehvahdjukaar.every_compat.api.*;
 import net.mehvahdjukaar.every_compat.misc.ModelConfiguration;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
-import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.resources.ResourceKey;
@@ -15,7 +14,6 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.xelbayria.gems_realm.misc.SpriteHelper;
-import net.xelbayria.gems_realm.misc.TintConfiguration;
 import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -28,7 +26,6 @@ import static net.xelbayria.gems_realm.api.set.VanillaRockChildKeys.BRICKS;
 @SuppressWarnings("unused")
 public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
 
-    protected TintConfiguration tintConfiguration;
 
     protected GemsRealmEntrySet(Class<T> type, String name, @Nullable String prefix, Function<T, B> blockSupplier,
                                 Supplier<B> baseBlock, Supplier<T> baseType,
@@ -38,13 +35,12 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
                                 @Nullable ITileHolder tileFactory, @Nullable Object renderType,
                                 @Nullable BiFunction<T, ResourceManager, PaletteStrategy.PaletteAndAnimation> paletteSupplier,
                                 @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
-                                boolean mergedPalette, TintConfiguration tintConfig, boolean copyTint,
-                                Predicate<T> condition, ModelConfiguration modelConfig
+                                boolean mergedPalette,  boolean copyTint, Predicate<T> condition,
+                                ModelConfiguration modelConfig
     ) {
 
         super(type, name, prefix, blockSupplier, baseBlock, baseType, tab, tabMode, lootMode, itemFactory, tileFactory,
                 renderType, paletteSupplier, extraTransform, mergedPalette, copyTint, condition, modelConfig);
-        this.tintConfiguration = tintConfig;
         this.modelConfiguration = modelConfig;
     }
 
@@ -72,12 +68,6 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseRock, "polished")
                 .replaceWithTextureFromChild("minecraft:block/mossy_" + nameBaseRock + "_bricks", "mossy_bricks")
                 .replaceWithTextureFromChild("minecraft:block/budding_" + nameBaseRock, "budding")
-                // Modifying parent & "elements" inside model files
-//                .addModifier((s, blockId, blockType) -> {
-//                    JsonObject jsonObject = GsonHelper.parse(s);
-//                    ModelUtils.addTintIndexToModelAndReplaceParent(new ResourceLocation("none"), jsonObject, module, nameBaseStone, tintConfiguration);
-//                    return jsonObject.toString();
-//                })
                 // Add modified model files to the resources
                 .andThen(super.makeModelTransformer(module, manager));
 
@@ -99,21 +89,13 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
     private String getChildModelId(String childkey, T stoneType, ResourceLocation blockId) {
         if (SpriteHelper.modelID.containsKey(blockId)) return SpriteHelper.modelID.get(blockId);
 
-        return Utils.getID(stoneType.getBlockOfThis(childkey)).withPrefix("block/").toString();
+        return Utils.getID(Objects.requireNonNull(stoneType.getBlockOfThis(childkey))).withPrefix("block/").toString();
     }
 
-    @Override
-    public void generateModels(SimpleModule module, ResourceManager manager, ResourceSink sink) {
-        makeBlockStateTransformer(module, manager);
-        makeModelTransformer(module, manager);
-        super.generateModels(module, manager, sink);
-    }
 
     //!! SUB-CLASS
     @SuppressWarnings("DataFlowIssue") // McMetaFile is nullable
     public static class Builder<T extends BlockType, B extends Block> extends SimpleEntrySet.Builder<T, B> {
-
-        protected TintConfiguration tintConfig = TintConfiguration.EMPTY;
 
         protected Builder(Class<T> type, String name, @Nullable String prefix, Supplier<T> baseType, Supplier<B> baseBlock, Function<T, B> blockFactory) {
             super(type, name, prefix, baseType, baseBlock, blockFactory);
@@ -164,7 +146,7 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
                 GemsRealmEntrySet<T, B> entry = new GemsRealmEntrySet<>(this.type, this.name, this.prefix, this.blockFactory, this.baseBlock,
                         this.baseType, this.tab, this.tabMode, this.lootMode, this.itemFactory,
                         this.tileHolder, this.renderType, this.palette, this.extraModelTransform,
-                        this.useMergedPalette, this.tintConfig, this.copyTint,
+                        this.useMergedPalette, this.copyTint,
                         this.condition, this.modelConfig);
                 entry.recipeLocations.addAll(this.recipes);
                 entry.tags.putAll(this.tags);
@@ -174,24 +156,6 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
             }
         }
 
-
-        /// Exclude mutiple textures in one parent file
-        public Builder<T, B> excludeMultipleTextureFromTinting(ResourceLocation parentId, String... textureKeys) {
-            if (this.tintConfig == TintConfiguration.EMPTY) {
-                this.tintConfig = TintConfiguration.createNew();
-            }
-            this.tintConfig.addParentAndTextureValues(parentId, textureKeys);
-            return this;
-        }
-
-        /// Exclude multiple textures in all parent files
-        public Builder<T, B> excludeTextureFromTinting(String... textureKeys) {
-            if (this.tintConfig == TintConfiguration.EMPTY) {
-                this.tintConfig = TintConfiguration.createNew();
-            }
-            this.tintConfig.addTextureValues(textureKeys);
-            return this;
-        }
     }
 
 }

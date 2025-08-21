@@ -2,7 +2,6 @@ package net.xelbayria.gems_realm;
 
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.api.CompatModule;
-import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.minecraft.resources.ResourceLocation;
@@ -16,12 +15,10 @@ import net.xelbayria.gems_realm.api.set.gem.GemTypeRegistry;
 import net.xelbayria.gems_realm.api.set.metal.MetalTypeRegistry;
 import net.xelbayria.gems_realm.configs.GRConfigs;
 import net.xelbayria.gems_realm.configs.UnsafeDisablerConfigs;
-import net.xelbayria.gems_realm.misc.ModelUtils;
 import net.xelbayria.gems_realm.misc.SpriteHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -46,14 +43,6 @@ public class GemsRealm extends EveryCompat {
 
         BlockSetAPI.registerBlockSetDefinition(GemTypeRegistry.INSTANCE);
         CompatGemType.init();
-
-        if (PlatHelper.getPhysicalSide().isClient()) {
-            ClientHelper.addClientReloadListener(() -> (preparationBarrier, resourceManager, preparationsProfiler, reloadProfiler, backgroundExecutor, gameExecutor) ->
-                            CompletableFuture.completedFuture(null)
-                                    .thenCompose(preparationBarrier::wait)
-                                    .thenAcceptAsync((object) -> ModelUtils.reset(), gameExecutor),
-                    res("gemsrealm_reloader"));
-        }
     }
 
     public static ResourceLocation res(String name) {
