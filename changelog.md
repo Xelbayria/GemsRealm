@@ -22,58 +22,8 @@
 
 </div>
 
-### UPDATED: 
-- **Gems Realm** (COMMON): Fixed the SERVER crash related to `gemsrealm-hazardous.toml` config - [#1006](https://github.com/MehVahdJukaar/WoodGood/issues/1006)
+## v2.9.0
 
----
-
-## v2.8.2
-
-### REQUIRED VERSION:
-- **Every Compat v2.8.14** - Same verison is applied to **Library Section**
-
-### UPDATED: 
-- **Gems Realm** (COMMON): 
-  - Added a config to disable the visibility of SearchBar in GemsRealm' tab
-  - Added new config to disable EntrySet, BlockTypes, or Module
-- **Lapidarist's DustType** (F): Corrected a typo in the namespace for tag
-- **DivineRPG** (CrystalType): added SHARD to olivine's children list
-- **Excessive Building** (UDBT): Added Prismarine-Crystal to CrystalType
-
----
-
-## v2.8.1
-
-### UPDATED: 
-- **Gems Realm** (COMMON): 
-  - Fixed the crash - [#10](https://github.com/Xelbayria/GemsRealm/issues/10)
-    - Many improvement and fixes are applied for the crash related to #10, hopefully no one will encounter the same crash in the future 
-  - Improved the detection system further to ensure a type (Metal, Gem, Crystal or Dust) can be only in ONE blocktype, not multiple
-
-### ADDED: 
-- <span style="color: WHITE;">NOTE: **(IT)** - The ResourceLocation of the texture is not working, This will be fixed in the future. This is applied to StoneZone, too</span>
-- **Crystalcraft Unlimited Java** (TEX): 
-  - **More Beautiful Bookshelves**
-  - **More Beautiful Torches**
-  - **Create**
-  - **Lapidarist**
-- **CrystalCraft Unlimited Java** (UDBT): aura_quartz (CrystalType)
-- **Geodes** (UDBT): echo, cypsum_crystal, diamond_crystal, emerald_crystal, quartz_crystal, lapis_crystal (CrystalType)
-- **Biomes O' Plenty** (UDBT): rose_quarz (CrystalType)
-- **Divine RPG** (UDBT): olivine (CrystalType)
-
----
-
-## v2.8.0
-
-### SUPPORTED MOD:
-**FORGE**:
-- **More Beautiful Bookshelves**
-- **Create**
-
-**COMMON**:
-- **More Beautiful Torches**
-- **Macaw's mods**
-  - Bridges
-  - Windows
-  - Fences & Walls
+### UPDATED:
+- **Gems Realm** (COMMON):
+    - CHANGED CODES to work properly with Every Compat v2.9.0
