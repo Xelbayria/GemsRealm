@@ -14,8 +14,9 @@ import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.crystal.CrystalType;
-import net.xelbayria.gems_realm.api.set.crystal.VanillaCrystalChildKeys;
 import net.xelbayria.gems_realm.api.set.crystal.VanillaCrystalTypes;
+
+import static net.xelbayria.gems_realm.api.set.crystal.VanillaCrystalChildKeys.CLUSTER;
 
 //SUPPORT: v3.0.0+
 public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
@@ -134,8 +135,8 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                                 ParticleTypes.FLAME
                         )
                 )
-                .createPaletteFromRockChild(VanillaCrystalChildKeys.CLUSTER)
-                .requiresChildren(VanillaCrystalChildKeys.CLUSTER) //REASON: recipes, textures
+                .createPaletteFromRockChild(CLUSTER)
+                .requiresChildren(CLUSTER) //REASON: recipes, textures
                 .addTextureM(modRes("block/amethyst_cluster_torch"), GemsRealm.res("block/common_torch_m"))
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
@@ -153,7 +154,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                                 ParticleTypes.FLAME
                         )
                 )
-                .requiresChildren(VanillaCrystalChildKeys.CLUSTER) //REASON: recipes, textures
+                .requiresChildren(CLUSTER) //REASON: recipes, textures
                 //TEXTURES: wall_torch
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
@@ -167,8 +168,8 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                         getModBlock("amethyst_cluster_soul_wall_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
-                .createPaletteFromRockChild(VanillaCrystalChildKeys.CLUSTER)
-                .requiresChildren(VanillaCrystalChildKeys.CLUSTER) //REASON: recipes, textures
+                .createPaletteFromRockChild(CLUSTER)
+                .requiresChildren(CLUSTER) //REASON: recipes, textures
                 .addTextureM(modRes("block/amethyst_cluster_soul_torch"), GemsRealm.res("block/common_torch_m"))
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
@@ -181,7 +182,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                         getModBlock("amethyst_cluster_soul_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new TorchBlock(Utils.copyPropertySafe(Blocks.SOUL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
-                .requiresChildren(VanillaCrystalChildKeys.CLUSTER) //REASON: recipes, textures
+                .requiresChildren(CLUSTER) //REASON: recipes, textures
                 //TEXTURES: soul_wall_torch
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
@@ -195,8 +196,8 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                         getModBlock("amethyst_cluster_redstone_wall_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new RedstoneWallTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_WALL_TORCH))
                 )
-                .createPaletteFromRockChild(VanillaCrystalChildKeys.CLUSTER)
-                .requiresChildren(VanillaCrystalChildKeys.CLUSTER) //REASON: recipes, textures
+                .createPaletteFromRockChild(CLUSTER)
+                .requiresChildren(CLUSTER) //REASON: recipes, textures
                 .addTextureM(modRes("block/amethyst_cluster_redstone_torch"), GemsRealm.res("block/common_redstone_torch_m"))
                 .addTextureM(modRes("block/amethyst_cluster_redstone_torch_off"), GemsRealm.res("block/common_torch_m"))
                 .noTab()
@@ -209,7 +210,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                         getModBlock("amethyst_cluster_redstone_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new RedstoneTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_TORCH))
                 )
-                .requiresChildren(VanillaCrystalChildKeys.CLUSTER) //REASON: recipes, textures
+                .requiresChildren(CLUSTER) //REASON: recipes, textures
                 //TEXTURES: redstone_wall_torch
                 .setTabKey(tab)
                 .defaultRecipe()
