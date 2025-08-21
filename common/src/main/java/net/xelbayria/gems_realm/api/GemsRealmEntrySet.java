@@ -1,18 +1,13 @@
 package net.xelbayria.gems_realm.api;
 
 import com.mojang.datafixers.util.Pair;
-import net.mehvahdjukaar.every_compat.api.AbstractSimpleEntrySet;
-import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.api.SimpleModule;
-import net.mehvahdjukaar.every_compat.api.TabAddMode;
+import net.mehvahdjukaar.every_compat.api.*;
 import net.mehvahdjukaar.every_compat.misc.ModelConfiguration;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
-import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -25,9 +20,10 @@ import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.function.*;
+
+import static net.xelbayria.gems_realm.api.set.VanillaRockChildKeys.BRICKS;
 
 @SuppressWarnings("unused")
 public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
@@ -40,7 +36,7 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
                                 TabAddMode tabMode, LootTableMode lootMode,
                                 @Nullable TriFunction<T, B, Item.Properties, Item> itemFactory,
                                 @Nullable ITileHolder tileFactory, @Nullable Object renderType,
-                                @Nullable BiFunction<T, ResourceManager, Pair<List<Palette>, @Nullable McMetaFile>> paletteSupplier,
+                                @Nullable BiFunction<T, ResourceManager, PaletteStrategy.PaletteAndAnimation> paletteSupplier,
                                 @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
                                 boolean mergedPalette, TintConfiguration tintConfig, boolean copyTint,
                                 Predicate<T> condition, ModelConfiguration modelConfig
@@ -113,15 +109,8 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
         super.generateModels(module, manager, sink);
     }
 
-//    @Override
-//    public void generateTags(SimpleModule module, DynamicDataPack pack, ResourceManager manager) {
-//        super.generateTags(module, pack, manager);
-//
-//    }
-
-
     //!! SUB-CLASS
-    @SuppressWarnings("unused")
+    @SuppressWarnings("DataFlowIssue") // McMetaFile is nullable
     public static class Builder<T extends BlockType, B extends Block> extends SimpleEntrySet.Builder<T, B> {
 
         protected TintConfiguration tintConfig = TintConfiguration.EMPTY;
@@ -130,31 +119,36 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
             super(type, name, prefix, baseType, baseBlock, blockFactory);
         }
 
+        /// @deprecated new method haven't been implemented yet
+        @Deprecated(forRemoval = true)
         public GemsRealmEntrySet.Builder<T, B> createPaletteFromBlock() {
             return (Builder<T, B>) createPaletteFromChild("block");
         }
 
+        /// @deprecated new method haven't been implemented yet
+        @Deprecated(forRemoval = true)
         public GemsRealmEntrySet.Builder<T, B> createPaletteFromBricks() {
             this.setPalette((blockType, manager) -> {
-                if (blockType.getChild("bricks") != null) {
-                    return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
-                    }, "bricks", null, blockType, manager);
+                if (blockType.getChild(BRICKS) != null) {
+                    var paletteAnimation = PaletteStrategies.makePaletteFromChild(blockType, manager, BRICKS, null, p -> {});
+                    return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
                 }
-                return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
-                }, "stone", null, blockType, manager);
+                var paletteAnimation = PaletteStrategies.makePaletteFromMainChild(blockType, manager);
+                return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
             });
             return this;
         }
 
-        /// Safe-fail: if a child is not found, then "block" will be used
+        /// @deprecated new method haven't been implemented yet
+        @Deprecated(forRemoval = true)
         public GemsRealmEntrySet.Builder<T, B> createPaletteFromRockChild(String childKey) {
             this.setPalette((blockType, manager) -> {
-                if (blockType.getChild(childKey) != null) {
-                    return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
-                    }, childKey, null, blockType, manager);
+                if (blockType.getChild(BRICKS) != null) {
+                    var paletteAnimation = PaletteStrategies.makePaletteFromChild(blockType, manager, childKey, null, p -> {});
+                    return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
                 }
-                return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
-                }, "block", null, blockType, manager);
+                var paletteAnimation = PaletteStrategies.makePaletteFromMainChild(blockType, manager);
+                return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
             });
             return this;
         }
