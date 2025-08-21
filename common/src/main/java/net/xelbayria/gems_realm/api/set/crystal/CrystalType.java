@@ -3,7 +3,6 @@ package net.xelbayria.gems_realm.api.set.crystal;
 import com.google.common.base.Preconditions;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.moonlight.core.ClientConfigs;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -19,7 +18,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import static net.mehvahdjukaar.moonlight.api.set.DebugBlockTypes.appendToDebugFile;
 
 /**
  * Childkey Availability:
@@ -32,8 +30,6 @@ public class CrystalType extends RockType {
 
     protected CrystalType(ResourceLocation id, Block blockCrystal) {
         super(id, blockCrystal);
-
-        if (ClientConfigs.BLOCKTYPES_DEBUG.get() && !this.isVanilla()) appendToDebugFile(getTranslationKey());
     }
 
     @Override

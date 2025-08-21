@@ -3,7 +3,6 @@ package net.xelbayria.gems_realm.api.set.metal;
 import com.google.common.base.Preconditions;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.moonlight.core.ClientConfigs;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -18,8 +17,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import static net.mehvahdjukaar.moonlight.api.set.DebugBlockTypes.appendToDebugFile;
-
 /**
  * Childkey Availability:
  * block, raw_block, stairs, slab, fence
@@ -32,8 +29,6 @@ public class MetalType extends RockType {
 
     protected MetalType(ResourceLocation id, Block block) {
         super(id, block);
-
-        if (ClientConfigs.BLOCKTYPES_DEBUG.get() && !this.isVanilla()) appendToDebugFile(getTranslationKey());
     }
 
     @Override

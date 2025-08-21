@@ -3,7 +3,6 @@ package net.xelbayria.gems_realm.api.set.dust;
 import com.google.common.base.Preconditions;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.moonlight.core.ClientConfigs;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -18,15 +17,11 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import static net.mehvahdjukaar.moonlight.api.set.DebugBlockTypes.appendToDebugFile;
-
 @SuppressWarnings("SameParameterValue")
 public class DustType extends RockType {
 
     protected DustType(ResourceLocation id, Block blockDust) {
         super(id, blockDust);
-
-        if (ClientConfigs.BLOCKTYPES_DEBUG.get() && !this.isVanilla()) appendToDebugFile(getTranslationKey());
     }
 
     @Override
