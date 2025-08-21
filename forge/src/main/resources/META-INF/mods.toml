@@ -45,14 +45,14 @@ itemIcon="gemsrealm:all_gems" #catalogue icon
 [[dependencies.gemsrealm]]
     modId="moonlight"
     mandatory=true
-    versionRange="[1.20-2.16.2,]"
+    versionRange="[1.20-2.16.0,]"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.gemsrealm]]
     modId="everycomp"
     mandatory=false # GemsRealmForge will provide the message if everycomp is not installed
-    versionRange="[1.20-2.8.14,]"
+    versionRange="[1.20-2.9.0,]"
     ordering="AFTER"
     side="BOTH"
 
