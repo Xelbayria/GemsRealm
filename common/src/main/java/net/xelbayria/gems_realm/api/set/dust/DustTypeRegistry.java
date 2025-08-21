@@ -53,7 +53,7 @@ public class DustTypeRegistry extends BlockTypeRegistry<DustType> {
             );
 
             // Ensure there is no duplicated DustType in the list
-            if (Objects.isNull(get(idBlockType))
+            if (!valuesReg.containsKey(idBlockType)
                     && hasDust
                     && noWoodType
                     && noMetalType

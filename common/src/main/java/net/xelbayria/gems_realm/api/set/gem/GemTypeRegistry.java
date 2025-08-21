@@ -65,7 +65,7 @@ public class GemTypeRegistry extends BlockTypeRegistry<GemType> {
             );
 
             // Ensure there is no duplicated GemType in the list
-            if (Objects.isNull(get(idBlockType))
+            if (!valuesReg.containsKey(idBlockType)
                     && hasOre
                     && hasGem
                     && noWoodType

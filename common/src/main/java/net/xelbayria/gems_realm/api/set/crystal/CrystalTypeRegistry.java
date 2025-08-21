@@ -57,7 +57,7 @@ public class CrystalTypeRegistry extends BlockTypeRegistry<CrystalType> {
             );
 
             // Ensure there is no duplicated CrystalType in the list
-            if (Objects.isNull(get(idBlockType))
+            if (!valuesReg.containsKey(idBlockType)
                     && hasCluster
                     && hasShard
                     && noWoodType

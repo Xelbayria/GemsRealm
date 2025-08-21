@@ -99,7 +99,7 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
             );
 
             // Ensure there is no duplicated MetalType in the list
-            if (Objects.isNull(get(idBlockType))
+            if (!valuesReg.containsKey(idBlockType)
                     && hasIngot
                     && noWoodType
                     && noGemType
