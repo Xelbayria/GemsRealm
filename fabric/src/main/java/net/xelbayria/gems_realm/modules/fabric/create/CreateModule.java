@@ -131,7 +131,6 @@ public class CreateModule extends GemsRealmModule {
                 .addTag(BlockTags.FALL_DAMAGE_RESETTING, Registries.BLOCK)
                 .addTag(modRes("copycat_deny"), Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("copper_ladder_from_ingots_copper_stonecutting"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(ladder);
@@ -150,7 +149,6 @@ public class CreateModule extends GemsRealmModule {
                 //TEXTURES: casing,
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("copper_scaffolding_from_ingots_copper_stonecutting"))
                 .addCustomItem((metalType, block, properties) -> new MetalScaffoldingBlockItem(block, properties))
                 .build();
         this.addEntry(scaffolding);
@@ -165,7 +163,6 @@ public class CreateModule extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("copper_shingles_from_ingots_copper_stonecutting"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(shingles);
@@ -215,7 +212,6 @@ public class CreateModule extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("copper_tiles_from_ingots_copper_stonecutting"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(tiles);
@@ -255,6 +251,7 @@ public class CreateModule extends GemsRealmModule {
                 .build();
         this.addEntry(tile_stairs);
 
+        //!! NOT AVAILABLE in v0.5.1+
 //        table_cloth = GemsRealmEntrySet.of(MetalType.class, "table_cloth",
 //                        getModBlock("copper_table_cloth"), () -> VanillaMetalTypes.COPPER,
 //                        metalType -> new TableClothBlock(Utils.copyPropertySafe(metalType.block), metalType.getTypeName())
@@ -267,7 +264,6 @@ public class CreateModule extends GemsRealmModule {
 //                .addTag(modRes("table_cloths"), Registries.BLOCK)
 //                .addTag(modRes("table_cloths"), Registries.ITEM)
 //                .setTabKey(tab)
-//                .addRecipe(modRes("copper_table_cloth_from_ingots_copper_stonecutting"))
 //                .setRenderType(RenderLayer.CUTOUT_MIPPED)
 //                .addCustomItem((metalType, block, properties) -> new TableClothBlockItem(block, properties))
 //                .build();
@@ -386,6 +382,29 @@ public class CreateModule extends GemsRealmModule {
         super.addDynamicServerResources(executor);
 
         executor.accept((manager, sink) -> {
+
+            String ladderRecipePath = "copper_ladder_from_ingots_copper_stonecutting";
+            String scaffoldingRecipePath = "copper_scaffolding_from_ingots_copper_stonecutting";
+            String shinglesRecipePath = "copper_shingles_from_ingots_copper_stonecutting";
+            String tilesRecipePath = "copper_tiles_from_ingots_copper_stonecutting";
+//            String table_clothRecipePath = "copper_table_cloth_from_ingots_copper_stonecutting";
+            ladder.blocks.forEach((metalType, block) -> {
+                ResourceLocation ladderRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_ladder_from_ingots"));
+                ResourceLocation scaffoldingRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_scaffolding_from_ingots"));
+                ResourceLocation shinglesRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_shingles_from_ingots"));
+                ResourceLocation tilesRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_tiles_from_ingots"));
+//                ResourceLocation table_clothRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_table_cloth_from_ingots"));
+
+                grabTagAndCreateRecipe(ladderRecipePath, ladderRecipeId, "copper", ladder.blocks.get(metalType), metalType, manager, sink);
+
+                grabTagAndCreateRecipe(scaffoldingRecipePath, scaffoldingRecipeId, "copper", scaffolding.blocks.get(metalType), metalType, manager, sink);
+
+                grabTagAndCreateRecipe(shinglesRecipePath, shinglesRecipeId, "copper", shingles.blocks.get(metalType), metalType, manager, sink);
+
+                grabTagAndCreateRecipe(tilesRecipePath, tilesRecipeId, "copper", tiles.blocks.get(metalType), metalType, manager, sink);
+
+//                grabTagAndCreateRecipe(table_clothRecipePath, table_clothRecipeId, "copper", table_cloth.blocks.get(metalType), metalType, manager, sink);
+            });
 
 
             String pathLog = "item_application/copper_casing_from_log";
