@@ -1,5 +1,6 @@
 package net.xelbayria.gems_realm.misc;
 
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.world.level.block.Block;
 import net.xelbayria.gems_realm.api.set.metal.MetalType;
@@ -20,6 +21,10 @@ public class HardcodedMetalType extends HardcodedBlockType{
         supportedBlockName = blockName;
 
         /// ─────────────────────────── Include Vanilla Type ────────────────────────────
+
+        // MInecraft's NETHERITE has no nugget
+        if (!(PlatHelper.isModLoaded("oreganized") || PlatHelper.isModLoaded("caverns_and_chasms")) &&
+                isBlockRegistryFrom("minecraft", "", "minecraft:netherite", "nugget")) return false;
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ EXCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

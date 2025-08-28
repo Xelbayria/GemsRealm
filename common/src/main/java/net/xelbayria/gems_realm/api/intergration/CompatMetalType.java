@@ -1,9 +1,11 @@
 package net.xelbayria.gems_realm.api.intergration;
 
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.xelbayria.gems_realm.api.set.metal.MetalTypeRegistry;
 import org.jetbrains.annotations.ApiStatus;
 
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
+import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.NUGGET;
 
 /**
  * Put all undetected MetalTypes here. The following reasons can be seen via Definition of REASONS
@@ -34,6 +36,14 @@ public class CompatMetalType extends CompatBlockType {
     static {
 
         MetalTypeRegistry metalReg = MetalTypeRegistry.INSTANCE;
+
+        // Minecraft - REASON: ModId-Children
+        if (PlatHelper.isModLoaded("oreganized"))
+            metalReg.addSimpleFinder("minecraft:netherite")
+                .childItem(NUGGET, "oreganized:netherite_nugget");
+        if (PlatHelper.isModLoaded("caverns_and_chasms"))
+            metalReg.addSimpleFinder("minecraft:netherite")
+                .childItem(NUGGET, "caverns_and_chasms:netherite_nugget");
 
         // Unusual End
         metalReg.addSimpleFinder("unusualend:pearlescent"); //REASON: ???
