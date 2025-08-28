@@ -48,7 +48,9 @@ public class MetalType extends RockType {
 
     @Override
     protected void initializeChildrenItems() {
-        super.initializeChildrenItems();
+//        super.initializeChildrenItems();
+        this.addChild("ingot", findRelatedItem("", "ingot"));
+        this.addChild("nugget", findRelatedItem("", "nugget"));
     }
 
     @Override
