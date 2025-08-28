@@ -8,7 +8,7 @@
 
 <div style="text-align: left;">
 
-* **(COMMON)**: FORGE & FABRIC
+* **(C)**: FORGE & FABRIC
 * **(FB)**: FABRIC
 * **(FG)**: FORGE
 * **(IT)**: Included Texture: Added the ResourceLocation of the missing textures required for blocks or generating a new texture
@@ -21,6 +21,18 @@
 </div>
 
 </div>
+
+### UPDATED: 
+- **Create** (C): Updated the recipes to have correct ingredients
+- **Gems Realm** (C): 
+  - Added nugget to MetalType's children to fix an incorrect recipe from **Create** - [#32](https://github.com/Xelbayria/GemsRealm/issues/32)
+  - Added nugget from 2 mods to minecraft:netherite
+
+### NOTE: 
+- **Moonlight Lib v2.16.6+** (C): Fixed the stonecutter recipes' output with a count of 1 - [#30](https://github.com/Xelbayria/GemsRealm/issues/30)
+- **Every Compat v2.9.2+** (C): Fixed missing textures with Macaw's Bridge - [#31](https://github.com/Xelbayria/GemsRealm/issues/31)
+
+---
 
 ## v2.9.0
 
