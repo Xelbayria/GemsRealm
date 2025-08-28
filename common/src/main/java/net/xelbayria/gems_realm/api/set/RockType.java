@@ -65,9 +65,7 @@ public abstract class RockType extends BlockType{
     }
 
     @Override
-    protected void initializeChildrenItems() {
-        this.addChild("ingot", findRelatedItem("", "ingot"));
-    }
+    protected void initializeChildrenItems() {}
 
     /// Check for block with "s" and without "s"
     private @Nullable Block findChildBlocks(String suffix) {
