@@ -15,7 +15,7 @@ import net.xelbayria.gems_realm.api.set.gem.GemTypeRegistry;
 import net.xelbayria.gems_realm.api.set.metal.MetalTypeRegistry;
 import net.xelbayria.gems_realm.configs.GRConfigs;
 import net.xelbayria.gems_realm.configs.UnsafeDisablerConfigs;
-import net.xelbayria.gems_realm.misc.SpriteHelper;
+import net.xelbayria.gems_realm.misc.CompatSpriteHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,7 +30,7 @@ public class GemsRealm extends EveryCompat {
         GRConfigs.init();
         UnsafeDisablerConfigs.init();
         GRRegistry.init();
-        SpriteHelper.initHardcodedSprite();
+        CompatSpriteHelper.initHardcodedSprite();
 
         BlockSetAPI.registerBlockSetDefinition(CrystalTypeRegistry.INSTANCE);
         CompatCrystalType.init();

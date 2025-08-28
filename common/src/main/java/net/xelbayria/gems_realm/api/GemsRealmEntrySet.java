@@ -13,7 +13,7 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.xelbayria.gems_realm.misc.SpriteHelper;
+import net.xelbayria.gems_realm.misc.CompatSpriteHelper;
 import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -87,7 +87,7 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
     }
 
     private String getChildModelId(String childkey, T stoneType, ResourceLocation blockId) {
-        if (SpriteHelper.modelID.containsKey(blockId)) return SpriteHelper.modelID.get(blockId);
+        if (CompatSpriteHelper.modelID.containsKey(blockId)) return CompatSpriteHelper.modelID.get(blockId);
 
         return Utils.getID(Objects.requireNonNull(stoneType.getBlockOfThis(childkey))).withPrefix("block/").toString();
     }
