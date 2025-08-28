@@ -14,4 +14,5 @@ public class VanillaMetalChildKeys extends VanillaRockChildKeys {
 
     /// ITEM
     public static final String INGOT = "ingot";
+    public static final String NUGGET = "nugget";
 }
