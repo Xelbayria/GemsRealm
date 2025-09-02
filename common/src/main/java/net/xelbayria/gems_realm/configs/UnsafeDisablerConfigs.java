@@ -90,12 +90,14 @@ public class UnsafeDisablerConfigs {
                 ||!metalTypeList.get().isEmpty() || !entrySetList.get().isEmpty()) {
             EveryCompat.LOGGER.warn("""
                             \n
-                            ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-                            ┃                        ATTENTION                         ┃
-                            ┃  You are using conditional registration via Gems-Realm.  ┃
-                            ┃  Proceed at your own risk and do not complain if you     ┃
-                            ┃  CANNOT connect to servers                               ┃
-                            ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+                            ============================================================
+                            |                                                          |
+                            |                        ATTENTION                         |
+                            |  You are using conditional registration via Gems-Realm.  |
+                            |  Proceed at your own risk and do not complain if you     |
+                            |  CANNOT connect to servers                               |
+                            |                                                          |
+                            ============================================================
                     """
             );
         }
