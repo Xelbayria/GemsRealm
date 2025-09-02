@@ -28,7 +28,7 @@ public class HardcodedMetalType extends HardcodedBlockType{
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ EXCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-        // Exclude one StoneType from a Stone mod
+        // Exclude one MetalType from a Stone mod
         if (metalTypeList.get().stream().anyMatch(blockIdentify::matches)) return true;
 
         // Exclude one EntrySet from a module
