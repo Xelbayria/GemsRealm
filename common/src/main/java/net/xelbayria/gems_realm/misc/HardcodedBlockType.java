@@ -22,7 +22,10 @@ public class HardcodedBlockType {
 
     public static final Set<String> BLACKLISTED_METALTYPES = Set.of(
             //REASON: not a MetalType
-            "ms:blaze", "atlantis:raw_ancient_metal"
+            "ms:blaze", "atlantis:raw_ancient_metal",
+
+            //REASON: Other MetalTypes from GregTech-CEU has similar textures as below
+            "gtceu:magnetic_steel", "gtceu:magnetic_samarium", "gtceu:magnetic_neodymium", "gtceu:magnetic_iron"
     );
 
     public static final Set<String> BLACKLISTED_GEMTYPES = Set.of(
