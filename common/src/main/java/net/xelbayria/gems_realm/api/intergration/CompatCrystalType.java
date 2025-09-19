@@ -34,6 +34,14 @@ public class CompatCrystalType extends CompatBlockType {
 
         CrystalTypeRegistry crystalReg = CrystalTypeRegistry.INSTANCE;
 
+        // The Outer End - REASON: Undetected-Children
+        crystalReg.addSimpleFinder("outer_end:rose_crystal")
+                .crystalBlockSuffix("");
+        crystalReg.addSimpleFinder("outer_end:mint_crystal")
+                .crystalBlockSuffix("");
+        crystalReg.addSimpleFinder("outer_end:cobalt_crystal")
+                .crystalBlockSuffix("");
+
         // Excessive Building - REASON: Undetected-Children
         crystalReg.addSimpleFinder("excessive_building:prismarine_crystal")
                 .childItem(SHARD, new ResourceLocation("minecraft:prismarine_crystals"));
