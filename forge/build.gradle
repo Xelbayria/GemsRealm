@@ -191,7 +191,7 @@ dependencies {
 
             // MACAW's
     modCompileOnly("curse.maven:macaws-bridges-351725:6528751") //v3.1.0
-    modCompileOnly("curse.maven:macaws-windows-363569:5589363") //v2.3.0 //@ WIP - Requested for "metal" to "iron"
+    modCompileOnly("curse.maven:macaws-windows-363569:6732754") //v2.4.0 //@ WIP - Requested for "metal" to "iron"
     modCompileOnly("curse.maven:macaws-fences-and-walls-453925:5442217") //v1.1.2
 //    modCompileOnly("curse.maven:macaws-paths-and-pavings-629153:5341126") //v1.0.5 - NO METAL
 //    modCompileOnly("curse.maven:macaws-roofs-352039:5554957") //v2.3.1 - NO METAL

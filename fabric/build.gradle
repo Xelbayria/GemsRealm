@@ -112,7 +112,7 @@ dependencies {
         //+ REQUIRED - The modules access libaries from below - ONLY IN FABRIC
             // MACAW's
     modCompileOnly("curse.maven:macaws-bridges-351725:6528781") //v3.1.0
-    modCompileOnly("curse.maven:macaws-windows-363569:5589335") //v2.3.0
+    modCompileOnly("curse.maven:macaws-windows-363569:6732785") //v2.4.0
     modCompileOnly("curse.maven:macaws-fences-and-walls-453925:5442191") //v1.1.2
 
             // GENERALS
