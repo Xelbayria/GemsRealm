@@ -5,7 +5,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
-import java.util.Objects;
 import java.util.Optional;
 
 import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_CRYSTALTYPES;
@@ -58,8 +57,7 @@ public class CrystalTypeRegistry extends BlockTypeRegistry<CrystalType> {
 
             // Ensure there is no duplicated CrystalType in the list
             if (!valuesReg.containsKey(idBlockType)
-                    && hasCluster
-                    && hasShard
+                    && (hasCluster || hasShard)
                     && noWoodType
                     && noMetalType
                     && noGemType
