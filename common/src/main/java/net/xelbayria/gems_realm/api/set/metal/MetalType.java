@@ -60,7 +60,6 @@ public class MetalType extends RockType {
 
         if (this.getId().getNamespace().matches("tfc|afc")) {
             String prefix = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
-//            String infix = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
             String withoutUnderscore = suffix;
             if (!suffix.isEmpty()) suffix = "_" + suffix;
 
@@ -134,7 +133,7 @@ public class MetalType extends RockType {
         public Optional<MetalType> get() {
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
-                    Block metal = Preconditions.checkNotNull(blockMetalFinder.get(), "Manual Finder - failed to find a metal block for {}", id);
+                    Block metal = Preconditions.checkNotNull(blockMetalFinder.get(), "Manual Finder - failed to find a Metal Block for {}", id);
                     var metalType = new MetalType(id, metal);
                     childNames.forEach((key, value) -> {
                         try {

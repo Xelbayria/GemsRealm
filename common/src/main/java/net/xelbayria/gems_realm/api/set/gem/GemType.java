@@ -89,7 +89,7 @@ public class GemType extends RockType {
         public Optional<GemType> get() {
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
-                    Block gem = Preconditions.checkNotNull(blockGemFinder.get(), "Manual Finder - failed to find a gem block for {}", id);
+                    Block gem = Preconditions.checkNotNull(blockGemFinder.get(), "Manual Finder - failed to find a Gem Block for {}", id);
                     var gemType = new GemType(id, gem);
                     childNames.forEach((key, value) -> {
                         try {

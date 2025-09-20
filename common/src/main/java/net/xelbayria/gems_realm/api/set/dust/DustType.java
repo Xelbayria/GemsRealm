@@ -44,14 +44,14 @@ public class DustType extends RockType {
         var block = super.findRelatedEntry(prefixOrInfix, suffix, reg);
         if (Objects.nonNull(block)) return block;
 
-        String prefix = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
-        String infix = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
-        if (!suffix.isEmpty()) suffix = "_" + suffix;
+        String prefix_ = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
+        String _infix = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
+        String _suffix = (suffix.isEmpty()) ? "" : "_" + suffix;
 
         ResourceLocation[] targets = {
                 // DEFAULT
-                new ResourceLocation(id.getNamespace(), id.getPath() + infix + suffix),
-                new ResourceLocation(id.getNamespace(), prefix + id.getPath() + suffix),
+                new ResourceLocation(id.getNamespace(), id.getPath() + _infix + _suffix),
+                new ResourceLocation(id.getNamespace(), prefix_ + id.getPath() + _suffix),
         };
         V found = null;
         for (var r : targets) {
@@ -114,7 +114,7 @@ public class DustType extends RockType {
         public Optional<DustType> get() {
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
-                    Block dust = Preconditions.checkNotNull(blockDustFinder.get(), "Manual Finder - failed to find a dust block for {}", id);
+                    Block dust = Preconditions.checkNotNull(blockDustFinder.get(), "Manual Finder - failed to find a Dust Block for {}", id);
                     var dustType = new DustType(id, dust);
                     childNames.forEach((key, value) -> {
                         try {

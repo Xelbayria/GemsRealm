@@ -64,14 +64,14 @@ public class CrystalType extends RockType {
         var block = super.findRelatedEntry(prefixOrInfix, suffix, reg);
         if (Objects.nonNull(block)) return block;
 
-        String prefix = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
-        String infix = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
-        if (!suffix.isEmpty()) suffix = "_" + suffix;
+        String prefix_ = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
+        String _infix = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
+        String _suffix = (suffix.isEmpty()) ? "" : "_" + suffix;
 
         ResourceLocation[] targets = {
                 // DEFAULT
-                new ResourceLocation(id.getNamespace(), id.getPath() + infix + suffix),
-                new ResourceLocation(id.getNamespace(), prefix + id.getPath() + suffix),
+                new ResourceLocation(id.getNamespace(), id.getPath() + _infix + _suffix),
+                new ResourceLocation(id.getNamespace(), prefix_ + id.getPath() + _suffix),
         };
         V found = null;
         for (var r : targets) {
@@ -125,6 +125,7 @@ public class CrystalType extends RockType {
         /**
          * @param suffix include the underscore, "_" if the blockId has one
          */
+        @SuppressWarnings("UnusedReturnValue")
         public CrystalType.Finder crystalBlockSuffix(String suffix) {
             return crystalBlock(id.getPath() + suffix);
         }
@@ -134,17 +135,17 @@ public class CrystalType extends RockType {
         public Optional<CrystalType> get() {
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
-                    Block mud = Preconditions.checkNotNull(blockCrystalFinder.get(), "Manual Finder - failed to find a mud block for {}", id);
-                    var mudType = new CrystalType(id, mud);
+                    Block crystal = Preconditions.checkNotNull(blockCrystalFinder.get(), "Manual Finder - failed to find a Crystal Block for {}", id);
+                    var crystalType = new CrystalType(id, crystal);
                     childNames.forEach((key, value) -> {
                         try {
                             ItemLike obj = Preconditions.checkNotNull(value.get());
-                            mudType.addChild(key, obj);
+                            crystalType.addChild(key, obj);
                         } catch (Exception e) {
                             GemsRealm.LOGGER.warn("Failed to get children for CrystalType: {} - {}. Ignored! ERROR: {}", id, key, e.getMessage());
                         }
                     });
-                    return Optional.of(mudType);
+                    return Optional.of(crystalType);
                 } catch (Exception e) {
                     GemsRealm.LOGGER.warn("Failed to find custom CrystalType: {} - ", id, e);
                 }

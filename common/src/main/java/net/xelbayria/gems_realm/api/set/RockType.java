@@ -94,26 +94,25 @@ public abstract class RockType extends BlockType{
 
     @Override
     protected @Nullable <V> V findRelatedEntry(String prefixOrInfix, String suffix, Registry<V> reg) {
-        String prefix = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
-        String infix = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
-        String withoutUnderscore = suffix;
-        if (!suffix.isEmpty()) suffix = "_" + suffix;
+        String prefix_ = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
+        String _infix = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
+        String _suffix = (suffix.isEmpty()) ? "" : "_" + suffix;
 
         ResourceLocation[] targets = {
                 // DEFAULT
-                new ResourceLocation(id.getNamespace(), id.getPath() + infix + suffix),
-                new ResourceLocation(id.getNamespace(), prefix + id.getPath() + suffix),
+                new ResourceLocation(id.getNamespace(), id.getPath() + _infix + _suffix),
+                new ResourceLocation(id.getNamespace(), prefix_ + id.getPath() + _suffix),
 
                 // Mo' Shiz: Include children: ingot, gem
-                new ResourceLocation(id.getNamespace(), "gem/"+ id.getPath() + suffix),
+                new ResourceLocation(id.getNamespace(), "gem/"+ id.getPath() + _suffix),
                 // Mo' Shiz: Include children: block, raw_block
-                new ResourceLocation(id.getNamespace(), "resources/"+ prefix + id.getPath() + suffix),
-                // Mo' Shiz: Include children: fence, stairs, slab
-                new ResourceLocation(id.getNamespace(), withoutUnderscore +"/"+ id.getPath() + suffix),
-                // Mo' Shiz: Include children: fence, stairs, slab (Another Naming Scheme)
-                new ResourceLocation(id.getNamespace(), withoutUnderscore +"/"+ id.getPath() + withoutUnderscore),
-                // Mo' Shiz: Include children: fence, stairs, slab (Another Naming Scheme)
-                new ResourceLocation(id.getNamespace(), withoutUnderscore +"/"+ id.getPath())
+                new ResourceLocation(id.getNamespace(), "resources/"+ prefix_ + id.getPath() + _suffix),
+                // Mo' Shiz: Include children: stairs, slab...
+                new ResourceLocation(id.getNamespace(), suffix +"/"+ id.getPath() + _suffix),
+                // Mo' Shiz: Include children with no underscore
+                new ResourceLocation(id.getNamespace(), suffix +"/"+ id.getPath() + suffix),
+                // Mo' Shiz: Include children with no suffix
+                new ResourceLocation(id.getNamespace(), suffix +"/"+ id.getPath())
         };
 
         V found = null;
@@ -131,9 +130,9 @@ public abstract class RockType extends BlockType{
         return block;
     }
 
-    protected static ResourceLocation[] makeKnownIDConventions(ResourceLocation id, String... suffixKeyword) {
+    protected static ResourceLocation[] makeKnownIDConventions(ResourceLocation id, String... affixKeyword) {
         List<ResourceLocation> resources = new ArrayList<>();
-        for (String keyword : suffixKeyword) {
+        for (String keyword : affixKeyword) {
             String path = id.getPath();
             String namespace = id.getNamespace();
 
