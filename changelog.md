@@ -23,6 +23,19 @@
 </div>
 
 ### UPDATED: 
+- **Macaw's Mods** (C): Updated to have one module for both FORGE & FABRIC in COMMON - making the maintenance easier
+
+### BLOCKTYPES:
+- **The Outer End** (UDBT): Added 3 CrystalTypes: rose_crystal, mint_crystal, cobalt_crystal - [#25](https://github.com/Xelbayria/GemsRealm/issues/25)
+- **GregTech CEU Modern** (F): 
+  - Blacklisted 4 MetalTypes: magnetic_steel, magnetic_samarium, magnetic_neodymium, magnetic_iron
+  - Blacklisted all of DustTypes for now because it has no textures that **GemsRealm** can use for (IT)
+
+---
+
+## v2.9.1
+
+### UPDATED: 
 - **Create** (C): Updated the recipes to have correct ingredients
 - **Gems Realm** (C): 
   - Added nugget to MetalType's children to fix an incorrect recipe from **Create** - [#32](https://github.com/Xelbayria/GemsRealm/issues/32)
