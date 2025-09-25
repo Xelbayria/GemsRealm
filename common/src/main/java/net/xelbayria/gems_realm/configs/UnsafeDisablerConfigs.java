@@ -56,15 +56,15 @@ public class UnsafeDisablerConfigs {
         builder.pop();
 
         builder.push("dusttype");
-        dustTypeList = builder.comment("Exclude DustType from all of Modules\n\tThe example is same as DustType's").define("blacklist", List.of());
+        dustTypeList = builder.comment("Exclude DustType from all of Modules\n\tThe example is same as CrystalType's").define("blacklist", List.of());
         builder.pop();
 
         builder.push("gemtype");
-        gemTypeList = builder.comment("Exclude DustType from all of Modules\n\tThe example is same as GemType's").define("blacklist", List.of());
+        gemTypeList = builder.comment("Exclude GemType from all of Modules\n\tThe example is same as CrystalType's").define("blacklist", List.of());
         builder.pop();
 
         builder.push("metaltype");
-        metalTypeList = builder.comment("Exclude DustType from all of Modules\n\tThe example is same as MetalType's").define("blacklist", List.of());
+        metalTypeList = builder.comment("Exclude MetalType from all of Modules\n\tThe example is same as CrystalType's").define("blacklist", List.of());
         builder.pop();
 
         builder.push("entryset");
