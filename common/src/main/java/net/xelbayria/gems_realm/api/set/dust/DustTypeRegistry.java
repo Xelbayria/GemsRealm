@@ -5,11 +5,9 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
-import java.util.Objects;
 import java.util.Optional;
 
-import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_DUSTTYPES;
-import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_MODS;
+import static net.xelbayria.gems_realm.misc.HardcodedBlockType.*;
 
 public class DustTypeRegistry extends BlockTypeRegistry<DustType> {
 
@@ -60,6 +58,7 @@ public class DustTypeRegistry extends BlockTypeRegistry<DustType> {
                     && noGemType
                     && !BLACKLISTED_DUSTTYPES.contains(idBlockType.toString())
                     && !BLACKLISTED_MODS.contains(baseRes.getNamespace())
+                    && !BLACKLISTED_DUST_MODS.contains(baseRes.getNamespace()) //TEMP
             ) {
                 Optional<Block> opt = BuiltInRegistries.BLOCK.getOptional(baseRes);
 

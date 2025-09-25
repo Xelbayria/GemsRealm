@@ -19,6 +19,10 @@ public class HardcodedBlockType {
             "immersive_weathering", "chipped", "create_confectionery"
     );
 
+    //TEMP
+    public static final Set<String> BLACKLISTED_DUST_MODS = Set.of(
+            "gtceu"
+    );
 
     public static final Set<String> BLACKLISTED_METALTYPES = Set.of(
             //REASON: not a MetalType
