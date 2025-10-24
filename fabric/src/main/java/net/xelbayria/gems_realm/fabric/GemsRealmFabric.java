@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.xelbayria.gems_realm.GemsRealmClient;
 import net.xelbayria.gems_realm.GemsRealmCommon;
+import net.xelbayria.gems_realm.modules.fabric.create.CreateModule;
 import net.xelbayria.gems_realm.modules.fabric.macaws.MacawBridgesModule;
 import net.xelbayria.gems_realm.modules.fabric.macaws.MacawFencesModule;
 import net.xelbayria.gems_realm.modules.fabric.macaws.MacawWindowsModule;
@@ -34,9 +35,9 @@ public class GemsRealmFabric extends GemsRealmCommon implements ModInitializer {
         addIfLoaded("mcwwindows", () -> MacawWindowsModule::new);
 
         // General
+        addIfLoaded("create", () -> CreateModule::new); //TODO: finish this
 //        addIfLoaded("rechiseled", () -> RechiseledModule::new);
 
-//        addIfLoaded("create", () -> CreateModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\
 
