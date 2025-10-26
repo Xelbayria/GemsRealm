@@ -5,10 +5,9 @@ import com.simibubi.create.content.decoration.MetalScaffoldingBlockItem;
 import net.mehvahdjukaar.every_compat.api.ItemOnlyEntrySet;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.common_classes.RecipeUtility;
-import net.mehvahdjukaar.every_compat.common_classes.TagUtility;
+import net.mehvahdjukaar.every_compat.misc.UtilityRecipe;
+import net.mehvahdjukaar.every_compat.misc.UtilityTag;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
-import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
@@ -31,7 +30,7 @@ import java.util.function.Consumer;
 
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
 
-@SuppressWarnings({"removal", "CommentedOutCode"})
+@SuppressWarnings({"CommentedOutCode"})
 public abstract class CreateAbstractModule extends GemsRealmModule {
 
     public final ItemOnlyEntrySet<MetalType, Item> sheet;
@@ -144,6 +143,7 @@ public abstract class CreateAbstractModule extends GemsRealmModule {
                 )
                 .requiresChildren(INGOT) //REASON: recipes
                 .addTexture(modRes("block/copper/copper_shingles"))
+                .addTexture(modRes("block/copper/copper_shingles_top_connected"))
                 .addTexture(modRes("block/copper/copper_roof_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
@@ -164,7 +164,7 @@ public abstract class CreateAbstractModule extends GemsRealmModule {
                 .addTag(ItemTags.SLABS, Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
-                .addRecipe(modRes("copper_shingle_slab_from_copper_shingles_stonecutting")) //TODO: fix
+//                .addRecipe(modRes("copper_shingle_slab_from_copper_shingles_stonecutting")) //TODO: fix
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(shingle_slab);
@@ -182,7 +182,7 @@ public abstract class CreateAbstractModule extends GemsRealmModule {
                 .addTag(ItemTags.STAIRS, Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
-                .addRecipe(modRes("copper_shingle_stairs_from_copper_shingles_stonecutting")) //TODO: fix
+//                .addRecipe(modRes("copper_shingle_stairs_from_copper_shingles_stonecutting")) //TODO: fix
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(shingle_stairs);
@@ -194,6 +194,7 @@ public abstract class CreateAbstractModule extends GemsRealmModule {
                 .requiresChildren(INGOT) //REASON: recipes
                 //TEXTURES: shingles' copper_roof_top
                 .addTexture(modRes("block/copper/copper_tiles"))
+                .addTexture(modRes("block/copper/copper_tiles_top_connected"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
                 .setTabKey(tab)
@@ -213,7 +214,7 @@ public abstract class CreateAbstractModule extends GemsRealmModule {
                 .addTag(ItemTags.SLABS, Registries.ITEM)
                 .setTabKey(tab)
                 .defaultRecipe()
-                .addRecipe(modRes("copper_tile_slab_from_copper_tiles_stonecutting")) //TODO: fix
+//                .addRecipe(modRes("copper_tile_slab_from_copper_tiles_stonecutting")) //TODO: fix
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(tile_slab);
@@ -353,10 +354,10 @@ public abstract class CreateAbstractModule extends GemsRealmModule {
             }
 
             ladder.blocks.forEach((metalType, block) -> {
-                ResourceLocation ladderRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_ladder_from_ingots"));
-                ResourceLocation scaffoldingRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_scaffolding_from_ingots"));
-                ResourceLocation shinglesRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_shingles_from_ingots"));
-                ResourceLocation tilesRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_tiles_from_ingots"));
+                ResourceLocation ladderRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "ladder_from_ingots"));
+                ResourceLocation scaffoldingRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "scaffolding_from_ingots"));
+                ResourceLocation shinglesRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "shingles_from_ingots"));
+                ResourceLocation tilesRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "tiles_from_ingots"));
 //                ResourceLocation table_clothRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_table_cloth_from_ingots"));
 
                 grabTagAndCreateRecipe(ladderRecipePath, ladderRecipeId, "copper", ladder.blocks.get(metalType), metalType, manager, sink);
@@ -389,7 +390,7 @@ public abstract class CreateAbstractModule extends GemsRealmModule {
 
                 grabTagAndCreateRecipe(pathIngot, newResLocIngot, "iron", item, metalType, manager, sink);
 
-                //!! it's for valve_handle's recipe
+                /// for valve_handle's recipe - not added yet because Create's Source Code require some tweaking
 //                TagUtility.createAndAddCustomTags(new ResourceLocation(tagIdSheet + typeName(metalType)), sink, item);
             });
         });
@@ -399,19 +400,19 @@ public abstract class CreateAbstractModule extends GemsRealmModule {
                                        Object newResult, MetalType metalType, ResourceManager manager, ResourceSink sink) {
         String typeName = typeName(metalType);
 
-        Pair<ResourceLocation, Boolean> newTagIngredient = TagUtility.getATagId(
-                "forge:ingots/" + typeName,
-                "forge:ingots/" + typeName.replace("_", ""),
+        Pair<ResourceLocation, Boolean> newTagIngredient = UtilityTag.getATagId(
+                platformTag(typeName),
+                platformTag(typeName.replace("_", "")),
                 manager);
 
         if (newTagIngredient.getSecond()) {
-                RecipeUtility.createRecipeWithTag(ResType.RECIPES.getPath(modRes(recipeLoc)), newRecipeLoc, "forge:ingots/" + oldTypeName,
+                UtilityRecipe.createRecipeWithTag(modRes(recipeLoc), newRecipeLoc, platformTag(oldTypeName),
                     newTagIngredient.getFirst().toString(), newResult, sink, manager);
         }
         else {
             ResourceLocation newTag = GemsRealm.res("ingots/" + metalType.getTypeName());
-            boolean isTagCreated = TagUtility.createAndAddCustomTags(newTag, sink, metalType.getItemOfThis(INGOT));
-            RecipeUtility.createRecipeWithTag(ResType.RECIPES.getPath(modRes(recipeLoc)), newRecipeLoc, "forge:ingots/" + oldTypeName,
+            boolean isTagCreated = UtilityTag.createAndAddCustomTags(newTag, sink, metalType.getItemOfThis(INGOT));
+            UtilityRecipe.createRecipeWithTag(modRes(recipeLoc), newRecipeLoc,  platformTag(oldTypeName),
                     newTag.toString(), newResult, sink, manager);
 
             if (!isTagCreated) GemsRealm.LOGGER.error("Failed to create a tag for {} in {}", newTag.toString(), Utils.getID(newResult));
@@ -431,4 +432,7 @@ public abstract class CreateAbstractModule extends GemsRealmModule {
         };
     }
 
+    public String platformTag(String nameMetal) {
+        return (PlatHelper.getPlatform().isFabric()) ? "c:" + nameMetal + "_ingots" : "forge:ingots/" + nameMetal;
+    }
 }

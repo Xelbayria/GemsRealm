@@ -150,6 +150,9 @@ public class CreateModule extends CreateAbstractModule {
         CreateClientModule.registerCasingCTBehavior(this, casing);
         CreateClientModule.registerScaffoldCTBehavior(this, scaffolding);
         CreateClientModule.registerWindowCTBehavior(this, orante_window, ornate_window_pane);
+        // it was partially working but why is it not behaving like the copper's connected_textures?
+//        CreateClientModule.registerTilesCTBehavior(this, tiles);
+//        CreateClientModule.registerShinglesCTBehavior(this, shingles);
     }
 
     @Override

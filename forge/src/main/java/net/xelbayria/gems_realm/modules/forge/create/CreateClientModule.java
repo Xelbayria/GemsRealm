@@ -2,6 +2,7 @@ package net.xelbayria.gems_realm.modules.forge.create;
 
 import com.simibubi.create.CreateClient;
 import com.simibubi.create.content.decoration.MetalScaffoldingCTBehaviour;
+import com.simibubi.create.content.decoration.RoofBlockCTBehaviour;
 import com.simibubi.create.foundation.block.connected.*;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
@@ -17,6 +18,8 @@ import static com.simibubi.create.foundation.block.connected.CTSpriteShifter.get
 
 @OnlyIn(Dist.CLIENT)
 public class CreateClientModule {
+
+
 
     public static void registerWindowCTBehavior(GemsRealmModule module, SimpleEntrySet<MetalType, Block> window, SimpleEntrySet<MetalType, Block> window_pane) {
         window.blocks.forEach((metalType, block) -> {
@@ -64,6 +67,31 @@ public class CreateClientModule {
                     model -> new CTModel(model, new MetalScaffoldingCTBehaviour(scaffoldShift, scaffoldInsideShift, casingShift)));
 
 
+        });
+    }
+
+    public static void registerShinglesCTBehavior(GemsRealmModule module, SimpleEntrySet<MetalType, Block> shingles) {
+        shingles.blocks.forEach((metalType, block) -> {
+            String topTexture = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), metalType.getTypeName()+"/", "roof_top");
+            String topConnectedTexture = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), metalType.getTypeName()+"/", "shingles_top_connected");
+
+            CTSpriteShiftEntry roofShift = getCT(AllCTTypes.ROOF, new ResourceLocation(topTexture), new ResourceLocation(topConnectedTexture));
+
+            CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(block),
+                    model -> new CTModel(model, new RoofBlockCTBehaviour(roofShift)));
+            
+        });
+    }
+
+    public static void registerTilesCTBehavior(GemsRealmModule module, SimpleEntrySet<MetalType, Block> tiles) {
+        tiles.blocks.forEach((metalType, block) -> {
+            String topTexture = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), metalType.getTypeName()+"/", "roof_top");
+            String topConnectedTexture = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), metalType.getTypeName()+"/", "tiles_top_connected");
+
+            var roofShift = getCT(AllCTTypes.ROOF, new ResourceLocation(topTexture), new ResourceLocation(topConnectedTexture));
+
+            CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(block),
+                    model -> new CTModel(model, new RoofBlockCTBehaviour(roofShift)));
         });
     }
 
