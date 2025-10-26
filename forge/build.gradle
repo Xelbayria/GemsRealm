@@ -194,9 +194,8 @@ dependencies {
 //    modCompileOnly("curse.maven:macaws-stairs-1119394:6155181") //v1.0.1 - NO METAL
 
             // GENERALS
-//    modCompileOnly("curse.maven:create-deco-509285:6373226")
-    modCompileOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ] //!! NOT-STARTED
     modCompileOnly("curse.maven:create-deco-509285:6373226") // Create //!! NOT-STARTED
+    modCompileOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ] //!! NOT-STARTED
     modCompileOnly("curse.maven:lapidarist-610032:5921456")
     modCompileOnly("curse.maven:more-beautiful-bookshelves-846508:4671697")
 //    modImplementation("curse.maven:fins-and-tails-427471:6485965") // GeckoLib
