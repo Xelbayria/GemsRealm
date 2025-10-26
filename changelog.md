@@ -22,6 +22,28 @@
 
 </div>
 
+### REQUIRED:
+- **Every Compat** (C): v2.9.9 or newer version
+
+### UPDATED: 
+- **Gems Realm** (C): Blacklisted netherite_diamond & netherite_emerald from **Advanced Netherite** blc they are not MetalTypes
+- **Create** (C): Fixed the recipe generation not accounting for ingots not having their own tags like `#forge:ingots/???`
+
+### ADDED:
+- **Create** (FB)
+
+### DEV:
+- **Every Compat** (C):
+    - Utility Classes have been moved to net.mehvahdjukaar.every_compat.misc
+    - `TextureUtility` are renamed to `UtilityTexture`
+    - `TagUtility` are renamed to `UtilityTag`
+    - `RecipeUtility` are renamed to `UtilityRecipe`
+    - `Utility` are renamed to `UtilityMisc`
+
+---
+
+## v2.9.2
+
 ### UPDATED: 
 - **Macaw's Mods** (C): Updated to have one module for both FORGE & FABRIC in COMMON - making the maintenance easier
 
