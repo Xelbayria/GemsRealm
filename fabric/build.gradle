@@ -154,18 +154,16 @@ dependencies {
     modRuntimeOnly("com.github.quiqueck:BCLib:3.0.14") // BetterEnd
     modRuntimeOnly("com.github.quiqueck:WunderLib:1.1.5") // BetterEnd
 //    modRuntimeOnly("com.terraformersmc.terraform-api:terraform-wood-api-v1:7.0.3") // Blockus
-
-        //- ~/fabric/mods LOCAL
-
-        //- OTHER MAVENs - can be commented out or enabled
-//    modCompileOnly("net.createmod.ponder:Ponder-fabric-${minecraft_version}:${ponder_version}") // Create
+//    modRuntimeOnly("fuzs.forgeconfigapiport:forgeconfigapiport-fabric:8.0.2") // Chipped, Create
+//    modRuntimeOnly("dev.engine-room.flywheel:flywheel-fabric-${minecraft_version}:${flywheel_fabric_version}") // Create
+//    modRuntimeOnly("net.createmod.ponder:Ponder-Fabric-${minecraft_version}:${ponder_fabric_version}") // Create
+//    modRuntimeOnly("io.github.tropheusj:milk-lib:1.3.61") // Create
 
         //+ REQUIRED - The modules access libaries from below - Only in FABRIC
     modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:5668908") // v1.1.17a | Rechiseled
 
             //+ OTHER MAVENS
     modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
-    modCompileOnly("com.jozufozu.flywheel:flywheel-fabric-${minecraft_version}:${flywheel_fabric_version}") // Create
 
 //!! =================================================== IMPORTS ==================================================== \\
         //- ONLY FOR TESTING - can be commented out or enabled
@@ -189,7 +187,7 @@ dependencies {
     modCompileOnly("curse.maven:rechiseled-558998:5286340") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ] //!! NOT STARTED
 
             // OTHER MAVENS
-    modCompileOnly("com.simibubi.create:create-fabric-$minecraft_version:$create_fabric_version") // Registrate, Flywheel, Ponder
+    modCompileOnly("com.simibubi.create:create-fabric:${create_fabric_version}") { transitive = false }  // Registrate, Flywheel, Ponder, Forge-Config-Api-Port, Milk-Lib
 
 
 //!! ================================================= FOR TESTING ================================================== \\

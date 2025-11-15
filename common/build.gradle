@@ -42,7 +42,7 @@ dependencies {
 
         //+ OTHER MAVENS
     modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
-    modCompileOnly("com.jozufozu.flywheel:flywheel-fabric-${minecraft_version}:${flywheel_fabric_version}") // Create
+//    modRuntimeOnly("dev.engine-room.flywheel:flywheel-fabric-${minecraft_version}:${flywheel_fabric_version}") // Create - not really needed
 
 //!! =================================================== IMPORTS ==================================================== \\
     //- MODULES - don't need library from the mod, so it's fine to ignore
@@ -52,7 +52,6 @@ dependencies {
     //+ REQUIRED - The modules access libaries from below
     modCompileOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib
     modCompileOnly("curse.maven:excessive-building-845097:6280151") // Forge-Config-API-Port
-    modCompileOnly("com.simibubi.create:create-fabric-$minecraft_version:$create_fabric_version") // Registrate, Flywheel, Ponder
 
 //    modCompileOnly("curse.maven:better-archeology-835687:5704094") // supermartijn642s' Config-Lib
 //    modCompileOnly("curse.maven:blockus-312289:5896309")
@@ -62,4 +61,5 @@ dependencies {
 //    modCompileOnly("curse.maven:stoneworks-852663:4611947")
 
         //+ OTHER MAVENs
+    modCompileOnly("com.simibubi.create:create-fabric:${create_fabric_version}") { transitive = false }  // Registrate, Flywheel, Ponder, Forge-Config-Api-Port, Milk-Lib
 }
