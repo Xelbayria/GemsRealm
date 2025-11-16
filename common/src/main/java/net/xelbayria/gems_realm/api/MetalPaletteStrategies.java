@@ -8,4 +8,7 @@ public class MetalPaletteStrategies extends PaletteStrategies {
 
     public static final PaletteStrategy TRAPDOOR_STANDARD = registerCached((blockType, manager) -> PaletteStrategies.makePaletteFromChild(
             blockType, manager, VanillaMetalChildKeys.TRAPDOOR, null, null));
+
+    public static final PaletteStrategy INGOT_STANDARD = registerCached((blockType, manager) -> PaletteStrategies.makePaletteFromChild(
+            blockType, manager, VanillaMetalChildKeys.INGOT, null, null));
 }
