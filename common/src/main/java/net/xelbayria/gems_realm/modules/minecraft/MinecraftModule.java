@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
+import net.xelbayria.gems_realm.api.MetalPaletteStrategies;
 import net.xelbayria.gems_realm.api.set.metal.MetalType;
 import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
 
@@ -65,8 +66,7 @@ public class MinecraftModule extends GemsRealmModule {
                         metalType -> new Item(new Item.Properties())
                 )
                 .requiresChildren(INGOT) //REASON: recipes, textures
-                .createPaletteFromChild(INGOT)
-                .addTexture(modRes("item/iron_nugget"))
+                .addTexture(modRes("item/iron_nugget"), MetalPaletteStrategies.INGOT_STANDARD)
                 .generateItemModels(new ResourceLocation("item/iron_nugget"))
                 .setTabKey(ingredients)
                 .defaultRecipe()
