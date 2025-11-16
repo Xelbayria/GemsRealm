@@ -33,20 +33,6 @@ import static net.xelbayria.gems_realm.GemsRealm.addMultipleIfLoaded;
 public class GemsRealmForge extends GemsRealmCommon {
 
     public GemsRealmForge() {
-        if (!ModList.get().isLoaded("everycomp")) {
-            throw new RuntimeException("""
-                    \n
-                    Either one of 2 mods is required for run this mod:
-                    
-                    Every Compat (Wood Good)
-                    
-                    OR
-                    
-                    Every Compat (Library Section)
-                    """
-            );
-        }
-
         this.initialize();
 
         MinecraftForge.EVENT_BUS.register(this);
