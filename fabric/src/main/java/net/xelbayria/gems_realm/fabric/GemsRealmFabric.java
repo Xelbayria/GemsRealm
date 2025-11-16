@@ -35,7 +35,7 @@ public class GemsRealmFabric extends GemsRealmCommon implements ModInitializer {
         addIfLoaded("mcwwindows", () -> MacawWindowsModule::new);
 
         // General
-        addIfLoaded("create", () -> CreateModule::new); //TODO: finish this
+        addIfLoaded("create", () -> CreateModule::new);
 //        addIfLoaded("rechiseled", () -> RechiseledModule::new);
 
 

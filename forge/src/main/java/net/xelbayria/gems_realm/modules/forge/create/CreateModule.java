@@ -14,92 +14,31 @@ import com.simibubi.create.content.logistics.tableCloth.TableClothBlockItem;
 import com.simibubi.create.content.logistics.tableCloth.TableClothRenderer;
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import net.createmod.catnip.data.Couple;
-import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.xelbayria.gems_realm.GemsRealm;
-import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.metal.MetalType;
-import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
-import net.xelbayria.gems_realm.modules.create.CreateAbstractModule;
+import net.xelbayria.gems_realm.modules.create.CreateModuleAbstract;
 
 import java.util.function.Consumer;
 
 import static com.simibubi.create.AllPartialModels.FOLDING_DOORS;
-import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
 
 //SUPPORT: v6.0.5
 @SuppressWarnings({"removal"})
-public class CreateModule extends CreateAbstractModule {
-
-//    public final ItemOnlyEntrySet<MetalType, Item> sheet;
-//    public final SimpleEntrySet<MetalType, Block> casing;
-//    public final SimpleEntrySet<MetalType, Block> door;
-//    public final SimpleEntrySet<MetalType, Block> ladder;
-//    public final SimpleEntrySet<MetalType, Block> scaffolding;
-//    public final SimpleEntrySet<MetalType, Block> shingles;
-//    public final SimpleEntrySet<MetalType, Block> shingle_slab;
-//    public final SimpleEntrySet<MetalType, Block> shingle_stairs;
-//    public final SimpleEntrySet<MetalType, Block> tiles;
-//    public final SimpleEntrySet<MetalType, Block> tile_slab;
-//    public final SimpleEntrySet<MetalType, Block> tile_stairs;
-    public final SimpleEntrySet<MetalType, Block> table_cloth;
-//    public final SimpleEntrySet<MetalType, ValveHandleBlock> valve_handle; //@ Look at its comment for more details
-
-//    public final SimpleEntrySet<MetalType, Block> orante_window;
-//    public final SimpleEntrySet<MetalType, Block> ornate_window_pane;
+public class CreateModule extends CreateModuleAbstract {
 
     public CreateModule(String modId) {
         super(modId);
-        ResourceLocation tab = modRes("base");
-        ResourceLocation paletteTab = modRes("palettes");
-
-        table_cloth = GemsRealmEntrySet.of(MetalType.class, "table_cloth",
-                        getModBlock("copper_table_cloth"), () -> VanillaMetalTypes.COPPER,
-                        metalType -> new TableClothBlock(Utils.copyPropertySafe(metalType.block), metalType.getTypeName())
-                )
-                .addTile(getModTile("table_cloth"))
-                .requiresChildren(INGOT) //REASON: recipes
-                .addTextureM(modRes("block/table_cloth/copper"), GemsRealm.res("block/c/copper_table_cloth_m"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.INSIDE_STEP_SOUND_BLOCKS, Registries.BLOCK)
-                .addTag(modRes("table_cloths"), Registries.BLOCK)
-                .addTag(modRes("table_cloths"), Registries.ITEM)
-                .setTabKey(tab)
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .addCustomItem((metalType, block, properties) -> new TableClothBlockItem(block, properties))
-                .build();
-        this.addEntry(table_cloth);
-
-/// In ValveHandleVisual where the AllPartialModels.VALVE_HANDLE is setting ResourceLocation for copper's texture
-/// one of options is to use mixin to change the ResourceLocation to replace copper's texture
-//        valve_handle = GemsRealmEntrySet.of(MetalType.class, "valve_handle",
-//                        getModBlock("copper_valve_handle", ValveHandleBlock.class), () -> VanillaMetalTypes.COPPER),
-//                        metalType -> ValveHandleBlock.copper(Utils.copyPropertySafe(metalType.block))
-//                )
-//                .addTile(getModTile("valve_handle"))
-//                .requiresFromMap(sheet.items) //REASON: recipes
-//                .addTextureM(modRes("block/valve_handle/valve_handle_copper"), GemsRealm.res("block/c/valve_handle_copper_m"))
-//                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-//                .addTag(modRes("valve_handles"), Registries.BLOCK)
-//                .addTag(modRes("brittle"), Registries.BLOCK)
-//                .addTag(modRes("valve_handles"), Registries.ITEM)
-//                .setTabKey(tab)
-//                //RECIPES: Manully created below
-//                .addCustomItem((metalType, block, properties) -> new BlockItem(block, properties))
-//                .build();
-//        this.addEntry(valve_handle);
-
     }
 
     protected Block makeCasingBlock(MetalType metalType) {
@@ -130,6 +69,16 @@ public class CreateModule extends CreateAbstractModule {
 
     protected Block makeConnectedGlassPaneBlock(MetalType metalType) {
         return new ConnectedGlassPaneBlock(Utils.copyPropertySafe(Blocks.GLASS_PANE));
+    }
+
+    @Override
+    protected Block newTableClothBlock(MetalType metalType) {
+        return new TableClothBlock(Utils.copyPropertySafe(metalType.block), metalType.getTypeName());
+    }
+
+    @Override
+    protected Item newTableClothBlockItem(Block block, Item.Properties properties) {
+        return new TableClothBlockItem(block, properties);
     }
 
     @Override
@@ -181,11 +130,11 @@ public class CreateModule extends CreateAbstractModule {
 
         executor.accept((manager, sink) -> {
 
-            String table_clothRecipePath = "copper_table_cloth_from_ingots_copper_stonecutting";
+            String table_clothRecipePath = "copper_table_cloth_from_ingots_copper_stonecutting"; //NOTE: this path is different from FABRIC's recipe path
             ladder.blocks.forEach((metalType, block) -> {
-                ResourceLocation table_clothRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_table_cloth_from_ingots"));
+                ResourceLocation newTableClothRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_table_cloth_from_ingots"));
 
-                grabTagAndCreateRecipe(table_clothRecipePath, table_clothRecipeId, "copper", table_cloth.blocks.get(metalType), metalType, manager, sink);
+                grabTagAndCreateRecipe(table_clothRecipePath, newTableClothRecipeId, "copper", table_cloth.blocks.get(metalType), metalType, manager, sink);
             });
 
         });

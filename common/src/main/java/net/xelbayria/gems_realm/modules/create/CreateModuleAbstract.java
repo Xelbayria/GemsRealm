@@ -31,7 +31,7 @@ import java.util.function.Consumer;
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
 
 @SuppressWarnings({"CommentedOutCode"})
-public abstract class CreateAbstractModule extends GemsRealmModule {
+public abstract class CreateModuleAbstract extends GemsRealmModule {
 
     public final ItemOnlyEntrySet<MetalType, Item> sheet;
     public final SimpleEntrySet<MetalType, Block> casing;
@@ -44,13 +44,13 @@ public abstract class CreateAbstractModule extends GemsRealmModule {
     public final SimpleEntrySet<MetalType, Block> tiles;
     public final SimpleEntrySet<MetalType, Block> tile_slab;
     public final SimpleEntrySet<MetalType, Block> tile_stairs;
-//    public final SimpleEntrySet<MetalType, Block> table_cloth; // NOT AVAILABLE IN FABRIC
+    public final SimpleEntrySet<MetalType, Block> table_cloth;
 //    public final SimpleEntrySet<MetalType, ValveHandleBlock> valve_handle; //@ Look at its comment for more details
 
     public final SimpleEntrySet<MetalType, Block> orante_window;
     public final SimpleEntrySet<MetalType, Block> ornate_window_pane;
 
-    public CreateAbstractModule(String modId) {
+    public CreateModuleAbstract(String modId) {
         super(modId, "c");
         ResourceLocation tab = modRes("base");
         ResourceLocation paletteTab = modRes("palettes");
@@ -237,23 +237,22 @@ public abstract class CreateAbstractModule extends GemsRealmModule {
                 .build();
         this.addEntry(tile_stairs);
 
-        /// NOT AVAILABLE in v0.5.1+ for FABRIC
-//        table_cloth = GemsRealmEntrySet.of(MetalType.class, "table_cloth",
-//                        getModBlock("copper_table_cloth"), () -> VanillaMetalTypes.COPPER,
-//                        metalType -> new TableClothBlock(Utils.copyPropertySafe(metalType.block), metalType.getTypeName())
-//                )
-//                .addTile(getModTile("table_cloth"))
-//                .requiresChildren(INGOT) //REASON: recipes
-//                .addTextureM(modRes("block/table_cloth/copper"), GemsRealm.res("block/c/copper_table_cloth_m"))
-//                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-//                .addTag(BlockTags.INSIDE_STEP_SOUND_BLOCKS, Registries.BLOCK)
-//                .addTag(modRes("table_cloths"), Registries.BLOCK)
-//                .addTag(modRes("table_cloths"), Registries.ITEM)
-//                .setTabKey(tab)
-//                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-//                .addCustomItem((metalType, block, properties) -> new TableClothBlockItem(block, properties))
-//                .build();
-//        this.addEntry(table_cloth);
+        table_cloth = GemsRealmEntrySet.of(MetalType.class, "table_cloth",
+                        getModBlock("copper_table_cloth"), () -> VanillaMetalTypes.COPPER,
+                        this::newTableClothBlock
+                )
+                .addTile(getModTile("table_cloth"))
+                .requiresChildren(INGOT) //REASON: recipes
+                .addTextureM(modRes("block/table_cloth/copper"), GemsRealm.res("block/c/copper_table_cloth_m"))
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(BlockTags.INSIDE_STEP_SOUND_BLOCKS, Registries.BLOCK)
+                .addTag(modRes("table_cloths"), Registries.BLOCK)
+                .addTag(modRes("table_cloths"), Registries.ITEM)
+                .setTabKey(tab)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .addCustomItem((metalType, block, properties) -> newTableClothBlockItem(block, properties))
+                .build();
+        this.addEntry(table_cloth);
 
 /// In ValveHandleVisual where the AllPartialModels.VALVE_HANDLE is setting ResourceLocation for copper's texture
 /// one of options is to use mixin to change the ResourceLocation to replace copper's texture
@@ -315,6 +314,8 @@ public abstract class CreateAbstractModule extends GemsRealmModule {
     protected abstract Block makeMetalScaffoldingBlock(MetalType metalType);
     protected abstract Block makeWindow(MetalType metalType);
     protected abstract Block makeConnectedGlassPaneBlock(MetalType metalType);
+    protected abstract Block newTableClothBlock(MetalType metalType);
+    protected abstract Item newTableClothBlockItem(Block block, Item.Properties properties);
 
 //!! ─────────────────────────────────────────────────────────────────────────────────────
 
