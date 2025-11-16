@@ -131,7 +131,7 @@ public class HardcodedBlockType {
         return false;
     }
     private static final Set<String> VANILLA_GEM = Set.of(
-            "diamond", "emerald", "lapis_lazuli"
+            "diamond", "emerald", "lapis"
     );
 
     // MetalType
