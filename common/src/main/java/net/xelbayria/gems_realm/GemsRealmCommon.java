@@ -31,7 +31,7 @@ public class GemsRealmCommon {
 
         if (isModLoaded()) addIfLoaded("minecraft", () -> MinecraftModule::new);
 
-        addMultipleIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorchesModuleD::new, () -> MoreBeautifulTorchesModuleC::new, () -> MoreBeautifulTorchesModuleG::new, () -> MoreBeautifulTorchesModuleM::new);
+        addMultipleIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorchesModuleC::new, () -> MoreBeautifulTorchesModuleD::new, () -> MoreBeautifulTorchesModuleG::new, () -> MoreBeautifulTorchesModuleM::new);
 //        addIfLoaded("twigs", () -> TwigsModule::new);
 //        addIfLoaded("bbb", () -> BuildingButBetterModule::new);
 //        addIfLoaded("blockus", () -> BlockusModule::new);
