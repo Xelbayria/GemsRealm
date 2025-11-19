@@ -143,6 +143,6 @@ public class HardcodedBlockType {
         return false;
     }
     private static final Set<String> VANILLA_METAL = Set.of(
-            "copper", "gold", "iron"
+            "copper", "gold", "iron", "netherite"
     );
 }
