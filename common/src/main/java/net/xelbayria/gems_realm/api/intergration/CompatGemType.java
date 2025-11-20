@@ -33,7 +33,11 @@ public class CompatGemType extends CompatBlockType{
 
         GemTypeRegistry gemReg = GemTypeRegistry.INSTANCE;
 
-        // CrystalCraft-Unlimited-Java
+        // -------------------- Shadlowlands
+        gemReg.addSimpleFinder("shadowlands", "neon").gemBlock("neon_gem_block"); //REASON: id_block
+        gemReg.addSimpleFinder("shadowlands", "fire").gemBlock("fire_gem_block"); //REASON: id_block
+
+        // -------------------- Crystal Unlimited Edition
         for (int num = 1; num < 15; num++) { //REASON: Naming-Convention
             String zircon = "zircon_";
             switch (num) {
@@ -42,6 +46,7 @@ public class CompatGemType extends CompatBlockType{
                 default -> gemReg.addSimpleFinder("crystalcraft_unlimited_java", zircon + num);
             }
         }
+
         gemReg.addSimpleFinder("crystalcraft_unlimited_java", "bixbite") //REASON: Id-Block
                 .gemBlock("bixite_block");
         gemReg.addSimpleFinder("crystalcraft_unlimited_java", "pearl_item") //REASON: Id-Block, ???
