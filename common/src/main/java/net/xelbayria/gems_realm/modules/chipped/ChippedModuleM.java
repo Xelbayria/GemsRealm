@@ -22,7 +22,7 @@ import static net.xelbayria.gems_realm.api.set.VanillaRockChildKeys.BLOCK;
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.BARS;
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
 
-//See ChippedAbstractModule's SUPPORTED VERSION
+//See ChippedModuleAbstract's SUPPORTED VERSION
 /// Block for MetalType
 public class ChippedModuleM extends ChippedModuleAbstract {
 

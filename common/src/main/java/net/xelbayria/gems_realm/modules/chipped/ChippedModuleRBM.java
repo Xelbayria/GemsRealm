@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 import static net.xelbayria.gems_realm.api.MetalPaletteStrategies.RAW_BLOCK_STANDARD;
 import static net.xelbayria.gems_realm.api.set.VanillaRockChildKeys.RAW_BLOCK;
 
-//See ChippedAbstractModule's SUPPORTED VERSION
+//See ChippedModuleAbstract's SUPPORTED VERSION
 /// Raw Block for MetalType
 public class ChippedModuleRBM extends ChippedModuleAbstract {
 

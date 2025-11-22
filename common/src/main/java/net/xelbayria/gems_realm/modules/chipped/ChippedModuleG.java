@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 
 import static net.xelbayria.gems_realm.api.set.VanillaRockChildKeys.BLOCK;
 
-//See ChippedAbstractModule's SUPPORTED VERSION
+//See ChippedModuleAbstract's SUPPORTED VERSION
 public class ChippedModuleG extends ChippedModuleAbstract {
 
     public final SimpleEntrySet<GemType, Block> block_panels,
