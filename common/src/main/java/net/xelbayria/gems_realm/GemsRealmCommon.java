@@ -34,10 +34,10 @@ public class GemsRealmCommon {
         if (isModLoadedAndRequireNUGGET()) addIfLoaded("minecraft", () -> MinecraftModuleNugget::new);
         if (isModLoadedAndRequireBARS()) addIfLoaded("minecraft", () -> MinecraftModuleBars::new);
 
+        addMultipleIfLoaded("chipped", () -> ChippedModuleC::new, () -> ChippedModuleD::new, () -> ChippedModuleM::new, () -> ChippedModuleRBM::new, () -> ChippedModuleG::new);
         addMultipleIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorchesModuleC::new, () -> MoreBeautifulTorchesModuleD::new, () -> MoreBeautifulTorchesModuleG::new, () -> MoreBeautifulTorchesModuleM::new);
 //        addIfLoaded("twigs", () -> TwigsModule::new);
 //        addIfLoaded("bbb", () -> BuildingButBetterModule::new);
-        addMultipleIfLoaded("chipped", () -> ChippedModuleC::new, () -> ChippedModuleD::new, () -> ChippedModuleM::new, () -> ChippedModuleRBM::new, () -> ChippedModuleG::new);
 //        addIfLoaded("blockus", () -> BlockusModule::new);
 //        addIfLoaded("stoneworks", () -> StoneworksModule::new);
 //        addIfLoaded("quark", () -> QuarkModule::new);
