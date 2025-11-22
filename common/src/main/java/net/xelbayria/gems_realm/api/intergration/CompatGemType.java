@@ -3,6 +3,8 @@ package net.xelbayria.gems_realm.api.intergration;
 import net.xelbayria.gems_realm.api.set.gem.GemTypeRegistry;
 import org.jetbrains.annotations.ApiStatus;
 
+import static net.xelbayria.gems_realm.api.set.gem.VanillaGemChildKeys.GEM;
+
 /**
  * Put all undetected GemTypes here. The following reasons can be seen via Definition of REASONS
  * And a few examples
@@ -33,9 +35,15 @@ public class CompatGemType extends CompatBlockType{
 
         GemTypeRegistry gemReg = GemTypeRegistry.INSTANCE;
 
-        // -------------------- Shadlowlands
-        gemReg.addSimpleFinder("shadowlands", "neon").gemBlock("neon_gem_block"); //REASON: id_block
-        gemReg.addSimpleFinder("shadowlands", "fire").gemBlock("fire_gem_block"); //REASON: id_block
+        // -------------------- Atlantis (MysticPasta1) - REASON: Naming-Convention
+        gemReg.addSimpleFinder("atlantis", "aquamarine")
+                .childItemSuffix(GEM, "_gem");
+
+        // -------------------- Shadlowlands - REASON: Naming-Convention
+        gemReg.addSimpleFinder("shadowlands", "neon")
+                .gemBlock("neon_gem_block");
+        gemReg.addSimpleFinder("shadowlands", "fire")
+                .gemBlock("fire_gem_block");
 
         // -------------------- Crystal Unlimited Edition
         for (int num = 1; num < 15; num++) { //REASON: Naming-Convention
