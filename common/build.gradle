@@ -52,6 +52,7 @@ dependencies {
     //+ REQUIRED - The modules access libaries from below
     modCompileOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib
     modCompileOnly("curse.maven:excessive-building-845097:6280151") // Forge-Config-API-Port
+//    modCompileOnly("curse.maven:chipped-456956:4634858") // v3.0.1
 
 //    modCompileOnly("curse.maven:better-archeology-835687:5704094") // supermartijn642s' Config-Lib
 //    modCompileOnly("curse.maven:blockus-312289:5896309")
@@ -61,5 +62,6 @@ dependencies {
 //    modCompileOnly("curse.maven:stoneworks-852663:4611947")
 
         //+ OTHER MAVENs
+    modCompileOnly("earth.terrarium.chipped:chipped-forge-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib, REQUIRED: Bytecodecs, ConnectedTexturesMod (CTM), Fabric-API
     modCompileOnly("com.simibubi.create:create-fabric:${create_fabric_version}") { transitive = false }  // Registrate, Flywheel, Ponder, Forge-Config-Api-Port, Milk-Lib
 }

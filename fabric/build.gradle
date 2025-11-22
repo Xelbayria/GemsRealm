@@ -181,6 +181,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611948") // puzzles-lib, forge-config-api-port
 
             //- OTHER MAVENs
+//    modRuntimeOnly("earth.terrarium.chipped:chipped-fabric-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib, REQUIRED: Bytecodecs, ConnectedTexturesMod (CTM), Fabric-API
 
         //+ REQUIRED - The modules access libaries from below - ONLY IN FABRIC
             // MACAW's
