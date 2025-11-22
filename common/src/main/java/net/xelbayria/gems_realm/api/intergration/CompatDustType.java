@@ -33,7 +33,11 @@ public class CompatDustType extends CompatBlockType {
 
         DustTypeRegistry dustReg = DustTypeRegistry.INSTANCE;
 
-        // CrystalCraft-Unlimited-Java - REASON: Undetected-Children
+        // -------------------- Atlantis (MysticPasta1) - REASON: 2-Words, Naming-Convention
+        dustReg.addSimpleFinder("atlantis:aquatic_power")
+                .dustBlockSuffix("_stone");
+
+        // -------------------- CrystalCraft-Unlimited-Java - REASON: Undetected-Children
         dustReg.addSimpleFinder("crystalcraft_unlimited_java:ikegamini")
                 .childItem(DUST, "ikegamini");
         dustReg.addSimpleFinder("crystalcraft_unlimited_java:ikegamonium")
