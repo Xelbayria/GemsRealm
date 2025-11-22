@@ -1,6 +1,5 @@
 package net.xelbayria.gems_realm.modules.minecraft;
 
-import net.mehvahdjukaar.every_compat.api.ItemOnlyEntrySet;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.minecraft.core.registries.Registries;
@@ -9,29 +8,24 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
-import net.xelbayria.gems_realm.api.MetalPaletteStrategies;
 import net.xelbayria.gems_realm.api.set.metal.MetalType;
 import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
 
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
 
-//SUPPORT: v
-public class MinecraftModule extends GemsRealmModule {
+public class MinecraftModuleBars extends GemsRealmModule {
 
     public final SimpleEntrySet<MetalType, Block> bars;
-    public final ItemOnlyEntrySet<MetalType, Item> nugget;
 
-    public MinecraftModule(String modId) {
+    public MinecraftModuleBars(String modId) {
         super(modId, "mc");
         ResourceKey<CreativeModeTab> building_block = CreativeModeTabs.BUILDING_BLOCKS;
-        ResourceKey<CreativeModeTab> ingredients = CreativeModeTabs.INGREDIENTS;
 
         bars = GemsRealmEntrySet.of(MetalType.class, "bars",
                         getModBlock("iron_bars"), () -> VanillaMetalTypes.IRON,
@@ -60,20 +54,6 @@ public class MinecraftModule extends GemsRealmModule {
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(bars);
-
-        nugget = ItemOnlyEntrySet.builder(MetalType.class, "nugget",
-                        getModItem("iron_nugget"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new Item(new Item.Properties())
-                )
-                .requiresChildren(INGOT) //REASON: recipes, textures
-                .addTexture(modRes("item/iron_nugget"), MetalPaletteStrategies.INGOT_STANDARD)
-                .generateItemModels(new ResourceLocation("item/iron_nugget"))
-                .setTabKey(ingredients)
-                .defaultRecipe()
-                .build();
-        this.addEntry(nugget);
-
     }
-
 
 }
