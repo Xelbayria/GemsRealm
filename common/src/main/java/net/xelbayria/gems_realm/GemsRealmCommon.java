@@ -1,6 +1,7 @@
 package net.xelbayria.gems_realm;
 
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
+import net.xelbayria.gems_realm.modules.chipped.*;
 import net.xelbayria.gems_realm.modules.minecraft.MinecraftModule;
 import net.xelbayria.gems_realm.modules.more_beautiful_torches.MoreBeautifulTorchesModuleC;
 import net.xelbayria.gems_realm.modules.more_beautiful_torches.MoreBeautifulTorchesModuleD;
@@ -10,7 +11,6 @@ import net.xelbayria.gems_realm.modules.more_beautiful_torches.MoreBeautifulTorc
 import java.util.Set;
 
 import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
-import static net.mehvahdjukaar.every_compat.EveryCompat.addOtherCompatMod;
 import static net.xelbayria.gems_realm.GemsRealm.addMultipleIfLoaded;
 
 public class GemsRealmCommon {
@@ -34,6 +34,7 @@ public class GemsRealmCommon {
         addMultipleIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorchesModuleC::new, () -> MoreBeautifulTorchesModuleD::new, () -> MoreBeautifulTorchesModuleG::new, () -> MoreBeautifulTorchesModuleM::new);
 //        addIfLoaded("twigs", () -> TwigsModule::new);
 //        addIfLoaded("bbb", () -> BuildingButBetterModule::new);
+        addMultipleIfLoaded("chipped", () -> ChippedModuleC::new, () -> ChippedModuleD::new, () -> ChippedModuleM::new, () -> ChippedModuleRBM::new, () -> ChippedModuleG::new);
 //        addIfLoaded("blockus", () -> BlockusModule::new);
 //        addIfLoaded("stoneworks", () -> StoneworksModule::new);
 //        addIfLoaded("quark", () -> QuarkModule::new);
@@ -46,6 +47,8 @@ public class GemsRealmCommon {
 
     public boolean isModLoaded() {
         Set<String> list = Set.of(
+                //requires bars
+                "chipped",
                 //requires nuggets
                 "create", "mcwfences",
                 //requires nuggets, bars
