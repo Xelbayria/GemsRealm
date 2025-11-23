@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 
 import static net.xelbayria.gems_realm.api.set.VanillaRockChildKeys.BLOCK;
 
-//See ChippedAbstractModule's SUPPORTED VERSION
+//See ChippedModuleAbstract's SUPPORTED VERSION
 public class ChippedModuleC extends ChippedModuleAbstract {
 
     public final SimpleEntrySet<CrystalType, Block> angry_block,

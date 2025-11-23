@@ -7,6 +7,7 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.SimpleTagBuilder;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
+import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -32,7 +33,7 @@ public class ChippedModuleAbstract extends GemsRealmModule {
     protected void createWorkbenchRecipe(ResourceSink sink, String identifier, BlockTypeRegistry<?> blockTypeInstance, Workbench workbench) {
         JsonArray arrayTags = new JsonArray();
 
-        for (var blockType : blockTypeInstance) {
+        for (BlockType blockType : blockTypeInstance) {
             if (blockType instanceof CrystalType crystalType && HardcodedBlockType.isKnownVanillaCrystal(crystalType)) {
                 continue;
             }
