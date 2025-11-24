@@ -14,12 +14,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.VanillaRockChildKeys;
-import net.xelbayria.gems_realm.api.set.crystal.CrystalType;
-import net.xelbayria.gems_realm.api.set.dust.DustType;
-import net.xelbayria.gems_realm.api.set.gem.GemType;
-import net.xelbayria.gems_realm.api.set.metal.MetalType;
 import net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys;
-import net.xelbayria.gems_realm.misc.HardcodedBlockType;
+
+import static net.xelbayria.gems_realm.misc.HardcodedBlockType.isKnownVanillaBlockType;
 
 //SUPPORT: v3.0.7
 public class ChippedModuleAbstract extends GemsRealmModule {
@@ -34,18 +31,8 @@ public class ChippedModuleAbstract extends GemsRealmModule {
         JsonArray arrayTags = new JsonArray();
 
         for (BlockType blockType : blockTypeInstance) {
-            if (blockType instanceof CrystalType crystalType && HardcodedBlockType.isKnownVanillaCrystal(crystalType)) {
-                continue;
-            }
-            else if (blockType instanceof DustType dustType && HardcodedBlockType.isKnownVanillaDust(dustType)) {
-                continue;
-            }
-            else if (blockType instanceof GemType gemType && HardcodedBlockType.isKnownVanillaGem(gemType)) {
-                continue;
-            }
-            else if (blockType instanceof MetalType metalType && HardcodedBlockType.isKnownVanillaMetal(metalType)) {
-                continue;
-            }
+
+            if (isKnownVanillaBlockType(blockType)) continue;
 
             boolean isTagCreated = false;
 
