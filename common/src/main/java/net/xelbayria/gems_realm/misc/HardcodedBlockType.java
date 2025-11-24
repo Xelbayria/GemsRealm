@@ -1,5 +1,6 @@
 package net.xelbayria.gems_realm.misc;
 
+import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.minecraft.resources.ResourceLocation;
 import net.xelbayria.gems_realm.api.set.crystal.CrystalType;
 import net.xelbayria.gems_realm.api.set.dust.DustType;
@@ -96,6 +97,17 @@ public class HardcodedBlockType {
         return true;
     }
 
+    /// Check if BlockType is vanilla (from Minecraft)
+    public static boolean isKnownVanillaBlockType(BlockType blockType) {
+        if (blockType instanceof CrystalType crystalType && HardcodedBlockType.isKnownVanillaCrystal(crystalType))
+            return true;
+        else if (blockType instanceof DustType dustType && HardcodedBlockType.isKnownVanillaDust(dustType))
+            return true;
+        else if (blockType instanceof GemType gemType && HardcodedBlockType.isKnownVanillaGem(gemType))
+            return true;
+        else
+            return blockType instanceof MetalType metalType && HardcodedBlockType.isKnownVanillaMetal(metalType);
+    }
 
     /// for mods that might add in vanilla namespace
     // CrystalType
