@@ -144,6 +144,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871") // v2.1.29 | ???
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled, Better-Archeology
+//    modRuntimeOnly("curse.maven:supermartijn642s-core-lib-454372:5668859") // v1.1.17a | Rechiseled
 //    modRuntimeOnly("curse.maven:mantle-74924:6041712") // v1.11.28 | Tinkers-Construct
 //    modRuntimeOnly("curse.maven:blueprint-382216:6408581") // v7.1.3 | The-Outer-End
 //    modRuntimeOnly("curse.maven:kotlin-for-forge-351264:5402061") // v4.11.0 | More-Geodes-Reforged
@@ -161,7 +162,6 @@ dependencies {
 //    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped, Ad-Astra
 
         //+ REQUIRED - The modules access libaries from below - Only in FORGE
-    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:5668859") // v1.1.17a | Rechiseled
 
             //+ OTHER MAVENS
     modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create
@@ -177,6 +177,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:quark-243121:5594847") // Zeta
 //    modRuntimeOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib
 //    modRuntimeOnly("curse.maven:excessive-building-845097:5442075") // Forge-Config-API-Port
+//    modRuntimeOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
 
         //- OTHER MAVENS
 //    modRuntimeOnly("earth.terrarium.chipped:chipped-forge-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib, REQUIRED: Bytecodecs, ConnectedTexturesMod (CTM)
@@ -196,7 +197,6 @@ dependencies {
 
             // GENERALS
     modCompileOnly("curse.maven:create-deco-509285:6373226") // Create //!! NOT-STARTED
-    modCompileOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ] //!! NOT-STARTED
     modCompileOnly("curse.maven:lapidarist-610032:5921456")
     modCompileOnly("curse.maven:more-beautiful-bookshelves-846508:4671697")
 //    modImplementation("curse.maven:silents-gems-220311:5193708") // Silent-Lib
@@ -214,7 +214,7 @@ dependencies {
     // DUSTTYPE, GEMTYPE
 
     // DUSTTYPE, METALTYPE
-//    modRuntimeOnly("curse.maven:atlantis-355418:6762614") // JustHammer, Architectury, Cloth-Config, GeckoLib
+    modRuntimeOnly("curse.maven:atlantis-355418:6762614") // JustHammer, Architectury, Cloth-Config, GeckoLib
 
     // GEMTYPE, METALTYPE
 
