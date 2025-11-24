@@ -4,8 +4,8 @@
 |---------------|:------:|------------------------|:------:|----------------------------|:------:|
 | Create Fabric |   🟩   | Macaw's Mods           |   🟩   | Create                     |   🟩   |
 |               |        | More Beautiful Torches |   🟩   | Lapidarist                 |   🟩   |
-|               |        | Rechiseled             |   🔧   | More Beautiful Bookshelves |   🟩   |
-|               |        |                        |        | Silent's Gems              |   🔧   |
+|               |        | Rechiseled             |   🟩   | More Beautiful Bookshelves |   🟩   |
+|               |        | Chipped                |   🟩   |                            |        |
 
 
 ## LEGENDS:
@@ -21,3 +21,7 @@
 - Bridges
 - Fences & Walls
 - Windows
+
+(?<flield>blank_\d+) (?<main>= GemsRealmEntrySet.of\(GemType.class, ")blanks_\d+(?<end>",getModBlock\("(?<prefix>[a-z]+)?_?diamond_(?<suffix>\w+)"\))
+
+${prefix}_${suffix} ${main}${suffix}\", \"${prefix}${end}
