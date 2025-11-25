@@ -214,7 +214,7 @@ dependencies {
     // DUSTTYPE, GEMTYPE
 
     // DUSTTYPE, METALTYPE
-    modRuntimeOnly("curse.maven:atlantis-355418:6762614") // JustHammer, Architectury, Cloth-Config, GeckoLib
+//    modRuntimeOnly("curse.maven:atlantis-355418:6762614") // JustHammer, Architectury, Cloth-Config, GeckoLib
 
     // GEMTYPE, METALTYPE
 
