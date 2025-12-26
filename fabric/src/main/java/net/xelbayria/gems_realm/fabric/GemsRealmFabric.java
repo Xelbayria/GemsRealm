@@ -36,8 +36,6 @@ public class GemsRealmFabric extends GemsRealmCommon implements ModInitializer {
 
         // General
         addIfLoaded("create", () -> CreateModule::new);
-//        addIfLoaded("rechiseled", () -> RechiseledModule::new);
-
 
 //!! ====================================================== OTHERS ================================================== \\
 
