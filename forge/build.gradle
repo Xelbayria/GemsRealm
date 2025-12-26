@@ -92,15 +92,15 @@ publishing {
 //}
 
 dependencies {
-    forge "net.minecraftforge:forge:${forge_version}"
+    forge "net.minecraftforge:forge:$forge_version"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 
     implementation 'org.jetbrains:annotations:22.0.0'
 
-    implementation(annotationProcessor("io.github.llamalad7:mixinextras-common:${mixin_extras_version}"))
-    implementation(include("io.github.llamalad7:mixinextras-forge:${mixin_extras_version}"))
+    implementation(annotationProcessor("io.github.llamalad7:mixinextras-common:$mixin_extras_version"))
+    implementation(include("io.github.llamalad7:mixinextras-forge:$mixin_extras_version"))
     annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
@@ -108,27 +108,30 @@ dependencies {
 
     //- LOCAL
     if (enable_moonlight_test.toBoolean()) {
-        modImplementation(files(path + "\\Moonlight\\forge\\build\\libs\\moonlight-${moonlight_testVersion}-forge.jar"))
+        modImplementation(files(path + "\\Moonlight\\forge\\build\\libs\\moonlight-$moonlight_testVersion-forge.jar"))
     }
     //+ MAVEN
     else {
-        modApi("net.mehvahdjukaar:moonlight-forge:${moonlight_mavenVersion}"){
+        modApi("net.mehvahdjukaar:moonlight-forge:$moonlight_mavenVersion"){
             transitive = false
         }
     }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
-    if (enable_everycomp_test.toBoolean())
-        //- Repository LOCAL - Every Compat
-        modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}-forge.jar"))
-    else
-        //+ MAVEN
-        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-forge")
+    //- LOCAL
+    if (enable_everycomp_test.toBoolean()) {
+        modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-$everycomp_testVersion-forge.jar"))
+    //+ MAVEN
+    } else {
+        modApi("net.mehvahdjukaar:everycomp-forge:$everycomp_mavenVersion:forge") {
+            transitive = false
+        }
+    }
 
 //!! TOOLS ---------------------------------------------------------------------------------------------------------- \\
-    modRuntimeOnly("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
-    modRuntimeOnly("com.blamejared.crafttweaker:CraftTweaker-forge-${minecraft_version}:${crafttweaker_version}")
-    modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+    modRuntimeOnly("dev.emi:emi-forge:$emi_version+$minecraft_version")
+    modRuntimeOnly("com.blamejared.crafttweaker:CraftTweaker-forge-$minecraft_version:$crafttweaker_version")
+    modRuntimeOnly("mezz.jei:jei-$minecraft_version-forge:$jei_version")
     modRuntimeOnly("curse.maven:jade-324717:6106101")
 //    modRuntimeOnly("curse.maven:worldedit-225608:4586218")
 
@@ -157,16 +160,16 @@ dependencies {
         //- ~/forge/mods LOCAL
 
         //- OTHER MAVENs - can be commented out or enabled
-//    modRuntimeOnly("software.bernie.geckolib:geckolib-forge-${minecraft_version}:4.7.3") // v4.7.3 | Atlantis, Fins-And-Tails
+//    modRuntimeOnly("software.bernie.geckolib:geckolib-forge-$minecraft_version:4.7.3") // v4.7.3 | Atlantis, Fins-And-Tails
 //    forgeRuntimeLibrary("com.eliotlash.mclib:mclib:20") // GeckoLib
 //    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped, Ad-Astra
 
         //+ REQUIRED - The modules access libaries from below - Only in FORGE
 
             //+ OTHER MAVENS
-    modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create
-    modCompileOnly("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}") // Create
-    modCompileOnly("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}") // Create
+    modCompileOnly("com.tterrag.registrate:Registrate:$registrate_version") // Create
+    modCompileOnly("dev.engine-room.flywheel:flywheel-forge-$minecraft_version:$flywheel_version") // Create
+    modCompileOnly("net.createmod.ponder:Ponder-Forge-$minecraft_version:$ponder_version") // Create
 
 //!! =================================================== IMPORTS ==================================================== \\
         //- ONLY FOR TESTING - can be commented out or enabled
@@ -180,12 +183,12 @@ dependencies {
 //    modRuntimeOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
 
         //- OTHER MAVENS
-//    modRuntimeOnly("earth.terrarium.chipped:chipped-forge-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib, REQUIRED: Bytecodecs, ConnectedTexturesMod (CTM)
+//    modRuntimeOnly("earth.terrarium.chipped:chipped-forge-$minecraft_version:3.0.7") //INCLUDED: Athena, Resourceful-Lib, REQUIRED: Bytecodecs, ConnectedTexturesMod (CTM)
 
         //+ REQUIRED - The modules access libaries from below - ONLY IN FORGE
 
             // OTHER MAVENs
-    modCompileOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel, Ponder
+    modCompileOnly("com.simibubi.create:create-$minecraft_version:$create_version:slim") { transitive = false } // Registrate, Flywheel, Ponder
 
             // MACAW's
     modCompileOnly("curse.maven:macaws-bridges-351725:6528751") //v3.1.0
@@ -196,7 +199,7 @@ dependencies {
 //    modCompileOnly("curse.maven:macaws-stairs-1119394:6155181") //v1.0.1 - NO METAL
 
             // GENERALS
-    modCompileOnly("curse.maven:create-deco-509285:6373226") // Create //!! NOT-STARTED
+    modCompileOnly("curse.maven:create-deco-509285:6373226") // Create
     modCompileOnly("curse.maven:lapidarist-610032:5921456")
     modCompileOnly("curse.maven:more-beautiful-bookshelves-846508:4671697")
 //    modImplementation("curse.maven:silents-gems-220311:5193708") // Silent-Lib

@@ -7,8 +7,8 @@ loom {
 }
 
 dependencies {
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modApi "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+    modImplementation "net.fabricmc:fabric-loader:$fabric_loader_version"
+    modApi "net.fabricmc.fabric-api:fabric-api:$fabric_api_version"
 
     annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
 
@@ -17,22 +17,25 @@ dependencies {
 
     //- LOCAL
     if (enable_moonlight_test.toBoolean()) {
-        modImplementation(files(path + "\\Moonlight\\forge\\build\\libs\\moonlight-${moonlight_testVersion}-forge.jar"))
+        modImplementation(files(path + "\\Moonlight\\fabric\\build\\libs\\moonlight-$moonlight_testVersion-fabric.jar"))
     }
     //+ MAVEN
     else {
-        modApi("net.mehvahdjukaar:moonlight:${moonlight_mavenVersion}"){
+        modApi("net.mehvahdjukaar:moonlight:$moonlight_mavenVersion"){
             transitive = false
         }
     }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
-    if (enable_everycomp_test.toBoolean())
-        //- Repository LOCAL - Every Compat
-        modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${everycomp_testVersion}-fabric.jar"))
-    else
+    if (enable_everycomp_test.toBoolean()) {
+        //- LOCAL
+        modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-$everycomp_testVersion-fabric.jar"))
+    }  else {
         //+ MAVEN
-        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric")
+        modApi("net.mehvahdjukaar:everycomp:$everycomp_mavenVersion") {
+            transitive = false
+        }
+    }
 
 //!! ================================================= DEPENDENCIES ================================================= \\
 
@@ -42,8 +45,8 @@ dependencies {
     modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:6076732") // v1.1.18a | Rechiseled
 
         //+ OTHER MAVENS
-    modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
-//    modRuntimeOnly("dev.engine-room.flywheel:flywheel-fabric-${minecraft_version}:${flywheel_fabric_version}") // Create - not really needed
+    modCompileOnly("com.tterrag.registrate_fabric:Registrate:$registrate_fabric_version") // Create
+//    modRuntimeOnly("dev.engine-room.flywheel:flywheel-fabric-$minecraft_version:$flywheel_fabric_version") // Create - not really needed
 
 //!! =================================================== IMPORTS ==================================================== \\
     //- MODULES - don't need library from the mod, so it's fine to ignore
@@ -64,6 +67,6 @@ dependencies {
 //    modCompileOnly("curse.maven:stoneworks-852663:4611947")
 
         //+ OTHER MAVENs
-    modCompileOnly("earth.terrarium.chipped:chipped-forge-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib, REQUIRED: Bytecodecs, ConnectedTexturesMod (CTM), Fabric-API
-    modCompileOnly("com.simibubi.create:create-fabric:${create_fabric_version}") { transitive = false }  // Registrate, Flywheel, Ponder, Forge-Config-Api-Port, Milk-Lib
+    modCompileOnly("earth.terrarium.chipped:chipped-fabric-$minecraft_version:3.0.7") //INCLUDED: Athena, Resourceful-Lib, REQUIRED: Bytecodecs, ConnectedTexturesMod (CTM), Fabric-API
+    modCompileOnly("com.simibubi.create:create-fabric:$create_fabric_version") { transitive = false }  // Registrate, Flywheel, Ponder, Forge-Config-Api-Port, Milk-Lib
 }
