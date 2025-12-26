@@ -22,6 +22,19 @@
 
 </div>
 
+### UPDATED: 
+- **Atlantis** (UDBT):
+  - Added aquamarine to GemType
+  - Added aquatic_power to DustType
+
+### ADDED:
+- **Chipped** (C)
+- **Rechiseled** (C)
+
+---
+
+## v2.9.3
+
 ### REQUIRED:
 - **Every Compat** (C): v2.9.9 or newer version
 
