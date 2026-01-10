@@ -23,6 +23,13 @@
 </div>
 
 ### UPDATED: 
+- **Gems Realm** (C): Fixed the crash with **Every Compat v2.9.15** - There is a changed code in **Every Compat** - [#1161](https://github.com/MehVahdJukaar/WoodGood/issues/1161)
+
+---
+
+## v2.9.4
+
+### UPDATED: 
 - **Atlantis** (UDBT):
   - Added aquamarine to GemType
   - Added aquatic_power to DustType
