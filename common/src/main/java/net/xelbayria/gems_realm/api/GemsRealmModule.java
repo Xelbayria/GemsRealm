@@ -41,15 +41,11 @@ public class GemsRealmModule extends SimpleModule {
     }
 
     @Override
-    public ResourceLocation makeMyRes(String name) {
-        return super.makeMyRes(name);
-    }
+    public boolean isEntryAlreadyRegistered(String entrySetId, ResourceLocation blockId, BlockType blockType, Registry<?> registry) {
 
-    @Override
-    public boolean isEntryAlreadyRegistered(String entrySetId, String blockId, BlockType blockType, Registry<?> registry) {
-
-        // blockId: gems_realm:twigs/strata/<name>_column | blockName: <name>_column
-        String blockName = blockId.substring(blockId.lastIndexOf("/") + 1);
+        String blockPath = blockId.getPath();
+        // blockName: <name>_column from the blockId: gems_realm:twigs/strata/<name>_column
+        String blockName = blockPath.substring(blockPath.lastIndexOf("/") + 1);
 
         if (blockType instanceof DustType dustType) {
             Boolean hardcoded = HardcodedDustType.isDustBlockAlreadyRegistered(entrySetId, blockName, dustType, modId);
@@ -70,7 +66,6 @@ public class GemsRealmModule extends SimpleModule {
 
         return super.isEntryAlreadyRegistered(entrySetId, blockId, blockType, registry);
     }
-
 
     @Override
     public void addDynamicClientResources(Consumer<ResourceGenTask> executor) {
