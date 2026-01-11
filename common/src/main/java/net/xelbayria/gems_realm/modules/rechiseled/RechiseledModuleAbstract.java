@@ -44,8 +44,8 @@ public abstract class RechiseledModuleAbstract extends GemsRealmModule {
         super(modId, "rcd");
     }
 
-    /// CUSTOM CLASS - REASON: Changed BlockProperties to Proerties to use Utils.copyPropertySafe()
-    public static class CompatRechiseledBlock extends CompatBaseBlock {
+    /// CUSTOM CLASS - REASON: Changed BlockProperties to Properties to use Utils.copyPropertySafe()
+    protected class CompatRechiseledBlock extends BaseBlock {
         public final boolean connecting;
 
         public CompatRechiseledBlock(boolean connecting, BlockBehaviour.Properties properties) {
@@ -61,7 +61,7 @@ public abstract class RechiseledModuleAbstract extends GemsRealmModule {
         }
     }
 
-    public static class CompatRechiseledPillarBlock extends CompatRechiseledBlock {
+    protected class CompatRechiseledPillarBlock extends CompatRechiseledBlock {
         public CompatRechiseledPillarBlock(boolean connecting, Properties properties) {
             super(connecting, properties);
             this.registerDefaultState(this.defaultBlockState().setValue(AXIS_PROPERTY, Direction.Axis.Y));
@@ -69,7 +69,7 @@ public abstract class RechiseledModuleAbstract extends GemsRealmModule {
 
         @Nullable
         @Override
-        public BlockState getStateForPlacement(BlockPlaceContext context){
+        public BlockState getStateForPlacement(BlockPlaceContext context) {
             return this.defaultBlockState().setValue(AXIS_PROPERTY, context.getClickedFace().getAxis());
         }
 
@@ -90,11 +90,11 @@ public abstract class RechiseledModuleAbstract extends GemsRealmModule {
         }
     }
 
-    public static class CompatBaseBlock extends BaseBlock {
-        public CompatBaseBlock(boolean saveTileData, BlockBehaviour.Properties properties) {
-            super(saveTileData, properties);
-        }
-    }
+//    public static class CompatBaseBlock extends BaseBlock {
+//        public CompatBaseBlock(boolean saveTileData, BlockBehaviour.Properties properties) {
+//            super(saveTileData, properties);
+//        }
+//    }
 
     /// @param regex a specific keyword for to skip blocks that don't have the blocks with "_connecting"
     public void createChiselingRecipe(GemsRealmModule module, BlockTypeRegistry<?> blockTypeRegistry, ResourceSink sink, String regex) {
