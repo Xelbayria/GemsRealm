@@ -22,6 +22,14 @@
 
 </div>
 
+### UPDATED:
+- **Gems Realm** (C): Improved logging
+- **Rechiseled** (C): Disabled for now because it caused the crash. It will take some times to fix the problem.
+
+---
+
+## v2.9.5
+
 ### UPDATED: 
 - **Gems Realm** (C): Fixed the crash with **Every Compat v2.9.15** - There is a changed code in **Every Compat** - [#1161](https://github.com/MehVahdJukaar/WoodGood/issues/1161)
 
