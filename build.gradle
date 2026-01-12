@@ -1,20 +1,87 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
     id "dev.architectury.loom" version "1.11.+" apply false
-    id "com.matthewprenger.cursegradle" version "1.4.0"
-    id "com.modrinth.minotaur" version "2.+"
-    id "com.github.johnrengelman.shadow" version "7.1.2" apply false
+//    id "com.matthewprenger.cursegradle" version "1.+"
+//    id "com.modrinth.minotaur" version "2.+"
+    id 'com.gradleup.shadow' version '8.3.6' apply false
+    id "me.modmuss50.mod-publish-plugin" version "1.1.+"
 }
 
 architectury {
     minecraft = rootProject.minecraft_version
 }
 
+allprojects {
+    apply plugin: "java"
+    apply plugin: "architectury-plugin"
+    apply plugin: "maven-publish"
+
+    archivesBaseName = mod_id
+    version = mod_version
+    group = maven_group
+
+    repositories {
+
+        flatDir {
+            dirs 'mods'
+        }
+
+        mavenLocal()
+
+        // Our publishing repo
+        maven { url = "https://registry.somethingcatchy.net/repository/maven-releases/" }
+
+        maven { url = "https://maven.parchmentmc.org" }
+
+        maven {
+            url = "https://www.cursemaven.com"
+            allowInsecureProtocol = true
+        }
+        maven { url = "https://api.modrinth.com/maven" }
+        maven { url = 'https://jitpack.io' } // BCLib
+        maven { url = "https://mvn.devos.one/snapshots/" }
+        maven { url = "https://mvn.devos.one/releases" } // Porting Lib Releases
+        maven { url = "https://maven.shedaniel.me/" } // Cloth Config
+        maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
+        maven { url = "https://maven.tterrag.com" } // Registrate
+        maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" } // Forge Config API Port
+        maven { url = "https://squiddev.cc/maven" } // CC: Tweaked
+        maven { url = 'https://maven.ladysnake.org/releases' } // Unknown
+        maven { url = "https://maven.blamejared.com/" } // JEI
+        maven { url = "https://maven.teamresourceful.com/repository/maven-public/" } // Chipped
+        maven { url = "https://maven.terraformersmc.com/releases" } // Unknown (for fabric)
+        maven { url  = "https://raw.githubusercontent.com/moddingplayground/maven/main/" } // Unknown (for fabric)
+//        maven { url = "https://modmaven.dev" } // FALLBACK for others including Botania, JEI
+        // Reach Entity Attributes
+        maven {
+            url = "https://maven.jamieswhiteshirt.com/libs-release"
+            content { includeGroup("com.jamieswhiteshirt") }
+        }
+
+        maven {
+            url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+            content {
+                includeGroupByRegex("software\\.bernie.*")
+                includeGroup("com.eliotlash.mclib")
+            }
+        } // GeckoLib
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = "UTF-8"
+        options.release = 17
+    }
+
+    java {
+        withSourcesJar()
+    }
+}
+
 subprojects {
     apply plugin: "dev.architectury.loom"
-    apply plugin: "com.matthewprenger.cursegradle"
-    apply plugin: "com.modrinth.minotaur"
-    apply plugin: "com.github.johnrengelman.shadow"
+//    apply plugin: "com.matthewprenger.cursegradle"
+//    apply plugin: "com.modrinth.minotaur"
+    apply plugin: "com.gradleup.shadow"
 
 
     loom {
@@ -22,96 +89,147 @@ subprojects {
     }
 
     dependencies {
-        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+        minecraft "com.mojang:minecraft:$minecraft_version"
         // The following line declares the mojmap mappings, you may use other mappings as well
         mappings loom.layered() {
             it.officialMojangMappings {
                 setNameSyntheticMembers(false)
             }
-            it.parchment("org.parchmentmc.data:parchment-${rootProject.parchment_version}")
+            it.parchment("org.parchmentmc.data:parchment-$parchment_version")
         }
     }
+
+    publishing {
+        repositories {
+            mavenLocal()
+
+            def nexusToken = providers.environmentVariable("NEXUS_TOKEN").getOrElse("")
+            def nexusUser = providers.environmentVariable("NEXUS_USER").getOrElse("")
+            if (!nexusToken.isEmpty() && !nexusUser.isEmpty()) {
+                maven {
+                    url = uri("https://registry.somethingcatchy.net/repository/maven-releases/")
+                    credentials {
+                        username = nexusUser
+                        password = nexusToken
+                    }
+                }
+            }
+        }
+    }
+
+
+    // ───────────────────────────────────── Test ──────────────────────────────────────
 
     var env = System.getenv()
     var modLoader = name
 
-    var changelogFile = rootProject.file("changelog.md")
-    var changelogText = changelogFile.exists() ? changelogFile.text : ""
+    publishMods {
+        dryRun = true
+        def CURSEFORGE_TOKEN = providers.environmentVariable("CURSEFORGE_TOKEN")
+        def MODRINTH_TOKEN = providers.environmentVariable("MODRINTH_TOKEN")
+        var changelogFile = rootProject.file("changelog.md")
+        var changelogText = changelogFile.exists() ? changelogFile.text : ""
 
-    if (env.MODRINTH_TOKEN) {
-        modrinth {
-            projectId = modrinth_id
-            uploadFile = tasks.remapJar
-            gameVersions = [minecraft_version]
-            loaders = [modLoader]
-            changelog = changelogText
-            versionNumber = mod_version+'-'+modLoader
+        file = remapJar.archiveFile
+        type = STABLE
+        changelog = changelogText
 
-            if (modLoader == "fabric") {
-                dependencies {
-                    required.project "fabric-api"
-                    required.project "moonlight"
-                    required.project "every-compat"
-                    optional.project "library-section"
-                }
-            }
-            //!! FORGE
-            else {
-                dependencies {
-                    required.project "moonlight"
-                    required.project "every-compat"
-                    optional.project "library-section"
-                }
-            }
+        def curseforgeOption = curseforgeOptions {
+            accessToken = CURSEFORGE_TOKEN
+            projectId = curseforge_id
+            changelogType = "markdown"
+            clientRequired = true
+            serverRequired = true
         }
-    }
 
-    if (env.CURSEFORGE_TOKEN) {
-        curseforge {
-            apiKey = env.CURSEFORGE_TOKEN
-            project {
-                id = curseforge_id
-                changelog = changelogText
-                changelogType = 'markdown'
-                releaseType = 'release'
-                addGameVersion minecraft_version
-                addGameVersion modLoader.capitalize()
+        // gradle publishCurseforgeFabric
+        curseforge("curseforgeFabric") {
+            from curseforgeOption
+            file project(":fabric")
+            modLoaders.add("fabric")
+            displayName = file.map { it.asFile.name }
 
-                mainArtifact(tasks.remapJar) {
-                    if (modLoader == "fabric") {
-                        displayName = mod_id +"-"+ mod_version + "-fabric"
-                    }
-                }
+            requires(
+                    "fabric-api",
+                    "selene",
+                    "every-compat"
+            )
+            optional(
+                    "create-fabric",
+                    "macaws-bridges",
+                    "macaws-fences-and-walls",
+                    "macaws-windows",
+                    "more-beautiful-torches"
+            )
 
-                if (modLoader == "fabric") {
-                    relations {
-                        requiredDependency("fabric-api")
-                        requiredDependency("selene")
-                        requiredDependency("every-compat")
-                        optionalDependency("library-section")
-                        optionalDependency("create-fabric")
-                        optionalDependency("macaws-bridges")
-                        optionalDependency("macaws-fences-and-walls")
-                        optionalDependency("macaws-windows")
-                        optionalDependency("more-beautiful-torches")
-                    }
-                }
-                //!! FORGE
-                else {
-                    relations {
-                        requiredDependency("selene")
-                        requiredDependency("every-compat")
-                        optionalDependency("library-section")
-                        optionalDependency("create")
-                        optionalDependency("lapidarist")
-                        optionalDependency("macaws-bridges")
-                        optionalDependency("macaws-fences-and-walls")
-                        optionalDependency("macaws-windows")
-                        optionalDependency("more-beautiful-bookshelves")
-                        optionalDependency("more-beautiful-torches")
-                    }
-                }
-            }
+        }
+        // gradle publishCurseforgeForge
+        curseforge("curseforgeForge") {
+            from curseforgeOption
+            file project(":forge")
+            modLoaders.add("forge")
+            displayName = file.map { it.asFile.name }
+
+            requires(
+                    "selene",
+                    "every-compat"
+            )
+            optional(
+                    "create",
+                    "lapidarist",
+                    "macaws-bridges",
+                    "macaws-fences-and-walls",
+                    "macaws-windows",
+                    "more-beautiful-bookshelves",
+                    "more-beautiful-torches"
+            )
+        }
+
+        def modrinthOption = modrinthOptions {
+            accessToken = MODRINTH_TOKEN
+            projectId = modrinth_id
+        }
+
+        // gradle publishModrinthFabric
+        modrinth("modrinthFabric") {
+            from modrinthOption
+            file project(":fabric")
+            modLoaders.add(modLoader)
+            displayName = file.map { it.asFile.name }
+
+            requires(
+                    "fabric-api",
+                    "moonlight",
+                    "every-compat"
+            )
+            optional(
+                    "create-fabric",
+                    "macaws-bridges",
+                    "macaws-fences-and-walls",
+                    "macaws-windows",
+                    "more-beautiful-torches"
+            )
+        }
+        // gradle publishModrinthForge
+        modrinth("modrinthForge") {
+            from modrinthOption
+            file project(":forge")
+            modLoaders.add(modLoader)
+            displayName = file.map { it.asFile.name }
+
+            requires(
+                    "moonlight",
+                    "every-compat"
+            )
+            optional(
+                    "create",
+                    "lapidarist",
+                    "macaws-bridges",
+                    "macaws-fences-and-walls",
+                    "macaws-windows",
+//                    "more-beautiful-bookshelves",
+                    "more-beautiful-torches"
+            )
         }
     }
 }
@@ -195,4 +313,55 @@ allprojects {
     java {
         withSourcesJar()
     }
+}
+
+tasks.register('buildAndPublishAll') {
+    group 'build'
+    description 'Runs clean, build, and publish neoforge and fabric'
+
+    dependsOn ';clean'
+    dependsOn ';build'
+    dependsOn ':neoforge:curseforge'
+    dependsOn ':neoforge:modrinth'
+    dependsOn ':fabric:curseforge'
+    dependsOn ':fabric:modrinth'
+    dependsOn ':publish'
+}
+
+tasks.register('buildAndPublishAllM') {
+    group 'build'
+    description 'Runs clean, build, publish forge and fabric and uploads to maven local'
+
+    dependsOn buildAndPublishAll
+    dependsOn ':publishToMavenLocal'
+}
+
+tasks.register('cleanLogs', Delete) {
+    group "build"
+    description "Delete logs"
+
+    // Logs
+    delete fileTree(dir: "$rootDir/neoforge/run/logs", include: "**/*.gz")
+    delete fileTree(dir: "$rootDir/fabric/run/logs", include: "**/*.gz")
+}
+
+tasks.register('cleanFolders', Delete) {
+    group "build"
+    description "Clean logs & Delete folders of Debug, Dynamic Pack"
+
+    // Logs
+    delete fileTree(dir: "$rootDir/neoforge/run/logs", include: "**/*.gz")
+    delete fileTree(dir: "$rootDir/fabric/run/logs", include: "**/*.gz")
+
+    // Debug
+    delete "$rootDir/neoforge/run/debug"
+    delete "$rootDir/fabric/run/debug"
+
+    // Dynamic Data Pack Cache
+    delete "$rootDir/neoforge/run/dynamic-data-pack-cache"
+    delete "$rootDir/fabric/run/dynamic-data-pack-cache"
+
+    // Dynamic Resource Pack Cache
+    delete "$rootDir/neoforge/run/dynamic-resource-pack-cache"
+    delete "$rootDir/fabric/run/dynamic-resource-pack-cache"
 }

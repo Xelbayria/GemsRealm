@@ -6,6 +6,15 @@ loom {
     accessWidenerPath = file("src/main/resources/gemsrealm.accesswidener")
 }
 
+publishing {
+    publications {
+        mavenCommon(MavenPublication) {
+            artifactId = rootProject.mod_id
+            from components.java
+        }
+    }
+}
+
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:$fabric_loader_version"
     modApi "net.fabricmc.fabric-api:fabric-api:$fabric_api_version"

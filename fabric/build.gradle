@@ -63,25 +63,8 @@ publishing {
             from components.java
         }
     }
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-    repositories {
-        // Add repositories to publish to here.
-        maven {
-            url = "https://www.cursemaven.com"
-            allowInsecureProtocol = true
-        }
-
-        maven {
-            name = "TerraformersMC"
-            url = "https://maven.terraformersmc.com/releases"
-        }
-
-        maven {
-            name = "ModdingPlayground"
-            url  = "https://raw.githubusercontent.com/moddingplayground/maven/main/"
-        }
-    }
 }
+
 repositories {
     maven { url = 'https://maven.fabricmc.net/' }
     maven { url = "https://maven.terraformersmc.com/releases" } // Mod Menu
