@@ -37,7 +37,7 @@ public class GemsRealmModule extends SimpleModule {
 
     @Override
     public String toString() {
-        return "GemsRealm: " + LangBuilder.getReadableName(modId) + " Module";
+        return "[GemsRealm - " + LangBuilder.getReadableName(modId) + " Module]";
     }
 
     @Override
