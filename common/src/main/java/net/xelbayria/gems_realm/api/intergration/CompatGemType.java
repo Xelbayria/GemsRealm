@@ -48,6 +48,7 @@ public class CompatGemType extends CompatBlockType{
         // -------------------- Crystal Unlimited Edition
         for (int num = 1; num < 15; num++) { //REASON: Naming-Convention
             String zircon = "zircon_";
+            if (num == 13) continue; // doesn't exist
             switch (num) {
                 case 1, 4, 6, 9 -> gemReg.addSimpleFinder("crystalcraft_unlimited_java", zircon + num)
                         .gemBlock(zircon + "block_" + num);
@@ -140,7 +141,6 @@ public class CompatGemType extends CompatBlockType{
         gemReg.addSimpleFinder("crystalcraft_unlimited_java", "yellow_star_sapphire"); //REASON: 2-Words
         gemReg.addSimpleFinder("crystalcraft_unlimited_java", "purple_star_sapphire"); //REASON: 2-Words
         gemReg.addSimpleFinder("crystalcraft_unlimited_java", "pink_star_sapphire"); //REASON: 3-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "dark_green_star_sapphire"); //REASON: 4-Words
         gemReg.addSimpleFinder("crystalcraft_unlimited_java", "iris_agate"); //REASON: 2-Words
         gemReg.addSimpleFinder("crystalcraft_unlimited_java", "painite"); //REASON: ???
         gemReg.addSimpleFinder("crystalcraft_unlimited_java", "rainbow_opal"); //REASON: 2-Words
