@@ -83,6 +83,7 @@ public class MetalType extends RockType {
 
     public static Block findMetalBlock(ResourceLocation id) {
         ResourceLocation[] tests = makeKnownIDConventions(id,  "block");
+        Finder.blockId = tests[0];
         return Utils.findFirstInRegistry(BuiltInRegistries.BLOCK, tests);
     }
 
@@ -90,6 +91,7 @@ public class MetalType extends RockType {
     public static class Finder extends SetFinderBuilder<MetalType> {
 
         private Supplier<Block> blockMetalFinder;
+        public static ResourceLocation blockId;
 
         public Finder(ResourceLocation id) {
             super(id, MetalTypeRegistry.INSTANCE);
@@ -133,7 +135,7 @@ public class MetalType extends RockType {
         public Optional<MetalType> get() {
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
-                    Block metal = Preconditions.checkNotNull(blockMetalFinder.get(), "Manual Finder - failed to find a Metal Block for {}", id);
+                    Block metal = Preconditions.checkNotNull(blockMetalFinder.get(), "Manual Finder - failed to find a Metal Block with ID:", blockId);
                     var metalType = new MetalType(id, metal);
                     childNames.forEach((key, value) -> {
                         try {

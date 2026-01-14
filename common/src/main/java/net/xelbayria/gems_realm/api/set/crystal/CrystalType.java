@@ -85,12 +85,14 @@ public class CrystalType extends RockType {
 
     public static Block findCrystalBlock(ResourceLocation id) {
         ResourceLocation[] tests = makeKnownIDConventions(id, "block");
+        Finder.blockid = tests[0];
         return Utils.findFirstInRegistry(BuiltInRegistries.BLOCK, tests);
     }
 
     public static class Finder extends SetFinderBuilder<CrystalType> {
 
         private Supplier<Block> blockCrystalFinder;
+        public static ResourceLocation blockid;
 
         public Finder(ResourceLocation id) {
             super(id, CrystalTypeRegistry.INSTANCE);
@@ -135,7 +137,7 @@ public class CrystalType extends RockType {
         public Optional<CrystalType> get() {
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
-                    Block crystal = Preconditions.checkNotNull(blockCrystalFinder.get(), "Manual Finder - failed to find a Crystal Block for {}", id);
+                    Block crystal = Preconditions.checkNotNull(blockCrystalFinder.get(), "Manual Finder - failed to find a Crystal Block with ID:", blockid);
                     var crystalType = new CrystalType(id, crystal);
                     childNames.forEach((key, value) -> {
                         try {

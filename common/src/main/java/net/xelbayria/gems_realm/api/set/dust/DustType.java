@@ -64,13 +64,15 @@ public class DustType extends RockType {
     }
 
     public static Block findDustBlock(ResourceLocation id) {
-        ResourceLocation[] tests = makeKnownIDConventions(id,  "dust");
+        ResourceLocation[] tests = makeKnownIDConventions(id,  "block");
+        Finder.blockId = tests[0];
         return Utils.findFirstInRegistry(BuiltInRegistries.BLOCK, tests);
     }
 
     public static class Finder extends SetFinderBuilder<DustType> {
 
         private Supplier<Block> blockDustFinder;
+        public static ResourceLocation blockId;
 
         public Finder(ResourceLocation id) {
             super(id, DustTypeRegistry.INSTANCE);
@@ -114,7 +116,7 @@ public class DustType extends RockType {
         public Optional<DustType> get() {
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
-                    Block dust = Preconditions.checkNotNull(blockDustFinder.get(), "Manual Finder - failed to find a Dust Block for {}", id);
+                    Block dust = Preconditions.checkNotNull(blockDustFinder.get(), "Manual Finder - failed to find a Dust Block with ID:", blockId);
                     var dustType = new DustType(id, dust);
                     childNames.forEach((key, value) -> {
                         try {

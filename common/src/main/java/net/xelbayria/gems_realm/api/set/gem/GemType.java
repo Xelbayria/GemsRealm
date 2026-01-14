@@ -39,6 +39,7 @@ public class GemType extends RockType {
 
     public static Block findGemBlock(ResourceLocation id) {
         ResourceLocation[] tests = makeKnownIDConventions(id,  "block");
+        Finder.blockId = tests[0];
         return Utils.findFirstInRegistry(BuiltInRegistries.BLOCK, tests);
     }
 
@@ -46,6 +47,7 @@ public class GemType extends RockType {
     public static class Finder extends SetFinderBuilder<GemType> {
 
         private Supplier<Block> blockGemFinder;
+        public static ResourceLocation blockId;
 
         public Finder(ResourceLocation id) {
             super(id, GemTypeRegistry.INSTANCE);
@@ -89,7 +91,7 @@ public class GemType extends RockType {
         public Optional<GemType> get() {
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
-                    Block gem = Preconditions.checkNotNull(blockGemFinder.get(), "Manual Finder - failed to find a Gem Block for {}", id);
+                    Block gem = Preconditions.checkNotNull(blockGemFinder.get(), "Manual Finder - failed to find a Gem Block wtih ID:", blockId);
                     var gemType = new GemType(id, gem);
                     childNames.forEach((key, value) -> {
                         try {
