@@ -193,7 +193,7 @@ dependencies {
     // DUSTTYPE, GEMTYPE, METALTYPE
 //    modRuntimeOnly("curse.maven:the-age-of-ores-crystalcraft-unlimited-java-558675:7400821")
 //    modRuntimeOnly("curse.maven:mo-shiz-mod-62536:5587177")
-    modRuntimeOnly("curse.maven:shadowlands-398372:6774818")
+    modRuntimeOnly("curse.maven:shadowlands-398372:7316530")
 
     // DUSTTYPE, GEMTYPE
 
