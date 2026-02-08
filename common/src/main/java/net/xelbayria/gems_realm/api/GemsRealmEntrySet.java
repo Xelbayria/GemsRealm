@@ -2,7 +2,7 @@ package net.xelbayria.gems_realm.api;
 
 import com.mojang.datafixers.util.Pair;
 import net.mehvahdjukaar.every_compat.api.*;
-import net.mehvahdjukaar.every_compat.misc.ModelConfiguration;
+import net.mehvahdjukaar.every_compat.misc.ExtraModelConfiguration;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
@@ -36,12 +36,12 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
                                 @Nullable BiFunction<T, ResourceManager, PaletteStrategy.PaletteAndAnimation> paletteSupplier,
                                 @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
                                 boolean mergedPalette,  boolean copyTint, Predicate<T> condition,
-                                ModelConfiguration modelConfig
+                                ExtraModelConfiguration extraModelConfig
     ) {
 
         super(type, name, prefix, blockSupplier, baseBlock, baseType, tab, tabMode, lootMode, itemFactory, tileFactory,
-                renderType, paletteSupplier, extraTransform, mergedPalette, copyTint, condition, modelConfig);
-        this.modelConfiguration = modelConfig;
+                renderType, paletteSupplier, extraTransform, mergedPalette, copyTint, condition, extraModelConfig);
+        this.modelConfiguration = extraModelConfig;
     }
 
     public static <T extends BlockType, B extends Block> Builder<T, B> of(Class<T> type, String name, String prefix, Supplier<B> baseBlock, Supplier<T> baseType, Function<T, B> blockSupplier) {
@@ -147,7 +147,7 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
                         this.baseType, this.tab, this.tabMode, this.lootMode, this.itemFactory,
                         this.tileHolder, this.renderType, this.palette, this.extraModelTransform,
                         this.useMergedPalette, this.copyTint,
-                        this.condition, this.modelConfig);
+                        this.condition, this.extraModelConfig);
                 entry.recipeLocations.addAll(this.recipes);
                 entry.tags.putAll(this.tags);
                 entry.textures.addAll(this.textures);
