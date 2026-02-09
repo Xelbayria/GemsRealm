@@ -1,10 +1,10 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
     id "dev.architectury.loom" version "1.11.+" apply false
-//    id "com.matthewprenger.cursegradle" version "1.+"
-//    id "com.modrinth.minotaur" version "2.+"
+    id "com.matthewprenger.cursegradle" version "1.+"
+    id "com.modrinth.minotaur" version "2.+"
     id 'com.gradleup.shadow' version '8.3.6' apply false
-    id "me.modmuss50.mod-publish-plugin" version "1.1.+"
+//    id "me.modmuss50.mod-publish-plugin" version "1.1.+"
 }
 
 architectury {
@@ -79,9 +79,10 @@ allprojects {
 
 subprojects {
     apply plugin: "dev.architectury.loom"
-//    apply plugin: "com.matthewprenger.cursegradle"
-//    apply plugin: "com.modrinth.minotaur"
+    apply plugin: "com.matthewprenger.cursegradle"
+    apply plugin: "com.modrinth.minotaur"
     apply plugin: "com.gradleup.shadow"
+//    apply plugin: "me.modmuss50.mod-publish-plugin"
 
 
     loom {
@@ -117,121 +118,87 @@ subprojects {
         }
     }
 
-
-    // ───────────────────────────────────── Test ──────────────────────────────────────
-
     var env = System.getenv()
     var modLoader = name
 
-    publishMods {
-        dryRun = true
-        def CURSEFORGE_TOKEN = providers.environmentVariable("CURSEFORGE_TOKEN")
-        def MODRINTH_TOKEN = providers.environmentVariable("MODRINTH_TOKEN")
-        var changelogFile = rootProject.file("changelog.md")
-        var changelogText = changelogFile.exists() ? changelogFile.text : ""
+    var changelogFile = rootProject.file("changelog.md")
+    var changelogText = changelogFile.exists() ? changelogFile.text : ""
 
-        file = remapJar.archiveFile
-        type = STABLE
-        changelog = changelogText
-
-        def curseforgeOption = curseforgeOptions {
-            accessToken = CURSEFORGE_TOKEN
-            projectId = curseforge_id
-            changelogType = "markdown"
-            clientRequired = true
-            serverRequired = true
-        }
-
-        // gradle publishCurseforgeFabric
-        curseforge("curseforgeFabric") {
-            from curseforgeOption
-            file project(":fabric")
-            modLoaders.add("fabric")
-            displayName = file.map { it.asFile.name }
-
-            requires(
-                    "fabric-api",
-                    "selene",
-                    "every-compat"
-            )
-            optional(
-                    "create-fabric",
-                    "macaws-bridges",
-                    "macaws-fences-and-walls",
-                    "macaws-windows",
-                    "more-beautiful-torches"
-            )
-
-        }
-        // gradle publishCurseforgeForge
-        curseforge("curseforgeForge") {
-            from curseforgeOption
-            file project(":forge")
-            modLoaders.add("forge")
-            displayName = file.map { it.asFile.name }
-
-            requires(
-                    "selene",
-                    "every-compat"
-            )
-            optional(
-                    "create",
-                    "lapidarist",
-                    "macaws-bridges",
-                    "macaws-fences-and-walls",
-                    "macaws-windows",
-                    "more-beautiful-bookshelves",
-                    "more-beautiful-torches"
-            )
-        }
-
-        def modrinthOption = modrinthOptions {
-            accessToken = MODRINTH_TOKEN
+    if (env.MODRINTH_TOKEN) {
+        modrinth {
             projectId = modrinth_id
-        }
+            uploadFile = tasks.remapJar
+            gameVersions = [minecraft_version]
+            loaders = [modLoader]
+            changelog = changelogText
+            versionNumber = mod_version+'-'+modLoader
 
-        // gradle publishModrinthFabric
-        modrinth("modrinthFabric") {
-            from modrinthOption
-            file project(":fabric")
-            modLoaders.add(modLoader)
-            displayName = file.map { it.asFile.name }
-
-            requires(
-                    "fabric-api",
-                    "moonlight",
-                    "every-compat"
-            )
-            optional(
-                    "create-fabric",
-                    "macaws-bridges",
-                    "macaws-fences-and-walls",
-                    "macaws-windows",
-                    "more-beautiful-torches"
-            )
-        }
-        // gradle publishModrinthForge
-        modrinth("modrinthForge") {
-            from modrinthOption
-            file project(":forge")
-            modLoaders.add(modLoader)
-            displayName = file.map { it.asFile.name }
-
-            requires(
-                    "moonlight",
-                    "every-compat"
-            )
-            optional(
-                    "create",
-                    "lapidarist",
-                    "macaws-bridges",
-                    "macaws-fences-and-walls",
-                    "macaws-windows",
-//                    "more-beautiful-bookshelves",
-                    "more-beautiful-torches"
-            )
+            if (modLoader == "fabric") {
+                dependencies {
+                    required.project "fabric-api"
+                    required.project "moonlight"
+                    required.project "every-compat"
+                }
+            }
+            //!! FORGE
+            else {
+                dependencies {
+                    required.project "moonlight"
+                    required.project "every-compat"
+                }
+            }
         }
     }
+
+    if (env.CURSEFORGE_TOKEN) {
+        curseforge {
+            apiKey = env.CURSEFORGE_TOKEN
+            project {
+                id = curseforge_id
+                changelog = changelogText
+                changelogType = 'markdown'
+                releaseType = 'release'
+                addGameVersion minecraft_version
+                addGameVersion modLoader.capitalize()
+
+                mainArtifact(tasks.remapJar) {
+                    if (modLoader == "fabric") {
+                        displayName = mod_id +"-"+ mod_version + "-fabric"
+                    }
+                }
+
+                if (modLoader == "fabric") {
+                    relations {
+                        requiredDependency("fabric-api")
+                        requiredDependency("selene")
+                        requiredDependency("every-compat")
+                        optionalDependency("library-section")
+                        optionalDependency("create-fabric")
+                        optionalDependency("macaws-bridges")
+                        optionalDependency("macaws-fences-and-walls")
+                        optionalDependency("macaws-windows")
+                        optionalDependency("more-beautiful-torches")
+                    }
+                }
+                //!! FORGE
+                else {
+                    relations {
+                        requiredDependency("selene")
+                        requiredDependency("every-compat")
+                        optionalDependency("library-section")
+                        optionalDependency("create")
+                        optionalDependency("lapidarist")
+                        optionalDependency("macaws-bridges")
+                        optionalDependency("macaws-fences-and-walls")
+                        optionalDependency("macaws-windows")
+                        optionalDependency("more-beautiful-bookshelves")
+                        optionalDependency("more-beautiful-torches")
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 tasks.register('buildAndPublishAll') {
