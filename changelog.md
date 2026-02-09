@@ -22,6 +22,18 @@
 
 </div>
 
+<br>
+
+### UPDATED: 
+- **Gems Realm** (C): 
+  - Fixed some undetected blocktypes with **CrystalCraft Unlimiated Edition**
+  - Updated to use **Every Compat v2.9.16**
+- **Minecraft** (C): Added 2 tags to Nuggets - [#44](https://github.com/Xelbayria/GemsRealm/issues/44)
+
+---
+
+## v2.9.6
+
 ### UPDATED:
 - **Gems Realm** (C): Improved logging
 - **Rechiseled** (C): Disabled for now because it caused the crash. It will take some times to fix the problem.
