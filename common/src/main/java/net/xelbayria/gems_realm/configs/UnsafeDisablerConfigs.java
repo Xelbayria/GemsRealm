@@ -2,8 +2,8 @@ package net.xelbayria.gems_realm.configs;
 
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigBuilder;
-import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigSpec;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigType;
+import net.mehvahdjukaar.moonlight.api.platform.configs.ModConfigHolder;
 import net.xelbayria.gems_realm.GemsRealm;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class UnsafeDisablerConfigs {
     public static Supplier<List<String>> metalTypeList;
     public static Supplier<List<String>> entrySetList;
 
-    public static ConfigSpec CONFIG_SPEC;
+    public static ModConfigHolder CONFIG_SPEC;
 
     public static void init() {}
 
@@ -79,11 +79,9 @@ public class UnsafeDisablerConfigs {
         entrySetList = builder.comment("Exclude EntrySet from the module for All of CrystalType, DustType, GemType, MetalType\n"+entrysetExample).define("blacklist", List.of());
         builder.pop();
 
-        builder.setSynced();
+        CONFIG_SPEC = builder.build();
 
-        CONFIG_SPEC = builder.buildAndRegister();
-
-        CONFIG_SPEC.loadFromFile();
+        CONFIG_SPEC.forceLoad();
 
         // Warning Message
         if (!crystalTypeList.get().isEmpty() || !dustTypeList.get().isEmpty() || !gemTypeList.get().isEmpty()

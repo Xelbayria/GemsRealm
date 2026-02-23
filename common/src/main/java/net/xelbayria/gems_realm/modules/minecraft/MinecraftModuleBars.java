@@ -38,15 +38,15 @@ public class MinecraftModuleBars extends GemsRealmModule {
                 )
                 .requiresChildren(INGOT) //REASON: recipes
                 .addTexture(modRes("block/iron_bars"))
-                .generateBlockModels(
-                        new ResourceLocation("block/iron_bars_post"),
-                        new ResourceLocation("block/iron_bars_post_ends"),
-                        new ResourceLocation("block/iron_bars_cap"),
-                        new ResourceLocation("block/iron_bars_cap_alt"),
-                        new ResourceLocation("block/iron_bars_side"),
-                        new ResourceLocation("block/iron_bars_side_alt")
+                .includeModelsBlock(
+                        ResourceLocation.withDefaultNamespace("block/iron_bars_post"),
+                        ResourceLocation.withDefaultNamespace("block/iron_bars_post_ends"),
+                        ResourceLocation.withDefaultNamespace("block/iron_bars_cap"),
+                        ResourceLocation.withDefaultNamespace("block/iron_bars_cap_alt"),
+                        ResourceLocation.withDefaultNamespace("block/iron_bars_side"),
+                        ResourceLocation.withDefaultNamespace("block/iron_bars_side_alt")
                 )
-                .generateItemModels(new ResourceLocation("minecraft:item/iron_bars"))
+                .includeModelsItem(ResourceLocation.withDefaultNamespace("minecraft:item/iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.DRAGON_IMMUNE, Registries.BLOCK)
                 .setTabKey(building_block)

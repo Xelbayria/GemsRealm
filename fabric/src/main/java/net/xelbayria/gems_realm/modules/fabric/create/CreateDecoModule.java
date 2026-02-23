@@ -1,9 +1,6 @@
 package net.xelbayria.gems_realm.modules.fabric.create;
 
-import com.simibubi.create.content.decoration.palettes.ConnectedGlassPaneBlock;
 import com.simibubi.create.content.decoration.palettes.WindowBlock;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.core.registries.Registries;
@@ -21,8 +18,8 @@ import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT
 //SUPPORT: v2.0.2
 public class CreateDecoModule extends GemsRealmModule {
 
-    public final SimpleEntrySet<MetalType, Block> window;
-    public final SimpleEntrySet<MetalType, Block> window_pane;
+//    public final SimpleEntrySet<MetalType, Block> window;
+//    public final SimpleEntrySet<MetalType, Block> window_pane;
     public final SimpleEntrySet<MetalType, Block> bars_overlay;
     public final SimpleEntrySet<MetalType, Block> mesh_fence;
     public final SimpleEntrySet<MetalType, Block> catwalk;
@@ -43,29 +40,29 @@ public class CreateDecoModule extends GemsRealmModule {
         super(modId, "cd");
         ResourceLocation tab = modRes("");
 
-        window = GemsRealmEntrySet.of(MetalType.class, "window",
-                        getModBlock("iron_window"), () -> VanillaMetalTypes.IRON,
-                        this::makeWindow
-                )
-                .requiresChildren(INGOT) //REASON: recipes
-                .addTexture(modRes("block/blanks_1"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
-                .defaultRecipe()
-                .build();
-        this.addEntry(window);
+//        window = GemsRealmEntrySet.of(MetalType.class, "window",
+//                        getModBlock("iron_window"), () -> VanillaMetalTypes.IRON,
+//                        this::makeWindow
+//                )
+//                .requiresChildren(INGOT) //REASON: recipes
+//                .addTexture(modRes("block/blanks_1"))
+//                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+//                .setTabKey(tab)
+//                .defaultRecipe()
+//                .build();
+//        this.addEntry(window);
 
-        window_pane = GemsRealmEntrySet.of(MetalType.class, "window_pane",
-                        getModBlock("iron_window_pane"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new ConnectedGlassPaneBlock(Utils.copyPropertySafe(Blocks.GLASS_PANE))
-                )
-                .requiresFromMap(window.blocks) //REASON: recipes
-                .addTexture(modRes("block/blanks_2"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
-                .defaultRecipe()
-                .build();
-        this.addEntry(window_pane);
+//        window_pane = GemsRealmEntrySet.of(MetalType.class, "window_pane",
+//                        getModBlock("iron_window_pane"), () -> VanillaMetalTypes.IRON,
+//                        metalType -> new ConnectedGlassPaneBlock(Utils.copyPropertySafe(Blocks.GLASS_PANE))
+//                )
+//                .requiresFromMap(window.blocks) //REASON: recipes
+//                .addTexture(modRes("block/blanks_2"))
+//                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+//                .setTabKey(tab)
+//                .defaultRecipe()
+//                .build();
+//        this.addEntry(window_pane);
 
         bars_overlay = GemsRealmEntrySet.of(MetalType.class, "bars_overlay",
                         getModBlock("iron_bars_overlay"), () -> VanillaMetalTypes.IRON,
@@ -262,11 +259,11 @@ public class CreateDecoModule extends GemsRealmModule {
                 .isSuffocating((s, l, ps) -> false).isViewBlocking((s, l, ps) -> false), false);
     }
 
-    @Override
-    @Environment(EnvType.CLIENT)
-    public void onClientSetup() {
-        super.onClientSetup();
-        CreateClientModule.registerWindowCTBehavior(this, window, window_pane);
-    }
+//    @Override
+//    @Environment(EnvType.CLIENT)
+//    public void onClientSetup() {
+//        super.onClientSetup();
+//        CreateClientModule.registerWindowCTBehavior(this, window, window_pane);
+//    }
 
 }

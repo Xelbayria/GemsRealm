@@ -40,19 +40,19 @@ public class CrystalTypeRegistry extends BlockTypeRegistry<CrystalType> {
 
             /// Ensure the detected block is actually CrystalType
             boolean hasShard = BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "shard"))
+                    ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("block", "shard"))
             );
             boolean hasCluster = BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "cluster"))
+                    ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("block", "cluster"))
             );
             boolean noWoodType = !BuiltInRegistries.BLOCK.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "log"))
+                    ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("block", "log"))
             );
             boolean noMetalType = !BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
+                    ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
             );
             boolean noGemType = !BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("_block", ""))
+                    ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("_block", ""))
             );
 
             // Ensure there is no duplicated CrystalType in the list
@@ -81,11 +81,11 @@ public class CrystalTypeRegistry extends BlockTypeRegistry<CrystalType> {
     }
 
     public CrystalType.Finder addSimpleFinder(String typeId) {
-        return addSimpleFinder(new ResourceLocation(typeId));
+        return addSimpleFinder(ResourceLocation.parse(typeId));
     }
 
     public CrystalType.Finder addSimpleFinder(String namespace, String nameCrystalType) {
-        return addSimpleFinder(new ResourceLocation(namespace, nameCrystalType));
+        return addSimpleFinder(ResourceLocation.fromNamespaceAndPath(namespace, nameCrystalType));
     }
 
     @Override

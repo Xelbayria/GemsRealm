@@ -2,7 +2,7 @@
 
 | **FABRIC**    | STATUS | **COMMON**             | STATUS | **FORGE**                  | STATUS |
 |---------------|:------:|------------------------|:------:|----------------------------|:------:|
-| Create Fabric |   🟩   | Macaw's Mods           |   🟩   | Create                     |   🟩   |
+| Create Fabric |   🟥   | Macaw's Mods           |   🟩   | Create                     |   🟩   |
 |               |        | More Beautiful Torches |   🟩   | Lapidarist                 |   🟩   |
 |               |        | Rechiseled             |   🟩   | More Beautiful Bookshelves |   🟩   |
 |               |        | Chipped                |   🟩   |                            |        |

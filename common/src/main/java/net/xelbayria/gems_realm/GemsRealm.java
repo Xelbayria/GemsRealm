@@ -1,8 +1,6 @@
 package net.xelbayria.gems_realm;
 
 import net.mehvahdjukaar.every_compat.EveryCompat;
-import net.mehvahdjukaar.every_compat.api.CompatModule;
-import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.minecraft.resources.ResourceLocation;
 import net.xelbayria.gems_realm.api.intergration.CompatCrystalType;
@@ -18,9 +16,6 @@ import net.xelbayria.gems_realm.configs.UnsafeDisablerConfigs;
 import net.xelbayria.gems_realm.misc.CompatSpriteHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class GemsRealm extends EveryCompat {
     public static final String MOD_ID = "gemsrealm";
@@ -46,19 +41,7 @@ public class GemsRealm extends EveryCompat {
     }
 
     public static ResourceLocation res(String name) {
-        return new ResourceLocation(MOD_ID, name);
-    }
-
-    @SafeVarargs
-    public static void addMultipleIfLoaded(String modId, Supplier<Function<String, CompatModule>>... moduleFactories) {
-        if (PlatHelper.isModLoaded(modId)) {
-            CompatModule module;
-            for (var moduleFactory : moduleFactories) {
-                module = moduleFactory.get().apply(modId);
-                addModule(module);
-            }
-        }
-
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
     }
 
 }

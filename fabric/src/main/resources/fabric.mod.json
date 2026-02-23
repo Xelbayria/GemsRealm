@@ -1,18 +1,20 @@
 {
   "schemaVersion": 1,
-  "id": "gemsrealm",
-  "version": "${version}",
-  "name": "Gems Realm",
-  "description": "Ultimate Compat Mod",
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
   "authors": [
-    "Xel'Bayria"
+    "${mod_authors}"
   ],
   "contact": {
-    "sources": "https://github.com/Xelbayria/GemsRealm"
+    "homepage": "${mod_homepage}",
+    "sources": "${mod_github}"
   },
-  "license": "Supplementaries Team License v1.1",
+  "license": "${mod_license}",
   "icon": "logo.png",
   "environment": "*",
+  "mixins": [],
   "entrypoints": {
     "main": [
       "net.xelbayria.gems_realm.fabric.GemsRealmFabric"
@@ -23,8 +25,9 @@
   },
   "depends": {
     "fabric": "*",
-    "minecraft": ">=1.20",
-    "moonlight": ">=1.20-2.16.0",
-    "everycomp": ">=1.20-2.9.16"
+    "minecraft": ">=${minecraft_min_version} <${minecraft_max_version}",
+    "moonlight": ">=${moonlight_version_range}",
+    "everycomp": ">=${everycomp_version_range}"
+
   }
 }

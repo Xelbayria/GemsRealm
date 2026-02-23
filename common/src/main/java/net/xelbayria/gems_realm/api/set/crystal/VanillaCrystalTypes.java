@@ -6,6 +6,6 @@ import net.minecraft.world.level.block.Blocks;
 public class VanillaCrystalTypes {
 
     public static final CrystalType AMETHYST = CrystalTypeRegistry.INSTANCE.register(
-            new CrystalType(new ResourceLocation("amethyst"), Blocks.AMETHYST_BLOCK)
+            new CrystalType(ResourceLocation.withDefaultNamespace("amethyst"), Blocks.AMETHYST_BLOCK)
     );
 }

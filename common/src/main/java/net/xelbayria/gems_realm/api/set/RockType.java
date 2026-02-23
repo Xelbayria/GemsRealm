@@ -100,19 +100,19 @@ public abstract class RockType extends BlockType{
 
         ResourceLocation[] targets = {
                 // DEFAULT
-                new ResourceLocation(id.getNamespace(), id.getPath() + _infix + _suffix),
-                new ResourceLocation(id.getNamespace(), prefix_ + id.getPath() + _suffix),
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), id.getPath() + _infix + _suffix),
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), prefix_ + id.getPath() + _suffix),
 
                 // Mo' Shiz: Include children: ingot, gem
-                new ResourceLocation(id.getNamespace(), "gem/"+ id.getPath() + _suffix),
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "gem/"+ id.getPath() + _suffix),
                 // Mo' Shiz: Include children: block, raw_block
-                new ResourceLocation(id.getNamespace(), "resources/"+ prefix_ + id.getPath() + _suffix),
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "resources/"+ prefix_ + id.getPath() + _suffix),
                 // Mo' Shiz: Include children: stairs, slab...
-                new ResourceLocation(id.getNamespace(), suffix +"/"+ id.getPath() + _suffix),
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), suffix +"/"+ id.getPath() + _suffix),
                 // Mo' Shiz: Include children with no underscore
-                new ResourceLocation(id.getNamespace(), suffix +"/"+ id.getPath() + suffix),
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), suffix +"/"+ id.getPath() + suffix),
                 // Mo' Shiz: Include children with no suffix
-                new ResourceLocation(id.getNamespace(), suffix +"/"+ id.getPath())
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), suffix +"/"+ id.getPath())
         };
 
         V found = null;
@@ -139,8 +139,8 @@ public abstract class RockType extends BlockType{
             String suffixed = (keyword.isEmpty()) ? "" : "_" + keyword;
             String prefixed = (keyword.isEmpty()) ? "" : keyword + "_";
 
-            resources.add(new ResourceLocation(namespace, path + suffixed));
-            resources.add(new ResourceLocation(namespace, prefixed + path));
+            resources.add(ResourceLocation.fromNamespaceAndPath(namespace, path + suffixed));
+            resources.add(ResourceLocation.fromNamespaceAndPath(namespace, prefixed + path));
         }
         return resources.toArray(new ResourceLocation[0]);
     }

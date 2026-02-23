@@ -11,8 +11,8 @@ import net.xelbayria.gems_realm.modules.more_beautiful_torches.MoreBeautifulTorc
 
 import java.util.Set;
 
-import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
-import static net.xelbayria.gems_realm.GemsRealm.addMultipleIfLoaded;
+import static net.mehvahdjukaar.every_compat.api.EveryCompatAPI.addIfLoaded;
+import static net.mehvahdjukaar.every_compat.api.EveryCompatAPI.addMultipleIfLoaded;
 
 public class GemsRealmCommon {
 
@@ -31,19 +31,19 @@ public class GemsRealmCommon {
 
 //!! =================================================== Add Modules ================================================ \\
 
-        if (isModLoadedAndRequireNUGGET()) addIfLoaded("minecraft", () -> MinecraftModuleNugget::new);
-        if (isModLoadedAndRequireBARS()) addIfLoaded("minecraft", () -> MinecraftModuleBars::new);
+        if (isModLoadedAndRequireNUGGET()) addIfLoaded("minecraft", () -> MinecraftModuleNugget.class);
+        if (isModLoadedAndRequireBARS()) addIfLoaded("minecraft", () -> MinecraftModuleBars.class);
 
-        addMultipleIfLoaded("chipped", () -> ChippedModuleC::new, () -> ChippedModuleD::new, () -> ChippedModuleM::new, () -> ChippedModuleRBM::new, () -> ChippedModuleG::new);
-        addMultipleIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorchesModuleC::new, () -> MoreBeautifulTorchesModuleD::new, () -> MoreBeautifulTorchesModuleG::new, () -> MoreBeautifulTorchesModuleM::new);
-//        addMultipleIfLoaded("rechiseled", () -> RechiseledModuleC::new, () -> RechiseledModuleD::new, () -> RechiseledModuleG::new, () -> RechiseledModuleM::new);
-//        addIfLoaded("twigs", () -> TwigsModule::new);
-//        addIfLoaded("bbb", () -> BuildingButBetterModule::new);
-//        addIfLoaded("blockus", () -> BlockusModule::new);
-//        addIfLoaded("stoneworks", () -> StoneworksModule::new);
-//        addIfLoaded("quark", () -> QuarkModule::new);
-//        addIfLoaded("quark", () -> QuarkMudModule::new);
-//        addIfLoaded("betterarcheology", () -> BetterArcheologyModule::new);
+        addMultipleIfLoaded("chipped", () -> ChippedModuleC.class, () -> ChippedModuleD.class, () -> ChippedModuleM.class, () -> ChippedModuleRBM.class, () -> ChippedModuleG.class);
+        addMultipleIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorchesModuleC.class, () -> MoreBeautifulTorchesModuleD.class, () -> MoreBeautifulTorchesModuleG.class, () -> MoreBeautifulTorchesModuleM.class);
+//        addMultipleIfLoaded("rechiseled", () -> RechiseledModuleC.class, () -> RechiseledModuleD.class, () -> RechiseledModuleG.class, () -> RechiseledModuleM.class);
+//        addIfLoaded("twigs", () -> TwigsModule.class);
+//        addIfLoaded("bbb", () -> BuildingButBetterModule.class);
+//        addIfLoaded("blockus", () -> BlockusModule.class);
+//        addIfLoaded("stoneworks", () -> StoneworksModule.class);
+//        addIfLoaded("quark", () -> QuarkModule.class);
+//        addIfLoaded("quark", () -> QuarkMudModule.class);
+//        addIfLoaded("betterarcheology", () -> BetterArcheologyModule.class);
 
 //!! ====================================================== OTHERS ================================================== \\
 

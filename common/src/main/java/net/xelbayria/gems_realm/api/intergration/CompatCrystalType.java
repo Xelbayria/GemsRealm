@@ -44,7 +44,7 @@ public class CompatCrystalType extends CompatBlockType {
 
         // Excessive Building - REASON: Undetected-Children
         crystalReg.addSimpleFinder("excessive_building:prismarine_crystal")
-                .childItem(SHARD, new ResourceLocation("minecraft:prismarine_crystals"));
+                .childItem(SHARD, ResourceLocation.parse("minecraft:prismarine_crystals"));
 
         // Divine RPG - REASON: Undetected-Children
         crystalReg.addSimpleFinder("divinerpg", "olivine")
@@ -59,7 +59,7 @@ public class CompatCrystalType extends CompatBlockType {
 
         // More Geodes Reforge
         crystalReg.addSimpleFinder("geodes:echo")
-                .childItem(SHARD, new ResourceLocation("minecraft:echo_shard")) //REASON: Vanilla-Children
+                .childItem(SHARD, ResourceLocation.parse("minecraft:echo_shard")) //REASON: Vanilla-Children
                 .childBlock(BUDDING, "budding_echo_block"); //REASON: Undetected-Children
         crystalReg.addSimpleFinder("geodes:lapis_crystal") //REASON: Undetected-Children
                 .childBlock(CLUSTER, "lapis_cluster"); //REASON: 2-Words, Undetected-Children

@@ -1,15 +1,15 @@
 package net.xelbayria.gems_realm.configs;
 
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigBuilder;
-import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigSpec;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigType;
+import net.mehvahdjukaar.moonlight.api.platform.configs.ModConfigHolder;
 import net.xelbayria.gems_realm.GemsRealm;
 
 import java.util.function.Supplier;
 
 public class GRConfigs {
 
-    public static final ConfigSpec SPEC;
+    public static final ModConfigHolder SPEC;
 
     public static final Supplier<Boolean> TAB_ENABLED;
     public static final Supplier<Boolean> TAB_ITEM_SEARCH_ENABLED;
@@ -26,9 +26,9 @@ public class GRConfigs {
 
         builder.pop();
 
-        SPEC = builder.buildAndRegister();
+        SPEC = builder.build();
 
-        SPEC.loadFromFile(); //manually load early
+        SPEC.forceLoad(); //manually load early
     }
 
     public static void init() {

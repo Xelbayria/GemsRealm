@@ -61,7 +61,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 )
                 .requiresChildren(INGOT) //REASON: recipes
                 .addTexture(modRes("item/iron_sheet"))
-                .addTag(new ResourceLocation("forge:plates"), Registries.ITEM)
+                .addTag(UtilityTag.platformTag("plates"), Registries.ITEM)
                 //TAG: forge:plates/<type>
                 .setTabKey(tab)
                 //RECIPES: Manully created below
@@ -297,8 +297,8 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 //TEXTURES: orante_iron_window
                 .addTexture(modRes("block/palettes/ornate_iron_window_pane_top"))
                 .addTag(BlockTags.IMPERMEABLE, Registries.BLOCK)
-                .addTag(new ResourceLocation("forge:glass_panes"), Registries.BLOCK)
-                .addTag(new ResourceLocation("forge:glass_panes"), Registries.ITEM)
+                .addTag(UtilityTag.platformTag("glass_panes"), Registries.BLOCK)
+                .addTag(UtilityTag.platformTag("glass_panes"), Registries.ITEM)
                 .setTabKey(paletteTab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.TRANSLUCENT)
@@ -355,10 +355,10 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
             }
 
             ladder.blocks.forEach((metalType, block) -> {
-                ResourceLocation ladderRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "ladder_from_ingots"));
-                ResourceLocation scaffoldingRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "scaffolding_from_ingots"));
-                ResourceLocation shinglesRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "shingles_from_ingots"));
-                ResourceLocation tilesRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "tiles_from_ingots"));
+                ResourceLocation ladderRecipeId = ResourceLocation.parse(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "ladder_from_ingots"));
+                ResourceLocation scaffoldingRecipeId = ResourceLocation.parse(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "scaffolding_from_ingots"));
+                ResourceLocation shinglesRecipeId = ResourceLocation.parse(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "shingles_from_ingots"));
+                ResourceLocation tilesRecipeId = ResourceLocation.parse(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "tiles_from_ingots"));
 //                ResourceLocation table_clothRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_table_cloth_from_ingots"));
 
                 grabTagAndCreateRecipe(ladderRecipePath, ladderRecipeId, "copper", ladder.blocks.get(metalType), metalType, manager, sink);
@@ -377,8 +377,8 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
             String pathLog = "item_application/copper_casing_from_log";
             String pathWood = "item_application/copper_casing_from_wood";
             casing.blocks.forEach((metalType, block) -> {
-                ResourceLocation newResLocLog = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "item_application/", "casing_from_log"));
-                ResourceLocation newResLocWood = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "item_application/", "casing_from_wood"));
+                ResourceLocation newResLocLog = ResourceLocation.parse(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "item_application/", "casing_from_log"));
+                ResourceLocation newResLocWood = ResourceLocation.parse(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "item_application/", "casing_from_wood"));
 
                 grabTagAndCreateRecipe(pathLog, newResLocLog, "copper", block, metalType, manager, sink);
                 grabTagAndCreateRecipe(pathWood, newResLocWood, "copper", block, metalType, manager, sink);
@@ -387,7 +387,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
 //            String tagIdSheet = "forge:plates/";
             String pathIngot = "pressing/iron_ingot";
             sheet.items.forEach((metalType, item) -> {
-                ResourceLocation newResLocIngot = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "pressing/", "ingot"));
+                ResourceLocation newResLocIngot = ResourceLocation.parse(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "pressing/", "ingot"));
 
                 grabTagAndCreateRecipe(pathIngot, newResLocIngot, "iron", item, metalType, manager, sink);
 

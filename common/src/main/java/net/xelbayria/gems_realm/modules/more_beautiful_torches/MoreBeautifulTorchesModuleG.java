@@ -34,15 +34,15 @@ public class MoreBeautifulTorchesModuleG extends GemsRealmModule {
 
         wall_torch = GemsRealmEntrySet.of(GemType.class, "block_wall_torch",
                         getModBlock("diamond_block_wall_torch"), () -> VanillaGemTypes.DIAMOND,
-                        gemType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.WALL_TORCH)
-                                .noCollission()
-                                .instabreak()
-                                .lightLevel(l -> 14),
-                                ParticleTypes.FLAME
+                        gemType -> new WallTorchBlock(ParticleTypes.FLAME,
+                                Utils.copyPropertySafe(Blocks.WALL_TORCH)
+                                                        .noCollission()
+                                                        .instabreak()
+                                                        .lightLevel(l -> 14)
                         )
                 )
                 .addTextureM(modRes("block/diamond_block_torch"), GemsRealm.res("block/common_torch_m"))
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
                 .noItem()
                 .setRenderType(RenderLayer.CUTOUT)
@@ -51,15 +51,15 @@ public class MoreBeautifulTorchesModuleG extends GemsRealmModule {
 
         torch = GemsRealmEntrySet.of(GemType.class, "block_torch",
                         getModBlock("diamond_block_torch"), () -> VanillaGemTypes.DIAMOND,
-                        gemType -> new TorchBlock(Utils.copyPropertySafe(Blocks.TORCH)
-                                .noCollission()
-                                .instabreak()
-                                .lightLevel(l -> 14),
-                                ParticleTypes.FLAME
+                        gemType -> new TorchBlock(ParticleTypes.FLAME,
+                                Utils.copyPropertySafe(Blocks.TORCH)
+                                                        .noCollission()
+                                                        .instabreak()
+                                                        .lightLevel(l -> 14)
                         )
                 )
                 //TEXTURES: wall_torch
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addCustomItem((gemType, b, p) -> new StandingAndWallBlockItem(b, wall_torch.blocks.get(gemType), p, Direction.DOWN))
@@ -69,10 +69,10 @@ public class MoreBeautifulTorchesModuleG extends GemsRealmModule {
 
         soul_wall_torch = GemsRealmEntrySet.of(GemType.class, "block_soul_wall_torch",
                         getModBlock("diamond_block_soul_wall_torch"), () -> VanillaGemTypes.DIAMOND,
-                        gemType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
+                        gemType -> new WallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH))
                 )
                 .addTextureM(modRes("block/diamond_block_soul_torch"), GemsRealm.res("block/common_torch_m"))
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
                 .noItem()
                 .setRenderType(RenderLayer.CUTOUT)
@@ -81,10 +81,10 @@ public class MoreBeautifulTorchesModuleG extends GemsRealmModule {
 
         soul_torch = GemsRealmEntrySet.of(GemType.class, "block_soul_torch",
                         getModBlock("diamond_block_soul_torch"), () -> VanillaGemTypes.DIAMOND,
-                        gemType -> new TorchBlock(Utils.copyPropertySafe(Blocks.SOUL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
+                        gemType -> new TorchBlock(ParticleTypes.SOUL_FIRE_FLAME, Utils.copyPropertySafe(Blocks.SOUL_TORCH))
                 )
                 //TEXTURES: soul_wall_torch
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addCustomItem((gemType, b, p) -> new StandingAndWallBlockItem(b, soul_wall_torch.blocks.get(gemType), p, Direction.DOWN))

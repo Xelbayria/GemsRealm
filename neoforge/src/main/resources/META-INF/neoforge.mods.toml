@@ -1,0 +1,47 @@
+
+modLoader = "javafml"
+loaderVersion = "${loader_version_range}"
+
+license = "${mod_license}"
+issueTrackerURL = "${mod_github}/issues"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
+logoFile = "icon.png"
+authors = "${mod_authors}"
+credits = "${mod_credits}"
+description = '''${mod_description}'''
+modUrl = "${mod_homepage}"
+itemIcon="${mod_id}:all_gems" #catalogue icon
+
+[[dependencies.${mod_id}]] #optional
+    modId="neoforge" #mandatory
+    mandatory=true #mandatory
+    versionRange = "${neoforge_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId = "minecraft"
+    type = "required"
+    versionRange = "[${minecraft_min_version},${minecraft_max_version})"
+    ordering = "NONE"
+    side = "CLIENT"
+
+[[dependencies.${mod_id}]]
+    modId = "moonlight"
+    type = "required"
+    referralUrl = "https://www.curseforge.com/minecraft/mc-mods/selene"
+    versionRange = "[${moonlight_version_range},]"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.${mod_id}]]
+    modId = "everycomp"
+    type = "required"
+    referralUrl = "https://www.curseforge.com/minecraft/mc-mods/selene"
+    versionRange="[${everycomp_version_range},]"
+    ordering = "BEFORE"
+    side = "BOTH"

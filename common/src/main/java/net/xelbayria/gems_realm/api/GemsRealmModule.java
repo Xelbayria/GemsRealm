@@ -1,6 +1,6 @@
 package net.xelbayria.gems_realm.api;
 
-import net.mehvahdjukaar.every_compat.api.SimpleModule;
+import net.mehvahdjukaar.every_compat.modules.EveryCompatModule;
 import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
@@ -22,7 +22,7 @@ import net.xelbayria.gems_realm.misc.HardcodedMetalType;
 import java.util.function.Consumer;
 
 
-public class GemsRealmModule extends SimpleModule {
+public class GemsRealmModule extends EveryCompatModule {
 
     public GemsRealmModule(String modId, String shortId) {
         super(modId, shortId, GemsRealm.MOD_ID);
@@ -30,9 +30,9 @@ public class GemsRealmModule extends SimpleModule {
 
 
     @Override
-    @SuppressWarnings("DataFlowIssue")
+    @SuppressWarnings({"DataFlowIssue", "unchecked"})
     public ResourceKey<CreativeModeTab> getDedicatedTab() {
-        return GRRegistry.MOD_TAB.getKey();
+        return (ResourceKey<CreativeModeTab>) GRRegistry.MOD_TAB.getKey();
     }
 
     @Override

@@ -73,7 +73,7 @@ public class CreateClientModule {
             String topTexture = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), metalType.getTypeName()+"/", "roof_top");
             String topConnectedTexture = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), metalType.getTypeName()+"/", "shingles_top_connected");
 
-            CTSpriteShiftEntry roofShift = getCT(AllCTTypes.ROOF, new ResourceLocation(topTexture), new ResourceLocation(topConnectedTexture));
+            CTSpriteShiftEntry roofShift = getCT(AllCTTypes.ROOF, ResourceLocation.parse(topTexture), ResourceLocation.parse(topConnectedTexture));
 
             CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(block),
                     model -> new CTModel(model, new RoofBlockCTBehaviour(roofShift)));
@@ -86,7 +86,7 @@ public class CreateClientModule {
             String topTexture = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), metalType.getTypeName()+"/", "roof_top");
             String topConnectedTexture = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), metalType.getTypeName()+"/", "tiles_top_connected");
 
-            var roofShift = getCT(AllCTTypes.ROOF, new ResourceLocation(topTexture), new ResourceLocation(topConnectedTexture));
+            var roofShift = getCT(AllCTTypes.ROOF, ResourceLocation.parse(topTexture), ResourceLocation.parse(topConnectedTexture));
 
             CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(block),
                     model -> new CTModel(model, new RoofBlockCTBehaviour(roofShift)));
@@ -94,16 +94,16 @@ public class CreateClientModule {
     }
 
     private static CTSpriteShiftEntry omni(String blockTexture, String connectedTexture) {
-        return getCT(AllCTTypes.OMNIDIRECTIONAL, new ResourceLocation(blockTexture), new ResourceLocation(connectedTexture));
+        return getCT(AllCTTypes.OMNIDIRECTIONAL, ResourceLocation.parse(blockTexture), ResourceLocation.parse(connectedTexture));
     }
 
 
     private static CTSpriteShiftEntry horizontal(String blockTexture, String connectedTexture) {
-        return getCT(AllCTTypes.HORIZONTAL, new ResourceLocation(blockTexture), new ResourceLocation(connectedTexture));
+        return getCT(AllCTTypes.HORIZONTAL, ResourceLocation.parse(blockTexture), ResourceLocation.parse(connectedTexture));
     }
 
     private static CTSpriteShiftEntry vertical(String blockTexture, String connectedTexture) {
-        return getCT(AllCTTypes.VERTICAL, new ResourceLocation(blockTexture), new ResourceLocation(connectedTexture));
+        return getCT(AllCTTypes.VERTICAL, ResourceLocation.parse(blockTexture), ResourceLocation.parse(connectedTexture));
     }
 
 }

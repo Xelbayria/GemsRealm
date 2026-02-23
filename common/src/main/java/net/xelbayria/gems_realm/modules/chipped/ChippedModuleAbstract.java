@@ -18,7 +18,7 @@ import net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys;
 
 import static net.xelbayria.gems_realm.misc.HardcodedBlockType.isKnownVanillaBlockType;
 
-//SUPPORT: v3.0.7
+//SUPPORT: v4.0.2+
 public class ChippedModuleAbstract extends GemsRealmModule {
 
     public final ResourceLocation tab = modRes("main");

@@ -17,12 +17,12 @@ publishing {
 
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:$fabric_loader_version"
-    modApi "net.fabricmc.fabric-api:fabric-api:$fabric_api_version"
+    modApi "net.fabricmc.fabric-api:fabric-api:$fabric_api_version+$minecraft_version"
 
     annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
-    String path = System.getenv('REPOS20_1')
+    String path = System.getenv('REPOS21_1')
 
     //- LOCAL
     if (enable_moonlight_test.toBoolean()) {
@@ -30,9 +30,7 @@ dependencies {
     }
     //+ MAVEN
     else {
-        modApi("net.mehvahdjukaar:moonlight:$moonlight_mavenVersion"){
-            transitive = false
-        }
+        modApi("net.mehvahdjukaar:moonlight:$moonlight_version") { transitive = false }
     }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
@@ -41,9 +39,7 @@ dependencies {
         modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-$everycomp_testVersion-fabric.jar"))
     }  else {
         //+ MAVEN
-        modApi("net.mehvahdjukaar:everycomp:$everycomp_mavenVersion") {
-            transitive = false
-        }
+        modApi("net.mehvahdjukaar:everycomp:$everycomp_version") { transitive = false }
     }
 
 //!! ================================================= DEPENDENCIES ================================================= \\
@@ -76,6 +72,6 @@ dependencies {
 //    modCompileOnly("curse.maven:stoneworks-852663:4611947")
 
         //+ OTHER MAVENs
-    modCompileOnly("earth.terrarium.chipped:chipped-fabric-$minecraft_version:3.0.7") //INCLUDED: Athena, Resourceful-Lib, REQUIRED: Bytecodecs, ConnectedTexturesMod (CTM), Fabric-API
+    modCompileOnly("earth.terrarium.chipped:chipped-fabric-$minecraft_version:4.0.2") //INCLUDED: Athena, Resourceful-Lib, REQUIRED: Bytecodecs, ConnectedTexturesMod (CTM), Fabric-API
     modCompileOnly("com.simibubi.create:create-fabric:$create_fabric_version") { transitive = false }  // Registrate, Flywheel, Ponder, Forge-Config-Api-Port, Milk-Lib
 }

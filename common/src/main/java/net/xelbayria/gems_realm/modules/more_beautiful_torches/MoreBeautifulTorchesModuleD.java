@@ -34,15 +34,15 @@ public class MoreBeautifulTorchesModuleD extends GemsRealmModule {
 
         wall_torch = GemsRealmEntrySet.of(DustType.class, "block_wall_torch",
                         getModBlock("redstone_block_wall_torch"), () -> VanillaDustTypes.REDSTONE,
-                        dustType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.WALL_TORCH)
-                                .noCollission()
-                                .instabreak()
-                                .lightLevel(l -> 14),
-                                ParticleTypes.FLAME
+                        dustType -> new WallTorchBlock(ParticleTypes.FLAME,
+                                Utils.copyPropertySafe(Blocks.WALL_TORCH)
+                                                        .noCollission()
+                                                        .instabreak()
+                                                        .lightLevel(l -> 14)
                         )
                 )
                 .addTextureM(modRes("block/redstone_block_torch"), GemsRealm.res("block/common_torch_m"))
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
                 .noItem()
                 .setRenderType(RenderLayer.CUTOUT)
@@ -51,15 +51,15 @@ public class MoreBeautifulTorchesModuleD extends GemsRealmModule {
 
         torch = GemsRealmEntrySet.of(DustType.class, "block_torch",
                         getModBlock("redstone_block_torch"), () -> VanillaDustTypes.REDSTONE,
-                        dustType -> new TorchBlock(Utils.copyPropertySafe(Blocks.TORCH)
-                                .noCollission()
-                                .instabreak()
-                                .lightLevel(l -> 14),
-                                ParticleTypes.FLAME
+                        dustType -> new TorchBlock(ParticleTypes.FLAME,
+                                Utils.copyPropertySafe(Blocks.TORCH)
+                                                        .noCollission()
+                                                        .instabreak()
+                                                        .lightLevel(l -> 14)
                         )
                 )
                 //TEXTURES: wall_torch
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addCustomItem((dustType, b, p) -> new StandingAndWallBlockItem(b, wall_torch.blocks.get(dustType), p, Direction.DOWN))
@@ -69,10 +69,10 @@ public class MoreBeautifulTorchesModuleD extends GemsRealmModule {
 
         soul_wall_torch = GemsRealmEntrySet.of(DustType.class, "block_soul_wall_torch",
                         getModBlock("redstone_block_soul_wall_torch"), () -> VanillaDustTypes.REDSTONE,
-                        dustType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
+                        dustType -> new WallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH))
                 )
                 .addTextureM(modRes("block/redstone_block_soul_torch"), GemsRealm.res("block/common_torch_m"))
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
                 .noItem()
                 .setRenderType(RenderLayer.CUTOUT)
@@ -81,10 +81,10 @@ public class MoreBeautifulTorchesModuleD extends GemsRealmModule {
 
         soul_torch = GemsRealmEntrySet.of(DustType.class, "block_soul_torch",
                         getModBlock("redstone_block_soul_torch"), () -> VanillaDustTypes.REDSTONE,
-                        dustType -> new TorchBlock(Utils.copyPropertySafe(Blocks.SOUL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
+                        dustType -> new TorchBlock(ParticleTypes.SOUL_FIRE_FLAME, Utils.copyPropertySafe(Blocks.SOUL_TORCH))
                 )
                 //TEXTURES: soul_wall_torch
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addCustomItem((dustType, b, p) -> new StandingAndWallBlockItem(b, soul_wall_torch.blocks.get(dustType), p, Direction.DOWN))

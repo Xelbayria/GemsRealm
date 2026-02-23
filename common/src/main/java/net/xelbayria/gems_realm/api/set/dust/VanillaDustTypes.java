@@ -6,6 +6,6 @@ import net.minecraft.world.level.block.Blocks;
 public class VanillaDustTypes {
 
     public static final DustType REDSTONE = DustTypeRegistry.INSTANCE.register(
-            new DustType(new ResourceLocation("redstone"), Blocks.REDSTONE_BLOCK)
+            new DustType(ResourceLocation.withDefaultNamespace("redstone"), Blocks.REDSTONE_BLOCK)
     );
 }

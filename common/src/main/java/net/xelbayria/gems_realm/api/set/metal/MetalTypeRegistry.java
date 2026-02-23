@@ -5,7 +5,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
-import java.util.Objects;
 import java.util.Optional;
 
 import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_METALTYPES;
@@ -45,7 +44,7 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
 
                 /// Ensure the detected block is actually MetalType
                 boolean hasIngot = BuiltInRegistries.ITEM.containsKey(
-                        new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
+                        ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
                 );
 
                 if (block.isPresent() && hasIngot) {
@@ -66,7 +65,7 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
 
                 /// Ensure the detected block is actually MetalType
                 boolean hasIngot = BuiltInRegistries.ITEM.containsKey(
-                        new ResourceLocation(baseRes.getNamespace(), blockPath
+                        ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath
                                 .replace("block", "ingot")
                                 .replace("resources", "gem")
                         )
@@ -89,13 +88,13 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
 
             /// Ensure the detected block is actually MetalType
             boolean hasIngot = BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
+                    ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
             );
             boolean noWoodType = !BuiltInRegistries.BLOCK.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "log"))
+                    ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("block", "log"))
             );
             boolean noGemType = !BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("_block", ""))
+                    ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("_block", ""))
             );
 
             // Ensure there is no duplicated MetalType in the list
@@ -123,11 +122,11 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
     }
 
     public MetalType.Finder addSimpleFinder(String typeId) {
-        return addSimpleFinder(new ResourceLocation(typeId));
+        return addSimpleFinder(ResourceLocation.parse(typeId));
     }
 
     public MetalType.Finder addSimpleFinder(String namespace, String nameMetalType) {
-        return addSimpleFinder(new ResourceLocation(namespace, nameMetalType));
+        return addSimpleFinder(ResourceLocation.fromNamespaceAndPath(namespace, nameMetalType));
     }
 
     @Override

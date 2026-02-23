@@ -36,9 +36,8 @@ public class MinecraftModuleNugget extends GemsRealmModule {
                 )
                 .requiresChildren(INGOT) //REASON: recipes, textures
                 .addTexture(modRes("item/iron_nugget"), MetalPaletteStrategies.INGOT_STANDARD)
-                .generateItemModels(new ResourceLocation("item/iron_nugget"))
-                //TODO: Update EC to v2.9.16 and change platformTag
-                .addTag(UtilityTag.platformTag("nuggets", "nuggets"), Registries.ITEM)
+                .generateItemModels(ResourceLocation.withDefaultNamespace("item/iron_nugget"))
+                .addTag(UtilityTag.platformTag("nuggets"), Registries.ITEM)
                 .setTabKey(ingredients)
                 .defaultRecipe()
                 .build();

@@ -5,12 +5,12 @@ import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.xelbayria.gems_realm.GemsRealmClient;
 import net.xelbayria.gems_realm.GemsRealmCommon;
-import net.xelbayria.gems_realm.modules.fabric.create.CreateModule;
 import net.xelbayria.gems_realm.modules.fabric.macaws.MacawBridgesModule;
 import net.xelbayria.gems_realm.modules.fabric.macaws.MacawFencesModule;
 import net.xelbayria.gems_realm.modules.fabric.macaws.MacawWindowsModule;
 
-import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
+import static net.mehvahdjukaar.every_compat.api.EveryCompatAPI.addIfLoaded;
+
 
 public class GemsRealmFabric extends GemsRealmCommon implements ModInitializer {
 
@@ -19,7 +19,8 @@ public class GemsRealmFabric extends GemsRealmCommon implements ModInitializer {
         this.initialize();
 
         if (PlatHelper.getPhysicalSide().isClient()) {
-            ItemTooltipCallback.EVENT.register(GemsRealmClient::onItemTooltip);
+            ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipFlag, list) ->
+                    GemsRealmClient.onItemTooltip(itemStack, tooltipFlag, list));
         }
     }
 
@@ -30,12 +31,12 @@ public class GemsRealmFabric extends GemsRealmCommon implements ModInitializer {
 //!! =================================================== Add Modules ================================================ \\
 
         // Macaw's
-        addIfLoaded("mcwbridges", () -> MacawBridgesModule::new);
-        addIfLoaded("mcwfences", () -> MacawFencesModule::new);
-        addIfLoaded("mcwwindows", () -> MacawWindowsModule::new);
+        addIfLoaded("mcwbridges", () -> MacawBridgesModule.class);
+        addIfLoaded("mcwfences", () -> MacawFencesModule.class);
+        addIfLoaded("mcwwindows", () -> MacawWindowsModule.class);
 
         // General
-        addIfLoaded("create", () -> CreateModule::new);
+//        addIfLoaded("create", () -> CreateModule.class); //!! NOT AVAILABLE YET
 
 //!! ====================================================== OTHERS ================================================== \\
 

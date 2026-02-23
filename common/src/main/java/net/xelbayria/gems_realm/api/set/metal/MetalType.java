@@ -65,9 +65,9 @@ public class MetalType extends RockType {
 
             ResourceLocation[] targets = { //!! CHECK FOR GEM in TFC
                     // TFC & AFC: Include children of metal_type: block
-                    new ResourceLocation(id.getNamespace(), "metal/" + prefix + withoutUnderscore +"/"+ id.getPath()),
+                    ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "metal/" + prefix + withoutUnderscore +"/"+ id.getPath()),
                     // TFC & AFC: Include children of metal_type: trapdoor, lamp, bars, anvil, ingot, block
-                    new ResourceLocation(id.getNamespace(), "metal/"+ prefixOrInfix +"/"+ id.getPath() + suffix),
+                    ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "metal/"+ prefixOrInfix +"/"+ id.getPath() + suffix),
             };
             V found = null;
             for (var r : targets) {

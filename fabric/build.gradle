@@ -1,5 +1,5 @@
 plugins {
-    id 'com.gradleup.shadow'
+    id "com.gradleup.shadow"
 }
 
 architectury {
@@ -11,7 +11,6 @@ loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
 }
 
-
 configurations {
     common
     shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
@@ -21,11 +20,8 @@ configurations {
 }
 
 processResources {
-    inputs.property "version", project.version
-    inputs.property "mod_id", rootProject.mod_id
-
     filesMatching("fabric.mod.json") {
-        expand "version": project.version, "mod_id": rootProject.mod_id
+        expand rootProject.ext.replaceProperties + [project: project]
     }
 }
 
@@ -69,21 +65,9 @@ publishing {
     }
 }
 
-repositories {
-    maven { url = 'https://maven.fabricmc.net/' }
-    maven { url = "https://maven.terraformersmc.com/releases" } // Mod Menu
-    maven { url  = 'https://raw.githubusercontent.com/moddingplayground/maven/main/' }
-    maven { // Reach Entity Attributes
-        url = "https://maven.jamieswhiteshirt.com/libs-release"
-        content { includeGroup("com.jamieswhiteshirt") }
-    }
-    maven { url = "https://mvn.devos.one/releases" } // Porting Lib Releases
-    maven { url = "https://mvn.devos.one/snapshots" } // Create & Several Dependencies
-}
-
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:$fabric_loader_version"
-    modApi "net.fabricmc.fabric-api:fabric-api:$fabric_api_version"
+    modApi "net.fabricmc.fabric-api:fabric-api:$fabric_api_version+$minecraft_version"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
@@ -105,7 +89,7 @@ dependencies {
 
 
 //!! MOONLIGHT LIB (REQUIRED) --------------------------------------------------------------------------------------- \\
-    String path = System.getenv('REPOS20_1')
+    String path = System.getenv('REPOS21_1')
 
     //- LOCAL
     if (enable_moonlight_test.toBoolean()) {
@@ -113,9 +97,7 @@ dependencies {
     }
     //+ MAVEN
     else {
-        modApi("net.mehvahdjukaar:moonlight-fabric:$moonlight_mavenVersion:fabric"){
-            transitive = false
-        }
+        modApi("net.mehvahdjukaar:moonlight-fabric:$moonlight_version:fabric") { transitive = false }
     }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
@@ -124,9 +106,7 @@ dependencies {
         modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-$everycomp_testVersion-fabric.jar"))
     //+ MAVEN
     } else {
-        modApi("net.mehvahdjukaar:everycomp-fabric:$everycomp_mavenVersion:fabric") {
-            transitive = false
-        }
+        modApi("net.mehvahdjukaar:everycomp-fabric:$everycomp_version:fabric") { transitive = false }
     }
 
 //!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
@@ -158,7 +138,7 @@ dependencies {
         //+ REQUIRED - The modules access libaries from below - Only in FABRIC
 
             //+ OTHER MAVENS
-    modCompileOnly("com.tterrag.registrate_fabric:Registrate:$registrate_fabric_version") // Create
+    modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
     modCompileOnly("dev.engine-room.flywheel:flywheel-fabric-$minecraft_version:$flywheel_fabric_version") // Create
     modCompileOnly("net.createmod.ponder:Ponder-Fabric-$minecraft_version:$ponder_fabric_version") // Create
 
@@ -171,7 +151,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611948") // puzzles-lib, forge-config-api-port
 
             //- OTHER MAVENs
-//    modRuntimeOnly("earth.terrarium.chipped:chipped-fabric-$minecraft_version:3.0.7") //INCLUDED: Athena, Resourceful-Lib, REQUIRED: Bytecodecs, ConnectedTexturesMod (CTM), Fabric-API
+//    modRuntimeOnly("earth.terrarium.chipped:chipped-fabric-$minecraft_version:4.0.2") //INCLUDED: Athena, Resourceful-Lib, REQUIRED: Bytecodecs, ConnectedTexturesMod (CTM), Fabric-API
 
         //+ REQUIRED - The modules access libaries from below - ONLY IN FABRIC
             // MACAW's

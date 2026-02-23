@@ -38,16 +38,16 @@ public class DustTypeRegistry extends BlockTypeRegistry<DustType> {
 
             /// Ensure the detected block is actually DustType
             boolean hasDust = BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "dust"))
+                    ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("block", "dust"))
             );
             boolean noWoodType = !BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "log"))
+                    ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("block", "log"))
             );
             boolean noMetalType = !BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
+                    ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
             );
             boolean noGemType = !BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("_block", ""))
+                    ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("_block", ""))
             );
 
             // Ensure there is no duplicated DustType in the list
@@ -78,12 +78,12 @@ public class DustTypeRegistry extends BlockTypeRegistry<DustType> {
     }
 
     public DustType.Finder addSimpleFinder(String typeId) {
-        return addSimpleFinder(new ResourceLocation(typeId));
+        return addSimpleFinder(ResourceLocation.parse(typeId));
     }
 
     @SuppressWarnings("unused")
     public DustType.Finder addSimpleFinder(String namespace, String nameDustType) {
-        return addSimpleFinder(new ResourceLocation(namespace, nameDustType));
+        return addSimpleFinder(ResourceLocation.fromNamespaceAndPath(namespace, nameDustType));
     }
 
     @Override

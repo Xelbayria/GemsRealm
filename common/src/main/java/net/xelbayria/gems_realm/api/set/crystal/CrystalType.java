@@ -70,8 +70,8 @@ public class CrystalType extends RockType {
 
         ResourceLocation[] targets = {
                 // DEFAULT
-                new ResourceLocation(id.getNamespace(), id.getPath() + _infix + _suffix),
-                new ResourceLocation(id.getNamespace(), prefix_ + id.getPath() + _suffix),
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), id.getPath() + _infix + _suffix),
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), prefix_ + id.getPath() + _suffix),
         };
         V found = null;
         for (var r : targets) {

@@ -2,10 +2,10 @@ package net.xelbayria.gems_realm;
 
 import net.mehvahdjukaar.moonlight.api.misc.RegSupplier;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
-import net.xelbayria.gems_realm.configs.GRConfigs;
-import net.xelbayria.gems_realm.misc.AllGemsItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.xelbayria.gems_realm.configs.GRConfigs;
+import net.xelbayria.gems_realm.misc.AllGemsItem;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
@@ -25,7 +25,9 @@ public class GRRegistry {
             RegHelper.registerCreativeModeTab(GemsRealm.res("gems_realm"),
                     TAB_ITEM_SEARCH_ENABLED.get(), // searchBar
                     builder -> builder.icon(() -> ALL_GEMS.get().getDefaultInstance())
-                            .backgroundSuffix((TAB_ITEM_SEARCH_ENABLED.get()) ? "item_search.png" : "items.png")
+                            .backgroundTexture((TAB_ITEM_SEARCH_ENABLED.get())
+                                    ? CreativeModeTab.createTextureLocation("item_search")
+                                    : CreativeModeTab.createTextureLocation("items"))
                             .title(Component.translatable("itemGroup.gemsrealm.gems_realm"))
                             .build())
             : null;
