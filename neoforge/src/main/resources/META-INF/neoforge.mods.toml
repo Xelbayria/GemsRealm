@@ -41,7 +41,7 @@ itemIcon="${mod_id}:all_gems" #catalogue icon
 [[dependencies.${mod_id}]]
     modId = "everycomp"
     type = "required"
-    referralUrl = "https://www.curseforge.com/minecraft/mc-mods/selene"
+    referralUrl = "https://www.curseforge.com/minecraft/mc-mods/every-compat"
     versionRange="[${everycomp_version_range},]"
     ordering = "BEFORE"
     side = "BOTH"
