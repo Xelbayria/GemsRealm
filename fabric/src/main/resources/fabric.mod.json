@@ -26,8 +26,8 @@
   "depends": {
     "fabric": "*",
     "minecraft": ">=${minecraft_min_version} <${minecraft_max_version}",
-    "moonlight": ">=${moonlight_version_range}",
-    "everycomp": ">=${everycomp_version_range}"
+    "moonlight": ">=${moonlight_required_version}",
+    "everycomp": ">=${everycomp_required_version}"
 
   }
 }

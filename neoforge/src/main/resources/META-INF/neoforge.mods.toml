@@ -34,7 +34,7 @@ itemIcon="${mod_id}:all_gems" #catalogue icon
     modId = "moonlight"
     type = "required"
     referralUrl = "https://www.curseforge.com/minecraft/mc-mods/selene"
-    versionRange = "[${moonlight_version_range},]"
+    versionRange = "[${moonlight_required_version},]"
     ordering = "NONE"
     side = "BOTH"
 
@@ -42,6 +42,6 @@ itemIcon="${mod_id}:all_gems" #catalogue icon
     modId = "everycomp"
     type = "required"
     referralUrl = "https://www.curseforge.com/minecraft/mc-mods/every-compat"
-    versionRange="[${everycomp_version_range},]"
+    versionRange="[${everycomp_required_version},]"
     ordering = "BEFORE"
     side = "BOTH"
