@@ -47,12 +47,12 @@ public class GemsRealmModule extends EveryCompatModule {
         // blockName: <name>_column from the blockId: gems_realm:twigs/strata/<name>_column
         String blockName = blockPath.substring(blockPath.lastIndexOf("/") + 1);
 
-        if (blockType instanceof DustType dustType) {
-            Boolean hardcoded = HardcodedDustType.isDustBlockAlreadyRegistered(entrySetId, blockName, dustType, modId);
+        if (blockType instanceof CrystalType crystalType) {
+            Boolean hardcoded = HardcodedCrystalType.isCrystalBlockAlreadyRegistered(entrySetId, blockName, crystalType, modId);
             if (hardcoded != null) return hardcoded;
         }
-        else if (blockType instanceof CrystalType crystalType) {
-            Boolean hardcoded = HardcodedCrystalType.isCrystalBlockAlreadyRegistered(entrySetId, blockName, crystalType, modId);
+        else if (blockType instanceof DustType dustType) {
+            Boolean hardcoded = HardcodedDustType.isDustBlockAlreadyRegistered(entrySetId, blockName, dustType, modId);
             if (hardcoded != null) return hardcoded;
         }
         else if (blockType instanceof GemType gemType) {
