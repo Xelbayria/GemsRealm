@@ -1,5 +1,6 @@
 package net.xelbayria.gems_realm.modules.rechiseled;
 
+import com.supermartijn642.rechiseled.blocks.RechiseledBlock;
 import net.mehvahdjukaar.every_compat.api.PaletteStrategies;
 import net.mehvahdjukaar.every_compat.api.PaletteStrategy;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
@@ -53,7 +54,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_bordered = GemsRealmEntrySet.of(MetalType.class, "block_bordered",
                         getModBlock("iron_block_bordered"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
                 )
                 .addTexture(modRes("block/iron_block_bordered"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -65,7 +66,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_bordered_connecting = GemsRealmEntrySet.of(MetalType.class, "block_bordered_connecting",
                         getModBlock("iron_block_bordered_connecting"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
                 )
                 //TEXTURES: iron_block_bordered
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -77,7 +78,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_chiseled = GemsRealmEntrySet.of(MetalType.class, "block_chiseled",
                         getModBlock("iron_block_chiseled"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
                 )
                 .addTexture(modRes("block/iron_block_chiseled"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -89,7 +90,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_chiseled_connecting = GemsRealmEntrySet.of(MetalType.class, "block_chiseled_connecting",
                         getModBlock("iron_block_chiseled_connecting"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
                 )
                 //TEXTURES: iron_block_chiseled
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -101,7 +102,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_framed = GemsRealmEntrySet.of(MetalType.class, "block_framed",
                         getModBlock("iron_block_framed"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
                 )
                 .addTexture(modRes("block/iron_block_framed"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -113,7 +114,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_framed_connecting = GemsRealmEntrySet.of(MetalType.class, "block_framed_connecting",
                         getModBlock("iron_block_framed_connecting"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
                 )
                 //TEXTURES: iron_block_framed
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -125,7 +126,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_gears = GemsRealmEntrySet.of(MetalType.class, "block_gears",
                         getModBlock("iron_block_gears"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
                 )
                 .addTexture(modRes("block/iron_block_gears"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -137,7 +138,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_gears_connecting = GemsRealmEntrySet.of(MetalType.class, "block_gears_connecting",
                         getModBlock("iron_block_gears_connecting"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
                 )
                 //TEXTURES: iron_block_gears
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -149,7 +150,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_lines = GemsRealmEntrySet.of(MetalType.class, "block_lines",
                         getModBlock("iron_block_lines"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
                 )
                 .addTexture(modRes("block/iron_block_lines"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -161,7 +162,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_lines_connecting = GemsRealmEntrySet.of(MetalType.class, "block_lines_connecting",
                         getModBlock("iron_block_lines_connecting"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
                 )
                 //TEXTURES: iron_block_lines
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -173,7 +174,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_patterned = GemsRealmEntrySet.of(MetalType.class, "block_patterned",
                         getModBlock("iron_block_patterned"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
                 )
                 .addTexture(modRes("block/iron_block_patterned"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -185,7 +186,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_patterned_connecting = GemsRealmEntrySet.of(MetalType.class, "block_patterned_connecting",
                         getModBlock("iron_block_patterned_connecting"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
                 )
                 //TEXTURES: iron_block_patterned
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -197,7 +198,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_pipes = GemsRealmEntrySet.of(MetalType.class, "block_pipes",
                         getModBlock("iron_block_pipes"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
                 )
                 .addTexture(modRes("block/iron_block_pipes"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -209,7 +210,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_pipes_connecting = GemsRealmEntrySet.of(MetalType.class, "block_pipes_connecting",
                         getModBlock("iron_block_pipes_connecting"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
                 )
                 //TEXTURES: iron_block_pipes
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -221,7 +222,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_polished = GemsRealmEntrySet.of(MetalType.class, "block_polished",
                         getModBlock("iron_block_polished"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
                 )
                 .addTexture(modRes("block/iron_block_polished"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -233,7 +234,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_polished_connecting = GemsRealmEntrySet.of(MetalType.class, "block_polished_connecting",
                         getModBlock("iron_block_polished_connecting"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
                 )
                 //TEXTURES: iron_block_polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -245,7 +246,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_processed = GemsRealmEntrySet.of(MetalType.class, "block_processed",
                         getModBlock("iron_block_processed"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
                 )
                 .addTexture(modRes("block/iron_block_processed"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -257,7 +258,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_processed_connecting = GemsRealmEntrySet.of(MetalType.class, "block_processed_connecting",
                         getModBlock("iron_block_processed_connecting"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
                 )
                 //TEXTURES: iron_block_processed
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -269,7 +270,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_small_bricks = GemsRealmEntrySet.of(MetalType.class, "block_small_bricks",
                         getModBlock("iron_block_small_bricks"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
                 )
                 .addTexture(modRes("block/iron_block_small_bricks"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -281,7 +282,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_small_bricks_connecting = GemsRealmEntrySet.of(MetalType.class, "block_small_bricks_connecting",
                         getModBlock("iron_block_small_bricks_connecting"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
                 )
                 //TEXTURES: iron_block_small_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -293,7 +294,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_plated = GemsRealmEntrySet.of(MetalType.class, "block_plated",
                         getModBlock("iron_block_plated"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
                 )
                 .addTexture(modRes("block/iron_block_plated"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -305,7 +306,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_pulverized = GemsRealmEntrySet.of(MetalType.class, "block_pulverized",
                         getModBlock("iron_block_pulverized"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
                 )
                 .addTexture(modRes("block/iron_block_pulverized"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -317,7 +318,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_reinforced = GemsRealmEntrySet.of(MetalType.class, "block_reinforced",
                         getModBlock("iron_block_reinforced"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
                 )
                 .addTexture(modRes("block/iron_block_reinforced"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -329,7 +330,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_sheets = GemsRealmEntrySet.of(MetalType.class, "block_sheets",
                         getModBlock("iron_block_sheets"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
                 )
                 .addTexture(modRes("block/iron_block_sheets"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -341,7 +342,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_smooth = GemsRealmEntrySet.of(MetalType.class, "block_smooth",
                         getModBlock("iron_block_smooth"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(false, Utils.copyPropertySafe(metalType.block))
                 )
                 .addTexture(modRes("block/iron_block_smooth"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -353,7 +354,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
 
         block_connecting_connecting = GemsRealmEntrySet.of(MetalType.class, "block_connecting_connecting",
                         getModBlock("iron_block_connecting_connecting"), () -> VanillaMetalTypes.IRON,
-                        metalType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
+                        metalType -> new RechiseledBlock(true, Utils.copyPropertySafe(metalType.block))
                 )
                 .addTexture(modRes("block/iron_block_connecting"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)

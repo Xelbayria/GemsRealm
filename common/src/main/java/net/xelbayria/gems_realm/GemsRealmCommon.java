@@ -8,6 +8,10 @@ import net.xelbayria.gems_realm.modules.more_beautiful_torches.MoreBeautifulTorc
 import net.xelbayria.gems_realm.modules.more_beautiful_torches.MoreBeautifulTorchesModuleD;
 import net.xelbayria.gems_realm.modules.more_beautiful_torches.MoreBeautifulTorchesModuleG;
 import net.xelbayria.gems_realm.modules.more_beautiful_torches.MoreBeautifulTorchesModuleM;
+import net.xelbayria.gems_realm.modules.rechiseled.RechiseledModuleC;
+import net.xelbayria.gems_realm.modules.rechiseled.RechiseledModuleD;
+import net.xelbayria.gems_realm.modules.rechiseled.RechiseledModuleG;
+import net.xelbayria.gems_realm.modules.rechiseled.RechiseledModuleM;
 
 import java.util.Set;
 
@@ -36,7 +40,7 @@ public class GemsRealmCommon {
 
         addMultipleIfLoaded("chipped", () -> ChippedModuleC.class, () -> ChippedModuleD.class, () -> ChippedModuleM.class, () -> ChippedModuleRBM.class, () -> ChippedModuleG.class);
         addMultipleIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorchesModuleC.class, () -> MoreBeautifulTorchesModuleD.class, () -> MoreBeautifulTorchesModuleG.class, () -> MoreBeautifulTorchesModuleM.class);
-//        addMultipleIfLoaded("rechiseled", () -> RechiseledModuleC.class, () -> RechiseledModuleD.class, () -> RechiseledModuleG.class, () -> RechiseledModuleM.class);
+        addMultipleIfLoaded("rechiseled", () -> RechiseledModuleC.class, () -> RechiseledModuleD.class, () -> RechiseledModuleG.class, () -> RechiseledModuleM.class);
 //        addIfLoaded("twigs", () -> TwigsModule.class);
 //        addIfLoaded("bbb", () -> BuildingButBetterModule.class);
 //        addIfLoaded("blockus", () -> BlockusModule.class);
