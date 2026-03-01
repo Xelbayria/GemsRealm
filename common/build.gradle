@@ -19,7 +19,7 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:$fabric_loader_version"
     modApi "net.fabricmc.fabric-api:fabric-api:$fabric_api_version+$minecraft_version"
 
-    annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
+//    annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
     String path = System.getenv('REPOS21_1')
@@ -36,7 +36,7 @@ dependencies {
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     if (enable_everycomp_test.toBoolean()) {
         //- LOCAL
-        modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-$everycomp_testVersion-fabric.jar"))
+        modImplementation(files(path + "\\WoodGood\\common\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
     }  else {
         //+ MAVEN
         modApi("net.mehvahdjukaar:everycomp:$everycomp_version") { transitive = false }
