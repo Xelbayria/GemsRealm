@@ -46,7 +46,7 @@ public class MinecraftModuleBars extends GemsRealmModule {
                         ResourceLocation.withDefaultNamespace("block/iron_bars_side"),
                         ResourceLocation.withDefaultNamespace("block/iron_bars_side_alt")
                 )
-                .includeModelsItem(ResourceLocation.withDefaultNamespace("minecraft:item/iron_bars"))
+                .includeModelsItem(ResourceLocation.withDefaultNamespace("item/iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.DRAGON_IMMUNE, Registries.BLOCK)
                 .setTabKey(building_block)
