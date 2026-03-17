@@ -434,6 +434,6 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
     }
 
     public String platformTag(String nameMetal) {
-        return (PlatHelper.getPlatform().isFabric()) ? "c:" + nameMetal + "_ingots" : "forge:ingots/" + nameMetal;
+        return "c:ingots/" + nameMetal;
     }
 }
