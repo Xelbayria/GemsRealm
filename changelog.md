@@ -24,6 +24,20 @@
 
 <br>
 
+### REQUIRED: 
+- **Every Compat v2.11.31** - REASON: 2 new configs and new codes added responsible for Creative Tab stuff. 
+
+### CHANGES: 
+- **LANG** (JA_JP) - Updated by @HayaKoh-WeldyAlin 
+- **Create** (C): Updated recipe generation to fix the missing recipes [#54](https://github.com/Xelbayria/GemsRealm/issues/54)
+- **Gems Realm** (C): Added 2 new configs - [Every Compat#1203](https://github.com/MehVahdJukaar/WoodGood/issues/1203) 
+  - `DISABLE_CYCLE_ITEM_RENDERER` - disable creative-tab from showing the iteration of every item from Gems Realm 
+  - `CREATIVE_TAB_ICON` - Choose one item (can be from Gems Realm or Minecraft) to replace the icon instead of iterating every item from Gems Realm
+
+---
+
+## v2.11.0
+
 ## Changes:
 - **Gems Realm** (C): Updated to 1.21.1
 - **Rechiseled** (C): Re-enabled & Supported v1.2.0+
