@@ -24,6 +24,14 @@
 
 <br>
 
+### REQUIRED:
+- **Every Compat v2.11.32 or newer** - REASON: the code related to 2 configs are removed
+
+### CHANGES:
+- **Gems Realm** (C): Removed 2 configs due to a misunderstood request
+
+---
+
 ### REQUIRED: 
 - **Every Compat v2.11.31** - REASON: 2 new configs and new codes added responsible for Creative Tab stuff. 
 
