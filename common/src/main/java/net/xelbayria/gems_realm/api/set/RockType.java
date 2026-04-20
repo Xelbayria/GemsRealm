@@ -136,11 +136,11 @@ public abstract class RockType extends BlockType{
             String path = id.getPath();
             String namespace = id.getNamespace();
 
-            String suffixed = (keyword.isEmpty()) ? "" : "_" + keyword;
-            String prefixed = (keyword.isEmpty()) ? "" : keyword + "_";
+            String _suffix = (keyword.isEmpty()) ? "" : "_" + keyword;
+            String prefix_ = (keyword.isEmpty()) ? "" : keyword + "_";
 
-            resources.add(new ResourceLocation(namespace, path + suffixed));
-            resources.add(new ResourceLocation(namespace, prefixed + path));
+            resources.add(new ResourceLocation(namespace, path + _suffix));
+            resources.add(new ResourceLocation(namespace, prefix_ + path));
         }
         return resources.toArray(new ResourceLocation[0]);
     }
