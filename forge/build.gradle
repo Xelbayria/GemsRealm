@@ -165,7 +165,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:quark-243121:5594847") // Zeta
 //    modRuntimeOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib
 //    modRuntimeOnly("curse.maven:excessive-building-845097:5442075") // Forge-Config-API-Port
-//    modRuntimeOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
+//    modRuntimeOnly("curse.maven:rechiseled-558998:7687383") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
 
         //- OTHER MAVENS
 //    modRuntimeOnly("earth.terrarium.chipped:chipped-forge-$minecraft_version:3.0.7") //INCLUDED: Athena, Resourceful-Lib, REQUIRED: Bytecodecs, ConnectedTexturesMod (CTM)

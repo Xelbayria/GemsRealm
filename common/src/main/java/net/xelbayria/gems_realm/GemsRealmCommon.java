@@ -8,10 +8,15 @@ import net.xelbayria.gems_realm.modules.more_beautiful_torches.MoreBeautifulTorc
 import net.xelbayria.gems_realm.modules.more_beautiful_torches.MoreBeautifulTorchesModuleD;
 import net.xelbayria.gems_realm.modules.more_beautiful_torches.MoreBeautifulTorchesModuleG;
 import net.xelbayria.gems_realm.modules.more_beautiful_torches.MoreBeautifulTorchesModuleM;
+import net.xelbayria.gems_realm.modules.rechiseled.RechiseledModuleC;
+import net.xelbayria.gems_realm.modules.rechiseled.RechiseledModuleD;
+import net.xelbayria.gems_realm.modules.rechiseled.RechiseledModuleG;
+import net.xelbayria.gems_realm.modules.rechiseled.RechiseledModuleM;
 
 import java.util.Set;
 
 import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
+import static net.mehvahdjukaar.every_compat.EveryCompat.addOtherCompatMod;
 import static net.xelbayria.gems_realm.GemsRealm.addMultipleIfLoaded;
 
 public class GemsRealmCommon {
@@ -26,8 +31,8 @@ public class GemsRealmCommon {
 
 //!! =============================================== Add Other Compat Mods ========================================== \\
 
-//        addOtherCompatMod("rechiseledcreate", "create", "rechiseled");
-//        addOtherCompatMod("rechiseledae2", "ae2", "rechiseled");
+        addOtherCompatMod("rechiseledcreate", "create", "rechiseled");
+        addOtherCompatMod("rechiseledae2", "ae2", "rechiseled");
 
 //!! =================================================== Add Modules ================================================ \\
 
@@ -36,7 +41,7 @@ public class GemsRealmCommon {
 
         addMultipleIfLoaded("chipped", () -> ChippedModuleC::new, () -> ChippedModuleD::new, () -> ChippedModuleM::new, () -> ChippedModuleRBM::new, () -> ChippedModuleG::new);
         addMultipleIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorchesModuleC::new, () -> MoreBeautifulTorchesModuleD::new, () -> MoreBeautifulTorchesModuleG::new, () -> MoreBeautifulTorchesModuleM::new);
-//        addMultipleIfLoaded("rechiseled", () -> RechiseledModuleC::new, () -> RechiseledModuleD::new, () -> RechiseledModuleG::new, () -> RechiseledModuleM::new);
+        addMultipleIfLoaded("rechiseled", () -> RechiseledModuleC::new, () -> RechiseledModuleD::new, () -> RechiseledModuleG::new, () -> RechiseledModuleM::new);
 //        addIfLoaded("twigs", () -> TwigsModule::new);
 //        addIfLoaded("bbb", () -> BuildingButBetterModule::new);
 //        addIfLoaded("blockus", () -> BlockusModule::new);

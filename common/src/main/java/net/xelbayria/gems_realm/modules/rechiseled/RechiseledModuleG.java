@@ -1,5 +1,7 @@
 package net.xelbayria.gems_realm.modules.rechiseled;
 
+import com.supermartijn642.rechiseled.blocks.RechiseledBlock;
+import com.supermartijn642.rechiseled.blocks.RechiseledPillarBlock;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
@@ -36,7 +38,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_bordered_crosses = GemsRealmEntrySet.of(GemType.class, "block_bordered_crosses",
                         getModBlock("emerald_block_bordered_crosses"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
                 )
                 .addTexture(modRes("block/emerald_block_bordered_crosses"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -48,7 +50,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_bordered_crosses_connecting = GemsRealmEntrySet.of(GemType.class, "block_bordered_crosses_connecting",
                         getModBlock("emerald_block_bordered_crosses_connecting"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
                 )
                 //TEXTURES: emerald_block_bordered_crosses
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -60,7 +62,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_bordered_plating = GemsRealmEntrySet.of(GemType.class, "block_bordered_plating",
                         getModBlock("emerald_block_bordered_plating"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
                 )
                 .addTexture(modRes("block/emerald_block_bordered_plating"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -72,7 +74,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_bordered_plating_connecting = GemsRealmEntrySet.of(GemType.class, "block_bordered_plating_connecting",
                         getModBlock("emerald_block_bordered_plating_connecting"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
                 )
                 //TEXTURES: emerald_block_bordered_plating
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -84,7 +86,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_chiseled = GemsRealmEntrySet.of(GemType.class, "block_chiseled",
                         getModBlock("emerald_block_chiseled"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
                 )
                 .addTexture(modRes("block/emerald_block_chiseled"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -96,7 +98,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_chiseled_connecting = GemsRealmEntrySet.of(GemType.class, "block_chiseled_connecting",
                         getModBlock("emerald_block_chiseled_connecting"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
                 )
                 //TEXTURES: emerald_block_chiseled
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -108,7 +110,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_clovers = GemsRealmEntrySet.of(GemType.class, "block_clovers",
                         getModBlock("emerald_block_clovers"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
                 )
                 .addTexture(modRes("block/emerald_block_clovers"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -120,7 +122,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_clovers_connecting = GemsRealmEntrySet.of(GemType.class, "block_clovers_connecting",
                         getModBlock("emerald_block_clovers_connecting"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
                 )
                 //TEXTURES: emerald_block_clovers
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -132,7 +134,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_crystal = GemsRealmEntrySet.of(GemType.class, "block_crystal",
                         getModBlock("emerald_block_crystal"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
                 )
                 .addTexture(modRes("block/emerald_block_crystal"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -144,7 +146,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_crystal_connecting = GemsRealmEntrySet.of(GemType.class, "block_crystal_connecting",
                         getModBlock("emerald_block_crystal_connecting"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
                 )
                 //TEXTURES: emerald_block_crystal
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -156,7 +158,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_patterned = GemsRealmEntrySet.of(GemType.class, "block_patterned",
                         getModBlock("emerald_block_patterned"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
                 )
                 .addTexture(modRes("block/emerald_block_patterned"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -168,7 +170,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_patterned_connecting = GemsRealmEntrySet.of(GemType.class, "block_patterned_connecting",
                         getModBlock("emerald_block_patterned_connecting"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
                 )
                 //TEXTURES: emerald_block_patterned
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -180,7 +182,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_patterned_squares = GemsRealmEntrySet.of(GemType.class, "block_patterned_squares",
                         getModBlock("emerald_block_patterned_squares"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
                 )
                 .addTexture(modRes("block/emerald_block_patterned_squares"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -192,7 +194,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_patterned_squares_connecting = GemsRealmEntrySet.of(GemType.class, "block_patterned_squares_connecting",
                         getModBlock("emerald_block_patterned_squares_connecting"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
                 )
                 //TEXTURES: emerald_block_patterned_squares
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -204,7 +206,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_pillar = GemsRealmEntrySet.of(GemType.class, "block_pillar",
                         getModBlock("emerald_block_pillar"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledPillarBlock(false, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledPillarBlock(false, Utils.copyPropertySafe(gemType.block))
                 )
                 .addTexture(modRes("block/emerald_block_pillar_side"))
                 .addTexture(modRes("block/emerald_block_pillar_end"))
@@ -217,7 +219,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_pillar_connecting = GemsRealmEntrySet.of(GemType.class, "block_pillar_connecting",
                         getModBlock("emerald_block_pillar_connecting"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledPillarBlock(true, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledPillarBlock(true, Utils.copyPropertySafe(gemType.block))
                 )
                 //TEXTURES: emerald_block_pillar_side, emerald_block_pillar_end
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -229,7 +231,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_polished = GemsRealmEntrySet.of(GemType.class, "block_polished",
                         getModBlock("emerald_block_polished"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
                 )
                 .addTexture(modRes("block/emerald_block_polished"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -241,7 +243,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_polished_connecting = GemsRealmEntrySet.of(GemType.class, "block_polished_connecting",
                         getModBlock("emerald_block_polished_connecting"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
                 )
                 //TEXTURES: emerald_block_polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -253,7 +255,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_striped = GemsRealmEntrySet.of(GemType.class, "block_striped",
                         getModBlock("emerald_block_striped"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
                 )
                 .addTexture(modRes("block/emerald_block_striped"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -265,7 +267,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_striped_connecting = GemsRealmEntrySet.of(GemType.class, "block_striped_connecting",
                         getModBlock("emerald_block_striped_connecting"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
                 )
                 //TEXTURES: emerald_block_striped
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -277,7 +279,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_waxed = GemsRealmEntrySet.of(GemType.class, "block_waxed",
                         getModBlock("emerald_block_waxed"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
                 )
                 .addTexture(modRes("block/emerald_block_waxed"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -289,7 +291,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_waxed_connecting = GemsRealmEntrySet.of(GemType.class, "block_waxed_connecting",
                         getModBlock("emerald_block_waxed_connecting"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(true, Utils.copyPropertySafe(gemType.block))
                 )
                 //TEXTURES: emerald_block_waxed
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -301,7 +303,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_crosses = GemsRealmEntrySet.of(GemType.class, "block_crosses",
                         getModBlock("emerald_block_crosses"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
                 )
                 .addTexture(modRes("block/emerald_block_crosses"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -313,7 +315,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_plating = GemsRealmEntrySet.of(GemType.class, "block_plating",
                         getModBlock("emerald_block_plating"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
                 )
                 .addTexture(modRes("block/emerald_block_plating"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -325,7 +327,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
 
         block_smooth = GemsRealmEntrySet.of(GemType.class, "block_smooth",
                         getModBlock("emerald_block_smooth"), () -> VanillaGemTypes.EMERALD,
-                        gemType -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
+                        gemType -> new RechiseledBlock(false, Utils.copyPropertySafe(gemType.block))
                 )
                 .addTexture(modRes("block/emerald_block_smooth"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
