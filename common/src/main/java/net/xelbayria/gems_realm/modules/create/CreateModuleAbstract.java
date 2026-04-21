@@ -8,6 +8,7 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.misc.UtilityRecipe;
 import net.mehvahdjukaar.every_compat.misc.UtilityTag;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
+import net.mehvahdjukaar.moonlight.api.resources.SimpleTagBuilder;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
@@ -26,8 +27,10 @@ import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.metal.MetalType;
 import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
+import static net.mehvahdjukaar.every_compat.misc.UtilityTag.*;
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
 
 @SuppressWarnings({"CommentedOutCode"})
@@ -90,7 +93,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .requiresFromMap(casing.blocks) //REASON: recipes
                 .addTile(getModTile("sliding_door"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .generateBlockModels(true, modRes("block/copper_door/fold_left"), modRes("block/copper_door/fold_right"))
+                .includeModelsBlock(true, modRes("block/copper_door/fold_left"), modRes("block/copper_door/fold_right"))
                 .addTextureM(modRes("block/copper_door_bottom"), GemsRealm.res("block/c/copper_door_bottom_m"))
                 .addTextureM(modRes("block/copper_door_side"), GemsRealm.res("block/c/copper_door_side_m"))
                 .addTextureM(modRes("block/copper_door_top"), GemsRealm.res("block/c/copper_door_top_m"))
@@ -389,7 +392,8 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
             sheet.items.forEach((metalType, item) -> {
                 ResourceLocation newResLocIngot = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "pressing/", "ingot"));
 
-                grabTagAndCreateRecipe(pathIngot, newResLocIngot, "iron", item, metalType, manager, sink);
+                grabTagAndCreateRecipe(pathIngot, newResLocIngot, "ingots/iron", item, metalType, manager, sink);
+                addTagToAllItems("plates/" + metalType.getTypeName(), item, sink, manager);
 
                 /// for valve_handle's recipe - not added yet because Create's Source Code require some tweaking
 //                TagUtility.createAndAddCustomTags(new ResourceLocation(tagIdSheet + typeName(metalType)), sink, item);
@@ -397,23 +401,23 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
         });
     }
 
-    public void grabTagAndCreateRecipe(String recipeLoc, ResourceLocation newRecipeLoc, String oldTypeName,
+    public void grabTagAndCreateRecipe(String recipeLoc, ResourceLocation newRecipeLoc, String oldTagPath,
                                        Object newResult, MetalType metalType, ResourceManager manager, ResourceSink sink) {
-        String typeName = typeName(metalType);
+        String tagPath = "ingots/" + typeName(metalType);
 
-        Pair<ResourceLocation, Boolean> newTagIngredient = UtilityTag.getATagId(
-                platformTag(typeName),
-                platformTag(typeName.replace("_", "")),
+        Pair<ResourceLocation, Boolean> existingTagId = getATagId(
+                platformTag(tagPath).toString(),
+                platformTag(tagPath.replace("_", "")).toString(),
                 manager);
 
-        if (newTagIngredient.getSecond()) {
-                UtilityRecipe.createRecipeWithTag(modRes(recipeLoc), newRecipeLoc, platformTag(oldTypeName),
-                    newTagIngredient.getFirst().toString(), newResult, sink, manager);
+        if (existingTagId.getSecond()) {
+                UtilityRecipe.createRecipeWithTag(modRes(recipeLoc), newRecipeLoc, platformTag(oldTagPath).toString(),
+                    existingTagId.getFirst().toString(), newResult, sink, manager);
         }
         else {
             ResourceLocation newTag = GemsRealm.res("ingots/" + metalType.getTypeName());
             boolean isTagCreated = UtilityTag.createAndAddCustomTags(newTag, sink, metalType.getItemOfThis(INGOT));
-            UtilityRecipe.createRecipeWithTag(modRes(recipeLoc), newRecipeLoc,  platformTag(oldTypeName),
+            UtilityRecipe.createRecipeWithTag(modRes(recipeLoc), newRecipeLoc,  platformTag(oldTagPath).toString(),
                     newTag.toString(), newResult, sink, manager);
 
             if (!isTagCreated) GemsRealm.LOGGER.error("Failed to create a tag for {} in {}", newTag.toString(), Utils.getID(newResult));
@@ -433,7 +437,22 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
         };
     }
 
-    public String platformTag(String nameMetal) {
-        return (PlatHelper.getPlatform().isFabric()) ? "c:" + nameMetal + "_ingots" : "forge:ingots/" + nameMetal;
+    public static void addTagToAllItems(String tagPath, Item item, ResourceSink sink, ResourceManager manager) {
+
+        boolean isItemTagCreated = false;
+        SimpleTagBuilder itemtagBuilder;
+
+        Pair<ResourceLocation, Boolean> existingTag = getATagId(forgeTag(tagPath).toString(), fabricTag(tagPath).toString(), manager);
+
+        if (existingTag.getSecond()) itemtagBuilder = SimpleTagBuilder.of(existingTag.getFirst());
+        else itemtagBuilder = SimpleTagBuilder.of(platformTag(tagPath));
+
+        if (Objects.nonNull(item)) {
+            itemtagBuilder.addEntry(item);
+            isItemTagCreated = true;
+        }
+
+        if (isItemTagCreated) sink.addTag(itemtagBuilder, Registries.ITEM);
+
     }
 }
