@@ -35,6 +35,11 @@ public class CompatGemType extends CompatBlockType{
 
         GemTypeRegistry gemReg = GemTypeRegistry.INSTANCE;
 
+        // -------------------- More Ores More Gems - REASON: Id-Block
+        gemReg.addSimpleFinder("more_ores_more_gems:amethyst");
+        gemReg.addSimpleFinder("more_ores_more_gems:sunflare_gem");
+        gemReg.addSimpleFinder("more_ores_more_gems:luminous_gem");
+
         // -------------------- Atlantis (MysticPasta1) - REASON: Naming-Convention
         gemReg.addSimpleFinder("atlantis", "aquamarine")
                 .childItemSuffix(GEM, "_gem");
