@@ -82,7 +82,7 @@ public class MetalType extends RockType {
     }
 
     public static Block findMetalBlock(ResourceLocation id) {
-        ResourceLocation[] tests = makeKnownIDConventions(id,  "block");
+        ResourceLocation[] tests = makeKnownIDConventions(id,  "block", "block_of", "blockof");
         Finder.blockId = tests[0];
         return Utils.findFirstInRegistry(BuiltInRegistries.BLOCK, tests);
     }
