@@ -45,6 +45,12 @@ public class CompatMetalType extends CompatBlockType {
             metalReg.addSimpleFinder("minecraft:netherite")
                 .childItem(NUGGET, "caverns_and_chasms:netherite_nugget");
 
+        // 'Dustrial Decor - REASON: Naming-Convention
+        metalReg.addSimpleFinder("dustrial_decor", "cast_iron")
+                .childItemSuffix(INGOT, "_billet");
+        metalReg.addSimpleFinder("dustrial_decor", "industrial_iron")
+                .childItemSuffix(INGOT, "_billet");
+
         // More Ores More Gems - REASON: Undetected-Children - MetalBlockId has "blockof_" or "block_of_"
         metalReg.addSimpleFinder("more_ores_more_gems:adamantite");
         metalReg.addSimpleFinder("more_ores_more_gems:aetherium");
