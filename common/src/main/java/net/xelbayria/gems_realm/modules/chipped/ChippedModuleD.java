@@ -897,7 +897,6 @@ public class ChippedModuleD extends ChippedModuleAbstract {
         super.addDynamicServerResources(executor);
 
         executor.accept((manager, sink) ->
-            createWorkbenchRecipe(sink, BLOCK, DustTypeRegistry.INSTANCE, Workbench.TINKERING_TABLE)
-        );
+            createWorkbenchRecipe(BLOCK, DustTypeRegistry.INSTANCE, Workbench.TINKERING_TABLE, sink));
     }
 }

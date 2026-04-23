@@ -162,7 +162,7 @@ public class ChippedModuleG extends ChippedModuleAbstract {
         super.addDynamicServerResources(executor);
 
         executor.accept((manager, sink) ->
-                createWorkbenchRecipe(sink, BLOCK, GemTypeRegistry.INSTANCE, Workbench.ALCHEMY_BENCH)
+                createWorkbenchRecipe(BLOCK, GemTypeRegistry.INSTANCE, Workbench.ALCHEMY_BENCH, sink)
         );
     }
 }

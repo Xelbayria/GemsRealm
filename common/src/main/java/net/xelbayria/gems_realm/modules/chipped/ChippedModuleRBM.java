@@ -960,7 +960,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
         super.addDynamicServerResources(executor);
 
         executor.accept((manager, sink) ->
-            createWorkbenchRecipe(sink, RAW_BLOCK, MetalTypeRegistry.INSTANCE, Workbench.MASON_TABLE)
+            createWorkbenchRecipe(RAW_BLOCK, MetalTypeRegistry.INSTANCE, Workbench.MASON_TABLE, sink)
         );
     }
 }
