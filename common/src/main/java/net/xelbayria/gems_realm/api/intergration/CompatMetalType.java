@@ -106,110 +106,147 @@ public class CompatMetalType extends CompatBlockType {
                 .childItem(INGOT, "withered_steel");
         metalReg.addSimpleFinder(crystalcraft, "meteorite") //REASON: Undetected-Children, Id-Block
                 .metalBlock("meteorite");
-        metalReg.addSimpleFinder(crystalcraft, "orichalcum") //REASON: Undetected-Children
+
+        //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "orichalcum")
                 .childItem(INGOT, "orichalcum");
-        metalReg.addSimpleFinder(crystalcraft, "aluminium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "aluminium")
                 .childItem(INGOT, "aluminium");
-        metalReg.addSimpleFinder(crystalcraft, "titanium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "titanium")
                 .childItem(INGOT, "titanium");
-        metalReg.addSimpleFinder(crystalcraft, "uranium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "uranium")
                 .childItem(INGOT, "uranium");
-        metalReg.addSimpleFinder(crystalcraft, "bronze") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "bronze")
                 .childItem(INGOT, "bronze");
-        metalReg.addSimpleFinder(crystalcraft, "silver") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "silver")
                 .childItem(INGOT, "silver");
-        metalReg.addSimpleFinder(crystalcraft, "platinum") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "platinum")
                 .childItem(INGOT, "platinum");
-        metalReg.addSimpleFinder(crystalcraft, "mythril") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "mythril")
                 .childItem(INGOT, "mythril");
-        metalReg.addSimpleFinder(crystalcraft, "adamantite") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "adamantite")
                 .childItem(INGOT, "adamantite");
-        metalReg.addSimpleFinder(crystalcraft, "plutonium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "plutonium")
                 .childItem(INGOT, "plutonium");
-        metalReg.addSimpleFinder(crystalcraft, "unoptanium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "unoptanium")
                 .childItem(INGOT, "unoptanium");
-        metalReg.addSimpleFinder(crystalcraft, "crimson_gold") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "crimson_gold")
                 .childItem(INGOT, "crimson_gold");
-        metalReg.addSimpleFinder(crystalcraft, "tin") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "tin")
                 .childItem(INGOT, "tin");
-        metalReg.addSimpleFinder(crystalcraft, "iridium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "iridium")
                 .childItem(INGOT, "iridium");
-        metalReg.addSimpleFinder(crystalcraft, "steel") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "steel")
                 .childItem(INGOT, "steel");
-        metalReg.addSimpleFinder(crystalcraft, "nickel") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "nickel")
                 .childItem(INGOT, "nickel");
-        metalReg.addSimpleFinder(crystalcraft, "zinc") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "zinc")
                 .childItem(INGOT, "zinc");
-        metalReg.addSimpleFinder(crystalcraft, "lead") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "lead")
                 .childItem(INGOT, "lead");
-        metalReg.addSimpleFinder(crystalcraft, "brass") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "brass")
                 .childItem(INGOT, "brass");
-        metalReg.addSimpleFinder(crystalcraft, "tungsten") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "tungsten")
                 .childItem(INGOT, "tungsten");
-        metalReg.addSimpleFinder(crystalcraft, "rose_gold") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "rose_gold")
                 .childItem(INGOT, "rose_gold");
-        metalReg.addSimpleFinder(crystalcraft, "chrome") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "chrome")
                 .childItem(INGOT, "chrome");
-        metalReg.addSimpleFinder(crystalcraft, "magnesium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "magnesium")
                 .childItem(INGOT, "magnesium");
-        metalReg.addSimpleFinder(crystalcraft, "bismuth") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "bismuth")
                 .childItem(INGOT, "bismuth");
-        metalReg.addSimpleFinder(crystalcraft, "electrum") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "electrum")
                 .childItem(INGOT, "electrum");
-        metalReg.addSimpleFinder(crystalcraft, "matizium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "matizium")
                 .childItem(INGOT, "matizium");
-        metalReg.addSimpleFinder(crystalcraft, "yurium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "yurium")
                 .childItem(INGOT, "yurium");
-        metalReg.addSimpleFinder(crystalcraft, "xernium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "xernium")
                 .childItem(INGOT, "xernium");
-        metalReg.addSimpleFinder(crystalcraft, "palladium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "palladium")
                 .childItem(INGOT, "palladium");
-        metalReg.addSimpleFinder(crystalcraft, "purple_gold") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "purple_gold")
                 .childItem(INGOT, "purple_gold");
-        metalReg.addSimpleFinder(crystalcraft, "green_gold") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "green_gold")
                 .childItem(INGOT, "green_gold");
-        metalReg.addSimpleFinder(crystalcraft, "cupronickel") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "cupronickel")
                 .childItem(INGOT, "cupronickel");
-        metalReg.addSimpleFinder(crystalcraft, "pelenium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "pelenium")
                 .childItem(INGOT, "pelenium");
-        metalReg.addSimpleFinder(crystalcraft, "maradonyx") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "maradonyx")
                 .childItem(INGOT, "maradonyx");
-        metalReg.addSimpleFinder(crystalcraft, "palintinium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "palintinium")
                 .childItem(INGOT, "palintinium");
-        metalReg.addSimpleFinder(crystalcraft, "lithium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "lithium")
                 .childItem(INGOT, "lithium");
-        metalReg.addSimpleFinder(crystalcraft, "silicium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "silicium")
                 .childItem(INGOT, "silicium");
-        metalReg.addSimpleFinder(crystalcraft, "technetium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "technetium")
                 .childItem(INGOT, "technetium");
-        metalReg.addSimpleFinder(crystalcraft, "ruthenium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "ruthenium")
                 .childItem(INGOT, "ruthenium");
-        metalReg.addSimpleFinder(crystalcraft, "rhodium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "rhodium")
                 .childItem(INGOT, "rhodium");
-        metalReg.addSimpleFinder(crystalcraft, "cadmium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "cadmium")
                 .childItem(INGOT, "cadmium");
-        metalReg.addSimpleFinder(crystalcraft, "tantalum") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "tantalum")
                 .childItem(INGOT, "tantalum");
-        metalReg.addSimpleFinder(crystalcraft, "holmium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "holmium")
                 .childItem(INGOT, "holmium");
-        metalReg.addSimpleFinder(crystalcraft, "osmium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "osmium")
                 .childItem(INGOT, "osmium");
-        metalReg.addSimpleFinder(crystalcraft, "neptunium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "neptunium")
                 .childItem(INGOT, "neptunium");
-        metalReg.addSimpleFinder(crystalcraft, "galaxite") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "galaxite")
                 .childItem(INGOT, "galaxite");
-        metalReg.addSimpleFinder(crystalcraft, "pyrite") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "pyrite")
                 .childItem(INGOT, "pyrite");
-        metalReg.addSimpleFinder(crystalcraft, "seaborgium") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "seaborgium")
                 .childItem(INGOT, "seaborgium");
-        metalReg.addSimpleFinder(crystalcraft, "ilmenite") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "ilmenite")
                 .childItem(INGOT, "ilmenite");
-        metalReg.addSimpleFinder(crystalcraft, "cobalt") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "cobalt")
                 .childItem(INGOT, "cobalt");
-        metalReg.addSimpleFinder(crystalcraft, "carnotite") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "carnotite")
                 .childItem(INGOT, "carnotite");
-        metalReg.addSimpleFinder(crystalcraft, "antimony") //REASON: Undetected-Children
+        metalReg.addSimpleFinder(crystalcraft, "antimony")
                 .childItem(INGOT, "antimony");
+        //TEMP: Recently Added.
+        metalReg.addSimpleFinder(crystalcraft, "alnico")
+                .childItem(INGOT, "alnico");
+        metalReg.addSimpleFinder(crystalcraft, "aluminium_bronze")
+                .childItem(INGOT, "aluminium_bronze");
+        metalReg.addSimpleFinder(crystalcraft, "amalgam")
+                .childItem(INGOT, "amalgam");
+        metalReg.addSimpleFinder(crystalcraft, "cast_iron")
+                .childItem(INGOT, "cast_iron");
+        metalReg.addSimpleFinder(crystalcraft, "duralumin")
+                .childItem(INGOT, "duralumin");
+        metalReg.addSimpleFinder(crystalcraft, "german_silver")
+                .childItem(INGOT, "german_silver");
+        metalReg.addSimpleFinder(crystalcraft, "hss")
+                .childItem(INGOT, "hss");
+        metalReg.addSimpleFinder(crystalcraft, "inconel")
+                .childItem(INGOT, "inconel");
+        metalReg.addSimpleFinder(crystalcraft, "nordic_gold")
+                .childItem(INGOT, "nordic_gold");
+        metalReg.addSimpleFinder(crystalcraft, "pewter")
+                .childItem(INGOT, "pewter");
+        metalReg.addSimpleFinder(crystalcraft, "rene_41")
+                .childItem(INGOT, "rene_41");
+        metalReg.addSimpleFinder(crystalcraft, "stainless_steel")
+                .childItem(INGOT, "stainless_steel");
+        metalReg.addSimpleFinder(crystalcraft, "stellite")
+                .childItem(INGOT, "stellite");
+        metalReg.addSimpleFinder(crystalcraft, "titanium_alloy")
+                .childItem(INGOT, "titanium_alloy");
+        metalReg.addSimpleFinder(crystalcraft, "zamak")
+                .childItem(INGOT, "zamak");
+        metalReg.addSimpleFinder(crystalcraft, "zircaloy")
+                .childItem(INGOT, "zircaloy");
+
+
         metalReg.addSimpleFinder(crystalcraft, "hydro_pottasium"); //REASON: 2-Words
         metalReg.addSimpleFinder(crystalcraft, "americium"); //REASON: ???
         metalReg.addSimpleFinder(crystalcraft, "thorium"); //REASON: ???
