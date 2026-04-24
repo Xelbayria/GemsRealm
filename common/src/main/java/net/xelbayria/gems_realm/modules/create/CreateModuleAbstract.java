@@ -364,13 +364,13 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 ResourceLocation tilesRecipeId = ResourceLocation.parse(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "tiles_from_ingots"));
 //                ResourceLocation table_clothRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_table_cloth_from_ingots"));
 
-                grabTagAndCreateRecipe(ladderRecipePath, ladderRecipeId, "copper", ladder.blocks.get(metalType), metalType, manager, sink);
+                grabTagAndCreateRecipe(ladderRecipePath, ladderRecipeId, "ingots/copper", ladder.blocks.get(metalType), metalType, manager, sink);
 
-                grabTagAndCreateRecipe(scaffoldingRecipePath, scaffoldingRecipeId, "copper", scaffolding.blocks.get(metalType), metalType, manager, sink);
+                grabTagAndCreateRecipe(scaffoldingRecipePath, scaffoldingRecipeId, "ingots/copper", scaffolding.blocks.get(metalType), metalType, manager, sink);
 
-                grabTagAndCreateRecipe(shinglesRecipePath, shinglesRecipeId, "copper", shingles.blocks.get(metalType), metalType, manager, sink);
+                grabTagAndCreateRecipe(shinglesRecipePath, shinglesRecipeId, "ingots/copper", shingles.blocks.get(metalType), metalType, manager, sink);
 
-                grabTagAndCreateRecipe(tilesRecipePath, tilesRecipeId, "copper", tiles.blocks.get(metalType), metalType, manager, sink);
+                grabTagAndCreateRecipe(tilesRecipePath, tilesRecipeId, "ingots/copper", tiles.blocks.get(metalType), metalType, manager, sink);
 
                 /// NOT AVAILABLE IN FABRIC - will re-added when v6.0 is out for FABRIC
 //                grabTagAndCreateRecipe(table_clothRecipePath, table_clothRecipeId, "copper", table_cloth.blocks.get(metalType), metalType, manager, sink);
