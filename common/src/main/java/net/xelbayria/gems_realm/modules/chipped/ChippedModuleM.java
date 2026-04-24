@@ -487,8 +487,8 @@ public class ChippedModuleM extends ChippedModuleAbstract {
         super.addDynamicServerResources(executor);
 
         executor.accept((manager, sink) -> {
-            createWorkbenchRecipe(sink, BLOCK, MetalTypeRegistry.INSTANCE, Workbench.ALCHEMY_BENCH);
-            createWorkbenchRecipe(sink, BARS, MetalTypeRegistry.INSTANCE, Workbench.TINKERING_TABLE);
+            createWorkbenchRecipe(BLOCK, MetalTypeRegistry.INSTANCE, Workbench.ALCHEMY_BENCH, sink);
+            createWorkbenchRecipe(BARS, MetalTypeRegistry.INSTANCE, Workbench.TINKERING_TABLE, sink);
         });
     }
 }

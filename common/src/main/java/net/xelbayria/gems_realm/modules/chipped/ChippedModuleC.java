@@ -963,7 +963,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
         super.addDynamicServerResources(executor);
 
         executor.accept((manager, sink) ->
-            createWorkbenchRecipe(sink, BLOCK, CrystalTypeRegistry.INSTANCE, Workbench.ALCHEMY_BENCH)
+            createWorkbenchRecipe(BLOCK, CrystalTypeRegistry.INSTANCE, Workbench.ALCHEMY_BENCH, sink)
         );
     }
 }
