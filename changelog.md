@@ -24,9 +24,26 @@
 
 <br>
 
+### CHANGES:
+- **LANG** (JA_JP) - Updated by @HayaKoh-WeldyAlin
+- **Rechiseled** (C): Updated the module to support v1.2.4+ & Re-enabled - [#45](https://github.com/Xelbayria/GemsRealm/issues/45)
+- **Create** (C): Fixed Sheets' incorrect recipes & Added the missing tag, `#forge:plates/TYPE` or `#c:plates/TYPE` to sheets - [#58](https://github.com/Xelbayria/GemsRealm/issues/58)
+
+### FIXES:
+- **Chipped** (C): Fixed the `alchemy_bench`'s recipes not being generated for MetalTypes or GemTypes  - [#59](https://github.com/Xelbayria/GemsRealm/issues/59)
+
+### ADDED:  
+- **More Ores More Gems** (UDBT): 27 MetalTypes & 3 GemTypes
+- **CrystalCraft Unlimited Edition** (UDBT): 16 new MetalTypes
+- **'Dustrial Decor** (UDBT): 2 MetalTypes
+
+---
+
+## v2.9.7
+
 ### UPDATED: 
 - **Gems Realm** (C): 
-  - Fixed some undetected blocktypes with **CrystalCraft Unlimiated Edition**
+  - Fixed some undetected blocktypes with **CrystalCraft Unlimited Edition**
   - Updated to use **Every Compat v2.9.16**
 - **Minecraft** (C): Added 2 tags to Nuggets - [#44](https://github.com/Xelbayria/GemsRealm/issues/44)
 
