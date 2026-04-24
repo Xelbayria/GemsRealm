@@ -64,7 +64,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 )
                 .requiresChildren(INGOT) //REASON: recipes
                 .addTexture(modRes("item/iron_sheet"))
-                .addTag(new ResourceLocation("forge:plates"), Registries.ITEM)
+                .addTag(platformTag("plates"), Registries.ITEM)
                 //TAG: forge:plates/<type>
                 .setTabKey(tab)
                 //RECIPES: Manully created below
@@ -300,8 +300,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 //TEXTURES: orante_iron_window
                 .addTexture(modRes("block/palettes/ornate_iron_window_pane_top"))
                 .addTag(BlockTags.IMPERMEABLE, Registries.BLOCK)
-                .addTag(new ResourceLocation("forge:glass_panes"), Registries.BLOCK)
-                .addTag(new ResourceLocation("forge:glass_panes"), Registries.ITEM)
+                .addTag(platformTag("glass_panes"), Registries.BLOCK, Registries.ITEM)
                 .setTabKey(paletteTab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.TRANSLUCENT)
