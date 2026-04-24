@@ -383,8 +383,8 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 ResourceLocation newResLocLog = ResourceLocation.parse(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "item_application/", "casing_from_log"));
                 ResourceLocation newResLocWood = ResourceLocation.parse(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "item_application/", "casing_from_wood"));
 
-                grabTagAndCreateRecipe(pathLog, newResLocLog, "copper", block, metalType, manager, sink);
-                grabTagAndCreateRecipe(pathWood, newResLocWood, "copper", block, metalType, manager, sink);
+                grabTagAndCreateRecipe(pathLog, newResLocLog, "ingots/copper", block, metalType, manager, sink);
+                grabTagAndCreateRecipe(pathWood, newResLocWood, "ingots/copper", block, metalType, manager, sink);
             });
 
 //            String tagIdSheet = "forge:plates/";
