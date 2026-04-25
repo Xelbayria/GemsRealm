@@ -30,6 +30,7 @@ public class HardcodedCrystalType extends HardcodedBlockType {
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+        if (isBlockRegistryFrom("chipped", "crystalized_enchants", "", "")) return false;
 
 
         return null;
