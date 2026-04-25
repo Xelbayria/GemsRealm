@@ -29,7 +29,7 @@ public class ChippedModuleAbstract extends GemsRealmModule {
     }
 
     protected void createWorkbenchRecipe(String identifier, BlockTypeRegistry<?> blockTypeInstance, Workbench workbench, ResourceSink sink) {
-        JsonArray arrayTags = new JsonArray();
+        JsonArray ingredientsArray = new JsonArray();
 
         for (BlockType blockType : blockTypeInstance) {
 
@@ -72,12 +72,15 @@ public class ChippedModuleAbstract extends GemsRealmModule {
             if (isTagCreated) {
                 sink.addTag(tagBuilder, Registries.BLOCK);
                 sink.addTag(tagBuilder, Registries.ITEM);
-                arrayTags.add(tagBuilder.getId().toString());
+                JsonObject tagObject = new JsonObject();
+                tagObject.addProperty("tag", tagBuilder.getId().toString());
+
+                ingredientsArray.add(tagObject);
             }
         }
         JsonObject jo = new JsonObject();
-        jo.addProperty("type", "chipped:" + workbench.getString());
-        jo.add("tags", arrayTags);
+        jo.addProperty("type", "chipped:workbench");
+        jo.add("ingredients", ingredientsArray);
         sink.addJson(GemsRealm.res(shortenedId() + "/" + blockTypeInstance.typeName() + "/" + workbench.getString() + "_" + identifier), jo, ResType.RECIPES);
 
     }

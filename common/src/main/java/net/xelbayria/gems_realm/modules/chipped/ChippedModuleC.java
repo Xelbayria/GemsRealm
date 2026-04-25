@@ -95,7 +95,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("angry_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/angry_amethyst_block"))
                 .addTexture(modRes("block/amethyst_block/ctm/common_textures/0"))
                 .addTexture(modRes("block/amethyst_block/ctm/common_textures/1"))
@@ -111,7 +110,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("blank_amethyst_block_carving"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/blank_amethyst_block_carving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -123,7 +121,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("bordered_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/bordered_amethyst_block"))
                 .addTexture(modRes("block/amethyst_block/ctm/bordered_amethyst_block_ctm/0"))
                 .addTexture(modRes("block/amethyst_block/ctm/bordered_amethyst_block_ctm/1"))
@@ -139,7 +136,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("brick_bordered_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 //TEXTURES: angry_block's ctm/common_textures/0
                 .addTexture(modRes("block/amethyst_block/brick_bordered_amethyst_block"))
                 .addTexture(modRes("block/amethyst_block/ctm/brick_bordered_amethyst_block_ctm/1"))
@@ -155,7 +151,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("carved_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/carved_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -167,7 +162,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("checkered_amethyst_block_tiles"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/checkered_amethyst_block_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -179,7 +173,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("cobbled_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/cobbled_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -191,7 +184,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("cracked_disordered_amethyst_block_bricks"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/cracked_disordered_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -203,7 +195,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("cracked_flat_amethyst_block_tiles"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/cracked_flat_amethyst_block_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -215,7 +206,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("cracked_amethyst_block_bricks"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/cracked_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -227,7 +217,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("creeper_amethyst_block_carving"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/creeper_amethyst_block_carving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -239,7 +228,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("crying_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/crying_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -251,8 +239,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("curly_amethyst_block_pillar"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new RotatedPillarBlock(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
-                //TEXTURES: angry_block's ctm/common_textures/3
+                //TEXTURES: angry_block/ctm/common_textures/3, polished_block
                 .addTexture(modRes("block/amethyst_block/curly_amethyst_block_pillar"))
                 .addTexture(modRes("block/amethyst_block/ctm/curly_amethyst_block_pillar/0"))
                 .addTexture(modRes("block/amethyst_block/ctm/curly_amethyst_block_pillar/1"))
@@ -267,7 +254,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("cut_blank_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/cut_blank_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -279,7 +265,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("cut_amethyst_block_column"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new RotatedPillarBlock(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/cut_amethyst_block_column"))
                 .addTexture(modRes("block/amethyst_block/ctm/cut_amethyst_block_column_ctm/0"))
                 .addTexture(modRes("block/amethyst_block/ctm/cut_amethyst_block_column_ctm/1"))
@@ -295,7 +280,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("duh_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/duh_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -307,7 +291,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("edged_amethyst_block_bricks"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/edged_amethyst_block_bricks"))
                 .addTexture(modRes("block/amethyst_block/ctm/edged_amethyst_block_bricks_ctm/0"))
                 .addTexture(modRes("block/amethyst_block/ctm/edged_amethyst_block_bricks_ctm/1"))
@@ -323,7 +306,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("engraved_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/engraved_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -335,7 +317,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("eroded_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/eroded_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -347,7 +328,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("etched_amethyst_block_bricks"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/etched_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -359,7 +339,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("fine_amethyst_block_pillar"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new RotatedPillarBlock(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 //TEXTURES: angry_block's ctm/common_textures/3
                 .addTexture(modRes("block/amethyst_block/fine_amethyst_block_pillar"))
                 .addTexture(modRes("block/amethyst_block/ctm/fine_amethyst_block_pillar/0"))
@@ -375,7 +354,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("flat_amethyst_block_tiles"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/flat_amethyst_block_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -387,7 +365,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("glad_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/glad_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -399,7 +376,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("inlayed_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/inlayed_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -411,7 +387,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("inscribed_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/inscribed_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -423,7 +398,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("layed_amethyst_block_bricks"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/layed_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -435,7 +409,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("loded_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/loded_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -447,7 +420,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("massive_amethyst_block_bricks"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/massive_amethyst_block_bricks"))
                 .addTexture(modRes("block/amethyst_block/ctm/massive_amethyst_block_bricks/0"))
                 .addTexture(modRes("block/amethyst_block/ctm/massive_amethyst_block_bricks/1"))
@@ -463,7 +435,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("offset_amethyst_block_bricks"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/offset_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -475,7 +446,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("ornate_amethyst_block_pillar"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new RotatedPillarBlock(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 //TEXTURES: angry_block's ctm/common_textures/3
                 .addTexture(modRes("block/amethyst_block/ornate_amethyst_block_pillar"))
                 .addTexture(modRes("block/amethyst_block/ctm/ornate_amethyst_block_pillar/0"))
@@ -491,7 +461,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("overlapping_amethyst_block_tiles"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 //TEXTURES: angry_block's ctm/common_textures/0
                 .addTexture(modRes("block/amethyst_block/overlapping_amethyst_block_tiles"))
                 .addTexture(modRes("block/amethyst_block/ctm/overlapping_amethyst_block_tiles_ctm/1"))
@@ -507,7 +476,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("pillar_amethyst_block_bricks"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new RotatedPillarBlock(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/pillar_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -519,7 +487,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("polished_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 //TEXTURES: angry_block's ctm/common_textures/0
                 .addTexture(modRes("block/amethyst_block/polished_amethyst_block"))
                 .addTexture(modRes("block/amethyst_block/ctm/polished_amethyst_block_ctm/1"))
@@ -535,7 +502,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("prismal_amethyst_block_remnants"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/prismal_amethyst_block_remnants"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -547,7 +513,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("amethyst_block_bricks"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -559,7 +524,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("amethyst_block_mini_tiles"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/amethyst_block_mini_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -571,7 +535,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("amethyst_block_pillar"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new RotatedPillarBlock(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/amethyst_block_pillar"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -583,7 +546,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("amethyst_block_pillar_top"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/amethyst_block_pillar_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -595,7 +557,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("amethyst_block_scales"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/amethyst_block_scales"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -607,7 +568,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("rough_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/rough_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -619,7 +579,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("rounded_amethyst_block_bricks"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/rounded_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -631,7 +590,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("runic_carved_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/runic_carved_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -643,7 +601,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("sad_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/sad_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -655,7 +612,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("sanded_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/sanded_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -667,7 +623,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("simple_amethyst_block_pillar"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new RotatedPillarBlock(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 //TEXTURES: angry_block's ctm/common_textures/3
                 .addTexture(modRes("block/amethyst_block/simple_amethyst_block_pillar"))
                 .addTexture(modRes("block/amethyst_block/ctm/simple_amethyst_block_pillar/0"))
@@ -683,7 +638,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("small_amethyst_block_bricks"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/small_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -695,7 +649,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("smooth_inlayed_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/smooth_inlayed_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -707,7 +660,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("smooth_amethyst_block_column"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new RotatedPillarBlock(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/smooth_amethyst_block_column"))
                 .addTexture(modRes("block/amethyst_block/ctm/smooth_amethyst_block_column_ctm/0"))
                 .addTexture(modRes("block/amethyst_block/ctm/smooth_amethyst_block_column_ctm/1"))
@@ -723,7 +675,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("smooth_ringed_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/smooth_ringed_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -735,7 +686,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("smoothed_double_inlayed_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/smoothed_double_inlayed_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -747,7 +697,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("spider_amethyst_block_carving"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/spider_amethyst_block_carving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -759,7 +708,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("spiraled_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/spiraled_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -771,7 +719,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("stacked_amethyst_block_bricks"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/stacked_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -783,7 +730,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("thick_inlayed_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 //TEXTURES: angry_block's ctm/common_textures/1
                 //TEXTURES: angry_block's ctm/common_textures/2
                 .addTexture(modRes("block/amethyst_block/thick_inlayed_amethyst_block"))
@@ -799,7 +745,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("tiled_bordered_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 //TEXTURES: angry_block's ctm/common_textures/0
                 .addTexture(modRes("block/amethyst_block/tiled_bordered_amethyst_block"))
                 .addTexture(modRes("block/amethyst_block/ctm/tiled_bordered_amethyst_block_ctm/1"))
@@ -815,7 +760,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("tiled_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/tiled_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -827,7 +771,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("tiled_amethyst_block_column"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new RotatedPillarBlock(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/tiled_amethyst_block_column"))
                 .addTexture(modRes("block/amethyst_block/ctm/tiled_amethyst_block_column_ctm/0"))
                 .addTexture(modRes("block/amethyst_block/ctm/tiled_amethyst_block_column_ctm/1"))
@@ -843,7 +786,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("tiny_brick_bordered_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 //TEXTURES: angry_block's ctm/common_textures/1
                 //TEXTURES: angry_block's ctm/common_textures/2
                 .addTexture(modRes("block/amethyst_block/tiny_brick_bordered_amethyst_block"))
@@ -859,7 +801,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("tiny_layered_amethyst_block_bricks"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/tiny_layered_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -871,7 +812,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("tiny_layered_amethyst_block_slabs"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/tiny_layered_amethyst_block_slabs"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -883,7 +823,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("tiny_amethyst_block_bricks"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/tiny_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -895,7 +834,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("trodden_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/trodden_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -907,7 +845,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("unamused_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/unamused_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -919,7 +856,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("vertical_cut_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/vertical_cut_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -931,7 +867,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("vertical_disordered_amethyst_block_bricks"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/vertical_disordered_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -943,7 +878,6 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                         getModBlock("weathered_amethyst_block"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new Block(copyPropertyStandard(crystalType))
                 )
-                .requiresChildren(BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/amethyst_block/weathered_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
