@@ -61,7 +61,7 @@ public class CreateModule extends CreateModuleAbstract {
         return new MetalScaffoldingBlock(Utils.copyPropertySafe(metalType.block));
     }
 
-    protected WindowBlock makeWindow(MetalType metalType) {
+    protected Block makeWindow(MetalType metalType) {
         return new WindowBlock(Utils.copyPropertySafe(Blocks.GLASS)
                 .isValidSpawn((s, l, ps, t) -> false).isRedstoneConductor((s, l, ps) -> false)
                 .isSuffocating((s, l, ps) -> false).isViewBlocking((s, l, ps) -> false), false);
