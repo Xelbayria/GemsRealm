@@ -4,6 +4,7 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.xelbayria.gems_realm.api.set.metal.MetalTypeRegistry;
 import org.jetbrains.annotations.ApiStatus;
 
+import static net.xelbayria.gems_realm.api.set.VanillaRockChildKeys.*;
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.NUGGET;
 
@@ -44,6 +45,13 @@ public class CompatMetalType extends CompatBlockType {
         if (PlatHelper.isModLoaded("caverns_and_chasms"))
             metalReg.addSimpleFinder("minecraft:netherite")
                 .childItem(NUGGET, "caverns_and_chasms:netherite_nugget");
+
+        // Tech Reborn
+        metalReg.addSimpleFinder("techreborn", "iridium_rainforced_tungstensteel")
+                        .childBlockSuffix(BLOCK, "_storage_block")
+                        .childBlockSuffix(SLAB, "_storage_block_" + SLAB)
+                        .childBlockSuffix(STAIRS, "_storage_block_" + STAIRS)
+                        .childBlockSuffix(WALL, "_storage_block_" + WALL);
 
         // 'Dustrial Decor - REASON: Naming-Convention
         metalReg.addSimpleFinder("dustrial_decor", "cast_iron")
