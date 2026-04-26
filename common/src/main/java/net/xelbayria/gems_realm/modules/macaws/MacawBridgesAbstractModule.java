@@ -1,6 +1,7 @@
 package net.xelbayria.gems_realm.modules.macaws;
 
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -24,7 +25,7 @@ public abstract class MacawBridgesAbstractModule extends GemsRealmModule {
 
     public MacawBridgesAbstractModule(String modId) {
         super(modId, "mcb");
-        ResourceLocation tab = modRes("mcwbridges");
+        ResourceLocation tab = (PlatHelper.getPlatform().isFabric()) ? modRes("bridges") : modRes("mcwbridges");
 
         bridge = GemsRealmEntrySet.of(MetalType.class, "bridge",
                         getModBlock("iron_bridge"), () -> VanillaMetalTypes.IRON,
