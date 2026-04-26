@@ -175,7 +175,7 @@ dependencies {
     modCompileOnly("com.simibubi.create:create-$minecraft_version:$create_version:slim") { transitive = false } // Registrate, Flywheel, Ponder
 
             // MACAW's
-    modCompileOnly("curse.maven:macaws-bridges-351725:7627896") //v3.2.0
+    modCompileOnly("curse.maven:macaws-bridges-351725:7627896") //v3.1.2
     modCompileOnly("curse.maven:macaws-windows-363569:6732754") //v2.4.0 //@ WIP - Requested for "metal" to "iron" //!!-1.20.1
     modCompileOnly("curse.maven:macaws-fences-and-walls-453925:5442217") //v1.1.2 //!!-1.20.1
 //    modCompileOnly("curse.maven:macaws-paths-and-pavings-629153:5341126") //v1.0.5 - NO METAL //!!-1.20.1
