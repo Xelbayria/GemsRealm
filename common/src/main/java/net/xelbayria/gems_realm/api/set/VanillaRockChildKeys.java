@@ -8,6 +8,7 @@ public class VanillaRockChildKeys {
     public static final String RAW_BLOCK = "raw_block";
     public static final String STAIRS = "stairs";
     public static final String SLAB = "slab";
+    public static final String WALL = "wall";
     public static final String FENCE = "fence";
     public static final String CHISELED = "chiseled";
 
