@@ -7,11 +7,11 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.Optional;
 
+import static net.xelbayria.gems_realm.api.set.RockType.*;
 import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_METALTYPES;
-import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_MODS;
 
 
-@SuppressWarnings("unused")
+//@SuppressWarnings("unused")
 public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
 
     public static final MetalTypeRegistry INSTANCE = new MetalTypeRegistry();
@@ -31,86 +31,54 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
     }
 
     @Override
-    public Optional<MetalType> detectTypeFromBlock(Block baseblock, ResourceLocation baseRes) {
-        String blockPath = baseRes.getPath();
+    public Optional<MetalType> detectTypeFromBlock(Block baseBlock, ResourceLocation blockId) {
+        String namespace = blockId.getNamespace();
+        String blockPath = blockId.getPath();
 
-        /// Support TerraFirmaCraft (TFC) & ArborFirmaCraft (AFC)
-        if (baseRes.getNamespace().matches("tfc|afc")) {
-            if (blockPath.matches("metal/block/\\w+(?<!slab|stairs)")) {
-                int index = blockPath.lastIndexOf("/");
-                String metalName = blockPath.substring(index + 1); // Get bismuth from tfc:metal/block/bismuth
+        /// ─────────── Support Terrafirmacraft (tfc) & Arborfirmacraft (afc) ───────────
+        if (namespace.matches("tfc|afc")) {
+            // Ensure the detected block is actually MetalType
+            boolean hasIngot = isInItemRegistry(namespace, blockPath, "block", "ingot");
 
-                Optional<Block> block = BuiltInRegistries.BLOCK.getOptional(baseRes);
-
-                /// Ensure the detected block is actually MetalType
-                boolean hasIngot = BuiltInRegistries.ITEM.containsKey(
-                        ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
-                );
-
-                if (block.isPresent() && hasIngot) {
-                    return Optional.of(new MetalType(baseRes.withPath(metalName), block.get()));
-                }
-            }
+            return newSubBlockType(MetalType::new, baseBlock, blockId, blockPath, "metal/block/(?<typename>\\w+)(?<!slab|stairs)",
+                    valuesReg, hasIngot);
         }
 
-        /// Support Mo' Shiz
-        if (baseRes.getNamespace().matches("ms")) {
-            if (blockPath.matches("resources/[a-z]+_block")) {
-                int index = blockPath.lastIndexOf("/");
-                // Get metalName from ms:resources/metalName_block
-                String metalName = blockPath.substring(index + 1).replace("_block", "");
-                ResourceLocation idBlockType = baseRes.withPath(metalName);
-
-                Optional<Block> block = BuiltInRegistries.BLOCK.getOptional(baseRes);
-
-                /// Ensure the detected block is actually MetalType
-                boolean hasIngot = BuiltInRegistries.ITEM.containsKey(
-                        ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath
-                                .replace("block", "ingot")
-                                .replace("resources", "gem")
-                        )
-                );
-
-                boolean isBlacklisted = !BLACKLISTED_METALTYPES.contains(idBlockType.toString());
-
-                // Ensure the detected block is actually MetalType
-                if (block.isPresent() && hasIngot && isBlacklisted) {
-                    return Optional.of(new MetalType(idBlockType, block.get()));
-                }
-            }
-        }
-
-        /// Default
-        if (blockPath.matches("\\w+_block") ) {
-            // Get metalName from namespace:metalName_block
-            String metalName = blockPath.replace("_block", "");
-            ResourceLocation idBlockType = baseRes.withPath(metalName);
-
-            /// Ensure the detected block is actually MetalType
+        /// ───────────────────────────── Support Mo' Shiz ──────────────────────────────
+        if (namespace.matches("ms")) {
+            // Ensure the detected block is actually MetalType
             boolean hasIngot = BuiltInRegistries.ITEM.containsKey(
-                    ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
-            );
-            boolean noWoodType = !BuiltInRegistries.BLOCK.containsKey(
-                    ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("block", "log"))
-            );
-            boolean noGemType = !BuiltInRegistries.ITEM.containsKey(
-                    ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("_block", ""))
+                    ResourceLocation.fromNamespaceAndPath(namespace, blockPath
+                            .replace("block", "ingot")
+                            .replace("resources", "gem")
+                    )
             );
 
-            // Ensure there is no duplicated MetalType in the list
-            if (!valuesReg.containsKey(idBlockType)
-                    && hasIngot
-                    && noWoodType
-                    && noGemType
-                    && !BLACKLISTED_METALTYPES.contains(idBlockType.toString())
-                    && !BLACKLISTED_MODS.contains(baseRes.getNamespace())
-            ) {
-                Optional<Block> opt = BuiltInRegistries.BLOCK.getOptional(baseRes);
-
-                if (opt.isPresent()) return Optional.of(new MetalType(idBlockType, opt.get()));
-            }
+            return newSubBlockType(MetalType::new, baseBlock, blockId, blockPath, "resources/(?<typename>[a-z]+)_block",
+                    valuesReg, BLACKLISTED_METALTYPES, hasIngot);
         }
-        return Optional.empty();
+
+        /// ──────────────────────────── Support Tech-reborn ────────────────────────────
+        if (namespace.matches("techreborn")) {
+            String blockSuffix = "storage_block";
+            setChildInfix("storage_");
+
+            boolean hasIngot = isInItemRegistry(namespace, blockPath, blockSuffix, "ingot");
+            boolean noGemType = !isInItemRegistry(namespace, blockPath, blockSuffix, "gem");
+
+            return newSubBlockType(MetalType::new, baseBlock, blockId, blockPath, "(?<typename>\\w+)_"+blockSuffix,
+                    valuesReg, hasIngot, noGemType);
+        }
+
+        /// ────────────────────────────────── Default ──────────────────────────────────
+        // Ensure the detected block is actually MetalType
+        boolean hasIngot = isInItemRegistry(namespace, blockPath, "block", "ingot");
+        boolean noWoodType = !isInItemRegistry(namespace, blockPath, "block", "log");
+        boolean noGemType = !isInItemRegistry(namespace, blockPath, "_block", "");
+
+        return newSubBlockType(MetalType::new, baseBlock, blockId, blockPath, "(?<typename>\\w+)_block",
+                valuesReg, BLACKLISTED_METALTYPES, hasIngot, noWoodType, noGemType);
+
     }
 
 
