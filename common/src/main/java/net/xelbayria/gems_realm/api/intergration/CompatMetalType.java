@@ -47,11 +47,11 @@ public class CompatMetalType extends CompatBlockType {
                 .childItem(NUGGET, "caverns_and_chasms:netherite_nugget");
 
         // Tech Reborn
-        metalReg.addSimpleFinder("techreborn", "iridium_rainforced_tungstensteel")
-                        .childBlockSuffix(BLOCK, "_storage_block")
-                        .childBlockSuffix(SLAB, "_storage_block_" + SLAB)
-                        .childBlockSuffix(STAIRS, "_storage_block_" + STAIRS)
-                        .childBlockSuffix(WALL, "_storage_block_" + WALL);
+        metalReg.addSimpleFinder("techreborn", "iridium_reinforced_tungstensteel")
+                .metalBlockSuffix("_storage_block")
+                .childBlockSuffix(SLAB, "_storage_block_" + SLAB)
+                .childBlockSuffix(STAIRS, "_storage_block_" + STAIRS)
+                .childBlockSuffix(WALL, "_storage_block_" + WALL);
 
         // 'Dustrial Decor - REASON: Naming-Convention
         metalReg.addSimpleFinder("dustrial_decor", "cast_iron")
