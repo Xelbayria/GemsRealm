@@ -35,10 +35,63 @@ public class CompatGemType extends CompatBlockType{
 
         GemTypeRegistry gemReg = GemTypeRegistry.INSTANCE;
 
-        // -------------------- More Ores More Gems - REASON: Id-Block
+        // -------------------- More Ores More Gems - REASON: Undetected-Children - GemBlockId has "blockof_" or "block_of_"
         gemReg.addSimpleFinder("more_ores_more_gems:amethyst");
-        gemReg.addSimpleFinder("more_ores_more_gems:sunflare_gem");
+        gemReg.addSimpleFinder("more_ores_more_gems:ametrine");
+        gemReg.addSimpleFinder("more_ores_more_gems:aquamarine");
+        gemReg.addSimpleFinder("more_ores_more_gems:autunite_235")
+                .childItemSuffix(GEM, "_gemstone");
+        gemReg.addSimpleFinder("more_ores_more_gems:autunite_238")
+                .childItemSuffix(GEM, "_gemstone");
+        gemReg.addSimpleFinder("more_ores_more_gems:black_fluorite")
+                .childItem(GEM, "fluorite_black_color");
+        gemReg.addSimpleFinder("more_ores_more_gems:black_opal");
+        gemReg.addSimpleFinder("more_ores_more_gems:blood_fluorite");
+        gemReg.addSimpleFinder("more_ores_more_gems:carnelian");
+        gemReg.addSimpleFinder("more_ores_more_gems:citrine");
+        gemReg.addSimpleFinder("more_ores_more_gems:ekanite");
+        gemReg.addSimpleFinder("more_ores_more_gems:fire_opal")
+                .childItemSuffix(GEM, "_gemstone");
+        gemReg.addSimpleFinder("more_ores_more_gems:fluorescent_fluorite");
+        gemReg.addSimpleFinder("more_ores_more_gems:gray_opal");
+        gemReg.addSimpleFinder("more_ores_more_gems:green_fluorite")
+                .childItem(GEM, "fluorite_green_color");
+        gemReg.addSimpleFinder("more_ores_more_gems:heliodor");
+        gemReg.addSimpleFinder("more_ores_more_gems:jade");
+        gemReg.addSimpleFinder("more_ores_more_gems:lemonite");
         gemReg.addSimpleFinder("more_ores_more_gems:luminous_gem");
+        gemReg.addSimpleFinder("more_ores_more_gems:mysticrain_quartz");
+        gemReg.addSimpleFinder("more_ores_more_gems:opalized_quartz");
+        gemReg.addSimpleFinder("more_ores_more_gems:orange_fluorite")
+                .childItem(GEM, "fluorite_orange_color");
+        gemReg.addSimpleFinder("more_ores_more_gems:orange_pink_fluorite")
+                .childItem(GEM, "fluorite_orange_pink");
+        gemReg.addSimpleFinder("more_ores_more_gems:padparadscha");
+        gemReg.addSimpleFinder("more_ores_more_gems:peridot");
+        gemReg.addSimpleFinder("more_ores_more_gems:pink_fluorite")
+                .childItem(GEM, "fluorite_pink_color");
+        gemReg.addSimpleFinder("more_ores_more_gems:pink_opal");
+        gemReg.addSimpleFinder("more_ores_more_gems:purple_fluorite")
+                .childItem(GEM, "fluorite_purple_color");
+        gemReg.addSimpleFinder("more_ores_more_gems:purple_green_fluorite")
+                .childItem(GEM, "fluorite_purple_green");
+        gemReg.addSimpleFinder("more_ores_more_gems:rainbow_fluorite")
+                .childItem(GEM, "fluorite_rainbow_color");
+        gemReg.addSimpleFinder("more_ores_more_gems:rare_sapphire");
+        gemReg.addSimpleFinder("more_ores_more_gems:ruby_pack");
+        gemReg.addSimpleFinder("more_ores_more_gems:sapphire");
+        gemReg.addSimpleFinder("more_ores_more_gems:sunflare_gem");
+        gemReg.addSimpleFinder("more_ores_more_gems:tanzanite");
+        gemReg.addSimpleFinder("more_ores_more_gems:topaz");
+        gemReg.addSimpleFinder("more_ores_more_gems:ussingite");
+        gemReg.addSimpleFinder("more_ores_more_gems:weird_frost_opal")
+                .childItem(GEM, "memory_opal");
+        gemReg.addSimpleFinder("more_ores_more_gems:white_crystal");
+        gemReg.addSimpleFinder("more_ores_more_gems:white_fluorite")
+                .childItem(GEM, "fluorite_white_clear");
+        gemReg.addSimpleFinder("more_ores_more_gems:white_opal");
+        gemReg.addSimpleFinder("more_ores_more_gems:ytt_fluorite")
+                .childItem(GEM, "fluorite_yttrium");
 
         // -------------------- Atlantis (MysticPasta1) - REASON: Naming-Convention
         gemReg.addSimpleFinder("atlantis", "aquamarine")

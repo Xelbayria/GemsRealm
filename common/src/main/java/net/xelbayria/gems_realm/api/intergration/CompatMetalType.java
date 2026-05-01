@@ -64,29 +64,37 @@ public class CompatMetalType extends CompatBlockType {
         metalReg.addSimpleFinder("more_ores_more_gems:aetherium");
         metalReg.addSimpleFinder("more_ores_more_gems:antimony");
         metalReg.addSimpleFinder("more_ores_more_gems:bromine");
+        metalReg.addSimpleFinder("more_ores_more_gems:crimsonite")
+                .childItemSuffix(INGOT, "");
         metalReg.addSimpleFinder("more_ores_more_gems:electrum");
-        metalReg.addSimpleFinder("more_ores_more_gems:jade");
         metalReg.addSimpleFinder("more_ores_more_gems:lead");
         metalReg.addSimpleFinder("more_ores_more_gems:magnesium");
         metalReg.addSimpleFinder("more_ores_more_gems:monel");
+        metalReg.addSimpleFinder("more_ores_more_gems:neptunium");
         metalReg.addSimpleFinder("more_ores_more_gems:nickel");
+        metalReg.addSimpleFinder("more_ores_more_gems:nitrol");
         metalReg.addSimpleFinder("more_ores_more_gems:osmium");
         metalReg.addSimpleFinder("more_ores_more_gems:platinum");
         metalReg.addSimpleFinder("more_ores_more_gems:rhodium");
-        metalReg.addSimpleFinder("more_ores_more_gems:shadowite"); //REASON: Id-Block
+        metalReg.addSimpleFinder("more_ores_more_gems:shadowite");
         metalReg.addSimpleFinder("more_ores_more_gems:shadowsteel");
-        metalReg.addSimpleFinder("more_ores_more_gems:skysteel"); //REASON: Id-Block
         metalReg.addSimpleFinder("more_ores_more_gems:sliver");
+        metalReg.addSimpleFinder("more_ores_more_gems:skysteel")
+                .childItemSuffix(INGOT, "");
         metalReg.addSimpleFinder("more_ores_more_gems:steel");
         metalReg.addSimpleFinder("more_ores_more_gems:thalassium");
         metalReg.addSimpleFinder("more_ores_more_gems:thorium");
         metalReg.addSimpleFinder("more_ores_more_gems:tin");
         metalReg.addSimpleFinder("more_ores_more_gems:titanium");
+        metalReg.addSimpleFinder("more_ores_more_gems:titanium_quartz")
+                .childItemSuffix(INGOT, "");
+        metalReg.addSimpleFinder("more_ores_more_gems:tungsten")
+                .childItemSuffix(INGOT, "");
         metalReg.addSimpleFinder("more_ores_more_gems:uranium");
         metalReg.addSimpleFinder("more_ores_more_gems:uranium_234");
         metalReg.addSimpleFinder("more_ores_more_gems:uranium_238");
         metalReg.addSimpleFinder("more_ores_more_gems:urantherium");
-        metalReg.addSimpleFinder("more_ores_more_gems:volcagmium"); //REASON: Id-Block
+        metalReg.addSimpleFinder("more_ores_more_gems:volcagmium");
 
         // Unusual End
         metalReg.addSimpleFinder("unusualend:pearlescent"); //REASON: ???
