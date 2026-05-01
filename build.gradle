@@ -181,7 +181,9 @@ subprojects {
             apiKey = env.CURSEFORGE_TOKEN
             project {
                 id = curseforge_id
-                changelog = changelogText
+                changelog = """
+                See the [Changelog @Github](https://github.com/Xelbayria/GemsRealm/blob/1.21.1/changelog.md).
+                """
                 changelogType = 'markdown'
                 releaseType = release_type
                 for (var ver : versions){
@@ -255,24 +257,51 @@ ext {
 
 
 tasks.register('buildAndPublishAll') {
-    group 'build'
-    description 'Runs clean, build, and publish neoforge and fabric'
-
-    dependsOn ';clean'
-    dependsOn ';build'
+    dependsOn ':clean'
+    dependsOn ':common:clean'
+    dependsOn ':fabric:clean'
+    dependsOn ':neoforge:clean'
+    dependsOn ':build'
     dependsOn ':neoforge:curseforge'
     dependsOn ':neoforge:modrinth'
     dependsOn ':fabric:curseforge'
     dependsOn ':fabric:modrinth'
     dependsOn ':publish'
+    finalizedBy 'gitTag'
+
+    group = 'build'
+    description = 'Runs clean, build, and publish neoforge and fabric'
 }
 
-tasks.register('buildAndPublishAllM') {
-    group 'build'
-    description 'Runs clean, build, publish forge and fabric and uploads to maven local'
+tasks.register('gitTag') {
+    group = 'release'
+    description = 'Create and push git tag from project version'
 
-    dependsOn buildAndPublishAll
-    dependsOn ':publishToMavenLocal'
+    doLast {
+        def tag = project.version.toString()
+
+        // check if tag already exists
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'tag', '-l', tag
+            standardOutput = stdout
+        }
+
+        if (!stdout.toString().trim().isEmpty()) {
+            logger.warn("Git tag '${tag}' already exists")
+        } else {
+
+            // create annotated tag
+            exec {
+                commandLine 'git', 'tag', '-a', tag, '-m', "Release ${tag}"
+            }
+
+            // push tag
+            exec {
+                commandLine 'git', 'push', 'origin', tag
+            }
+        }
+    }
 }
 
 tasks.register('cleanLogs', Delete) {
