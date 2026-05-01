@@ -1,28 +1,48 @@
 <div style="text-align: center; border: 1px solid yellow; padding: 10px;">
 
-<div style="text-align: center; margin-bottom: 10px;">
-
-### LEGEND
-
-</div>
+<h2><div style="text-align: center; margin-bottom: 10px;">LEGENDS</div></h2>
 
 <div style="text-align: left;">
 
-* **(C)**: NEOFORGE & FABRIC
-* **(FB)**: FABRIC
-* **(NF)**: NEOFORGE
-* **(IT)**: Included Texture: Added the ResourceLocation of the missing textures required for blocks or generating a new texture
-* **(TEX)**: hand-made textures to improve the way a block looks
-* **(COMPAT)**: Create an exception for a compat mod. EveryCompat won't included for the Supported Mod and the Wood Mod
-* **(INCLUDED)**: The block is not generated because a Wood Mod already have the same block as the supported mod will be generated
-* **(EXCLUDED)**: The block is generated BUT it shouldn't be generated for a reason
-* **(UDBT)**: Undetected BlockTypes will be manually added
+* <strong>(C)</strong>: NEOFORGE & FABRIC
+* <strong>(FB)</strong>: FABRIC
+* <strong>(NF)</strong>: NEOFORGE
+* <strong>(IT)</strong>: Included Texture: Added the ResourceLocation of the missing textures required for blocks or generating a new texture
+* <strong>(TEX)</strong>: hand-made textures to improve the way a block looks
+* <strong>(COMPAT)</strong>: Create an exception for a compat mod. EveryCompat won't included for the Supported Mod and the Wood Mod
+* <strong>(INCLUDED)</strong>: The block is not generated because a Wood Mod already have the same block as the supported mod will be generated
+* <strong>(EXCLUDED)</strong>: The block is generated BUT it shouldn't be generated for a reason
+* <strong>(UDBT)</strong>: Undetected BlockTypes will be manually added
+
+<br></br>
 
 </div>
 
 </div>
 
-<br>
+<br></br>
+
+### CHANGES:
+- **Gems Realm** (C): Major Improvement in Detection System - Simply reducing the repetitive codes
+- **Create** (C): Fixed Sheets' incorrect recipes & Added the missing tag, `#forge:plates/TYPE` or `#c:plates/TYPE` to sheets - [#58](https://github.com/Xelbayria/GemsRealm/issues/58)
+
+### FIXES:
+- **Chipped** (C):
+  - the `alchemy_bench`'s recipes not being generated for MetalTypes or GemTypes - [#59](https://github.com/Xelbayria/GemsRealm/issues/59)
+  - Updated the recipe generation (it was using 1.20.1) and is now working properly - [#50](https://github.com/Xelbayria/GemsRealm/issues/50)
+  - the missing textures for **Crystalized Enchants**' 3 CrystalType by using (INCLUDED) for certain blocks along textures that did not get generated - [#50](https://github.com/Xelbayria/GemsRealm/issues/50)
+- **Macaw's Bridges** (FB): Updated an outdated ResourceLocation for Creative Tab on FABRIC side
+
+### ADDED:
+- **More Ores More Gems** (UDBT): 31 MetalTypes, 42 GemTypes, & more_ores_more_gems:gunpowder (DustType)
+- **CrystalCraft Unlimited Edition** (UDBT): 16 new MetalTypes (Ported from 1.20)
+- **'Dustrial Decor** (UDBT): 2 MetalTypes (Ported from 1.20)
+- **Tech Reborn** (UDBT): 22 MetalTypes & 5 GemTypes
+  - Note: DustType cannot be added & CrystalType cannot be added
+
+---
+
+## v2.11.2
 
 ### REQUIRED:
 - **Every Compat v2.11.32 or newer** - REASON: the code related to 2 configs are removed
@@ -31,6 +51,8 @@
 - **Gems Realm** (C): Removed 2 configs due to a misunderstood request
 
 ---
+
+## v2.11.1
 
 ### REQUIRED: 
 - **Every Compat v2.11.31** - REASON: 2 new configs and new codes added responsible for Creative Tab stuff. 
