@@ -363,13 +363,13 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 ResourceLocation tilesRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "tiles_from_ingots"));
 //                ResourceLocation table_clothRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_table_cloth_from_ingots"));
 
-                grabTagAndCreateRecipe(ladderRecipePath, ladderRecipeId, "copper", ladder.blocks.get(metalType), metalType, manager, sink);
+                grabTagAndCreateRecipe(ladderRecipePath, ladderRecipeId, "ingots/copper", ladder.blocks.get(metalType), metalType, manager, sink);
 
-                grabTagAndCreateRecipe(scaffoldingRecipePath, scaffoldingRecipeId, "copper", scaffolding.blocks.get(metalType), metalType, manager, sink);
+                grabTagAndCreateRecipe(scaffoldingRecipePath, scaffoldingRecipeId, "ingots/copper", scaffolding.blocks.get(metalType), metalType, manager, sink);
 
-                grabTagAndCreateRecipe(shinglesRecipePath, shinglesRecipeId, "copper", shingles.blocks.get(metalType), metalType, manager, sink);
+                grabTagAndCreateRecipe(shinglesRecipePath, shinglesRecipeId, "ingots/copper", shingles.blocks.get(metalType), metalType, manager, sink);
 
-                grabTagAndCreateRecipe(tilesRecipePath, tilesRecipeId, "copper", tiles.blocks.get(metalType), metalType, manager, sink);
+                grabTagAndCreateRecipe(tilesRecipePath, tilesRecipeId, "ingots/copper", tiles.blocks.get(metalType), metalType, manager, sink);
 
                 /// NOT AVAILABLE IN FABRIC - will re-added when v6.0 is out for FABRIC
 //                grabTagAndCreateRecipe(table_clothRecipePath, table_clothRecipeId, "copper", table_cloth.blocks.get(metalType), metalType, manager, sink);
@@ -382,8 +382,8 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 ResourceLocation newResLocLog = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "item_application/", "casing_from_log"));
                 ResourceLocation newResLocWood = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "item_application/", "casing_from_wood"));
 
-                grabTagAndCreateRecipe(pathLog, newResLocLog, "copper", block, metalType, manager, sink);
-                grabTagAndCreateRecipe(pathWood, newResLocWood, "copper", block, metalType, manager, sink);
+                grabTagAndCreateRecipe(pathLog, newResLocLog, "ingots/copper", block, metalType, manager, sink);
+                grabTagAndCreateRecipe(pathWood, newResLocWood, "ingots/copper", block, metalType, manager, sink);
             });
 
 //            String tagIdSheet = "forge:plates/";
@@ -416,7 +416,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
         else {
             ResourceLocation newTag = GemsRealm.res("ingots/" + metalType.getTypeName());
             boolean isTagCreated = UtilityTag.createAndAddCustomTags(newTag, sink, metalType.getItemOfThis(INGOT));
-            UtilityRecipe.createRecipeWithTag(modRes(recipeLoc), newRecipeLoc,  platformTag(oldTagPath).toString(),
+            UtilityRecipe.createRecipeWithTag(modRes(recipeLoc), newRecipeLoc, platformTag(oldTagPath).toString(),
                     newTag.toString(), newResult, sink, manager);
 
             if (!isTagCreated) GemsRealm.LOGGER.error("Failed to create a tag for {} in {}", newTag.toString(), Utils.getID(newResult));
