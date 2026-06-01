@@ -202,24 +202,52 @@ subprojects {
 }
 
 tasks.register('buildAndPublishAll') {
-    group 'build'
-    description 'Runs clean, build, and publish neoforge and fabric'
-
-    dependsOn ';clean'
-    dependsOn ';build'
-    dependsOn ':neoforge:curseforge'
-    dependsOn ':neoforge:modrinth'
+    dependsOn ':clean'
+    dependsOn ':common:clean'
+    dependsOn ':fabric:clean'
+    dependsOn ':forge:clean'
+    dependsOn ':build'
+    dependsOn ':forge:curseforge'
+    dependsOn ':forge:modrinth'
     dependsOn ':fabric:curseforge'
     dependsOn ':fabric:modrinth'
     dependsOn ':publish'
+    finalizedBy 'gitTag'
+
+    group = 'build'
+    description = 'Runs clean, build, and publish neoforge and fabric'
 }
 
-tasks.register('buildAndPublishAllM') {
-    group 'build'
-    description 'Runs clean, build, publish forge and fabric and uploads to maven local'
+tasks.register('gitTag') {
+    group = 'release'
+    description = 'Create and push git tag from project version'
 
-    dependsOn buildAndPublishAll
-    dependsOn ':publishToMavenLocal'
+    doLast {
+        def execOps = services.get(ExecOperations)
+        def tag = project.version.toString()
+
+        // check if tag already exists
+        def stdout = new ByteArrayOutputStream()
+        execOps.exec {
+            commandLine 'git', 'tag', '-l', tag
+            standardOutput = stdout
+        }
+
+        if (!stdout.toString().trim().isEmpty()) {
+            logger.warn("Git tag '${tag}' already exists")
+        } else {
+
+            // create annotated tag
+            execOps.exec {
+                commandLine 'git', 'tag', '-a', tag, '-m', "Release ${tag}"
+            }
+
+            // push tag
+            execOps.exec {
+                commandLine 'git', 'push', 'origin', tag
+            }
+        }
+    }
 }
 
 tasks.register('cleanLogs', Delete) {
@@ -227,7 +255,7 @@ tasks.register('cleanLogs', Delete) {
     description "Delete logs"
 
     // Logs
-    delete fileTree(dir: "$rootDir/neoforge/run/logs", include: "**/*.gz")
+    delete fileTree(dir: "$rootDir/forge/run/logs", include: "**/*.gz")
     delete fileTree(dir: "$rootDir/fabric/run/logs", include: "**/*.gz")
 }
 
@@ -236,18 +264,18 @@ tasks.register('cleanFolders', Delete) {
     description "Clean logs & Delete folders of Debug, Dynamic Pack"
 
     // Logs
-    delete fileTree(dir: "$rootDir/neoforge/run/logs", include: "**/*.gz")
+    delete fileTree(dir: "$rootDir/forge/run/logs", include: "**/*.gz")
     delete fileTree(dir: "$rootDir/fabric/run/logs", include: "**/*.gz")
 
     // Debug
-    delete "$rootDir/neoforge/run/debug"
+    delete "$rootDir/forge/run/debug"
     delete "$rootDir/fabric/run/debug"
 
     // Dynamic Data Pack Cache
-    delete "$rootDir/neoforge/run/dynamic-data-pack-cache"
+    delete "$rootDir/forge/run/dynamic-data-pack-cache"
     delete "$rootDir/fabric/run/dynamic-data-pack-cache"
 
     // Dynamic Resource Pack Cache
-    delete "$rootDir/neoforge/run/dynamic-resource-pack-cache"
+    delete "$rootDir/forge/run/dynamic-resource-pack-cache"
     delete "$rootDir/fabric/run/dynamic-resource-pack-cache"
 }
