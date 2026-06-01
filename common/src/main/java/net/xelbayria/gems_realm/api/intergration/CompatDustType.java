@@ -1,5 +1,6 @@
 package net.xelbayria.gems_realm.api.intergration;
 
+import net.minecraft.resources.ResourceLocation;
 import net.xelbayria.gems_realm.api.set.dust.DustTypeRegistry;
 import org.jetbrains.annotations.ApiStatus;
 
@@ -32,6 +33,10 @@ public class CompatDustType extends CompatBlockType {
     static {
 
         DustTypeRegistry dustReg = DustTypeRegistry.INSTANCE;
+
+        // -------------------- More Ores More Gems
+        dustReg.addSimpleFinder("more_ores_more_gems:gunpowder")
+                .childItem(DUST, new ResourceLocation("gunpowder")); //REASON: Naming-Convention, Vanilla-Children
 
         // -------------------- Atlantis (MysticPasta1) - REASON: 2-Words, Naming-Convention
         dustReg.addSimpleFinder("atlantis:aquatic_power")
