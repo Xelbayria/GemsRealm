@@ -1,13 +1,12 @@
 package net.xelbayria.gems_realm.api.set.gem;
 
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
-import java.util.Objects;
 import java.util.Optional;
 
+import static net.xelbayria.gems_realm.api.set.RockType.*;
 import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_GEMTYPES;
 import static net.xelbayria.gems_realm.misc.HardcodedBlockType.BLACKLISTED_MODS;
 
@@ -30,58 +29,40 @@ public class GemTypeRegistry extends BlockTypeRegistry<GemType> {
     }
 
     @Override
-    public Optional<GemType> detectTypeFromBlock(Block baseblock, ResourceLocation baseRes) {
-        String blockPath = baseRes.getPath();
+    public Optional<GemType> detectTypeFromBlock(Block baseBlock, ResourceLocation blockId) {
+        String namespace = blockId.getNamespace();
+        String blockPath = blockId.getPath();
 
-        /// Default
-        // Checking for word1_word2_TYPE_block - NOTE: word1, word2 can be present or not
-        if (blockPath.matches("^(?:rare|dark|black|white|cyan|pink|yellow|blue|green|purple|red|orange|brown|olive)?_?(?:ice|fire|star|blue)?_?[a-z]+_block$") ) {
-            String gemName = blockPath.replace("_block", ""); // get gemName from namespace:gemName_block
-            ResourceLocation idBlockType = baseRes.withPath(gemName);
+        /// ──────────────────────────── Support Tech-reborn ────────────────────────────
+        if (namespace.matches("techreborn")) {
+            String blockSuffix = "storage_block";
+            setChildInfix("storage_");
 
-            /// Ensure the detected block is actually GemType
-            boolean hasOre = BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ore"))
-            ) || BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), "deepslate_"+ blockPath.replace("block", "ore"))
-            );
-            boolean hasGem = BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("_block", ""))
-            );
-            boolean noWoodType = !BuiltInRegistries.BLOCK.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "log"))
-            );
-            boolean noCrystalType = !BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "cluster"))
-            );
-            boolean noDustType = !BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "dust"))
-            );
-            boolean noMetalType = !BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
-            )
-                && !BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), "raw_"+ blockPath.replace("_block", ""))
-            );
+            // Ensure the detected block is actually GemType
+            boolean hasGem = isInItemRegistry(namespace, blockPath, blockSuffix, "gem");
+            boolean noMetalType = !isInItemRegistry(namespace, blockPath, blockSuffix, "ingot");
 
-            // Ensure there is no duplicated GemType in the list
-            if (!valuesReg.containsKey(idBlockType)
-                    && hasOre
-                    && hasGem
-                    && noWoodType
-                    && noCrystalType
-                    && noDustType
-                    && noMetalType
-                    && !BLACKLISTED_GEMTYPES.contains(idBlockType.toString())
-                    && !BLACKLISTED_MODS.contains(baseRes.getNamespace())
-            ) {
-                Optional<Block> opt = BuiltInRegistries.BLOCK.getOptional(baseRes);
-
-                if (opt.isPresent()) return Optional.of(new GemType(idBlockType, opt.get()));
-            }
-
+            return newSubBlockType(GemType::new, baseBlock, blockId, blockPath, "(?<typename>\\w+)_"+blockSuffix,
+                    valuesReg, hasGem, noMetalType);
         }
-        return Optional.empty();
+
+        /// ────────────────────────────────── Default ──────────────────────────────────
+        // Ensure the detected block is actually GemType
+        boolean hasOre = isInItemRegistry(namespace, blockPath, "block", "ore")
+                || isInItemRegistry(namespace, "deepslate_"+blockPath, "block", "ore");
+        boolean hasGem = isInItemRegistry(namespace, blockPath, "_block", "");
+        boolean noWoodType = !isInItemRegistry(namespace, blockPath, "block", "log");
+        boolean noCrystalType = !isInItemRegistry(namespace, blockPath, "block", "cluster");
+        boolean noDustType = !isInItemRegistry(namespace, blockPath, "block", "dust");
+        boolean noMetalType = !isInItemRegistry(namespace, blockPath, "block", "ingot")
+                && !isInItemRegistry(namespace, "raw_"+blockPath, "block", "");
+
+        // Checking for word1_word2_TYPE_block - NOTE: word1, word2 can be present or not
+        String blockPathRegex = "^(?<typename>(?:rare|dark|black|white|cyan|pink|yellow|blue|green|purple|red|orange|brown|olive)?_?(?:ice|fire|star|blue)?_?[a-z]+)_block$";
+
+        return newSubBlockType(GemType::new, baseBlock, blockId, blockPath, blockPathRegex, valuesReg,
+                BLACKLISTED_GEMTYPES, BLACKLISTED_MODS,
+                hasOre, hasGem, noWoodType, noCrystalType, noDustType, noMetalType);
     }
 
 

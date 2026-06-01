@@ -1,5 +1,6 @@
 package net.xelbayria.gems_realm.api.set;
 
+import net.mehvahdjukaar.moonlight.api.misc.MapRegistry;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -9,9 +10,12 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.function.BiFunction;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static net.xelbayria.gems_realm.api.set.VanillaRockChildKeys.*;
 
 /**
  * Childkey Availability:
@@ -26,40 +30,53 @@ public abstract class RockType extends BlockType{
 
     public final Block block;
 
+    private static String childInfix = "";
+
     protected RockType(ResourceLocation id, Block block) {
         super(id);
         this.block = block;
     }
 
+    /**
+     * REASON: Mod like Tech-Reborn has blockID, "storage_block" for slab, stairs, wall.
+     *<br>NOTE: the method will return "infix" + "block" or "infix_" + "block"
+     * @param infix "infix" or "infix_"
+    */
+    public static void setChildInfix(String infix) {
+        childInfix = infix;
+    }
+
     @Override
     protected void initializeChildrenBlocks() {
-        this.addChild("block", this.block);
-        this.addChild("raw_block", findRelatedBlock("raw", "block"));
-        this.addChild("stairs", findChildBlocks("stair"));
-        this.addChild("slab", findChildBlocks("slab"));
-        this.addChild("fence", findChildBlocks("fence"));
-        this.addChild("chiseled", findRelatedBlock("chiseled", ""));
+
+        this.addChild(BLOCK, this.block);
+        this.addChild(RAW_BLOCK, findRelatedBlock("raw", "block"));
+        this.addChild(STAIRS, findChildBlocks(STAIRS));
+        this.addChild(SLAB, findChildBlocks(SLAB));
+        this.addChild(WALL, findChildBlocks(WALL));
+        this.addChild(FENCE, findChildBlocks(FENCE));
+        this.addChild(CHISELED, findRelatedBlock("chiseled", ""));
 
         Block bricks = this.findBrickEntry("", "");
-        this.addChild("bricks", bricks);
+        this.addChild(BRICKS, bricks);
         if (bricks != null) {
-            this.addChild("brick_stairs", findBrickEntry("",  "stairs"));
-            this.addChild("brick_slab", findBrickEntry("",  "slab"));
-            this.addChild("brick_wall", findBrickEntry("",  "wall"));
-            this.addChild("brick_tiles", findBrickEntry("",  "tiles"));
-            this.addChild("cracked_bricks", findBrickEntry("cracked", ""));
-            this.addChild("mossy_bricks", findBrickEntry("mossy", ""));
-            this.addChild("mossy_brick_slab", findBrickEntry("mossy", "slab"));
-            this.addChild("mossy_brick_stairs", findBrickEntry("mossy", "stairs"));
-            this.addChild("mossy_brick_wall", findBrickEntry("mossy", "wall"));
+            this.addChild(BRICK_STAIRS, findBrickEntry("",  "stairs"));
+            this.addChild(BRICK_SLAB, findBrickEntry("",  "slab"));
+            this.addChild(BRICK_WALL, findBrickEntry("",  "wall"));
+            this.addChild(BRICK_TILES, findBrickEntry("",  "tiles"));
+            this.addChild(CRACKED_BRICKS, findBrickEntry("cracked", ""));
+            this.addChild(MOSSY_BRICKS, findBrickEntry("mossy", ""));
+            this.addChild(MOSSY_BRICK_SLAB, findBrickEntry("mossy", "slab"));
+            this.addChild(MOSSY_BRICK_STAIRS, findBrickEntry("mossy", "stairs"));
+            this.addChild(MOSSY_BRICK_WALL, findBrickEntry("mossy", "wall"));
         }
 
         Block smooth = findRelatedEntry("smooth", BuiltInRegistries.BLOCK);
-        this.addChild("smooth", smooth);
+        this.addChild(SMOOTH, smooth);
         if (Objects.nonNull(smooth)) {
-            this.addChild("smooth_stairs", findRelatedBlock("smooth", "stairs"));
-            this.addChild("smooth_slab", findRelatedBlock("smooth", "slab"));
-            this.addChild("smooth_wall", findRelatedBlock("smooth", "wall"));
+            this.addChild(SMOOTH_STAIRS, findRelatedBlock("smooth", "stairs"));
+            this.addChild(SMOOTH_SLAB, findRelatedBlock("smooth", "slab"));
+            this.addChild(SMOOTH_WALL, findRelatedBlock("smooth", "wall"));
         }
 
     }
@@ -69,6 +86,7 @@ public abstract class RockType extends BlockType{
 
     /// Check for block with "s" and without "s"
     private @Nullable Block findChildBlocks(String suffix) {
+        if (!childInfix.isEmpty()) suffix = childInfix + suffix;
         var first = this.findRelatedEntry("", suffix, BuiltInRegistries.BLOCK);
         if (first != null) return first;
         return this.findRelatedEntry("", suffix + "s", BuiltInRegistries.BLOCK);
@@ -136,13 +154,78 @@ public abstract class RockType extends BlockType{
             String path = id.getPath();
             String namespace = id.getNamespace();
 
-            String _suffix = (keyword.isEmpty()) ? "" : "_" + keyword;
-            String prefix_ = (keyword.isEmpty()) ? "" : keyword + "_";
+            String suffixed = (keyword.isEmpty()) ? "" : "_" + keyword;
+            String prefixed = (keyword.isEmpty()) ? "" : keyword + "_";
 
-            resources.add(new ResourceLocation(namespace, path + _suffix));
-            resources.add(new ResourceLocation(namespace, prefix_ + path));
+            resources.add(new ResourceLocation(namespace, path + suffixed));
+            resources.add(new ResourceLocation(namespace, prefixed + path));
         }
         return resources.toArray(new ResourceLocation[0]);
+    }
+
+    /// Create new BlockType using the subclass: CrystalType, DustType, GemType, Or MetalType
+    /// @param factory use 1 of 4 subclass, example: CrystalType::new
+    public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<ResourceLocation, Block, T> factory,
+                                                                    Block baseBlock, ResourceLocation blockId,
+                                                                    String blockPath, String blockPathRegex,
+                                                                    MapRegistry<T> valuesReg,
+                                                                    Set<String> blockTypeBlacklist,
+                                                                    @Nullable Set<String> modBlacklist,
+                                                                    Boolean ... checks
+    ) {
+        Pattern regex = Pattern.compile(blockPathRegex);
+        Matcher matcher = regex.matcher(blockPath);
+
+        if (matcher.find()) {
+
+            String blocktypeName = matcher.group("typename");
+
+            ResourceLocation idBlockType = blockId.withPath(blocktypeName);
+
+            boolean isModBlacklisted = Objects.nonNull(modBlacklist) && modBlacklist.contains(blockId.getNamespace());
+            boolean isBlockTypeBlacklisted = Objects.nonNull(blockTypeBlacklist) && blockTypeBlacklist.contains(idBlockType.toString());
+
+            if (!valuesReg.containsKey(idBlockType) && !isModBlacklisted && !isBlockTypeBlacklisted) {
+
+                // if check is true, then it pass but if it's false, then denied.
+                for (Boolean pass : checks) {
+                    if (!pass) return Optional.empty();
+                }
+
+                return Optional.of(factory.apply(idBlockType, baseBlock));
+            }
+        }
+        return Optional.empty();
+    }
+
+    public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<ResourceLocation, Block, T> factory,
+                                                                    Block baseBlock, ResourceLocation blockId,
+                                                                    String blockPath, String blockPathRegex,
+                                                                    MapRegistry<T> valuesReg,
+                                                                    Set<String> blockTypeBlacklist,
+                                                                    Boolean ... checks
+    ) {
+        return newSubBlockType(factory, baseBlock, blockId, blockPath, blockPathRegex, valuesReg, blockTypeBlacklist, null, checks);
+    }
+
+    public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<ResourceLocation, Block, T> factory,
+                                                                    Block baseBlock, ResourceLocation blockId,
+                                                                    String blockPath, String blockPathRegex,
+                                                                    MapRegistry<T> valuesReg,
+                                                                    Boolean ... checks
+    ) {
+        return newSubBlockType(factory, baseBlock, blockId, blockPath, blockPathRegex, valuesReg, null, null, checks);
+    }
+
+    public static boolean isInItemRegistry(String namespace, String prefix, String blockPath, String target, String replacement) {
+        return BuiltInRegistries.ITEM.containsKey(
+                new ResourceLocation(namespace,prefix + blockPath.replace(target, replacement))
+        );
+    }
+    public static boolean isInItemRegistry(String namespace, String blockPath, String target, String replacement) {
+        return BuiltInRegistries.ITEM.containsKey(
+                new ResourceLocation(namespace, blockPath.replace(target, replacement))
+        );
     }
 
 }

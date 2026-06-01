@@ -1,12 +1,13 @@
 package net.xelbayria.gems_realm.api.set.dust;
 
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
 import java.util.Optional;
 
+import static net.xelbayria.gems_realm.api.set.RockType.isInItemRegistry;
+import static net.xelbayria.gems_realm.api.set.RockType.newSubBlockType;
 import static net.xelbayria.gems_realm.misc.HardcodedBlockType.*;
 
 public class DustTypeRegistry extends BlockTypeRegistry<DustType> {
@@ -28,45 +29,22 @@ public class DustTypeRegistry extends BlockTypeRegistry<DustType> {
     }
 
     @Override
-    public Optional<DustType> detectTypeFromBlock(Block baseBlock, ResourceLocation baseRes) {
-        String blockPath = baseRes.getPath();
+    public Optional<DustType> detectTypeFromBlock(Block baseBlock, ResourceLocation blockId) {
+        String namespace = blockId.getNamespace();
+        String blockPath = blockId.getPath();
 
-        /// Default
-        if (blockPath.matches("\\w+_block")) {
-            String crystalName = blockPath.replace("_block", ""); // get gemName from namespace:gemName_block
-            ResourceLocation idBlockType = baseRes.withPath(crystalName);
+        /// ────────────────────────────────── Default ──────────────────────────────────
+        // Ensure the detected block is actually DustType
+        boolean hasDust = isInItemRegistry(namespace, blockPath, "block", "dust");
+        boolean noWoodType = !isInItemRegistry(namespace, blockPath, "block", "log");
+        boolean noMetalType = !isInItemRegistry(namespace, blockPath, "block", "ingot");
+        boolean noGemType = !isInItemRegistry(namespace, blockPath, "_block", "");
 
-            /// Ensure the detected block is actually DustType
-            boolean hasDust = BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "dust"))
-            );
-            boolean noWoodType = !BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "log"))
-            );
-            boolean noMetalType = !BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "ingot"))
-            );
-            boolean noGemType = !BuiltInRegistries.ITEM.containsKey(
-                    new ResourceLocation(baseRes.getNamespace(), blockPath.replace("_block", ""))
-            );
-
-            // Ensure there is no duplicated DustType in the list
-            if (!valuesReg.containsKey(idBlockType)
-                    && hasDust
-                    && noWoodType
-                    && noMetalType
-                    && noGemType
-                    && !BLACKLISTED_DUSTTYPES.contains(idBlockType.toString())
-                    && !BLACKLISTED_MODS.contains(baseRes.getNamespace())
-                    && !BLACKLISTED_DUST_MODS.contains(baseRes.getNamespace()) //TEMP
-            ) {
-                Optional<Block> opt = BuiltInRegistries.BLOCK.getOptional(baseRes);
-
-                if (opt.isPresent()) return Optional.of(new DustType(idBlockType, opt.get()));
-            }
-
-        }
-        return Optional.empty();
+        return newSubBlockType(DustType::new, baseBlock, blockId, blockPath, "(?<typename>\\w+)_block",
+                valuesReg, BLACKLISTED_DUSTTYPES, BLACKLISTED_MODS,
+                hasDust, noWoodType, noMetalType, noGemType,
+                !BLACKLISTED_DUST_MODS.contains(blockId.getNamespace()) //TEMP
+        );
     }
 
 
