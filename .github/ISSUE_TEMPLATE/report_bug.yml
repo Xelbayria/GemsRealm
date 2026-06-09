@@ -99,6 +99,6 @@ body:
         These are found in: `.minecraft/logs/` or `.minecraft/crash-reports/`
         
         Include additional screenshot if needed.
-      placeholder: "Drop files or paste logs here..."
+    placeholder: "Drop files or paste a link using https://mclo.gs/ to share the log here..."
     validations:
       required: true
