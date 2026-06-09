@@ -1,5 +1,5 @@
 name: Report Bug
-description: Gems Realm got a bug? Report it.
+description: Found a bug? Report it.
 title: "[🐞]: "
 labels: ["bug"]
 body:
@@ -13,28 +13,28 @@ body:
     attributes:
       label: "Code of Conduct"
       options:
-        - label: "Always check you are using the latest version of the mods and its dependencies"
+        - label: "Use the LATEST version of the mod and ALL its dependencies (or ideally all your mods). Pro tip: don't install mods manually, use a launcher."
           required: true
         - label: "Ensure the version of EveryCompat & Moonlight Lib are up to date"
           required: true
-        - label: "Remove mod that enhances Minecraft: Optifine, Sodium, others. The issue still persists."
+        - label: "Don't use Optifine or hybrid-servers (Mohist/Velocity/etc) and have tried without big game altering mods (Sodium/Lithium/etc)."
           required: true
-        - label: "If you are unsure which mod is the culprit.\nDisable all of your mods and enable them 1-2 mods each time to isolate the culprit"
-          required: true
-        - label: "Confirm that there is no existing issue with a similar description submitted in the list of issues."
+        - label: "Try with the mod alone. If issue does not persist then try removing half of your mods at the time to find the conflicting mod."
+          required: false
+        - label: "Check that this bug hasn't been reported already."
           required: true
 
   - type: dropdown
     id: version-loader
     attributes:
-      label: "Version - Loader (DO NOT FORGET TO SELECT THE CORRECT VERSION)"
+      label: "Minecraft Version & Loader"
       description: "What's the Minecraft version & loader"
       options:
-        - DO NOT FORGET the selected one is correct
+        - 1.21.1 - NEOFORGE
         - 1.21.1 - FABRIC
         - 1.20.1 - FABRIC
-        - 1.21.1 - NEOFORGE
         - 1.20.1 - FORGE
+        - OTHER-SPECIFY
       default: 0
     validations:
       required: true
@@ -62,7 +62,7 @@ body:
     attributes:
       label: Every Compat Version
       description: The current version of Every Compat you are using
-      placeholder: ex. everycomp-1.20-2.9.0-forge | everycomp-LS-1.20-2.9.0-forge
+      placeholder: everycomp-1.20-2.9.0-forge
     validations:
       required: true
 
@@ -70,34 +70,35 @@ body:
     id: issue-with-mods
     attributes:
       label: "Issue with mods"
-      description: "Which mods does Gems Realm have an issue with?"
-      placeholder: "ex. - Strata <version> \nex. - Chipped <version> \n\nStrata is StoneTypes Mod & Create is a Furniture Mod"
+      description: "List the mods that Gems Realm is having issue with. The minimal modlist will help DEV to try and reproduce"
+      placeholder: "example:\n- Strata-version (MetalType Mod) \n- Chipped-version (Supported Mod)"
     validations:
       required: true
 
   - type: textarea
-    id: issue-details
+    id: description
     attributes:
-      label: "Issue Detail"
-      description: "A clear and concise description of what the bug is."
-      placeholder: "ATTENTION: DO NOT put log files here. The next area (below) is for attaching the log files\nHere is for describing the bug you encountered.\nYou can attach images here."
+      label: Issue Details
+      description: Provide a clear description of what happened and how to reproduce it.
+      placeholder: |
+        What happened:
+        
+        Steps to reproduce (OPTIONAL):
+        1. 
+        2.
     validations:
-        required: true
+      required: true
 
   - type: textarea
+    id: logs
     attributes:
-      label: "OPTIONAL: Latest.log | Crash-report Attachment"
+      label: Logs & Media
       description: |
-        If your Minecraft crashes, it creates a crash-report file which is located in ~/.minecraft/crash-report/
-      placeholder: Attach log files (latest.log or crash-report) here by clicking this area to highlight it and then dragging files in.
+        Drag and drop your **latest.log** or **crash-report** here. 
+        
+        These are found in: `.minecraft/logs/` or `.minecraft/crash-reports/`
+        
+        Include additional screenshot if needed.
+      placeholder: "Drop files or paste logs here..."
     validations:
-      required: false
-
-  - type: textarea
-    id: to-reproduce
-    attributes:
-      label: "OPTIONAL: To Produce"
-      description: "Steps to reproduce the behaviour"
-      placeholder: "Example:\n1) Place a <block> anywhere\n2) Interact with <block>\n3) The bug happened here"
-    validations:
-        required: false
+      required: true
