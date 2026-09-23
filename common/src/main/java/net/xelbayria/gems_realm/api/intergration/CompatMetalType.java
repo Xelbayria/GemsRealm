@@ -1,6 +1,7 @@
 package net.xelbayria.gems_realm.api.intergration;
 
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
+import net.minecraft.resources.ResourceLocation;
 import net.xelbayria.gems_realm.api.set.metal.MetalTypeRegistry;
 import org.jetbrains.annotations.ApiStatus;
 
@@ -45,6 +46,11 @@ public class CompatMetalType extends CompatBlockType {
         if (PlatHelper.isModLoaded("caverns_and_chasms"))
             metalReg.addSimpleFinder("minecraft:netherite")
                 .childItem(NUGGET, "caverns_and_chasms:netherite_nugget");
+
+        // Spelunkery & Etcetera - REASON: Spelunkery's bismuth_nugget are used to craft Etcetera's bismuth_ingot
+        if (PlatHelper.isModLoaded("spelunkery"))
+            metalReg.addSimpleFinder("etcetera", "bismuth")
+                    .childItem(NUGGET, ResourceLocation.parse("spelunkery:bismuth_nugget"));
 
         // Tech Reborn
         metalReg.addSimpleFinder("techreborn", "iridium_reinforced_tungstensteel")
