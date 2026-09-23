@@ -10,19 +10,21 @@ import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import static net.xelbayria.gems_realm.api.set.VanillaRockChildKeys.*;
 import static net.xelbayria.gems_realm.misc.HardcodedBlockType.isKnownVanillaBlockType;
 
-//SUPPORT: v1.2.4
+///SUPPORT: v1.2.6
 public abstract class RechiseledModuleAbstract extends GemsRealmModule {
 
-    public final ResourceLocation tab = modRes("rechiseled");
+    protected final Supplier<CreativeModeTab> TAB = getModTab("rechiseled");
 
     public RechiseledModuleAbstract(String modId) {
         super(modId, "rcd");

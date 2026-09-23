@@ -1,17 +1,24 @@
-| **Legends**                                                                                                                      |
-|----------------------------------------------------------------------------------------------------------------------------------|
-| - **(C)**: FORGE & FABRIC                                                                                                        |
-| - **(FB)**: FABRIC                                                                                                               |
-| - **(NF)**: NEOFORGE                                                                                                             |
+| **Legends**                                                                                                                       |
+|-----------------------------------------------------------------------------------------------------------------------------------|
+| \- **(C)**: FORGE & FABRIC                                                                                                        |
+| - **(FB)**: FABRIC                                                                                                                |
+| - **(NF)**: NEOFORGE                                                                                                              |
 | - **(IT)**: Included Texture — added the ResourceLocation of the missing textures required for blocks or generating a new texture |
-| - **(TEX)**: hand-made textures to improve the way a block looks                                                                 |
-| - **(COMPAT)**: Create an exception for a compat mod. EveryCompat won't include the Supported Mod and the Wood Mod               |
+| - **(TEX)**: hand-made textures to improve the way a block looks                                                                  |
+| - **(COMPAT)**: Create an exception for a compat mod. EveryCompat won't include the Supported Mod and the Wood Mod                |
 | - **(INCLUDED)**: The block is not generated because a Wood Mod already has the same block as the supported mod will be generated |
-| - **(EXCLUDED)**: The block is generated BUT it shouldn't be generated for a reason                                              |
-| - **(UDBT)**: Undetected BlockTypes will be manually added                                                                       |
-|                                                                                                                                  |
+| - **(EXCLUDED)**: The block is generated BUT it shouldn't be generated for a reason                                               |
+| - **(UDBT)**: Undetected BlockTypes will be manually added                                                                        |
+|                                                                                                                                   |
 
 ---
+## v2.11.4
+
+### UPDATED: 
+
+---
+
+## v2.11.3
 
 ### CHANGES:
 - **Gems Realm** (C): Major Improvement in Detection System - Simply reducing the repetitive codes

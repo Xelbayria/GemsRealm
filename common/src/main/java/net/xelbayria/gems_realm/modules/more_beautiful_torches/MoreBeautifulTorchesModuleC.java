@@ -1,5 +1,7 @@
 package net.xelbayria.gems_realm.modules.more_beautiful_torches;
 
+import net.mehvahdjukaar.every_compat.api.PaletteStrategies;
+import net.mehvahdjukaar.every_compat.api.PaletteStrategy;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
@@ -8,6 +10,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.*;
 import net.xelbayria.gems_realm.GemsRealm;
@@ -16,6 +19,9 @@ import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.crystal.CrystalType;
 import net.xelbayria.gems_realm.api.set.crystal.VanillaCrystalTypes;
 
+import java.util.function.Supplier;
+
+import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.registerCached;
 import static net.xelbayria.gems_realm.api.set.crystal.VanillaCrystalChildKeys.CLUSTER;
 
 //SUPPORT: v3.0.0+
@@ -36,9 +42,9 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
 
     public MoreBeautifulTorchesModuleC(String modId) {
         super(modId, "mbt");
-        ResourceLocation tab = (PlatHelper.Platform.FABRIC.isFabric())
-                ? modRes("goldenfoods_tab")
-                : modRes("morebeautifultorches_tab");
+        Supplier<CreativeModeTab> tab = (PlatHelper.Platform.FABRIC.isFabric())
+                ? getModTab("goldenfoods_tab")
+                : getModTab("morebeautifultorches_tab");
 
         block_wall_torch = GemsRealmEntrySet.of(CrystalType.class, "block_wall_torch",
                         getModBlock("amethyst_block_wall_torch"), () -> VanillaCrystalTypes.AMETHYST,
@@ -68,7 +74,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                 )
                 //TEXTURES: wall_torch
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((crystalType, b, p) -> new StandingAndWallBlockItem(b, block_wall_torch.blocks.get(crystalType), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -93,7 +99,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                 )
                 //TEXTURES: soul_wall_torch
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((crystalType, b, p) -> new StandingAndWallBlockItem(b, block_soul_wall_torch.blocks.get(crystalType), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -117,7 +123,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                         crystalType -> new RedstoneTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_TORCH))
                 )
                 //TEXTURES: redstone_wall_torch
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((crystalType, b, p) -> new StandingAndWallBlockItem(b, block_redstone_wall_torch.blocks.get(crystalType), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -157,7 +163,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                 .requiresChildren(CLUSTER) //REASON: recipes, textures
                 //TEXTURES: wall_torch
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((crystalType, b, p) -> new StandingAndWallBlockItem(b, cluster_wall_torch.blocks.get(crystalType), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -185,7 +191,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                 .requiresChildren(CLUSTER) //REASON: recipes, textures
                 //TEXTURES: soul_wall_torch
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((crystalType, b, p) -> new StandingAndWallBlockItem(b, cluster_soul_wall_torch.blocks.get(crystalType), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -196,10 +202,9 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                         getModBlock("amethyst_cluster_redstone_wall_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new RedstoneWallTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_WALL_TORCH))
                 )
-                .createPaletteFromRockChild(CLUSTER)
                 .requiresChildren(CLUSTER) //REASON: recipes, textures
-                .addTextureM(modRes("block/amethyst_cluster_redstone_torch"), GemsRealm.res("block/common_redstone_torch_m"))
-                .addTextureM(modRes("block/amethyst_cluster_redstone_torch_off"), GemsRealm.res("block/common_torch_m"))
+                .addTextureM(modRes("block/amethyst_cluster_redstone_torch"), GemsRealm.res("block/common_redstone_torch_m"), CLUSTER_STANDARD)
+                .addTextureM(modRes("block/amethyst_cluster_redstone_torch_off"), GemsRealm.res("block/common_torch_m"), CLUSTER_STANDARD)
                 .noTab()
                 .noItem()
                 .setRenderType(RenderLayer.CUTOUT)
@@ -212,7 +217,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                 )
                 .requiresChildren(CLUSTER) //REASON: recipes, textures
                 //TEXTURES: redstone_wall_torch
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((crystalType, b, p) -> new StandingAndWallBlockItem(b, cluster_redstone_wall_torch.blocks.get(crystalType), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -220,4 +225,7 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
         this.addEntry(cluster_redstone_torch);
 
     }
+
+    public static final PaletteStrategy CLUSTER_STANDARD = registerCached((blockType, manager) -> PaletteStrategies.makePaletteFromChild(
+            blockType, manager, CLUSTER, null, null));
 }

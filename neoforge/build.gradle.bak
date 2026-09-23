@@ -153,7 +153,7 @@ dependencies {
             //+ OTHER MAVENS
     modCompileOnly("com.tterrag.registrate:Registrate:$registrate_version") // Create
     modCompileOnly("dev.engine-room.flywheel:flywheel-neoforge-$minecraft_version:$flywheel_neoforge_version") // Create
-    modCompileOnly("net.createmod.ponder:Ponder-NeoForge-$minecraft_version:$ponder_version") // Create
+    modCompileOnly("net.createmod.ponder:ponder-neoforge:$ponder_version+mc$minecraft_version") // Create
 
 //!! =================================================== IMPORTS ==================================================== \\
         //- ONLY FOR TESTING - can be commented out or enabled

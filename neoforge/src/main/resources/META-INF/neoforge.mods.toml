@@ -1,6 +1,6 @@
 
 modLoader = "javafml"
-loaderVersion = "${loader_version_range}"
+loaderVersion = "*"
 
 license = "${mod_license}"
 issueTrackerURL = "${mod_github}/issues"
@@ -26,7 +26,7 @@ itemIcon="${mod_id}:all_gems" #catalogue icon
 [[dependencies.${mod_id}]]
     modId = "minecraft"
     type = "required"
-    versionRange = "[${minecraft_min_version},${minecraft_max_version})"
+    versionRange = "[${minecraft_version}]"
     ordering = "NONE"
     side = "CLIENT"
 

@@ -200,7 +200,6 @@ subprojects {
                         requiredDependency("fabric-api")
                         requiredDependency("selene")
                         requiredDependency("every-compat")
-                        optionalDependency("library-section")
                         optionalDependency("create-fabric")
                         optionalDependency("macaws-bridges")
                         optionalDependency("macaws-fences-and-walls")

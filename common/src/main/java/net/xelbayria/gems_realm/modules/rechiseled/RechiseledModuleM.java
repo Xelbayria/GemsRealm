@@ -59,7 +59,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/iron_block_bordered"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_bordered);
@@ -71,7 +71,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 //TEXTURES: iron_block_bordered
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_bordered_connecting);
@@ -83,7 +83,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/iron_block_chiseled"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_chiseled);
@@ -95,7 +95,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 //TEXTURES: iron_block_chiseled
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_chiseled_connecting);
@@ -107,7 +107,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/iron_block_framed"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_framed);
@@ -119,7 +119,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 //TEXTURES: iron_block_framed
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_framed_connecting);
@@ -131,7 +131,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/iron_block_gears"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_gears);
@@ -143,7 +143,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 //TEXTURES: iron_block_gears
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_gears_connecting);
@@ -155,7 +155,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/iron_block_lines"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_lines);
@@ -167,7 +167,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 //TEXTURES: iron_block_lines
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_lines_connecting);
@@ -179,7 +179,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/iron_block_patterned"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_patterned);
@@ -191,7 +191,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 //TEXTURES: iron_block_patterned
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_patterned_connecting);
@@ -203,7 +203,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/iron_block_pipes"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_pipes);
@@ -215,7 +215,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 //TEXTURES: iron_block_pipes
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_pipes_connecting);
@@ -227,7 +227,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/iron_block_polished"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_polished);
@@ -239,7 +239,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 //TEXTURES: iron_block_polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_polished_connecting);
@@ -251,7 +251,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/iron_block_processed"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_processed);
@@ -263,7 +263,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 //TEXTURES: iron_block_processed
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_processed_connecting);
@@ -275,7 +275,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/iron_block_small_bricks"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_small_bricks);
@@ -287,7 +287,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 //TEXTURES: iron_block_small_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_small_bricks_connecting);
@@ -299,7 +299,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/iron_block_plated"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_plated);
@@ -311,7 +311,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/iron_block_pulverized"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_pulverized);
@@ -323,7 +323,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/iron_block_reinforced"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_reinforced);
@@ -335,7 +335,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/iron_block_sheets"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_sheets);
@@ -347,7 +347,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/iron_block_smooth"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_smooth);
@@ -359,7 +359,7 @@ public class RechiseledModuleM extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/iron_block_connecting"), BLOCK_LOW_CONTRAST)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_connecting_connecting);

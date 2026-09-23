@@ -7,7 +7,7 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.CreativeModeTab;
@@ -29,7 +29,7 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
 
     protected GemsRealmEntrySet(Class<T> type, String name, @Nullable String prefix, Function<T, B> blockSupplier,
                                 Supplier<B> baseBlock, Supplier<T> baseType,
-                                @NotNull Supplier<ResourceKey<CreativeModeTab>> tab,
+                                @NotNull Supplier<Holder<CreativeModeTab>> tab,
                                 TabAddMode tabMode, LootTableMode lootMode,
                                 @Nullable TriFunction<T, B, Item.Properties, Item> itemFactory,
                                 @Nullable ITileHolder tileFactory, @Nullable Object renderType,

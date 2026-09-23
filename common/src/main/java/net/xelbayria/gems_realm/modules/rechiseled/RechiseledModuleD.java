@@ -43,7 +43,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/redstone_block_bordered"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_bordered);
@@ -54,7 +54,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: redstone_block_bordered
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_bordered_connecting);
@@ -65,7 +65,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/redstone_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_bricks);
@@ -76,7 +76,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: redstone_block_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_bricks_connecting);
@@ -87,7 +87,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/redstone_block_chiseled_clovers"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_chiseled_clovers);
@@ -98,7 +98,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: redstone_block_chiseled_clovers
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_chiseled_clovers_connecting);
@@ -109,7 +109,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/redstone_block_circles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_circles);
@@ -120,7 +120,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: redstone_block_circles
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_circles_connecting);
@@ -131,7 +131,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/redstone_block_compressed"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_compressed);
@@ -142,7 +142,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: redstone_block_compressed
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_compressed_connecting);
@@ -153,7 +153,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/redstone_block_diagonal_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_diagonal_tiles);
@@ -164,7 +164,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: redstone_block_diagonal_tiles
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_diagonal_tiles_connecting);
@@ -175,7 +175,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/redstone_block_patterned"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_patterned);
@@ -186,7 +186,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: redstone_block_patterned
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_patterned_connecting);
@@ -197,7 +197,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/redstone_block_paving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_paving);
@@ -208,7 +208,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: redstone_block_paving
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_paving_connecting);
@@ -220,7 +220,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/redstone_block_pillar_side"))
                 .addTexture(modRes("block/redstone_block_pillar_end"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_pillar);
@@ -231,7 +231,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: redstone_block_pillar
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_pillar_connecting);
@@ -242,7 +242,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/redstone_block_polished"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_polished);
@@ -253,7 +253,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: redstone_block_polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_polished_connecting);
@@ -264,7 +264,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/redstone_block_scales"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_scales);
@@ -275,7 +275,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: redstone_block_scales
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_scales_connecting);
@@ -286,7 +286,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/redstone_block_small_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_small_tiles);
@@ -297,7 +297,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: redstone_block_small_tiles
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_small_tiles_connecting);
@@ -308,7 +308,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/redstone_block_brick_bordered"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_brick_bordered);
@@ -319,7 +319,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/redstone_block_crushed"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_crushed);
@@ -330,7 +330,7 @@ public class RechiseledModuleD extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/redstone_block_smooth"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_smooth);

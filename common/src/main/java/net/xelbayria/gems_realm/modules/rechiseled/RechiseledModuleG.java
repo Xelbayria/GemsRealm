@@ -43,7 +43,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/emerald_block_bordered_crosses"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_bordered_crosses);
@@ -55,7 +55,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 //TEXTURES: emerald_block_bordered_crosses
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_bordered_crosses_connecting);
@@ -67,7 +67,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/emerald_block_bordered_plating"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_bordered_plating);
@@ -79,7 +79,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 //TEXTURES: emerald_block_bordered_plating
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_bordered_plating_connecting);
@@ -91,7 +91,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/emerald_block_chiseled"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_chiseled);
@@ -103,7 +103,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 //TEXTURES: emerald_block_chiseled
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_chiseled_connecting);
@@ -115,7 +115,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/emerald_block_clovers"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_clovers);
@@ -127,7 +127,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 //TEXTURES: emerald_block_clovers
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_clovers_connecting);
@@ -139,7 +139,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/emerald_block_crystal"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_crystal);
@@ -151,7 +151,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 //TEXTURES: emerald_block_crystal
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_crystal_connecting);
@@ -163,7 +163,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/emerald_block_patterned"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_patterned);
@@ -175,7 +175,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 //TEXTURES: emerald_block_patterned
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_patterned_connecting);
@@ -187,7 +187,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/emerald_block_patterned_squares"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_patterned_squares);
@@ -199,7 +199,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 //TEXTURES: emerald_block_patterned_squares
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_patterned_squares_connecting);
@@ -212,7 +212,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/emerald_block_pillar_end"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_pillar);
@@ -224,7 +224,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 //TEXTURES: emerald_block_pillar_side, emerald_block_pillar_end
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_pillar_connecting);
@@ -236,7 +236,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/emerald_block_polished"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_polished);
@@ -248,7 +248,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 //TEXTURES: emerald_block_polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_polished_connecting);
@@ -260,7 +260,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/emerald_block_striped"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_striped);
@@ -272,7 +272,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 //TEXTURES: emerald_block_striped
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_striped_connecting);
@@ -284,7 +284,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/emerald_block_waxed"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_waxed);
@@ -296,7 +296,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 //TEXTURES: emerald_block_waxed
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_waxed_connecting);
@@ -308,7 +308,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/emerald_block_crosses"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_crosses);
@@ -320,7 +320,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/emerald_block_plating"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_plating);
@@ -332,7 +332,7 @@ public class RechiseledModuleG extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/emerald_block_smooth"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_smooth);

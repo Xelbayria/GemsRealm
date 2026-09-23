@@ -8,6 +8,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.*;
 import net.xelbayria.gems_realm.GemsRealm;
@@ -15,6 +16,8 @@ import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.gem.GemType;
 import net.xelbayria.gems_realm.api.set.gem.VanillaGemTypes;
+
+import java.util.function.Supplier;
 
 //SUPPORT: v3.0.0+
 public class MoreBeautifulTorchesModuleG extends GemsRealmModule {
@@ -28,9 +31,9 @@ public class MoreBeautifulTorchesModuleG extends GemsRealmModule {
 
     public MoreBeautifulTorchesModuleG(String modId) {
         super(modId, "mbt");
-        ResourceLocation tab = (PlatHelper.Platform.FABRIC.isFabric())
-                ? modRes("goldenfoods_tab")
-                : modRes("morebeautifultorches_tab");
+        Supplier<CreativeModeTab> tab = (PlatHelper.Platform.FABRIC.isFabric())
+                ? getModTab("goldenfoods_tab")
+                : getModTab("morebeautifultorches_tab");
 
         wall_torch = GemsRealmEntrySet.of(GemType.class, "block_wall_torch",
                         getModBlock("diamond_block_wall_torch"), () -> VanillaGemTypes.DIAMOND,
@@ -60,7 +63,7 @@ public class MoreBeautifulTorchesModuleG extends GemsRealmModule {
                 )
                 //TEXTURES: wall_torch
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((gemType, b, p) -> new StandingAndWallBlockItem(b, wall_torch.blocks.get(gemType), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -85,7 +88,7 @@ public class MoreBeautifulTorchesModuleG extends GemsRealmModule {
                 )
                 //TEXTURES: soul_wall_torch
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((gemType, b, p) -> new StandingAndWallBlockItem(b, soul_wall_torch.blocks.get(gemType), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -109,7 +112,7 @@ public class MoreBeautifulTorchesModuleG extends GemsRealmModule {
                         gemType -> new RedstoneTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_TORCH))
                 )
                 //TEXTURES: redstone_wall_torch
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((gemType, b, p) -> new StandingAndWallBlockItem(b, redstone_wall_torch.blocks.get(gemType), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)

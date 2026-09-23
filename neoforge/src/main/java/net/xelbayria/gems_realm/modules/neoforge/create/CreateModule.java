@@ -34,7 +34,6 @@ import java.util.function.Consumer;
 import static com.simibubi.create.AllPartialModels.FOLDING_DOORS;
 
 //SUPPORT: v6.0.5
-@SuppressWarnings({"removal"})
 public class CreateModule extends CreateModuleAbstract {
 
     public CreateModule(String modId) {

@@ -11,8 +11,8 @@ import com.simibubi.create.content.decoration.palettes.WindowBlock;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.IronBarsBlock;
@@ -27,13 +27,14 @@ import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
 import net.xelbayria.gems_realm.modules.create.CreateDecoModuleAbstract;
 import org.joml.Vector3f;
 
+import java.util.function.Supplier;
+
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
 
-//SUPPORT: v
+///SUPPORT: v2.1.3
 public class CreateDecoModule extends CreateDecoModuleAbstract {
 
-    public final SimpleEntrySet<MetalType, Block> window;
-    public final SimpleEntrySet<MetalType, Block> window_pane;
+    public final SimpleEntrySet<MetalType, Block> window, window_pane;
     public final SimpleEntrySet<MetalType, Block> bars_overlay;
     public final SimpleEntrySet<MetalType, Block> mesh_fence;
     public final SimpleEntrySet<MetalType, Block> catwalk;
@@ -52,7 +53,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
 
     public CreateDecoModule(String modId) {
         super(modId);
-        ResourceLocation tab = modRes("");
+        Supplier<CreativeModeTab> tab = getTab(modRes(""));
 
         window = GemsRealmEntrySet.of(MetalType.class, "window",
                         getModBlock("iron_window"), () -> VanillaMetalTypes.IRON,
@@ -61,7 +62,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes
                 .addTexture(modRes("block/blanks_1"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(window);
@@ -73,7 +74,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
                 .requiresFromMap(window.blocks) //REASON: recipes
                 .addTexture(modRes("block/blanks_2"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(window_pane);
@@ -86,7 +87,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
 //                .requiresChildren("create:sheet") //REASON: recipes
                 .addTexture(modRes("block/blanks_3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(bars_overlay);
@@ -99,7 +100,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
 //                .requiresChildren("create:sheet") //REASON: recipes
                 .addTexture(modRes("block/blanks_4"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(mesh_fence);
@@ -112,7 +113,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
 //                .requiresChildren("create:sheet" /*,"bars"*/) //REASON: recipes
                 .addTexture(modRes("block/blanks_5"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(catwalk);
@@ -125,7 +126,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
                 .requiresChildren("bars") //REASON: recipes
                 .addTexture(modRes("block/blanks_6"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(catwalk_stairs);
@@ -138,7 +139,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
 //                .requiresChildren("create:sheet" /*,"bars"*/) //REASON: recipes
                 .addTexture(modRes("block/blanks_7"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(catwalk_railing);
@@ -151,7 +152,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
 //                .requiresChildren("create:sheet") //REASON: recipes
                 .addTexture(modRes("block/blanks_8"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(support_wedge);
@@ -163,7 +164,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes
                 .addTexture(modRes("block/blanks_9"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(facade);
@@ -175,7 +176,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes
                 .addTexture(modRes("block/blanks_10"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(ladder);
@@ -188,7 +189,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
                 //RECIPES: block
                 .addTexture(modRes("block/blanks_11"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(hull);
@@ -200,7 +201,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes
                 .addTexture(modRes("block/blanks_12"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(support);
@@ -212,7 +213,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
                 //RECIPES: create:sheet, minecraft:nugget
                 .addTexture(modRes("block/blanks_13"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(yellow_lamp);
@@ -224,7 +225,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
                 //RECIPES: create:sheet, minecraft:nugget
                 .addTexture(modRes("block/blanks_14"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(red_lamp);
@@ -236,7 +237,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
                 //RECIPES: create:sheet, minecraft:nugget
                 .addTexture(modRes("block/blanks_15"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(green_lamp);
@@ -248,7 +249,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
                 //RECIPES: create:sheet, minecraft:nugget
                 .addTexture(modRes("block/blanks_16"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(blue_lamp);
@@ -260,7 +261,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
                 //RECIPES: create:sheet
                 .addTexture(modRes("block/blanks_17"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(sheet_metal);

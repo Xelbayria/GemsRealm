@@ -40,7 +40,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block_beams"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_beams);
 
@@ -50,7 +50,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: amethyst_block_beams
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_beams_connecting);
 
@@ -60,7 +60,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block_bordered_diagonal_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_bordered_diagonal_tiles);
 
@@ -70,7 +70,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: amethyst_block_bordered_diagonal_tiles
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_bordered_diagonal_tiles_connecting);
 
@@ -80,7 +80,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_bricks);
 
@@ -90,7 +90,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: amethyst_block_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_bricks_connecting);
 
@@ -100,7 +100,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block_cut"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_cut);
 
@@ -110,7 +110,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: amethyst_block_cut
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_cut_connecting);
 
@@ -120,7 +120,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block_edged"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_edged);
 
@@ -130,7 +130,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: amethyst_block_edged
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_edged_connecting);
 
@@ -141,7 +141,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/amethyst_block_pillar_side"))
                 .addTexture(modRes("block/amethyst_block_pillar_end"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_pillar);
 
@@ -151,7 +151,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: amethyst_block_pillar
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_pillar_connecting);
 
@@ -161,7 +161,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block_polished"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_polished);
 
@@ -171,7 +171,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: amethyst_block_polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_polished_connecting);
 
@@ -181,7 +181,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block_shiny"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_shiny);
 
@@ -191,7 +191,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: amethyst_block_shiny
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_shiny_connecting);
 
@@ -201,7 +201,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_tiles);
 
@@ -211,7 +211,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 //TEXTURES: amethyst_block_tiles
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_tiles_connecting);
 
@@ -221,7 +221,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block_diagonal_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_diagonal_tiles);
 
@@ -231,7 +231,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block_jewel"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_jewel);
 
@@ -241,7 +241,7 @@ public class RechiseledModuleC extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block_smooth"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(TAB)
                 .build();
         this.addEntry(block_smooth);
 
