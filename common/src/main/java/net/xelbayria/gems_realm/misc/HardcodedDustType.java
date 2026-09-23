@@ -9,18 +9,20 @@ import static net.xelbayria.gems_realm.configs.UnsafeDisablerConfigs.entrySetLis
 public class HardcodedDustType extends HardcodedBlockType{
 
     @Nullable
-    public static Boolean isDustBlockAlreadyRegistered(String entrySetId, String blockName, DustType dustType, String ModId) {
-        blockIdentify = dustType.getId().toString();
-        BlockTypeFromMod = dustType.getNamespace();
-        supportedMod = ModId;
+    public static Boolean isDustBlockAlreadyRegistered(String entrySetId, String blockName, DustType dustType, String supportedModId) {
+        String dustFullId = dustType.getId().toString();
+        String dustTypeNamespace = dustType.getNamespace();
+        supportedMod = supportedModId;
         supportedBlockName = blockName;
+
+        PendingBlockInfo pendingInfo = PendingBlockInfo.of(dustTypeNamespace, dustFullId, blockName, supportedModId);
 
         /// ─────────────────────────── Include Vanilla Type ────────────────────────────
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ EXCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
         // Exclude one StoneType from a Stone mod
-        if (dustTypeList.get().stream().anyMatch(blockIdentify::matches)) return true;
+        if (dustTypeList.get().stream().anyMatch(dustFullId::matches)) return true;
 
         // Exclude one EntrySet from a module
         if (entrySetList.get().stream().anyMatch(entrySetId::matches)) return true;

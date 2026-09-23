@@ -11,8 +11,6 @@ import java.util.Set;
 
 public class HardcodedBlockType {
 
-    public static String blockIdentify;
-    public static String BlockTypeFromMod;
     public static String supportedMod;
     public static String supportedBlockName;
 
@@ -63,38 +61,38 @@ public class HardcodedBlockType {
     );
 
     /**
-     * NOTE: BlockType represents Gem, Metal, Crystal, or Dust
-     *
-     * @param supportedModId Id of Supported Mods That GemsRealm is supporting - Can be one OR more Ids
-     * @param blocktypeFromMod Id of mod that BlockType is from - Can be one or more Ids
-     * @param blocktypeId id of blockid, ex: "ms:bismuth" OR "ms:(bismuth|refined_iron)"
-     * @param supportedBlockId Id of block, ex: "chest" OR "redwood_chest" with blocktypeId
-    **/
-    public static Boolean isBlockRegistryFrom(String supportedModId, String blocktypeFromMod, String blocktypeId, String supportedBlockId) {
+     * @param modThatTheBlockIsFrom Id of mod that supported block is from
+     * @param TypeNamespace The mod that new BlockType is from
+     * @param TypeFullId Full Id of BlockType (MetalType, GemType, CrystalType, DustType)
+     * @param blockName Gems Realm's Id of block
+     */
+    protected record PendingBlockInfo(String TypeNamespace, String TypeFullId, String blockName, String modThatTheBlockIsFrom) {
 
-        String[] expressions = {
-                supportedModId,
-                blocktypeFromMod,
-                blocktypeId,
-                supportedBlockId
-        };
-
-        String[] values = {
-                supportedMod,
-                BlockTypeFromMod,
-                blockIdentify,
-                supportedBlockName
-        };
-
-        for (int idx = 0; idx < values.length; idx++ ) {
-
-            if (!expressions[idx].isEmpty()) { // Skip the blank expressions
-                boolean isNotMatched = !(values[idx].matches(expressions[idx]) || values[idx].contains(expressions[idx]));
-                if (isNotMatched) return false;
-            }
+        public static PendingBlockInfo of(String typeNamespace, String typeFullId, String blockName, String modThatTheBlockIsFrom) {
+            return new PendingBlockInfo(typeNamespace, typeFullId, blockName, modThatTheBlockIsFrom);
         }
 
-        return true;
+        public boolean isForSupportedModId(String modId) {
+            return this.modThatTheBlockIsFrom.matches(modId);
+        }
+
+        public boolean isForTypeNamespace(String namespace) {
+            return this.TypeNamespace.matches(namespace);
+        }
+
+        public boolean isForTypeFullId(String fullId) {
+            return this.TypeFullId.matches(fullId);
+        }
+
+        /**
+         * @param BlockNameOrKeyword keyword or Block Name
+         *                                  <br>Example (keyword): "chair"
+         *                                  <br>Example (Blockname): "gold_chair"
+         */
+        public boolean isForBlockName(String BlockNameOrKeyword) {
+            return this.blockName.matches(BlockNameOrKeyword) || this.blockName.contains(BlockNameOrKeyword);
+        }
+
     }
 
     /// Check if BlockType is vanilla (from Minecraft)

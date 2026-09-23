@@ -9,18 +9,18 @@ import static net.xelbayria.gems_realm.configs.UnsafeDisablerConfigs.entrySetLis
 public class HardcodedCrystalType extends HardcodedBlockType {
 
     @Nullable
-    public static Boolean isCrystalBlockAlreadyRegistered(String entrySetId, String blockName, CrystalType crystalType, String ModId) {
-        blockIdentify = crystalType.getId().toString();
-        BlockTypeFromMod = crystalType.getNamespace();
-        supportedMod = ModId;
-        supportedBlockName = blockName;
+    public static Boolean isCrystalBlockAlreadyRegistered(String entrySetId, String blockName, CrystalType crystalType, String supportedModId) {
+        String crystalFullId = crystalType.getId().toString();
+        String crystalTypeNamespace = crystalType.getNamespace();
+
+        PendingBlockInfo pendingInfo = PendingBlockInfo.of(crystalTypeNamespace, crystalFullId, blockName, supportedModId);
 
         /// ─────────────────────────── Include Vanilla Type ────────────────────────────
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ EXCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
         // Exclude one StoneType from a Stone mod
-        if (crystalTypeList.get().stream().anyMatch(blockIdentify::matches)) return true;
+        if (crystalTypeList.get().stream().anyMatch(crystalFullId::matches)) return true;
 
         // Exclude one EntrySet from a module
         if (entrySetList.get().stream().anyMatch(entrySetId::matches)) return true;
@@ -30,7 +30,8 @@ public class HardcodedCrystalType extends HardcodedBlockType {
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-        if (isBlockRegistryFrom("chipped", "crystalized_enchants", "", "")) return false;
+        if (pendingInfo.isForSupportedModId("chipped") && pendingInfo.isForTypeNamespace("crystalized_enchants")) return false;
+//        if (isBlockRegistryFrom("chipped", "crystalized_enchants", "", "")) return false;
 
 
         return null;

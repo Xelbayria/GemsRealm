@@ -14,22 +14,26 @@ import static net.xelbayria.gems_realm.configs.UnsafeDisablerConfigs.metalTypeLi
 public class HardcodedMetalType extends HardcodedBlockType{
 
     @Nullable
-    public static Boolean isMetalBlockAlreadyRegistered(String entrySetId, String blockName, MetalType metalType, String modId) {
-        blockIdentify = metalType.getId().toString();
-        BlockTypeFromMod = metalType.getNamespace();
-        supportedMod = modId;
-        supportedBlockName = blockName;
+    public static Boolean isMetalBlockAlreadyRegistered(String entrySetId, String blockName, MetalType metalType, String supportedModId) {
+        String metalTypeNamespace = metalType.getNamespace();
+        String metalFullId = metalType.getId().toString();
+
+//        String blockId = supportedModId +"/"+ metalTypeNamespace +"/"+ blockName;
+
+        PendingBlockInfo pendingInfo = PendingBlockInfo.of(metalTypeNamespace, metalFullId, blockName, supportedModId);
 
         /// ─────────────────────────── Include Vanilla Type ────────────────────────────
 
         // MInecraft's NETHERITE has no nugget
         if (!(PlatHelper.isModLoaded("oreganized") || PlatHelper.isModLoaded("caverns_and_chasms")) &&
-                isBlockRegistryFrom("minecraft", "", "minecraft:netherite", "nugget")) return false;
+                pendingInfo.isForSupportedModId("minecraft") && pendingInfo.isForTypeFullId("minecraft:netherite") &&
+                pendingInfo.isForBlockName("nugget")) return false;
+        //isBlockRegistryFrom("minecraft", "", "minecraft:netherite", "nugget")
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ EXCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
         // Exclude one MetalType from a Stone mod
-        if (metalTypeList.get().stream().anyMatch(blockIdentify::matches)) return true;
+        if (metalTypeList.get().stream().anyMatch(metalFullId::matches)) return true;
 
         // Exclude one EntrySet from a module
         if (entrySetList.get().stream().anyMatch(entrySetId::matches)) return true;
@@ -40,11 +44,15 @@ public class HardcodedMetalType extends HardcodedBlockType{
         // The normal duplication system is not preventing the duplicated blocks between Supported mods and TFC due to TFC's unique IDs
         if (isMetalRegistryInTFC(metalType, supportedBlockName, "bars")) return true;
 
+        // If Spelunkery & Etcetera are installed, then Etcetera's BISMUTH_NUGGET from Minecraft should be excluded
+        if (PlatHelper.isModLoaded("etcetera") && pendingInfo.isForSupportedModId("minecraft") && pendingInfo.isForBlockName("bismuth_nugget")) return true;
+
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
         // Minecraft & TerraFirmaCraft have similar MetalType that preventing the
-        if (isBlockRegistryFrom("minecraft", "", "tfc:gold", "nugget")) return false;
+        if (pendingInfo.isForSupportedModId("minecraft") && pendingInfo.isForTypeFullId("tfc:gold") && pendingInfo.isForBlockName("nugget")) return false;
+//        if (isBlockRegistryFrom("minecraft", "", "tfc:gold", "nugget")) return false;
 
         return null;
     }
