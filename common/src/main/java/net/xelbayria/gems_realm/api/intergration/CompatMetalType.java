@@ -52,6 +52,10 @@ public class CompatMetalType extends CompatBlockType {
             metalReg.addSimpleFinder("etcetera", "bismuth")
                     .childItem(NUGGET, ResourceLocation.parse("spelunkery:bismuth_nugget"));
 
+        // Create Aquatic Ambitions - REASON: Undetected-Children
+        metalReg.addSimpleFinder("create_aquatic_ambitions", "prismarine_alloy")
+                .childItem(INGOT, "prismarine_alloy");
+
         // Tech Reborn
         metalReg.addSimpleFinder("techreborn", "iridium_reinforced_tungstensteel")
                 .metalBlockSuffix("_storage_block")
