@@ -20,11 +20,11 @@ import java.util.List;
 
 public class GemsRealmClient {
 
-    public static void onItemTooltip(ItemStack stack, TooltipFlag tooltipFlag, List<Component> components) {
-        boolean modTooltip = ECConfigs.MOD_TOOPTIP.get();
+    public static void onItemTooltip(ItemStack stack, Item.TooltipContext tooltipContext, TooltipFlag tooltipFlag, List<Component> components) {
+//        boolean modTooltip = ECConfigs.MOD_TOOPTIP.get();
         boolean blockTooltip = ECConfigs.BLOCK_TYPE_TOOLTIP.get();
 
-        if (modTooltip || blockTooltip && (tooltipFlag.isAdvanced() || !ECConfigs.TOOLTIPS_ADVANCED.get())) {
+        if (/*modTooltip ||*/ blockTooltip && (tooltipFlag.isAdvanced() || !ECConfigs.TOOLTIPS_ADVANCED.get())) {
             Item item = stack.getItem();
             var compatModule = GemsRealm.getModuleOfItem(item);
             if (compatModule != null) {
