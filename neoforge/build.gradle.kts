@@ -45,7 +45,7 @@ dependencies {
 
     //- LOCAL
     if (findProperty("enable_everycomp_test").toString().toBoolean()) {
-        modApi(files(path + "\\WoodGood\\neoforge\\build\\libs\\everycomp-${property("everycomp_testVersion")}-neoforge.jar"))
+        implementation(files(path + "\\WoodGood\\neoforge\\build\\libs\\everycomp-${property("everycomp_testVersion")}-neoforge.jar"))
     }
     //+ MAVEN
     else {
@@ -89,7 +89,7 @@ dependencies {
     //- OTHER MAVENs - can be commented out or enabled
 //    modRuntimeOnly("software.bernie.geckolib:geckolib-forge-$minecraft_version:4.7.3") // v4.7.3 | Atlantis, Fins-And-Tails //!!-1.20.1
 //    forgeRuntimeLibrary("com.eliotlash.mclib:mclib:20") // GeckoLib //!!-1.20.1
-//    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped, Ad-Astra //!!-1.20.1
+//    modRuntimeOnly("com.teamresourceful:bytecodecs:1.0.2") // Chipped, Ad-Astra //!!-1.20.1
 
     //+ REQUIRED - The modules access libaries from below - Only in NEOFORGE
 
