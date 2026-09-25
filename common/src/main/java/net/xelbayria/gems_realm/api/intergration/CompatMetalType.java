@@ -52,6 +52,16 @@ public class CompatMetalType extends CompatBlockType {
             metalReg.addSimpleFinder("etcetera", "bismuth")
                     .childItem(NUGGET, ResourceLocation.parse("spelunkery:bismuth_nugget"));
 
+        // Architect's Palette - REASON: Undetected-Children
+        metalReg.addSimpleFinder("architects_palette", "unobtanium")
+                .childItem(INGOT, "unobtanium");
+
+        metalReg.addSimpleFinder("architects_palette", "sunmetal")
+                .childItem(INGOT, "sunmetal_brick");
+
+        metalReg.addSimpleFinder("architects_palette", "entwine")
+                .childItem(INGOT, "sunmetal_rod");
+
         // Create Aquatic Ambitions - REASON: Undetected-Children
         metalReg.addSimpleFinder("create_aquatic_ambitions", "prismarine_alloy")
                 .childItem(INGOT, "prismarine_alloy");
