@@ -1,12 +1,13 @@
 package net.xelbayria.gems_realm.misc;
 
-import net.mehvahdjukaar.every_compat.misc.BlockTypeCycleItemRenderer;
-import net.xelbayria.gems_realm.api.set.metal.MetalType;
+import net.xelbayria.gems_realm.api.set.crystal.CrystalType;
+import net.xelbayria.gems_realm.api.set.dust.DustType;
+import net.xelbayria.gems_realm.api.set.gem.GemType;
 
-public class GemTypeCycleItemRenderer extends BlockTypeCycleItemRenderer<MetalType> {
+public class GemTypeCycleItemRenderer extends GRBlockTypeCycleItemRenderer {
 
     public GemTypeCycleItemRenderer() {
-        super(MetalType.class);
+        super(CrystalType.class, DustType.class, GemType.class);
     }
 
 }
