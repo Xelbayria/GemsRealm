@@ -126,7 +126,7 @@ dependencies {
 
     //+ GENERAL
     modCompileOnly("curse.maven:create-deco-509285:7943181") // Create
-    modCompileOnly("curse.maven:lapidarist-610032:5921456") //!!-1.20.1
+    modCompileOnly("curse.maven:lapidarist-610032:8988197")
     modCompileOnly("curse.maven:more-beautiful-bookshelves-846508:4671697") //!!-1.20.1
 //    modImplementation("curse.maven:silents-gems-220311:5193708") // Silent-Lib //!!-1.20.1
 //    modImplementation("curse.maven:fins-and-tails-427471:6485965") // GeckoLib //!!-1.20.1

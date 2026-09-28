@@ -14,13 +14,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
-import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.dust.DustType;
 import net.xelbayria.gems_realm.api.set.dust.VanillaDustTypes;
 import org.jetbrains.annotations.NotNull;
 
-//SUPPORT: v
-public class LapidaristModuleD extends GemsRealmModule {
+//See LapidaristModuleAbstract's SUPPORTED VERSION
+public class LapidaristModuleD extends LapidaristModuleAbstract {
 
     public final SimpleEntrySet<DustType, Block> bricks;
     public final SimpleEntrySet<DustType, Block> brick_stairs;
@@ -35,8 +34,7 @@ public class LapidaristModuleD extends GemsRealmModule {
     public final SimpleEntrySet<DustType, Block> pillar;
 
     public LapidaristModuleD(String modId) {
-        super(modId, "lpd");
-        ResourceLocation tab = modRes("lapidary_tab");
+        super(modId);
 
         bricks = GemsRealmEntrySet.of(DustType.class, "bricks",
                         getModBlock("redstone_bricks"), () -> VanillaDustTypes.REDSTONE,
@@ -45,7 +43,7 @@ public class LapidaristModuleD extends GemsRealmModule {
                 .addTexture(modRes("block/redstone_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("redstone_bricks_stonecutting"))
                 .build();
@@ -61,7 +59,7 @@ public class LapidaristModuleD extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("redstone_brick_stairs_from_redstone_block"))
                 .addRecipe(modRes("redstone_brick_stairs_from_redstone_bricks"))
@@ -76,7 +74,7 @@ public class LapidaristModuleD extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("redstone_brick_slab_from_redstone_block"))
                 .addRecipe(modRes("redstone_brick_slab_from_redstone_bricks"))
@@ -90,7 +88,7 @@ public class LapidaristModuleD extends GemsRealmModule {
                 .addTexture(modRes("block/cut_redstone"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("cut_redstone_stonecutting"))
                 .build();
@@ -106,7 +104,7 @@ public class LapidaristModuleD extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("cut_redstone_stairs_from_redstone_block"))
                 .addRecipe(modRes("cut_redstone_stairs_from_cut_redstone"))
@@ -121,7 +119,7 @@ public class LapidaristModuleD extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("cut_redstone_slab_from_redstone_block"))
                 .addRecipe(modRes("cut_redstone_slab_from_cut_redstone"))
@@ -135,7 +133,7 @@ public class LapidaristModuleD extends GemsRealmModule {
                 .addTexture(modRes("block/redstone_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("redstone_tiles_stonecutting"))
                 .build();
@@ -151,7 +149,7 @@ public class LapidaristModuleD extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("redstone_tile_stairs_from_redstone_block"))
                 .addRecipe(modRes("redstone_tile_stairs_from_redstone_tiles"))
@@ -166,7 +164,7 @@ public class LapidaristModuleD extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("redstone_tile_slab_from_redstone_block"))
                 .addRecipe(modRes("redstone_tile_slab_from_redstone_tiles"))
@@ -180,7 +178,7 @@ public class LapidaristModuleD extends GemsRealmModule {
                 .addTexture(modRes("block/chiseled_redstone"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("chiseled_redstone_stonecutting"))
                 .build();
@@ -194,7 +192,7 @@ public class LapidaristModuleD extends GemsRealmModule {
                 .addTexture(modRes("block/redstone_pillar_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("redstone_pillar_stonecutting"))
                 .build();

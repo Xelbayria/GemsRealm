@@ -53,7 +53,7 @@ public class GemsRealmForge extends GemsRealmCommon {
 
         // General
         addIfLoaded("create", () -> CreateModule.class);
-        addMultipleIfLoaded("lapidary", () -> LapidaristModuleC.class, () -> LapidaristModuleD.class, () -> LapidaristModuleG.class, () -> LapidaristModuleM.class);
+        addMultipleIfLoaded("lapidarist", () -> LapidaristModuleC.class, () -> LapidaristModuleD.class, () -> LapidaristModuleG.class, () -> LapidaristModuleM.class);
         addMultipleIfLoaded("bad", () -> MoreBeautifulBookshelvesModuleC.class, () -> MoreBeautifulBookshelvesModuleD.class, () -> MoreBeautifulBookshelvesModuleG.class, () -> MoreBeautifulBookshelvesModuleM.class);
 //        addIfLoaded("rechiseled", () -> RechiseledModule::new);
 

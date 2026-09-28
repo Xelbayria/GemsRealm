@@ -3,17 +3,15 @@ package net.xelbayria.gems_realm.modules.neoforge.lapidarist;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
-import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.gem.GemType;
 import net.xelbayria.gems_realm.api.set.gem.VanillaGemTypes;
 
-//SUPPORT: v3.3+
-public class LapidaristModuleG extends GemsRealmModule {
+//See LapidaristModuleAbstract's SUPPORTED VERSION
+public class LapidaristModuleG extends LapidaristModuleAbstract {
 
     public final SimpleEntrySet<GemType, Block> bricks;
     public final SimpleEntrySet<GemType, Block> brick_stairs;
@@ -28,8 +26,7 @@ public class LapidaristModuleG extends GemsRealmModule {
     public final SimpleEntrySet<GemType, Block> pillar;
 
     public LapidaristModuleG(String modId) {
-        super(modId, "lpd");
-        ResourceLocation tab = modRes("lapidary_tab");
+        super(modId);
 
         bricks = GemsRealmEntrySet.of(GemType.class, "bricks",
                         getModBlock("diamond_bricks"), () -> VanillaGemTypes.DIAMOND,
@@ -39,7 +36,7 @@ public class LapidaristModuleG extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
                 .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("diamond_bricks_stonecutting"))
                 .build();
@@ -56,7 +53,7 @@ public class LapidaristModuleG extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("diamond_brick_stairs_from_diamond_block"))
                 .addRecipe(modRes("diamond_brick_stairs_from_diamond_bricks"))
@@ -72,7 +69,7 @@ public class LapidaristModuleG extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("diamond_brick_slab_from_diamond_block"))
                 .addRecipe(modRes("diamond_brick_slab_from_diamond_bricks"))
@@ -88,7 +85,7 @@ public class LapidaristModuleG extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
                 .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("cut_diamond_stonecutting"))
                 .build();
@@ -105,7 +102,7 @@ public class LapidaristModuleG extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("cut_diamond_stairs_from_diamond_block"))
                 .addRecipe(modRes("cut_diamond_stairs_from_cut_diamond"))
@@ -121,7 +118,7 @@ public class LapidaristModuleG extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("cut_diamond_slab_from_diamond_block"))
                 .addRecipe(modRes("cut_diamond_slab_from_cut_diamond"))
@@ -137,7 +134,7 @@ public class LapidaristModuleG extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
                 .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("diamond_tiles_stonecutting"))
                 .build();
@@ -154,7 +151,7 @@ public class LapidaristModuleG extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("diamond_tile_stairs_from_diamond_block"))
                 .addRecipe(modRes("diamond_tile_stairs_from_diamond_tiles"))
@@ -170,7 +167,7 @@ public class LapidaristModuleG extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("diamond_tile_slab_from_diamond_block"))
                 .addRecipe(modRes("diamond_tile_slab_from_diamond_tiles"))
@@ -186,7 +183,7 @@ public class LapidaristModuleG extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
                 .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("chiseled_diamond_stonecutting"))
                 .build();
@@ -201,7 +198,7 @@ public class LapidaristModuleG extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
                 .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("diamond_pillar_stonecutting"))
                 .build();

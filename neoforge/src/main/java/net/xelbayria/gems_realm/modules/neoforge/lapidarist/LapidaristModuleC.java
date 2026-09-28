@@ -8,12 +8,11 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
-import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.crystal.CrystalType;
 import net.xelbayria.gems_realm.api.set.crystal.VanillaCrystalTypes;
 
-//SUPPORT: v3.3+
-public class LapidaristModuleC extends GemsRealmModule {
+//See LapidaristModuleAbstract's SUPPORTED VERSION
+public class LapidaristModuleC extends LapidaristModuleAbstract {
 
     public final SimpleEntrySet<CrystalType, Block> polished;
     public final SimpleEntrySet<CrystalType, Block> chiseled;
@@ -23,8 +22,7 @@ public class LapidaristModuleC extends GemsRealmModule {
     public final SimpleEntrySet<CrystalType, Block> brick_slab;
 
     public LapidaristModuleC(String modId) {
-        super(modId, "lpd");
-        ResourceLocation tab = modRes("lapidary_tab");
+        super(modId);
 
         polished = GemsRealmEntrySet.of(CrystalType.class, "", "polished",
                         getModBlock("polished_amethyst"), () -> VanillaCrystalTypes.AMETHYST,
@@ -33,7 +31,7 @@ public class LapidaristModuleC extends GemsRealmModule {
                 .addTexture(modRes("block/polished_amethyst"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("polished_amethyst_stonecutting"))
                 .build();
@@ -46,7 +44,7 @@ public class LapidaristModuleC extends GemsRealmModule {
                 .addTexture(modRes("block/chiseled_amethyst"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("chiseled_amethyst_stonecutting"))
                 .addRecipe(modRes("chiseled_amethyst_from_polished_amethyst"))
@@ -61,7 +59,7 @@ public class LapidaristModuleC extends GemsRealmModule {
                 .addTexture(modRes("block/amethyst_pillar_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("amethyst_pillar_from_amethyst_block"))
                 .addRecipe(modRes("amethyst_pillar_from_polished_amethyst"))
@@ -76,7 +74,7 @@ public class LapidaristModuleC extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
                 .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("amethyst_bricks_from_amethyst_block"))
                 .addRecipe(modRes("amethyst_bricks_from_polished_amethyst"))
@@ -94,7 +92,7 @@ public class LapidaristModuleC extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("amethyst_brick_stairs_from_amethyst_block_stonecutting"))
                 .addRecipe(modRes("amethyst_brick_stairs_from_amethyst_bricks"))
@@ -111,7 +109,7 @@ public class LapidaristModuleC extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("amethyst_brick_slab_from_amethyst_block_stonecutting"))
                 .addRecipe(modRes("amethyst_brick_slab_from_amethyst_bricks_stonecutting"))
