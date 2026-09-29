@@ -97,9 +97,9 @@ dependencies {
     modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:8623666") // v1.1.24 | Rechiseled
 
     // ---- OTHER MAVENS
-    modCompileOnly("com.tterrag.registrate:Registrate:${property("registrate_version")}") // Create
-    modCompileOnly("net.createmod.ponder:ponder-neoforge:${property("ponder_version")}+mc${property("minecraft_version")}") // Create
-    modCompileOnly("dev.engine-room.flywheel:flywheel-neoforge-${property("minecraft_version")}:${property("flywheel_neoforge_version")}") // Create
+    modImplementation("com.tterrag.registrate:Registrate:${property("registrate_version")}") // Create
+    modImplementation("net.createmod.ponder:ponder-neoforge:${property("ponder_version")}+mc${property("minecraft_version")}") // Create
+    modImplementation("dev.engine-room.flywheel:flywheel-neoforge-${property("minecraft_version")}:${property("flywheel_neoforge_version")}") // Create
 
 
 //!! =================================================== IMPORTS ==================================================== \\
@@ -138,7 +138,8 @@ dependencies {
 
     // ---- OTHER MAVENs
     modCompileOnly("earth.terrarium.chipped:chipped-neoforge-${property("minecraft_version")}:4.0.2") //INCLUDED: Athena, Resourceful-Lib, REQUIRED: +Bytecodecs
-    modCompileOnly("com.simibubi.create:create-${property("minecraft_version")}:${property("create_version")}:slim") { isTransitive = false } // Registrate, Flywheel, Ponder
+    modImplementation("com.simibubi.create:create-${property("minecraft_version")}:${property("create_version")}:slim") { isTransitive = false } // Registrate, Flywheel, Ponder
+//    implementation(files("$path\\Create\\build\\libs\\create-1.21.1-6.0.12.jar"))
 
 //!! ================================================= FOR TESTING ================================================== \\
 

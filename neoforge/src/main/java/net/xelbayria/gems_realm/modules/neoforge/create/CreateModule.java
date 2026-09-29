@@ -1,5 +1,6 @@
 package net.xelbayria.gems_realm.modules.neoforge.create;
 
+import com.simibubi.create.Create;
 import com.simibubi.create.content.decoration.MetalLadderBlock;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlock;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
@@ -8,6 +9,7 @@ import com.simibubi.create.content.decoration.palettes.WindowBlock;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlock;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlockEntity;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorRenderer;
+import com.simibubi.create.content.kinetics.crank.ValveHandleBlock;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlock;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlockEntity;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlockItem;
@@ -33,7 +35,7 @@ import java.util.function.Consumer;
 
 import static com.simibubi.create.AllPartialModels.FOLDING_DOORS;
 
-//SUPPORT: v6.0.5
+//See CreateModuleAbstract's SUPPORTED VERSION
 public class CreateModule extends CreateModuleAbstract {
 
     public CreateModule(String modId) {
@@ -81,6 +83,11 @@ public class CreateModule extends CreateModuleAbstract {
     }
 
     @Override
+    protected ValveHandleBlock newValveHandleBlock(MetalType metalType) {
+        return ValveHandleBlock.copper(Utils.copyPropertySafe(metalType.block));
+    }
+
+    @Override
     @OnlyIn(Dist.CLIENT)
     public void registerBlockEntityRenderers(ClientHelper.BlockEntityRendererEvent event) {
         super.registerBlockEntityRenderers(event);
@@ -90,10 +97,22 @@ public class CreateModule extends CreateModuleAbstract {
 //        event.register(valve_handle.getTile(ValveHandleBlockEntity.class), HandCrankRenderer::new); // SEE EntrySet's comment
     }
 
+//    @Override
+//    public void onClientInit() {
+//        super.onClientInit();
+//        PonderIndex.addPlugin(new CompatCreatePonderPlugin());
+
+        //TODO: Add ponder to table_cloth and other blocks:
+        // https://github.com/Creators-of-Create/Create/blob/65fcd2b71bd56e16d0447f235e9ea83af7b900a1/src/main/java/com/simibubi/create/CreateClient.java#L101
+        // https://github.com/Creators-of-Create/Create/blob/65fcd2b71bd56e16d0447f235e9ea83af7b900a1/src/main/java/com/simibubi/create/infrastructure/ponder/AllCreatePonderScenes.java#L379
+//    }
+
     @Override
     @OnlyIn(Dist.CLIENT)
     public void onClientSetup() {
         super.onClientSetup();
+        addToValveHandles(valve_handle);
+        VALVE_HANDLES.put(Create.asResource("copper_valve_handle"), PartialModel.of(Create.asResource("block/valve_handle")));
 
         CreateClientModule.registerCasingCTBehavior(this, casing);
         CreateClientModule.registerScaffoldCTBehavior(this, scaffolding);
@@ -115,7 +134,14 @@ public class CreateModule extends CreateModuleAbstract {
             FOLDING_DOORS.put(GemsRealm.res(path),
                     Couple.create(block(path + "/fold_left"), block(path + "/fold_right")));
         });
+    }
 
+    private static void addToValveHandles(SimpleEntrySet<MetalType, ValveHandleBlock> valve_handle) {
+        valve_handle.blocks.forEach((metalType, block) -> {
+            ResourceLocation blockId = Utils.getID(block);
+//            AllPartialModels.VALVE_HANDLES.put(blockId, PartialModel.of(blockId.withPrefix("block/")));
+            VALVE_HANDLES.put(blockId, PartialModel.of(blockId.withPrefix("block/")));
+        });
     }
 
     private static PartialModel block(String path) {
@@ -139,4 +165,25 @@ public class CreateModule extends CreateModuleAbstract {
         });
     }
 
+//      ┌──────────────────────────────────────────────────────────┐
+//      │                         CLASSES                          │
+//      └──────────────────────────────────────────────────────────┘
+
+//    public class CompatCreatePonderPlugin extends CreatePonderPlugin {
+//        @Override
+//        public void registerScenes(@NotNull PonderSceneRegistrationHelper<ResourceLocation> helper) {
+//            CompatCreatePonderScenes.register(helper, table_cloth, "high_logistics/table_cloth", TableClothScenes::tableCloth);
+//        }
+//    }
+//
+//    public static class CompatCreatePonderScenes extends AllCreatePonderScenes {
+//        public static void register(PonderSceneRegistrationHelper<ResourceLocation> helper,
+//                                    SimpleEntrySet<MetalType, Block> entrySet,
+//                                    String schematicPath,
+//                                    PonderStoryBoard ponderStoryBoard) {
+//
+//            PonderSceneRegistrationHelper<ItemProviderEntry<?,?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
+//
+//        }
+//    }
 }

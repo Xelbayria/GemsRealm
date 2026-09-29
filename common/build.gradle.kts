@@ -40,7 +40,7 @@ dependencies {
 
     //- LOCAL
     if (findProperty("enable_everycomp_test").toString().toBoolean()) {
-        implementation(files(path + "\\WoodGood\\neoforge\\build\\libs\\everycomp-${property("everycomp_testVersion")}-neoforge.jar"))
+        compileOnly(files(path + "\\WoodGood\\neoforge\\build\\libs\\everycomp-${property("everycomp_testVersion")}-neoforge.jar"))
     }
     //+ MAVEN
     else {
@@ -57,8 +57,10 @@ dependencies {
     modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:8623666") // v1.1.24 | Rechiseled
 
     //+ OTHER MAVENS
-    modCompileOnly("com.tterrag.registrate_fabric:Registrate:${property("registrate_fabric_version")}") // Create
-//    modRuntimeOnly("dev.engine-room.flywheel:flywheel-fabric-$minecraft_version:$flywheel_fabric_version") // Create - not really needed
+    modCompileOnly("com.tterrag.registrate:Registrate:${property("registrate_version")}") // Create
+    modCompileOnly("net.createmod.ponder:ponder-neoforge:${property("ponder_version")}+mc${property("minecraft_version")}") // Create
+    modCompileOnly("dev.engine-room.flywheel:flywheel-neoforge-${property("minecraft_version")}:${property("flywheel_neoforge_version")}") // Create
+    modCompileOnly("io.github.llamalad7:mixinextras-neoforge:0.5.5")
 
 //!! =================================================== IMPORTS ==================================================== \\
 
@@ -80,6 +82,7 @@ dependencies {
     //+ OTHER MAVENs
     modCompileOnly("earth.terrarium.chipped:chipped-fabric-${property("minecraft_version")}:4.0.2") //INCLUDED: Athena, Resourceful-Lib, REQUIRED: Bytecodecs, ConnectedTexturesMod (CTM), Fabric-API
     modCompileOnly("com.simibubi.create:create-${property("minecraft_version")}:${property("create_version")}:slim") { isTransitive = false } // Registrate, Flywheel, Ponder
+//    compileOnly(files("$path\\Create\\build\\libs\\create-1.21.1-6.0.12.jar"))
 }
 
 tasks.named("copyAccessTransformersPublications") {

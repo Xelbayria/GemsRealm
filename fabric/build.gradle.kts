@@ -107,10 +107,10 @@ dependencies {
 
     // GENERALS
     modCompileOnly("curse.maven:catwalks-llc-916800:4769531") //!! NOT STARTED
-    modCompileOnly("curse.maven:create-deco-fabric-739872:5293979") //!! NOT UPDATED for v6.0+
+//    modCompileOnly("curse.maven:create-deco-fabric-739872:5293979") //!! NOT UPDATED for v6.0+
 
     // OTHER MAVENS
-    modCompileOnly("com.simibubi.create:create-fabric:${property("create_fabric_version")}") { isTransitive = false }  // Registrate, Flywheel, Ponder, Forge-Config-Api-Port, Milk-Lib, Porting-Lib
+//    modCompileOnly("com.simibubi.create:create-fabric:${property("create_fabric_version")}") { isTransitive = false }  // Registrate, Flywheel, Ponder, Forge-Config-Api-Port, Milk-Lib, Porting-Lib
 
     //+ MIRRORED FROM COMMON - Required because dependOn(common) compiles common sources with neoforge classpath
     modCompileOnly("curse.maven:rechiseled-558998:8875842") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]

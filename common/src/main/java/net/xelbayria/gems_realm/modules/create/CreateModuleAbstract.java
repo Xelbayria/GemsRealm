@@ -2,6 +2,8 @@ package net.xelbayria.gems_realm.modules.create;
 
 import com.mojang.datafixers.util.Pair;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlockItem;
+import com.simibubi.create.content.kinetics.crank.ValveHandleBlock;
+import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import net.mehvahdjukaar.every_compat.api.ItemOnlyEntrySet;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
@@ -17,6 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
@@ -27,13 +30,16 @@ import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.metal.MetalType;
 import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.every_compat.misc.UtilityTag.*;
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
 
-@SuppressWarnings({"CommentedOutCode"})
+///SUPPORTED: v6.0.10+
 public abstract class CreateModuleAbstract extends GemsRealmModule {
 
     public final ItemOnlyEntrySet<MetalType, Item> sheet;
@@ -48,15 +54,16 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
     public final SimpleEntrySet<MetalType, Block> tile_slab;
     public final SimpleEntrySet<MetalType, Block> tile_stairs;
     public final SimpleEntrySet<MetalType, Block> table_cloth;
-//    public final SimpleEntrySet<MetalType, ValveHandleBlock> valve_handle; //@ Look at its comment for more details
+    public final SimpleEntrySet<MetalType, ValveHandleBlock> valve_handle; //@ Waiting for Create v6.0.12 or newer
+    public static Map<ResourceLocation, PartialModel> VALVE_HANDLES = new HashMap<>();
 
     public final SimpleEntrySet<MetalType, Block> orante_window;
     public final SimpleEntrySet<MetalType, Block> ornate_window_pane;
 
     public CreateModuleAbstract(String modId) {
         super(modId, "c");
-        ResourceLocation tab = modRes("base");
-        ResourceLocation paletteTab = modRes("palettes");
+        Supplier<CreativeModeTab> tab = getModTab("base");
+        Supplier<CreativeModeTab> paletteTab = getModTab("palettes");
 
         sheet = ItemOnlyEntrySet.builder(MetalType.class, "sheet",
                         getModItem("iron_sheet"), () -> VanillaMetalTypes.IRON,
@@ -66,7 +73,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTexture(modRes("item/iron_sheet"))
                 .addTag(platformTag("plates"), Registries.ITEM)
                 //TAG: forge:plates/<type>
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: Manully created below
                 .build();
         this.addEntry(sheet);
@@ -81,7 +88,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("casing"), Registries.BLOCK)
                 .addTag(modRes("casing"), Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
 //                .defaultRecipe() //REQUIRED a unique recipe, create:deploying
                 .build();
         this.addEntry(casing);
@@ -99,7 +106,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTextureM(modRes("block/copper_door_top"), GemsRealm.res("block/c/copper_door_top_m"))
                 .addTextureM(modRes("item/copper_door"), GemsRealm.res("item/c/copper_door_m"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("crafting/kinetics/copper_door"))
                 .copyParentDrop()
                 .build();
@@ -117,7 +124,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTag(BlockTags.CLIMBABLE, Registries.BLOCK)
                 .addTag(BlockTags.FALL_DAMAGE_RESETTING, Registries.BLOCK)
                 .addTag(modRes("copycat_deny"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(ladder);
@@ -134,7 +141,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTexture(modRes("block/funnel/copper_funnel_frame"))
                 //TEXTURES: casing,
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addCustomItem((metalType, block, properties) -> new MetalScaffoldingBlockItem(block, properties))
                 .build();
@@ -150,7 +157,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTexture(modRes("block/copper/copper_roof_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(shingles);
@@ -165,7 +172,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .addTag(ItemTags.SLABS, Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
 //                .addRecipe(modRes("copper_shingle_slab_from_copper_shingles_stonecutting")) //TODO: fix
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -183,7 +190,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .addTag(ItemTags.STAIRS, Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
 //                .addRecipe(modRes("copper_shingle_stairs_from_copper_shingles_stonecutting")) //TODO: fix
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -200,7 +207,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTexture(modRes("block/copper/copper_tiles_top_connected"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(tiles);
@@ -215,7 +222,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .addTag(ItemTags.SLABS, Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
 //                .addRecipe(modRes("copper_tile_slab_from_copper_tiles_stonecutting")) //TODO: fix
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -233,7 +240,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .addTag(ItemTags.STAIRS, Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("copper_tile_stairs_from_copper_tiles_stonecutting"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -249,9 +256,8 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTextureM(modRes("block/table_cloth/copper"), GemsRealm.res("block/c/copper_table_cloth_m"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.INSIDE_STEP_SOUND_BLOCKS, Registries.BLOCK)
-                .addTag(modRes("table_cloths"), Registries.BLOCK)
-                .addTag(modRes("table_cloths"), Registries.ITEM)
-                .setTabKey(tab)
+                .addTag(modRes("table_cloths"), Registries.BLOCK, Registries.ITEM)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addCustomItem((metalType, block, properties) -> newTableClothBlockItem(block, properties))
                 .build();
@@ -259,22 +265,21 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
 
 /// In ValveHandleVisual where the AllPartialModels.VALVE_HANDLE is setting ResourceLocation for copper's texture
 /// one of options is to use mixin to change the ResourceLocation to replace copper's texture
-//        valve_handle = GemsRealmEntrySet.of(MetalType.class, "valve_handle",
-//                        getModBlock("copper_valve_handle", ValveHandleBlock.class), () -> VanillaMetalTypes.COPPER,
-//                        metalType -> ValveHandleBlock.copper(Utils.copyPropertySafe(metalType.block))
-//                )
-//                .addTile(getModTile("valve_handle"))
-//                .requiresFromMap(sheet.items) //REASON: recipes
-//                .addTextureM(modRes("block/valve_handle/valve_handle_copper"), GemsRealm.res("block/c/valve_handle_copper_m"))
-//                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-//                .addTag(modRes("valve_handles"), Registries.BLOCK)
-//                .addTag(modRes("brittle"), Registries.BLOCK)
-//                .addTag(modRes("valve_handles"), Registries.ITEM)
-//                .setTabKey(tab)
-//                //RECIPES: Manully created below
-//                .addCustomItem((metalType, block, properties) -> new BlockItem(block, properties))
-//                .build();
-//        this.addEntry(valve_handle);
+        valve_handle = GemsRealmEntrySet.of(MetalType.class, "valve_handle",
+                        getModBlock("copper_valve_handle", ValveHandleBlock.class), () -> VanillaMetalTypes.COPPER,
+                        this::newValveHandleBlock
+                )
+                .requiresChildren(INGOT) //REASON: recipes - INGOT is used for crafting create:sheet
+                .includeModelsBlock(ResourceLocation.parse("block/valve_handle"))
+                .addTile(getModTile("valve_handle"))
+                .addTextureM(modRes("block/valve_handle/valve_handle_copper"), GemsRealm.res("block/c/valve_handle_copper_m"))
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(modRes("valve_handles"), Registries.BLOCK, Registries.ITEM)
+                .addTag(modRes("brittle"), Registries.BLOCK)
+                .setTab(tab)
+                //RECIPES: Manully created below
+                .build();
+        this.addEntry(valve_handle);
 
         orante_window = GemsRealmEntrySet.of(MetalType.class, "window", "ornate",
                         getModBlock("ornate_iron_window"), () -> VanillaMetalTypes.IRON,
@@ -286,7 +291,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTexture(modRes("block/palettes/ornate_iron_window_end"))
                 .addTextureM(modRes("block/palettes/ornate_iron_window_connected"),
                         GemsRealm.res("block/c/ornate_iron_window_connected_m"))
-                .setTabKey(paletteTab)
+                .setTab(paletteTab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.TRANSLUCENT)
                 .build();
@@ -300,9 +305,8 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 //TEXTURES: orante_iron_window
                 .addTexture(modRes("block/palettes/ornate_iron_window_pane_top"))
                 .addTag(BlockTags.IMPERMEABLE, Registries.BLOCK)
-                .addTag(platformTag("glass_panes"), Registries.BLOCK)
-                .addTag(platformTag("glass_panes"), Registries.ITEM)
-                .setTabKey(paletteTab)
+                .addTag(platformTag("glass_panes"), Registries.BLOCK, Registries.ITEM)
+                .setTab(paletteTab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.TRANSLUCENT)
                 .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
@@ -319,16 +323,9 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
     protected abstract Block makeConnectedGlassPaneBlock(MetalType metalType);
     protected abstract Block newTableClothBlock(MetalType metalType);
     protected abstract Item newTableClothBlockItem(Block block, Item.Properties properties);
+    protected abstract ValveHandleBlock newValveHandleBlock(MetalType metalType);
 
 //!! ─────────────────────────────────────────────────────────────────────────────────────
-
-//    @Override
-//    public void onClientInit() {
-//        super.onClientInit();
-        //TODO: Add ponder to table_cloth and other blocks:
-        // https://github.com/Creators-of-Create/Create/blob/65fcd2b71bd56e16d0447f235e9ea83af7b900a1/src/main/java/com/simibubi/create/CreateClient.java#L101
-        // https://github.com/Creators-of-Create/Create/blob/65fcd2b71bd56e16d0447f235e9ea83af7b900a1/src/main/java/com/simibubi/create/infrastructure/ponder/AllCreatePonderScenes.java#L379
-//    }
 
     // RECIPES
     @Override
