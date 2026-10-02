@@ -3,7 +3,6 @@ package net.xelbayria.gems_realm.modules.minecraft;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
@@ -17,6 +16,8 @@ import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.metal.MetalType;
 import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
 
+import java.util.function.Supplier;
+
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
 
 public class MinecraftModuleBars extends GemsRealmModule {
@@ -25,7 +26,8 @@ public class MinecraftModuleBars extends GemsRealmModule {
 
     public MinecraftModuleBars(String modId) {
         super(modId, "mc");
-        ResourceKey<CreativeModeTab> building_block = CreativeModeTabs.BUILDING_BLOCKS;
+        Supplier<CreativeModeTab> building_block = getTab(CreativeModeTabs.BUILDING_BLOCKS);
+        setBlockType("Bar");
 
         bars = GemsRealmEntrySet.of(MetalType.class, "bars",
                         getModBlock("iron_bars"), () -> VanillaMetalTypes.IRON,
@@ -49,7 +51,7 @@ public class MinecraftModuleBars extends GemsRealmModule {
                 .includeModelsItem(ResourceLocation.withDefaultNamespace("item/iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.DRAGON_IMMUNE, Registries.BLOCK)
-                .setTabKey(building_block)
+                .setTab(building_block)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();

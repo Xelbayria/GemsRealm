@@ -5,7 +5,6 @@ import net.mehvahdjukaar.every_compat.misc.UtilityTag;
 import net.mehvahdjukaar.moonlight.api.resources.SimpleTagBuilder;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -18,6 +17,7 @@ import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
 
@@ -27,8 +27,8 @@ public class MinecraftModuleNugget extends GemsRealmModule {
 
     public MinecraftModuleNugget(String modId) {
         super(modId, "mc");
-        ResourceKey<CreativeModeTab> ingredients = CreativeModeTabs.INGREDIENTS;
-        //TODO: Add setBlockType() when updated to EC v2.9.16
+        Supplier<CreativeModeTab> ingredients = getTab(CreativeModeTabs.INGREDIENTS.location());
+        setBlockType("Nugget");
 
         nugget = ItemOnlyEntrySet.builder(MetalType.class, "nugget",
                         getModItem("iron_nugget"), () -> VanillaMetalTypes.IRON,
@@ -38,13 +38,14 @@ public class MinecraftModuleNugget extends GemsRealmModule {
                 .addTexture(modRes("item/iron_nugget"), MetalPaletteStrategies.INGOT_STANDARD)
                 .includeModelsItem(ResourceLocation.withDefaultNamespace("item/iron_nugget"))
                 .addTag(UtilityTag.platformTag("nuggets"), Registries.ITEM)
-                .setTabKey(ingredients)
+                .setTab(ingredients)
                 .defaultRecipe()
                 .build();
         this.addEntry(nugget);
     }
 
     @Override
+    // TAGS
     public void addDynamicServerResources(Consumer<ResourceGenTask> executor) {
         super.addDynamicServerResources(executor);
 
