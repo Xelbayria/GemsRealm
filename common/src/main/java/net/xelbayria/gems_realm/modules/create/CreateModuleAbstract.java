@@ -54,8 +54,8 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
     public final SimpleEntrySet<MetalType, Block> tile_slab;
     public final SimpleEntrySet<MetalType, Block> tile_stairs;
     public final SimpleEntrySet<MetalType, Block> table_cloth;
-    public final SimpleEntrySet<MetalType, ValveHandleBlock> valve_handle; //@ Waiting for Create v6.0.12 or newer
-    public static Map<ResourceLocation, PartialModel> VALVE_HANDLES = new HashMap<>();
+    public final SimpleEntrySet<MetalType, ValveHandleBlock> valve_handle;
+    public static Map<ResourceLocation, PartialModel> VALVE_HANDLES = new HashMap<>(); //TODO: remove the mixin once Create v6.0.11 or newer
 
     public final SimpleEntrySet<MetalType, Block> orante_window;
     public final SimpleEntrySet<MetalType, Block> ornate_window_pane;
@@ -338,20 +338,21 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
             String scaffoldingRecipePath;
             String shinglesRecipePath;
             String tilesRecipePath;
-            /// NOT AVAILABLE IN FABRIC - will re-added when v6.0 is out for FABRIC
-//            String table_clothRecipePath = "copper_table_cloth_from_ingots_copper_stonecutting";
+            String table_clothRecipePath;
 
             if (PlatHelper.getPlatform().isFabric()) {
                 ladderRecipePath = "copper_ladder_from_copper_ingots_stonecutting";
                 scaffoldingRecipePath = "copper_scaffolding_from_copper_ingots_stonecutting";
                 shinglesRecipePath = "copper_shingles_from_copper_ingots_stonecutting";
                 tilesRecipePath = "copper_tiles_from_copper_ingots_stonecutting";
+                table_clothRecipePath = "copper_table_cloth_from_copper_ingots_stonecutting";
             }
             else {
                 ladderRecipePath = "copper_ladder_from_ingots_copper_stonecutting";
                 scaffoldingRecipePath = "copper_scaffolding_from_ingots_copper_stonecutting";
                 shinglesRecipePath = "copper_shingles_from_ingots_copper_stonecutting";
                 tilesRecipePath = "copper_tiles_from_ingots_copper_stonecutting";
+                table_clothRecipePath = "copper_table_cloth_from_ingots_copper_stonecutting";
             }
 
             ladder.blocks.forEach((metalType, block) -> {
@@ -359,7 +360,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 ResourceLocation scaffoldingRecipeId = ResourceLocation.parse(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "scaffolding_from_ingots"));
                 ResourceLocation shinglesRecipeId = ResourceLocation.parse(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "shingles_from_ingots"));
                 ResourceLocation tilesRecipeId = ResourceLocation.parse(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "tiles_from_ingots"));
-//                ResourceLocation table_clothRecipeId = new ResourceLocation(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_table_cloth_from_ingots"));
+                ResourceLocation table_clothRecipeId = ResourceLocation.parse(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_table_cloth_from_ingots"));
 
                 grabTagAndCreateRecipe(ladderRecipePath, ladderRecipeId, "ingots/copper", ladder.blocks.get(metalType), metalType, manager, sink);
 
@@ -370,7 +371,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 grabTagAndCreateRecipe(tilesRecipePath, tilesRecipeId, "ingots/copper", tiles.blocks.get(metalType), metalType, manager, sink);
 
                 /// NOT AVAILABLE IN FABRIC - will re-added when v6.0 is out for FABRIC
-//                grabTagAndCreateRecipe(table_clothRecipePath, table_clothRecipeId, "copper", table_cloth.blocks.get(metalType), metalType, manager, sink);
+                grabTagAndCreateRecipe(table_clothRecipePath, table_clothRecipeId, "ingots/copper", table_cloth.blocks.get(metalType), metalType, manager, sink);
             });
 
 
@@ -384,16 +385,25 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 grabTagAndCreateRecipe(pathWood, newResLocWood, "ingots/copper", block, metalType, manager, sink);
             });
 
-//            String tagIdSheet = "forge:plates/";
+        });
+
+        executor.accept((manager, sink) -> {
             String pathIngot = "pressing/iron_ingot";
             sheet.items.forEach((metalType, item) -> {
+                String tagPathSheet = "plates/" + metalType.getTypeName();
+
                 ResourceLocation newResLocIngot = ResourceLocation.parse(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "pressing/", "ingot"));
 
                 grabTagAndCreateRecipe(pathIngot, newResLocIngot, "ingots/iron", item, metalType, manager, sink);
-                addTagToAllItems("plates/" + metalType.getTypeName(), item, sink, manager);
+                addTagToAllItems(tagPathSheet, item, manager, sink);
+            });
 
-                /// for valve_handle's recipe - not added yet because Create's Source Code require some tweaking
-//                TagUtility.createAndAddCustomTags(new ResourceLocation(tagIdSheet + typeName(metalType)), sink, item);
+            String pathValveHandle = "crafting/kinetics/copper_valve_handle";
+            valve_handle.blocks.forEach((metalType, block) -> {
+                ResourceLocation newValveHandle = GemsRealm.res(pathValveHandle.replace("copper", metalType.getTypeName()))
+                        .withPrefix(shortenedId() +"/"+ metalType.getNamespace());
+                UtilityRecipe.createRecipeWithTag(modRes(pathValveHandle), newValveHandle, platformTag("plates/copper").toString(),
+                        platformTag("plates/" + metalType.getTypeName()).toString(), block, sink, manager);
             });
         });
     }
@@ -434,7 +444,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
         };
     }
 
-    public static void addTagToAllItems(String tagPath, Item item, ResourceSink sink, ResourceManager manager) {
+    public static void addTagToAllItems(String tagPath, Item item, ResourceManager manager, ResourceSink sink) {
 
         boolean isItemTagCreated = false;
         SimpleTagBuilder itemtagBuilder;

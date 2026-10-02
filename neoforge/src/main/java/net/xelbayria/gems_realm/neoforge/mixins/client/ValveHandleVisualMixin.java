@@ -8,7 +8,6 @@ import com.simibubi.create.content.kinetics.crank.HandCrankBlockEntity;
 import com.simibubi.create.content.kinetics.crank.ValveHandleVisual;
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.xelbayria.gems_realm.GemsRealm;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -22,7 +21,6 @@ public abstract class ValveHandleVisualMixin {
     @ModifyExpressionValue(method = "<init>", at = @At("MIXINEXTRAS:EXPRESSION"))
     private PartialModel gemsrealm$notJustCopperValve(PartialModel original, @Local(argsOnly = true) HandCrankBlockEntity blockEntity) {
         PartialModel replacement = VALVE_HANDLES.get(Utils.getID(blockEntity.getBlockState().getBlock()));
-        GemsRealm.LOGGER.warn("VALVE_CHECKER: passed - {}", replacement.modelLocation());
         return replacement != null ? replacement : original;
     }
 

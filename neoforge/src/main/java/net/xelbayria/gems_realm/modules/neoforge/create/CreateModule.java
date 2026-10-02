@@ -18,7 +18,6 @@ import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import net.createmod.catnip.data.Couple;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
-import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -30,8 +29,6 @@ import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.metal.MetalType;
 import net.xelbayria.gems_realm.modules.create.CreateModuleAbstract;
-
-import java.util.function.Consumer;
 
 import static com.simibubi.create.AllPartialModels.FOLDING_DOORS;
 
@@ -94,7 +91,6 @@ public class CreateModule extends CreateModuleAbstract {
 
         event.register(table_cloth.getTile(TableClothBlockEntity.class), TableClothRenderer::new);
         event.register(door.getTile(SlidingDoorBlockEntity.class), SlidingDoorRenderer::new);
-//        event.register(valve_handle.getTile(ValveHandleBlockEntity.class), HandCrankRenderer::new); // SEE EntrySet's comment
     }
 
 //    @Override
@@ -146,23 +142,6 @@ public class CreateModule extends CreateModuleAbstract {
 
     private static PartialModel block(String path) {
         return PartialModel.of(GemsRealm.res("block/"+ path));
-    }
-
-    // RECIPES
-    @Override
-    public void addDynamicServerResources(Consumer<ResourceGenTask> executor) {
-        super.addDynamicServerResources(executor);
-
-        executor.accept((manager, sink) -> {
-
-            String table_clothRecipePath = "copper_table_cloth_from_ingots_copper_stonecutting"; //NOTE: this path is different from FABRIC's recipe path
-            ladder.blocks.forEach((metalType, block) -> {
-                ResourceLocation newTableClothRecipeId = ResourceLocation.parse(metalType.createFullIdWith(GemsRealm.MOD_ID, "", shortenedId(), "stonecutting/", "_table_cloth_from_ingots"));
-
-                grabTagAndCreateRecipe(table_clothRecipePath, newTableClothRecipeId, "copper", table_cloth.blocks.get(metalType), metalType, manager, sink);
-            });
-
-        });
     }
 
 //      ┌──────────────────────────────────────────────────────────┐
