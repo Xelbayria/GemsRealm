@@ -137,7 +137,7 @@ public class GemsRealmEntrySet<T extends BlockType, B extends Block> extends Sim
 
         @Override
         public GemsRealmEntrySet<T, B> build() {
-            if (this.tab == null && PlatHelper.isDev()) {
+            if (this.addToTab && this.tab == null && PlatHelper.isDev()) {
                 throw new IllegalStateException("Tab for module " + this.name + " was null!");
             } else {
                 // all blocks could have tint as RockType could be tinted themselves
