@@ -37,9 +37,8 @@ public class CreateClientModule {
     public static void registerCasingCTBehavior(GemsRealmModule module, SimpleEntrySet<MetalType, Block> casing) {
         casing.blocks.forEach((metalType, block) -> {
             String blockTexture = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), "", "casing");
-            String connectedTexture = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), "", "casing_connected");
 
-            CTSpriteShiftEntry spriteShift = omni(blockTexture, connectedTexture);
+            CTSpriteShiftEntry spriteShift = omni(blockTexture);
 
             CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(block),
                     model -> new CTModel(model, new SimpleCTBehaviour(spriteShift)));
@@ -95,10 +94,14 @@ public class CreateClientModule {
         });
     }
 
+    ///NOTE: texture filename with _connected is included
+    private static CTSpriteShiftEntry omni(String blockTexture) {
+        return getCT(AllCTTypes.OMNIDIRECTIONAL, ResourceLocation.parse(blockTexture), ResourceLocation.parse(blockTexture + "_connected"));
+    }
+
     private static CTSpriteShiftEntry omni(String blockTexture, String connectedTexture) {
         return getCT(AllCTTypes.OMNIDIRECTIONAL, ResourceLocation.parse(blockTexture), ResourceLocation.parse(connectedTexture));
     }
-
 
     private static CTSpriteShiftEntry horizontal(String blockTexture, String connectedTexture) {
         return getCT(AllCTTypes.HORIZONTAL, ResourceLocation.parse(blockTexture), ResourceLocation.parse(connectedTexture));
