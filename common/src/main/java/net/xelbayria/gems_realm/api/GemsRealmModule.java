@@ -1,7 +1,6 @@
 package net.xelbayria.gems_realm.api;
 
 import net.mehvahdjukaar.every_compat.modules.EveryCompatModule;
-import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.minecraft.core.Registry;
@@ -33,11 +32,6 @@ public class GemsRealmModule extends EveryCompatModule {
     @SuppressWarnings({"DataFlowIssue", "unchecked"})
     public ResourceKey<CreativeModeTab> getDedicatedTab() {
         return (ResourceKey<CreativeModeTab>) GRRegistry.MOD_TAB.getKey();
-    }
-
-    @Override
-    public String toString() {
-        return "[GemsRealm - " + LangBuilder.getReadableName(modId) + " Module]";
     }
 
     @Override
