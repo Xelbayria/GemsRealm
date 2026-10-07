@@ -5,6 +5,7 @@ plugins {
 neoforge {
     dependOn(project(":common"))
     accessWidener(project(":common"))
+//    accessTransformers.from 'neoforge/src/main/resources/META-INF/accesstransformer.cfg'
 }
 
 mod {
@@ -25,13 +26,15 @@ tasks.named<Jar>("sourcesJar") {
     archiveClassifier.set("neoforge-sources")
 }
 
-val path = System.getenv("REPOS21_1").toString()
+val localReposDir: String? = System.getenv("REPOS21_1")
 dependencies {
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
+
     //- LOCAL
     if (findProperty("enable_moonlight_test").toString().toBoolean()) {
-        modApi(files(path + "\\Moonlight\\neoforge\\build\\libs\\moonlight-${property("moonlight_testVersion")}-neoforge.jar"))
+        val repos = requireNotNull(localReposDir) { "enable_moonlight_test is on but the REPOS21_1 env var is not set" }
+        modApi(files("$repos\\Moonlight\\neoforge\\build\\libs\\moonlight-${property("moonlight_testVersion")}-neoforge.jar"))
     }
     //+ MAVEN
     else {
@@ -45,7 +48,8 @@ dependencies {
 
     //- LOCAL
     if (findProperty("enable_everycomp_test").toString().toBoolean()) {
-        implementation(files(path + "\\WoodGood\\neoforge\\build\\libs\\everycomp-${property("everycomp_testVersion")}-neoforge.jar"))
+        val repos = requireNotNull(localReposDir) { "enable_everycomp_test is on but the REPOS21_1 env var is not set" }
+        implementation(files("$repos\\WoodGood\\neoforge\\build\\libs\\everycomp-${property("everycomp_testVersion")}-neoforge.jar"))
     }
     //+ MAVEN
     else {
@@ -97,9 +101,9 @@ dependencies {
     modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:8623666") // v1.1.24 | Rechiseled
 
     // ---- OTHER MAVENS
-    modImplementation("com.tterrag.registrate:Registrate:${property("registrate_version")}") // Create
-    modImplementation("net.createmod.ponder:ponder-neoforge:${property("ponder_version")}+mc${property("minecraft_version")}") // Create
-    modImplementation("dev.engine-room.flywheel:flywheel-neoforge-${property("minecraft_version")}:${property("flywheel_neoforge_version")}") // Create
+    modCompileOnly("com.tterrag.registrate:Registrate:${property("registrate_version")}") // Create
+    modCompileOnly("net.createmod.ponder:ponder-neoforge:${property("ponder_version")}+mc${property("minecraft_version")}") // Create
+    modCompileOnly("dev.engine-room.flywheel:flywheel-neoforge-${property("minecraft_version")}:${property("flywheel_neoforge_version")}") // Create
 
 
 //!! =================================================== IMPORTS ==================================================== \\
@@ -138,7 +142,7 @@ dependencies {
 
     // ---- OTHER MAVENs
     modCompileOnly("earth.terrarium.chipped:chipped-neoforge-${property("minecraft_version")}:4.0.2") //INCLUDED: Athena, Resourceful-Lib, REQUIRED: +Bytecodecs
-    modImplementation("com.simibubi.create:create-${property("minecraft_version")}:${property("create_version")}:slim") { isTransitive = false } // Registrate, Flywheel, Ponder
+    modCompileOnly("com.simibubi.create:create-${property("minecraft_version")}:${property("create_version")}:slim") { isTransitive = false } // Registrate, Flywheel, Ponder
 //    implementation(files("$path\\Create\\build\\libs\\create-1.21.1-6.0.12.jar"))
 
 //!! ================================================= FOR TESTING ================================================== \\

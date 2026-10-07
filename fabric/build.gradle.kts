@@ -21,13 +21,15 @@ tasks.remapSourcesJar {
     archiveClassifier.set("fabric-sources")
 }
 
-val path = System.getenv("REPOS21_1").toString()
+val localReposDir: String? = System.getenv("REPOS21_1")
 dependencies {
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
+
     //- LOCAL
     if (findProperty("enable_moonlight_test").toString().toBoolean()) {
-        modApi(files(path + "\\Moonlight\\fabric\\build\\libs\\moonlight-${property("moonlight_testVersion")}-fabric.jar"))
+        val repos = requireNotNull(localReposDir) { "enable_moonlight_test is on but the REPOS21_1 env var is not set" }
+        implementation(files("$repos\\Moonlight\\fabric\\build\\libs\\moonlight-${property("moonlight_testVersion")}-fabric.jar"))
     }
     //+ MAVEN
     else {
@@ -39,7 +41,8 @@ dependencies {
 
     //- LOCAL
     if (findProperty("enable_everycomp_test").toString().toBoolean()) {
-        implementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${property("everycomp_testVersion")}-fabric.jar"))
+        val repos = requireNotNull(localReposDir) { "enable_everycomp_test is on but the REPOS21_1 env var is not set" }
+        implementation(files("$repos\\WoodGood\\fabric\\build\\libs\\everycomp-${property("everycomp_testVersion")}-fabric.jar"))
     }
     //+ MAVEN
     else {

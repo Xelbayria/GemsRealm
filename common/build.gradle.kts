@@ -3,6 +3,8 @@ plugins {
 }
 
 common {
+    //pinned so the build doesn't need to hit maven.neoforged.net to list versions
+    neoformVersion = "1.21.1-20240808.144430"
     accessWidener()
 }
 
@@ -20,14 +22,15 @@ tasks.named<Jar>("sourcesJar") {
     archiveClassifier.set("common-sources")
 }
 
-val path = System.getenv("REPOS21_1").toString()
+val localReposDir: String? = System.getenv("REPOS21_1")
 dependencies {
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
 
     //- LOCAL
     if (findProperty("enable_moonlight_test").toString().toBoolean()) {
-        modApi(files( "${path}\\Moonlight\\neoforge\\build\\libs\\moonlight-${property("moonlight_testVersion")}-neoforge.jar"))
+        val repos = requireNotNull(localReposDir) { "enable_moonlight_test is on but the REPOS21_1 env var is not set" }
+        modApi(files( "$repos\\Moonlight\\neoforge\\build\\libs\\moonlight-${property("moonlight_testVersion")}-neoforge.jar"))
     }
     //+ MAVEN
     else {
@@ -40,7 +43,8 @@ dependencies {
 
     //- LOCAL
     if (findProperty("enable_everycomp_test").toString().toBoolean()) {
-        compileOnly(files(path + "\\WoodGood\\neoforge\\build\\libs\\everycomp-${property("everycomp_testVersion")}-neoforge.jar"))
+        val repos = requireNotNull(localReposDir) { "enable_everycomp_test is on but the REPOS21_1 env var is not set" }
+        compileOnly(files("$repos\\WoodGood\\common\\build\\libs\\everycomp-${property("everycomp_testVersion")}-common.jar"))
     }
     //+ MAVEN
     else {
@@ -60,7 +64,6 @@ dependencies {
     modCompileOnly("com.tterrag.registrate:Registrate:${property("registrate_version")}") // Create
     modCompileOnly("net.createmod.ponder:ponder-neoforge:${property("ponder_version")}+mc${property("minecraft_version")}") // Create
     modCompileOnly("dev.engine-room.flywheel:flywheel-neoforge-${property("minecraft_version")}:${property("flywheel_neoforge_version")}") // Create
-    modCompileOnly("io.github.llamalad7:mixinextras-neoforge:0.5.5")
 
 //!! =================================================== IMPORTS ==================================================== \\
 
