@@ -26,7 +26,7 @@ import static net.xelbayria.gems_realm.api.set.VanillaRockChildKeys.*;
  * smooth, smooth_stairs, smooth_slab, smooth_wall
 **/
 @SuppressWarnings("SameParameterValue")
-public abstract class RockType extends BlockType{
+public abstract class RockType extends BlockType {
 
     public final Block block;
 
