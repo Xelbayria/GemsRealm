@@ -30,6 +30,10 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
         return VanillaMetalTypes.IRON;
     }
 
+    public static MetalType getMetalType(String id) {
+        return INSTANCE.get(ResourceLocation.parse(id));
+    }
+
     @Override
     public Optional<MetalType> detectTypeFromBlock(Block baseBlock, ResourceLocation blockId) {
         String namespace = blockId.getNamespace();
