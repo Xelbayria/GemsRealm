@@ -22,7 +22,10 @@ import com.simibubi.create.content.logistics.tableCloth.TableClothBlock;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlockEntity;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlockItem;
 import com.simibubi.create.content.logistics.tableCloth.TableClothRenderer;
+import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
+import com.simibubi.create.foundation.item.TooltipModifier;
 import com.simibubi.create.foundation.ponder.CreatePonderPlugin;
 import com.simibubi.create.infrastructure.ponder.AllCreatePonderScenes;
 import com.simibubi.create.infrastructure.ponder.AllCreatePonderTags;
@@ -34,6 +37,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
+import net.createmod.catnip.lang.FontHelper;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.scene.PonderStoryBoard;
 import net.createmod.ponder.foundation.PonderIndex;
@@ -42,7 +46,9 @@ import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -62,6 +68,9 @@ import java.util.function.Supplier;
 //See CreateModuleAbstract's SUPPORTED VERSION
 @SuppressWarnings("CommentedOutCode")
 public class CreateModule extends CreateModuleAbstract {
+
+    private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(GemsRealm.MOD_ID)
+            .defaultCreativeTab((ResourceKey<CreativeModeTab>) null);
 
     public CreateModule(String modId) {
         super(modId);
@@ -175,14 +184,18 @@ public class CreateModule extends CreateModuleAbstract {
 //        tunnel.blocks.values().forEach(block -> DisplaySource.BY_BLOCK.add(block, AllDisplaySources.ACCUMULATE_ITEMS.get()));
 //        tunnel.blocks.values().forEach(block -> DisplaySource.BY_BLOCK.add(block, AllDisplaySources.ITEM_THROUGHPUT.get()));
 
+        // Add a ToolTip to show valve_handle's Stress Capacity
+        valve_handle.blocks.values().stream().map(Block::asItem).forEach(item ->
+                TooltipModifier.REGISTRY.register(item, new ItemDescription.Modifier(item, FontHelper.Palette.STANDARD_CREATE)
+                        .andThen(TooltipModifier.mapNull(KineticStats.create(item))))
+        );
+
     }
 
     @Override
     public void onClientInit() {
         super.onClientInit();
         PonderIndex.addPlugin(new CompatCreatePonderPlugin());
-
-        //TODO: valve_handle - need more works becasue it doesn't have the tooltips that show its stress capacity
         valve_handle.blocks.values().forEach(block -> BlockStressValues.CAPACITIES.register(block, () -> 8.0F));
     }
 
