@@ -9,7 +9,9 @@
   "client": [
     "client.ValveHandleVisualMixin"
   ],
-  "mixins": [],
+  "mixins": [
+    "FunnelBlockEntityMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

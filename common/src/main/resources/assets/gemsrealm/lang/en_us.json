@@ -43,6 +43,13 @@
   "block_type.create.table_cloth": "%s Table Cloth",
   "block_type.create.ornate_window": "Ornate %s Window",
   "block_type.create.ornate_window_pane": "Ornate %s Window Pane",
+  "block_type.create.valve_handle": "%s Valve Handle",
+  "block_type.create.encased_shaft": "%s Encased Shaft",
+  "block_type.create.encased_cogwheel": "%s Encased Cogwheel",
+  "block_type.create.encased_large_cogwheel": "%s Encased Large Cogwheel",
+  "block_type.create.funnel": "%s Funnel",
+  "block_type.create.belt_funnel": "%s Belt Funnel",
+  "block_type.create.tunnel": "%s Tunnel",
 
   "block_type.lapidary.bricks": "%s Bricks",
   "block_type.lapidary.brick_stairs": "%s Brick Stairs",

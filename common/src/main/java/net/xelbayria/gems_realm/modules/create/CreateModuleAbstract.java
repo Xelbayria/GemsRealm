@@ -2,8 +2,14 @@ package net.xelbayria.gems_realm.modules.create;
 
 import com.mojang.datafixers.util.Pair;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlockItem;
+import com.simibubi.create.content.decoration.encasing.EncasableBlock;
+import com.simibubi.create.content.decoration.encasing.EncasedBlock;
+import com.simibubi.create.content.decoration.encasing.EncasingRegistry;
 import com.simibubi.create.content.kinetics.crank.ValveHandleBlock;
+import com.simibubi.create.content.logistics.funnel.FunnelItem;
+import com.simibubi.create.content.logistics.tunnel.BeltTunnelItem;
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
+import net.createmod.catnip.data.Couple;
 import net.mehvahdjukaar.every_compat.api.ItemOnlyEntrySet;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
@@ -28,38 +34,47 @@ import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.metal.MetalType;
+import net.xelbayria.gems_realm.api.set.metal.MetalTypeRegistry;
 import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import static com.simibubi.create.AllPartialModels.FOLDING_DOORS;
 import static net.mehvahdjukaar.every_compat.misc.UtilityTag.*;
+import static net.xelbayria.gems_realm.api.set.VanillaRockChildKeys.BLOCK;
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
 
 ///SUPPORTED: v6.0.10+
 public abstract class CreateModuleAbstract extends GemsRealmModule {
 
     public final ItemOnlyEntrySet<MetalType, Item> sheet;
-    public final SimpleEntrySet<MetalType, Block> casing;
-    public final SimpleEntrySet<MetalType, Block> door;
-    public final SimpleEntrySet<MetalType, Block> ladder;
-    public final SimpleEntrySet<MetalType, Block> scaffolding;
-    public final SimpleEntrySet<MetalType, Block> shingles;
-    public final SimpleEntrySet<MetalType, Block> shingle_slab;
-    public final SimpleEntrySet<MetalType, Block> shingle_stairs;
-    public final SimpleEntrySet<MetalType, Block> tiles;
-    public final SimpleEntrySet<MetalType, Block> tile_slab;
-    public final SimpleEntrySet<MetalType, Block> tile_stairs;
-    public final SimpleEntrySet<MetalType, Block> table_cloth;
+    public final SimpleEntrySet<MetalType, Block> casing, encased_shaft, encased_cogwheel, encased_large_cogwheel,
+            door,
+            ladder,
+            scaffolding,
+            shingles, shingle_slab, shingle_stairs,
+            tiles, tile_slab, tile_stairs,
+            table_cloth,
+            orante_window, ornate_window_pane;
+
     public final SimpleEntrySet<MetalType, ValveHandleBlock> valve_handle;
-    public static Map<ResourceLocation, PartialModel> VALVE_HANDLES = new HashMap<>(); //TODO: remove the mixin once Create v6.0.11 or newer
+    public final static Map<ResourceLocation, PartialModel> VALVE_HANDLES = new HashMap<>(); //TODO: remove the mixin once Create v6.0.11 or newer
 
-    public final SimpleEntrySet<MetalType, Block> orante_window;
-    public final SimpleEntrySet<MetalType, Block> ornate_window_pane;
+    public final SimpleEntrySet<MetalType, Block> funnel, belt_funnel;
+    public final static ArrayList<Block> supportsFilteringList = new ArrayList<>();
 
+    /// Required BeltBlockEntity to have a list of BlockType instead of ENUM that contains NONE, ANDESITE, BRASS
+    /// This applied to CASING where it can be applied to belt_block, too.
+//    public final SimpleEntrySet<MetalType, Block> tunnel/*, belt_funnel*/;
+//    public final static ArrayList<Block> tunnelList = new ArrayList<>();
+
+
+    @SuppressWarnings("CommentedOutCode") // tunnel and cased_belt will be supported in the future, no ETA
     public CreateModuleAbstract(String modId) {
         super(modId, "c");
         Supplier<CreativeModeTab> tab = getModTab("base");
@@ -74,24 +89,140 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTag(platformTag("plates"), Registries.ITEM)
                 //TAG: forge:plates/<type>
                 .setTab(tab)
-                //RECIPES: Manully created below
+                //RECIPES: manually created
                 .build();
         this.addEntry(sheet);
 
         casing = GemsRealmEntrySet.of(MetalType.class, "casing",
-                        getModBlock("copper_casing"), () -> VanillaMetalTypes.COPPER,
-                        this::makeCasingBlock
+                        getModBlock("brass_casing"), () -> MetalTypeRegistry.getMetalType("create:brass"),
+                        this::newCasingBlock
                 )
                 .requiresChildren(INGOT) //REASON: recipes
-                .addTextureM(modRes("block/copper_casing"), GemsRealm.res("block/c/copper_casing_m"))
-                .addTextureM(modRes("block/copper_casing_connected"), GemsRealm.res("block/c/copper_casing_connected_m"))
+                .addTextureM(modRes("block/brass_casing"), GemsRealm.res("block/c/copper_casing_m"))
+                .addTextureM(modRes("block/brass_casing_connected"), GemsRealm.res("block/c/copper_casing_connected_m"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
-                .addTag(modRes("casing"), Registries.BLOCK)
-                .addTag(modRes("casing"), Registries.ITEM)
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(modRes("casing"), Registries.BLOCK, Registries.ITEM)
                 .setTab(tab)
 //                .defaultRecipe() //REQUIRED a unique recipe, create:deploying
                 .build();
         this.addEntry(casing);
+
+        encased_shaft = GemsRealmEntrySet.of(MetalType.class, "encased_shaft",
+                        getModBlock("brass_encased_shaft"), () -> MetalTypeRegistry.getMetalType("create:brass"),
+                        metalType -> newEncasedShaftedBlock(metalType, () -> casing.blocks.get(metalType))
+                )
+                .requiresFromMap(casing.blocks) //REASON: It's one of the main block's blockstate
+                .addTile(getModTile("encased_shaft"))
+                //TEXTURES: brass_casing
+                .addTextureM(modRes("block/brass_gearbox"), GemsRealm.res("block/c/brass_innerby2pixel_m"))
+                .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .noTab() //REASON: doesn't require item/tab
+                .build();
+        this.addEntry(encased_shaft);
+
+        encased_cogwheel = GemsRealmEntrySet.of(MetalType.class, "encased_cogwheel",
+                        getModBlock("brass_encased_cogwheel"), () -> MetalTypeRegistry.getMetalType("create:brass"),
+                        metalType -> newEncasedCogwheelBlock(metalType, () -> casing.blocks.get(metalType))
+                )
+                .requiresFromMap(casing.blocks) //REASON: It's one of the main block's blockstate
+                .addTile(getModTile("encased_cogwheel"))
+                //TEXTURES: brass_casing, brass_gearbox
+                .addTextureM(modRes("block/brass_encased_cogwheel_side"), GemsRealm.res("block/c/brass_innerby2pixel_m"))
+                .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
+                .noTab() //REASON: doesn't require item/tab
+                .build();
+        this.addEntry(encased_cogwheel);
+
+        encased_large_cogwheel = GemsRealmEntrySet.of(MetalType.class, "encased_large_cogwheel",
+                        getModBlock("brass_encased_large_cogwheel"), () -> MetalTypeRegistry.getMetalType("create:brass"),
+                        metalType -> newEncasedLargeCogwheelBlock(metalType, () -> casing.blocks.get(metalType))
+                )
+                .requiresFromMap(casing.blocks) //REASON: It's one of the main block's blockstate
+                .addTile(getModTile("encased_large_cogwheel"))
+                //TEXTURES: brass_casing, brass_gearbox
+                .addTextureM(modRes("block/brass_encased_cogwheel_side_connected"), GemsRealm.res("block/c/brass_encased_cogwheel_side_connected_m"))
+                .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
+                .noTab() //REASON: doesn't require item/tab
+                .build();
+        this.addEntry(encased_large_cogwheel);
+
+        funnel = GemsRealmEntrySet.of(MetalType.class, "funnel",
+                        getModBlock("brass_funnel"), () -> MetalTypeRegistry.getMetalType("create:brass"),
+                        metalType -> newFunnelBlock(metalType, beltFunnelSupplier(metalType))
+                )
+                .addTile(getModTile("funnel"))
+                .addModelTransform(m ->
+                        m.replaceWithTextureFromChild("create:block/brass_block", BLOCK)
+                )
+                //TEXTURES: brass_block
+                .addTexture(modRes("block/funnel/brass_funnel"))
+                .addTexture(modRes("block/funnel/brass_funnel_push"))
+                .addTexture(modRes("block/funnel/brass_funnel_neutral"))
+                .addTexture(modRes("block/funnel/brass_funnel_pull"))
+                .addTexture(modRes("block/funnel/brass_funnel_frame"))
+                .addTexture(modRes("block/funnel/brass_funnel_unpowered"))
+                .addTexture(modRes("block/funnel/brass_funnel_powered"))
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(modRes("safe_nbt"), Registries.BLOCK)
+                .addTag(modRes("contraption_controlled"), Registries.BLOCK)
+                .setTab(tab)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                //RECIPES: manually created
+                .addCustomItem((ignored, block, properties) -> new FunnelItem(block, properties))
+                .build();
+        this.addEntry(funnel);
+
+        belt_funnel = GemsRealmEntrySet.of(MetalType.class, "belt_funnel",
+                        getModBlock("brass_belt_funnel"), () -> MetalTypeRegistry.getMetalType("create:brass"),
+                        metalType -> newBeltFunnelBlock(metalType, funnel.blocks.get(metalType))
+                )
+                .requiresFromMap(funnel.blocks) //REASON: textures & It's one of the main block's blockstate
+                .addTile(getModTile("funnel"))
+                .addModelTransform(m ->
+                        m.replaceWithTextureFromChild("create:block/brass_block", BLOCK)
+                )
+                //TEXTURES: brass_block, funnel_push, funnel_powered, funnel_unpowered, funnel, funnel_neutral, funnel_frame, funnel_pull
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(modRes("safe_nbt"), Registries.BLOCK)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
+                .noTab().noItem()
+                .build();
+        this.addEntry(belt_funnel);
+
+        /// Required BeltBlockEntity to have a list of BlockType instead of ENUM that contains NONE, ANDESITE, BRASS
+        /// This applied to CASING where it can be applied to belt_block, too.
+//        tunnel = GemsRealmEntrySet.of(MetalType.class, "tunnel",
+//                        getModBlock("brass_tunnel"), () -> MetalTypeRegistry.getMetalType("create:brass"),
+//                        metalType -> {
+//                            Block block = newTunnelBlock(metalType);
+//                            tunnelList.add(block);
+//                            return block;
+//                        }
+//                )
+//                .requiresFromMap(funnel.blocks) //REASON: textures
+//                .addTile(getModTile("brass_tunnel"))
+//                .addModelTransform(m ->
+//                        m.replaceWithTextureFromChild("create:block/brass_block", BLOCK)
+//                )
+//                //TEXTURES: brass_block, funnel_neutral, funnel_frame
+//                .addTextureM(modRes("block/tunnel/brass_tunnel"), GemsRealm.res("block/c/tunnel/brass_tunnel_m"))
+//                .addTexture(modRes("block/tunnel/brass_tunnel_top"))
+//                .addTexture(modRes("block/tunnel/brass_tunnel_top_connected"))
+//                .addTextureM(modRes("block/tunnel/brass_tunnel_top_window"), GemsRealm.res("block/c/tunnel/brass_tunnel_top_window_m"))
+//                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+//                .setTab(tab)
+//                .setRenderType(RenderLayer.CUTOUT_MIPPED)
+//                .build();
+//        this.addEntry(tunnel);
 
         door = GemsRealmEntrySet.of(MetalType.class, "door",
                         getModBlock("copper_door"), () -> VanillaMetalTypes.COPPER,
@@ -109,6 +240,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .setTab(tab)
                 .addRecipe(modRes("crafting/kinetics/copper_door"))
                 .copyParentDrop()
+                .addCustomItem((ignored, block, properties) -> new BeltTunnelItem(block, properties))
                 .build();
         this.addEntry(door);
 
@@ -149,7 +281,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
 
         shingles = GemsRealmEntrySet.of(MetalType.class, "shingles",
                         getModBlock("copper_shingles"), () -> VanillaMetalTypes.COPPER,
-                        metalType -> new Block(Utils.copyPropertySafe(metalType.block))
+                        metalType -> new Block(Utils.copyPropertySafe(metalType.block).sound(metalType.getSound()))
                 )
                 .requiresChildren(INGOT) //REASON: recipes
                 .addTexture(modRes("block/copper/copper_shingles"))
@@ -159,6 +291,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
                 .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                //RECIPES: Manually created
                 .build();
         this.addEntry(shingles);
 
@@ -174,7 +307,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTag(ItemTags.SLABS, Registries.ITEM)
                 .setTab(tab)
                 .defaultRecipe()
-//                .addRecipe(modRes("copper_shingle_slab_from_copper_shingles_stonecutting")) //TODO: fix
+                .addRecipe(modRes("copper_shingle_slab_from_copper_shingles_stonecutting"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(shingle_slab);
@@ -192,14 +325,14 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTag(ItemTags.STAIRS, Registries.ITEM)
                 .setTab(tab)
                 .defaultRecipe()
-//                .addRecipe(modRes("copper_shingle_stairs_from_copper_shingles_stonecutting")) //TODO: fix
+                .addRecipe(modRes("copper_shingle_stairs_from_copper_shingles_stonecutting"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(shingle_stairs);
 
         tiles = GemsRealmEntrySet.of(MetalType.class, "tiles",
                         getModBlock("copper_tiles"), () -> VanillaMetalTypes.COPPER,
-                        metalType -> new Block(Utils.copyPropertySafe(metalType.block))
+                        metalType -> new Block(Utils.copyPropertySafe(metalType.block).sound(metalType.getSound()))
                 )
                 .requiresChildren(INGOT) //REASON: recipes
                 //TEXTURES: shingles' copper_roof_top
@@ -209,6 +342,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
                 .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                //RECIPES: Manually created
                 .build();
         this.addEntry(tiles);
 
@@ -224,7 +358,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTag(ItemTags.SLABS, Registries.ITEM)
                 .setTab(tab)
                 .defaultRecipe()
-//                .addRecipe(modRes("copper_tile_slab_from_copper_tiles_stonecutting")) //TODO: fix
+                .addRecipe(modRes("copper_tile_slab_from_copper_tiles_stonecutting"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(tile_slab);
@@ -263,24 +397,6 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .build();
         this.addEntry(table_cloth);
 
-/// In ValveHandleVisual where the AllPartialModels.VALVE_HANDLE is setting ResourceLocation for copper's texture
-/// one of options is to use mixin to change the ResourceLocation to replace copper's texture
-        valve_handle = GemsRealmEntrySet.of(MetalType.class, "valve_handle",
-                        getModBlock("copper_valve_handle", ValveHandleBlock.class), () -> VanillaMetalTypes.COPPER,
-                        this::newValveHandleBlock
-                )
-                .requiresChildren(INGOT) //REASON: recipes - INGOT is used for crafting create:sheet
-                .includeModelsBlock(ResourceLocation.parse("block/valve_handle"))
-                .addTile(getModTile("valve_handle"))
-                .addTextureM(modRes("block/valve_handle/valve_handle_copper"), GemsRealm.res("block/c/valve_handle_copper_m"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(modRes("valve_handles"), Registries.BLOCK, Registries.ITEM)
-                .addTag(modRes("brittle"), Registries.BLOCK)
-                .setTab(tab)
-                //RECIPES: Manully created below
-                .build();
-        this.addEntry(valve_handle);
-
         orante_window = GemsRealmEntrySet.of(MetalType.class, "window", "ornate",
                         getModBlock("ornate_iron_window"), () -> VanillaMetalTypes.IRON,
                         this::makeWindow
@@ -313,9 +429,33 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .build();
         this.addEntry(ornate_window_pane);
 
+        valve_handle = GemsRealmEntrySet.of(MetalType.class, "valve_handle",
+                        getModBlock("copper_valve_handle", ValveHandleBlock.class), () -> VanillaMetalTypes.COPPER,
+                        this::newValveHandleBlock
+                )
+                .requiresChildren(INGOT) //REASON: recipes - INGOT is used for crafting create:sheet
+                .includeModelsBlock(ResourceLocation.parse("block/valve_handle"))
+                .addTile(getModTile("valve_handle"))
+                .addTextureM(modRes("block/valve_handle/valve_handle_copper"), GemsRealm.res("block/c/valve_handle_copper_m"))
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(modRes("valve_handles"), Registries.BLOCK, Registries.ITEM)
+                .addTag(modRes("brittle"), Registries.BLOCK)
+//                .addTag(modRes("kinetic_sources"), Registries.BLOCK/*, Registries.ITEM*/)
+                .setTab(tab)
+                //RECIPES: Manully created below
+                .build();
+        this.addEntry(valve_handle);
+
     }
 
-    protected abstract Block makeCasingBlock(MetalType metalType);
+    protected abstract Block newCasingBlock(MetalType metalType);
+    protected abstract Block newEncasedShaftedBlock(MetalType metalType, Supplier<Block> casingBlock);
+    protected abstract Block newEncasedCogwheelBlock(MetalType metalType, Supplier<Block> casingBlock);
+    protected abstract Block newEncasedLargeCogwheelBlock(MetalType metalType, Supplier<Block> casingBlock);
+    protected abstract Block newFunnelBlock(MetalType metalType, Supplier<Block> beltFunnelBlock);
+    protected abstract Block newBeltFunnelBlock(MetalType metalType, Block funnelBlock);
+//    protected abstract Block newTunnelBlock(MetalType metalType);
+
     protected abstract Block makeSlidingDoorBlock(MetalType metalType);
     protected abstract Block makeMetalLadderBlock(MetalType metalType);
     protected abstract Block makeMetalScaffoldingBlock(MetalType metalType);
@@ -400,10 +540,19 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
 
             String pathValveHandle = "crafting/kinetics/copper_valve_handle";
             valve_handle.blocks.forEach((metalType, block) -> {
-                ResourceLocation newValveHandle = GemsRealm.res(pathValveHandle.replace("copper", metalType.getTypeName()))
+                ResourceLocation newRecipeLoc = GemsRealm.res(pathValveHandle.replace("copper", metalType.getTypeName()))
                         .withPrefix(shortenedId() +"/"+ metalType.getNamespace());
-                UtilityRecipe.createRecipeWithTag(modRes(pathValveHandle), newValveHandle, platformTag("plates/copper").toString(),
-                        platformTag("plates/" + metalType.getTypeName()).toString(), block, sink, manager);
+                UtilityRecipe.createRecipeWithTag(modRes(pathValveHandle), newRecipeLoc,
+                        platformTag("plates/copper").toString(),
+                        platformTag("plates/" + metalType.getTypeName()).toString(),
+                        block, sink, manager);
+            });
+
+            String pathFunnel = "crafting/logistics/brass_funnel";
+            funnel.blocks.forEach((metalType, block) -> {
+                ResourceLocation newRecipeLoc = GemsRealm.res(pathFunnel.replace("brass", metalType.getTypeName()))
+                        .withPrefix(shortenedId() +"/"+ metalType.getNamespace());
+                grabTagAndCreateRecipe(pathFunnel, newRecipeLoc, "ingots/brass", block, metalType, manager, sink);
             });
         });
     }
@@ -461,5 +610,31 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
 
         if (isItemTagCreated) sink.addTag(itemtagBuilder, Registries.ITEM);
 
+    }
+
+    //      ┌──────────────────────────────────────────────────────────┐
+    //      │                        UTilities                         │
+    //      └──────────────────────────────────────────────────────────┘
+
+    protected void putFoldingDoor(GemsRealmModule module, SimpleEntrySet<MetalType, Block> doors) {
+        doors.blocks.forEach((metalType, block) -> {
+            String path = metalType.createPathWith(module.shortenedId(), "door");
+            FOLDING_DOORS.put(GemsRealm.res(path),
+                    Couple.create(block(path + "/fold_left"), block(path + "/fold_right")));
+        });
+    }
+
+    private static PartialModel block(String path) {
+        return PartialModel.of(GemsRealm.res("block/"+ path));
+    }
+
+    /// Add encased blocks (create:encased_shaft) to ENCASED_VARIANTS so the create:casing can be applied to shaft or others
+    protected <B extends Block & EncasableBlock> void registerEncasedBlock(B encaseable, SimpleEntrySet<MetalType, Block> entrySet) {
+        entrySet.blocks.values().forEach(block -> EncasingRegistry.addVariant(encaseable, (Block & EncasedBlock) block));
+    }
+
+    // ─────────────────────────────────── Supplier ────────────────────────────────────
+    protected Supplier<Block> beltFunnelSupplier(MetalType metalType) {
+        return () -> belt_funnel.blocks.get(metalType);
     }
 }
