@@ -19,10 +19,10 @@ import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.metal.MetalType;
 import net.xelbayria.gems_realm.modules.neoforge.create.client.CompatRoofBlockCTBehaviour;
-import net.xelbayria.gems_realm.modules.neoforge.create.client.CompatTunnelCTBehaviour;
 
 import static com.simibubi.create.foundation.block.connected.CTSpriteShifter.getCT;
 
+@SuppressWarnings("CommentedOutCode")
 @OnlyIn(Dist.CLIENT)
 public class CreateClientModule {
 
@@ -90,6 +90,7 @@ public class CreateClientModule {
         });
     }
 
+/*
     public static void registerTunnelCTBehaviour(GemsRealmModule module, SimpleEntrySet<MetalType, Block> tunnelEntry) {
         tunnelEntry.blocks.forEach((metalType, block) -> {
             String topTextureId = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), "tunnel/", "tunnel_top");
@@ -99,27 +100,23 @@ public class CreateClientModule {
             registerCTBehviour(block, new CompatTunnelCTBehaviour(tunnelTopShift));
         });
     }
+*/
 
     public static void registerScaffoldCTBehavior(GemsRealmModule module, SimpleEntrySet<MetalType, Block> scaffold) {
         scaffold.blocks.forEach((metalType, block) -> {
             // Scaffold
-            String scaffoldTexture = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), "scaffold/", "scaffold");
-            String insideTexture = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), "scaffold/", "scaffold_inside");
-            String scaffoldCTM = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), "scaffold/", "scaffold_connected");
-            String insideCTM = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), "scaffold/", "scaffold_inside_connected");
+            String scaffoldId = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), "scaffold/", "scaffold");
+            String insideId = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), "scaffold/", "scaffold_inside");
 
             // Casing
-            String casingTexture = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), "", "casing");
-            String casingCTM = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), "", "casing_connected");
+            String casingId = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), "", "casing");
 
-            CTSpriteShiftEntry scaffoldShift = horizontal(scaffoldTexture, scaffoldCTM);
-            CTSpriteShiftEntry scaffoldInsideShift = horizontal(insideTexture, insideCTM);
-            CTSpriteShiftEntry casingShift = omni(casingTexture, casingCTM);
+            CTSpriteShiftEntry scaffoldShift = horizontal(scaffoldId);
+            CTSpriteShiftEntry scaffoldInsideShift = horizontal(insideId);
+            CTSpriteShiftEntry casingShift = omni(casingId);
 
             registerCTBehviour(block, new MetalScaffoldingCTBehaviour(scaffoldShift, scaffoldInsideShift, casingShift));
 
-//            CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(block),
-//                    model -> new CTModel(model, new MetalScaffoldingCTBehaviour(scaffoldShift, scaffoldInsideShift, casingShift)));
         });
     }
 
@@ -154,17 +151,9 @@ public class CreateClientModule {
         return getCT(AllCTTypes.OMNIDIRECTIONAL, ResourceLocation.parse(blockTexture), ResourceLocation.parse(blockTexture + "_connected"));
     }
 
-    private static CTSpriteShiftEntry omni(String blockTexture, String connectedTexture) {
-        return getCT(AllCTTypes.OMNIDIRECTIONAL, ResourceLocation.parse(blockTexture), ResourceLocation.parse(connectedTexture));
-    }
-
     ///NOTE: texture filename with _connected is included
     private static CTSpriteShiftEntry horizontal(String blockTexture) {
         return getCT(AllCTTypes.HORIZONTAL, ResourceLocation.parse(blockTexture), ResourceLocation.parse(blockTexture +"_connected"));
-    }
-
-    private static CTSpriteShiftEntry horizontal(String blockTexture, String connectedTexture) {
-        return getCT(AllCTTypes.HORIZONTAL, ResourceLocation.parse(blockTexture), ResourceLocation.parse(connectedTexture));
     }
 
     ///NOTE: texture filename with _connected is included
