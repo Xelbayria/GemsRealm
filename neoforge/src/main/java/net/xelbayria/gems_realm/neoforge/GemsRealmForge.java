@@ -10,6 +10,7 @@ import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.GemsRealmClient;
 import net.xelbayria.gems_realm.GemsRealmCommon;
+import net.xelbayria.gems_realm.modules.neoforge.create.CreateDecoModule;
 import net.xelbayria.gems_realm.modules.neoforge.create.CreateModule;
 import net.xelbayria.gems_realm.modules.neoforge.lapidarist.LapidaristModuleC;
 import net.xelbayria.gems_realm.modules.neoforge.lapidarist.LapidaristModuleD;
@@ -53,9 +54,9 @@ public class GemsRealmForge extends GemsRealmCommon {
 
         // General
         addIfLoaded("create", () -> CreateModule.class);
+        addIfLoaded("createdeco", () -> CreateDecoModule.class);
         addMultipleIfLoaded("lapidarist", () -> LapidaristModuleC.class, () -> LapidaristModuleD.class, () -> LapidaristModuleG.class, () -> LapidaristModuleM.class);
         addMultipleIfLoaded("bad", () -> MoreBeautifulBookshelvesModuleC.class, () -> MoreBeautifulBookshelvesModuleD.class, () -> MoreBeautifulBookshelvesModuleG.class, () -> MoreBeautifulBookshelvesModuleM.class);
-//        addIfLoaded("rechiseled", () -> RechiseledModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\
 

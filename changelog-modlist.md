@@ -1,12 +1,35 @@
 <h1><div style="text-align: center; margin-bottom: 10px; color: yellow">SUPPORTED MODLIST</div></h1>
 
-| **FABRIC**    | STATUS | **COMMON**             | STATUS | **FORGE**                  | STATUS |
-|---------------|:------:|------------------------|:------:|----------------------------|:------:|
-| Create Fabric |   🟥   | Macaw's Mods           |   🟩   | Create                     |   🟩   |
-|               |        | More Beautiful Torches |   🟩   | Lapidarist                 |   🟩   |
-|               |        | Rechiseled             |   🟩   | More Beautiful Bookshelves |   🟩   |
-|               |        | Chipped                |   🟩   |                            |        |
+<table>
+<tr><th>FABRIC</th><th>COMMON</th><th>NEOFORGE</th> </tr>
+<tr><td valign="top">
 
+| MODS          | STATUS |
+|---------------|:------:|
+| Create Fabric |   🟥   |
+|               |        |
+
+</td><td valign="top">
+
+| MODS                   | STATUS |
+|------------------------|:------:|
+| Macaw's Mods           |   🟩   |
+| More Beautiful Torches |   🟩   |
+| Rechiseled             |   🟩   |
+| Chipped                |   🟩   |
+|                        |        |
+
+</td><td valign="top">
+
+| MODS                       | STATUS |
+|----------------------------|:------:|
+| Create                     |   🟩   |
+| Create Deco                |   🟩   |
+| Lapidarist                 |   🟩   |
+| More Beautiful Bookshelves |   🟩   |
+|                            |        |
+
+</td></tr></table>
 
 ## LEGENDS:
 - 🟩 - AVAILABLE
