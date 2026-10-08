@@ -66,6 +66,7 @@ subprojects {
                     optional("blockus")
                     optional("chipped")
                     optional("create")
+                    optional("create-deco")
                     optional("lapidarist")
                     optional("more-beautiful-bookshelves")
                 }
@@ -97,6 +98,7 @@ subprojects {
 // ───────────────────────────── +NEOFORGE ──────────────────────────────
                 else {
                     optional("create")
+                    optional("create-deco")
                     optional("lapidarist")
 //                    optional("more-beautiful-bookshelves") // Not available
                 }
