@@ -37,6 +37,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
+import net.createmod.catnip.data.Couple;
 import net.createmod.catnip.lang.FontHelper;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.scene.PonderStoryBoard;
@@ -59,11 +60,14 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.xelbayria.gems_realm.GemsRealm;
+import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.metal.MetalType;
 import net.xelbayria.gems_realm.modules.create.CreateModuleAbstract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
+
+import static com.simibubi.create.AllPartialModels.FOLDING_DOORS;
 
 //See CreateModuleAbstract's SUPPORTED VERSION
 @SuppressWarnings("CommentedOutCode")
@@ -287,6 +291,14 @@ public class CreateModule extends CreateModuleAbstract {
 
     protected static BlockEntry<Block> createStandardBlockEntry(ResourceLocation blockId) {
         return new BlockEntry<>(Registrate.create(GemsRealm.MOD_ID), DeferredBlock.createBlock(blockId));
+    }
+
+    protected void putFoldingDoor(GemsRealmModule module, SimpleEntrySet<MetalType, Block> doors) {
+        doors.blocks.forEach((metalType, block) -> {
+            String path = metalType.createPathWith(module.shortenedId(), "door");
+            FOLDING_DOORS.put(GemsRealm.res(path),
+                    Couple.create(block(path + "/fold_left"), block(path + "/fold_right")));
+        });
     }
 
     private static void addToValveHandles(SimpleEntrySet<MetalType, ValveHandleBlock> valve_handle) {

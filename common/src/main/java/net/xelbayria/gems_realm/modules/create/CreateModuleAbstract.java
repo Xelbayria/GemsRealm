@@ -9,7 +9,6 @@ import com.simibubi.create.content.kinetics.crank.ValveHandleBlock;
 import com.simibubi.create.content.logistics.funnel.FunnelItem;
 import com.simibubi.create.content.logistics.tunnel.BeltTunnelItem;
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
-import net.createmod.catnip.data.Couple;
 import net.mehvahdjukaar.every_compat.api.ItemOnlyEntrySet;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
@@ -44,7 +43,6 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import static com.simibubi.create.AllPartialModels.FOLDING_DOORS;
 import static net.mehvahdjukaar.every_compat.misc.UtilityTag.*;
 import static net.xelbayria.gems_realm.api.set.VanillaRockChildKeys.BLOCK;
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
@@ -616,15 +614,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
     //      │                        UTilities                         │
     //      └──────────────────────────────────────────────────────────┘
 
-    protected void putFoldingDoor(GemsRealmModule module, SimpleEntrySet<MetalType, Block> doors) {
-        doors.blocks.forEach((metalType, block) -> {
-            String path = metalType.createPathWith(module.shortenedId(), "door");
-            FOLDING_DOORS.put(GemsRealm.res(path),
-                    Couple.create(block(path + "/fold_left"), block(path + "/fold_right")));
-        });
-    }
-
-    private static PartialModel block(String path) {
+    protected static PartialModel block(String path) {
         return PartialModel.of(GemsRealm.res("block/"+ path));
     }
 
