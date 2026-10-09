@@ -1,6 +1,5 @@
 package net.xelbayria.gems_realm.common_classes;
 
-import net.mehvahdjukaar.every_compat.common_classes.CompatChestBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
