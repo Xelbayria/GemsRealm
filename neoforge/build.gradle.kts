@@ -135,15 +135,13 @@ dependencies {
 //    modImplementation("curse.maven:silents-gems-220311:5193708") // Silent-Lib //!!-1.20.1
 //    modImplementation("curse.maven:fins-and-tails-427471:6485965") // GeckoLib //!!-1.20.1
 
-    // OTHER MAVENs
-
-    //+ MIRRORED FROM COMMON - Required because dependOn(common) compiles common sources with neoforge classpath
-    modCompileOnly("curse.maven:rechiseled-558998:8875899") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
-
     // ---- OTHER MAVENs
     modCompileOnly("earth.terrarium.chipped:chipped-neoforge-${property("minecraft_version")}:4.0.2") //INCLUDED: Athena, Resourceful-Lib, REQUIRED: +Bytecodecs
     modCompileOnly("com.simibubi.create:create-${property("minecraft_version")}:${property("create_version")}:slim") { isTransitive = false } // Registrate, Flywheel, Ponder
 //    implementation(files("$path\\Create\\build\\libs\\create-1.21.1-6.0.12.jar"))
+
+    //+ MIRRORED FROM COMMON - Required because dependOn(common) compiles common sources with neoforge classpath
+    modCompileOnly("curse.maven:rechiseled-558998:8875899") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
 
 //!! ================================================= FOR TESTING ================================================== \\
 
