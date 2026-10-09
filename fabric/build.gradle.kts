@@ -78,6 +78,9 @@ dependencies {
     //+ REQUIRED - The modules access libaries from below - Only in FABRIC
 
     //+ OTHER MAVENS
+    modCompileOnly("dev.engine-room.flywheel:flywheel-fabric-${property("minecraft_version")}:${property("flywheel_fabric_version")}") // Create
+    modCompileOnly("net.createmod.ponder:Ponder-Fabric-${property("minecraft_version")}:${property("ponder_fabric_version")}") // Create
+    modCompileOnly("com.tterrag.registrate_fabric:Registrate:${property("registrate_fabric_version")}") // Create
 
     // Special dumb stuff required by TerraBlender
     modImplementation("com.terraformersmc:modmenu:11.0.4")
@@ -110,7 +113,8 @@ dependencies {
 
     // GENERALS
     modCompileOnly("curse.maven:catwalks-llc-916800:4769531") //!! NOT STARTED
-//    modCompileOnly("curse.maven:create-deco-fabric-739872:5293979") //!! NOT UPDATED for v6.0+
+    modCompileOnly("curse.maven:create-fabric-624165:5982726") // Do not use for RunTime //!! 1.20 - It's abandoned and won't be updated to 1.21.1
+//    modCompileOnly("curse.maven:create-deco-fabric-739872:5293979") //!! Create-Fabric is abandoned
 
     // OTHER MAVENS
 //    modCompileOnly("com.simibubi.create:create-fabric:${property("create_fabric_version")}") { isTransitive = false }  // Registrate, Flywheel, Ponder, Forge-Config-Api-Port, Milk-Lib, Porting-Lib
