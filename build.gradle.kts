@@ -168,16 +168,22 @@ subprojects {
 //        maven("https://maven.muon.rip/releases") // Possible-Triangle Plugins
     }
 
-    tasks.register<Delete>("cleanLogs") {
+    tasks.register<Delete>("cleanFiles") {
         group = "build"
-        description = "Delete logs"
+        description = "Delete Files"
 
         // Logs
         delete(
             fileTree(rootDir.resolve("neoforge/run/logs"))
                 .matching { include("**/*.gz") },
             fileTree(rootDir.resolve("fabric/run/logs"))
-                .matching { include("**/*.gz") }
+                .matching { include("**/*.gz") },
+
+            // *.bak
+            fileTree(rootDir.resolve("neoforge/run/config"))
+                .matching { include("**/*.bak") },
+            fileTree(rootDir.resolve("fabric/run/config"))
+                .matching { include("**/*.bak") },
         )
     }
 
@@ -191,6 +197,13 @@ subprojects {
                 .matching { include("**/*.gz") },
             fileTree(rootDir.resolve("fabric/run/logs"))
                 .matching { include("**/*.gz") },
+
+            // *.bak
+            fileTree(rootDir.resolve("neoforge/run/config"))
+                .matching { include("**/*.bak") },
+            fileTree(rootDir.resolve("fabric/run/config"))
+                .matching { include("**/*.bak") },
+
             // Debug
             rootDir.resolve("fabric/run/debug"),
             rootDir.resolve("neoforge/run/debug"),
