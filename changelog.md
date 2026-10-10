@@ -12,6 +12,13 @@
 |                                                                                                                                   |
 
 ---
+## v2.11.5
+
+### FIXES: 
+- **Create** (NF): Corrected door's item by removing BeltTunnelItem() - Just caught this accident
+
+---
+
 ## v2.11.4
 
 ### CHANGES:
