@@ -14,7 +14,37 @@
 ---
 ## v2.11.4
 
-### UPDATED: 
+### CHANGES:
+- **Gems Realm** (C): 
+  - Major Updates to work with **EveryCompat v2.11.32 or newer** and using new build script
+  - Improved a few classes
+  - Improved BlockCycleItemRenderer, the Tab's icon will iterate all of 4 BlockTypes (Metal, Gem, Crystal, and Dust)  
+- **Architect's Palette** (UDBT): Added 3 MetalTypes - [#72](https://github.com/Xelbayria/GemsRealm/issues/72)
+- **Create Aquatic Ambitions** (UDBT): Added 1 metaltype, `prismarine_alloy` - [#71](https://github.com/Xelbayria/GemsRealm/issues/71)
+- **Lapidarist** (NF): Updated for 1.21.1 with new mod_id: "lapidarist" instead of old mod_id: "lapidary" - [#75](https://github.com/Xelbayria/GemsRealm/issues/75) 
+
+### FIXES:
+- **Spelunkery** & **Etcetera** (UDBT): Added `spelunkery:bismuth_nugget` as children to `etcetera:bismuth` - [#74](https://github.com/Xelbayria/GemsRealm/issues/74)
+
+### NEW:
+- **Create Deco** (NF)
+
+### CREATE (NF)
+- **Added** 6 new blocks - [#11](https://github.com/Xelbayria/GemsRealm/issues/11)
+  - encased_shaft
+  - encased_cogwheel
+  - encased_large_cogwheel
+  - funnel
+  - belt_funnel
+  - valve_handle
+- **CHANGES**: All of Gems Realm's blocks for valve_handle, casing, table_cloth, funnel will show "W" when you hover the item so you can play StoryBoard
+- **FIXES**: Finally fixed the `SHINGLES` & `TILES`' issue with top connected texture where they don't show "X"
+- **NOTES:** 
+  - `CASING` can be not be applied to belt block because there is limitation in the code that prevent compatibility with **Gems Realm** - I've requested for a small changes in the **Create**'s Source Code. I do not know when the changes will be applied. Too bad Create's github do not have suggestion issue I could create. Discord suggestion tend to get ignored or forgetten.
+  - `TUNNEL` cannot be added for same reason as casing not being applied to belt block
+  - valve_handle doesn't have stress capacity like copper_valve_handle - I'm currently talking wtih Create's DEV to understand how it's implemented
+
+Have fun Minecraft-ing! 
 
 ---
 
