@@ -7,7 +7,6 @@ import com.simibubi.create.content.decoration.encasing.EncasedBlock;
 import com.simibubi.create.content.decoration.encasing.EncasingRegistry;
 import com.simibubi.create.content.kinetics.crank.ValveHandleBlock;
 import com.simibubi.create.content.logistics.funnel.FunnelItem;
-import com.simibubi.create.content.logistics.tunnel.BeltTunnelItem;
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import net.mehvahdjukaar.every_compat.api.ItemOnlyEntrySet;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
@@ -238,7 +237,6 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .setTab(tab)
                 .addRecipe(modRes("crafting/kinetics/copper_door"))
                 .copyParentDrop()
-                .addCustomItem((ignored, block, properties) -> new BeltTunnelItem(block, properties))
                 .build();
         this.addEntry(door);
 
