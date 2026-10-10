@@ -22,7 +22,6 @@ import com.simibubi.create.content.logistics.tableCloth.TableClothBlock;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlockEntity;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlockItem;
 import com.simibubi.create.content.logistics.tableCloth.TableClothRenderer;
-import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
 import com.simibubi.create.foundation.item.TooltipModifier;
@@ -47,9 +46,7 @@ import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -72,9 +69,6 @@ import static com.simibubi.create.AllPartialModels.FOLDING_DOORS;
 //See CreateModuleAbstract's SUPPORTED VERSION
 @SuppressWarnings("CommentedOutCode")
 public class CreateModule extends CreateModuleAbstract {
-
-    private static final CreateRegistrate REGISTRATE = CreateRegistrate.create(GemsRealm.MOD_ID)
-            .defaultCreativeTab((ResourceKey<CreativeModeTab>) null);
 
     public CreateModule(String modId) {
         super(modId);
