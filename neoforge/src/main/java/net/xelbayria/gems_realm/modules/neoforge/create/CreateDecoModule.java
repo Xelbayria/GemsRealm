@@ -1,13 +1,17 @@
 package net.xelbayria.gems_realm.modules.neoforge.create;
 
-import com.github.talrey.createdeco.api.*;
+import com.github.talrey.createdeco.api.Ladders;
+import com.github.talrey.createdeco.api.SheetMetal;
 import com.github.talrey.createdeco.blocks.*;
 import com.github.talrey.createdeco.items.CatwalkBlockItem;
+import com.github.talrey.createdeco.items.CatwalkStairBlockItem;
 import com.simibubi.create.content.decoration.MetalLadderBlock;
+import com.simibubi.create.content.decoration.palettes.ConnectedGlassPaneBlock;
 import com.simibubi.create.content.decoration.palettes.ConnectedPillarBlock;
 import com.simibubi.create.content.decoration.palettes.WindowBlock;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.IronBarsBlock;
@@ -40,7 +44,7 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
     @Override
     //Add WindowBlock's mapColor's defaultMapColor
     protected Block newConnectedGlassPaneBlock(MetalType metalType) {
-        return new ConnectedPillarBlock(Utils.copyPropertySafe(Blocks.GLASS_PANE)
+        return new ConnectedGlassPaneBlock(Utils.copyPropertySafe(Blocks.GLASS_PANE)
                 .mapColor(window.blocks.get(metalType).defaultMapColor())
         );
     }
@@ -55,7 +59,6 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
         );
     }
 
-    /// See {@link com.github.talrey.createdeco.blocks.MeshFenceBlock}
     @Override
     protected Block newMeshFenceBlock(MetalType metalType) {
         return new MeshFenceBlock(BlockBehaviour.Properties.of()
@@ -65,10 +68,6 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
         );
     }
 
-    /// MAIN CLASS: {@link Catwalks}
-
-    /// See {@link CatwalkBlock}
-    /// See {@link CatwalkBlockItem}
     @Override
     protected Block newCatwalkBlock(MetalType metalType) {
         return new CatwalkBlock(BlockBehaviour.Properties.of()
@@ -79,7 +78,11 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
         );
     }
 
-    /// See {@link CatwalkStairBlock}
+    @Override
+    protected Item newCatwalkBlockItem(Block block, Item.Properties properties) {
+        return new CatwalkBlockItem((CatwalkBlock) block, properties);
+    }
+
     @Override
     protected Block newCatwalkStairBlock(MetalType metalType) {
         return new CatwalkStairBlock(BlockBehaviour.Properties.of()
@@ -91,7 +94,11 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
         );
     }
 
-    /// See {@link CatwalkRailingBlock}
+    @Override
+    protected Item newCatwalkStairBlockItem(Block block, Item.Properties properties) {
+        return new CatwalkStairBlockItem((CatwalkStairBlock) block, properties);
+    }
+
     @Override
     //REQUIRE CatwalkCTBehaviour()
     protected Block newCatwalkRailingBlock(MetalType metalType) {
@@ -103,8 +110,6 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
         );
     }
 
-    /// See {@link Wedges}
-    /// See {@link SupportWedgeBlock}
     @Override
     protected Block newSupportWedgeBlock(MetalType metalType) {
         return new SupportWedgeBlock(BlockBehaviour.Properties.of()
@@ -130,14 +135,12 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
     }
 
     @Override
-    //REQUIRE RenderType::cutout
     /// see {@link Ladders}
     protected Block newMetalLadderBlock(MetalType metalType) {
         return new MetalLadderBlock(Utils.copyPropertySafe(Blocks.LADDER));
     }
 
     @Override
-    //REQUIRE RenderType::cutout_mipped
     protected Block newHullBlock(MetalType metalType) {
         return new HullBlock(BlockBehaviour.Properties.of()
                 .strength(5.0F, 6.0F)
@@ -149,8 +152,6 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
     }
 
     @Override
-    //REQUIRE RenderType::translucent
-    /// See {@link Supports}
     protected Block newSupportBlock(MetalType metalType) {
         return new SupportBlock(BlockBehaviour.Properties.of()
                 .strength(5.0F, 6.0F)
@@ -185,7 +186,9 @@ public class CreateDecoModule extends CreateDecoModuleAbstract {
     @OnlyIn(Dist.CLIENT)
     public void onClientSetup() {
         super.onClientSetup();
-        CreateClientModule.registerWindowCTBehavior(this, window, window_pane);
+        CreateClientModule.registerWindowCTBehavior(this, "palettes/windows/", window, window_pane);
+        CreateDecoClientModule.registerCatwalkCTBehavior(this);
+        CreateDecoClientModule.registerSheetMetalCTBehavior(this);
     }
 
 }

@@ -68,7 +68,7 @@ public class GemsRealmCommon {
     public boolean isModLoadedAndRequireBARS() {
         Set<String> list = Set.of(
                 //requires bars
-                "chipped", "mcwbridges"
+                "chipped", "mcwbridges", "createdeco"
         );
 
         for (String modId : list) {

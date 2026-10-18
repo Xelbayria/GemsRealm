@@ -1,6 +1,5 @@
 package net.xelbayria.gems_realm.modules.neoforge.create;
 
-import com.simibubi.create.CreateClient;
 import com.simibubi.create.content.decoration.MetalScaffoldingCTBehaviour;
 import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogCTBehaviour;
@@ -26,9 +25,13 @@ import static com.simibubi.create.foundation.block.connected.CTSpriteShifter.get
 @OnlyIn(Dist.CLIENT)
 public class CreateClientModule {
 
-    public static void registerWindowCTBehavior(GemsRealmModule module, SimpleEntrySet<MetalType, Block> window, SimpleEntrySet<MetalType, Block> window_pane) {
+    public static void registerWindowCTBehavior(GemsRealmModule module, String prefix,
+                                                SimpleEntrySet<MetalType, Block> window,
+                                                SimpleEntrySet<MetalType, Block> window_pane) {
         window.blocks.forEach((metalType, block) -> {
-            String textureId = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(), "palettes/ornate_", "window");
+            String textureId = metalType.createFullIdWith(GemsRealm.MOD_ID, "block", module.shortenedId(),
+                    prefix, "window"
+            );
 
             CTSpriteShiftEntry shiftEntry = vertical(textureId);
 
@@ -55,13 +58,13 @@ public class CreateClientModule {
             /// CASING
             registerCTBehviour(block, new EncasedCTBehaviour(casingShift));
 
-            CreateClient.CASING_CONNECTIVITY.makeCasing(block, casingShift);
+            com.simibubi.create.CreateClient.CASING_CONNECTIVITY.makeCasing(block, casingShift);
 
             /// ENCASED_SHAFT
             Block encasedBlock = encasedShaft_entry.blocks.get(metalType);
 
             registerCTBehviour(encasedBlock, new EncasedCTBehaviour(casingShift));
-            CreateClient.CASING_CONNECTIVITY.make(encasedBlock, casingShift,
+            com.simibubi.create.CreateClient.CASING_CONNECTIVITY.make(encasedBlock, casingShift,
                     (blockState, face) -> face.getAxis() != blockState.getValue(EncasedShaftBlock.AXIS));
 
             /// ENCASED_COGWHEEL
@@ -70,7 +73,7 @@ public class CreateClientModule {
             registerCTBehviour(encasedCogwheelBlock, new EncasedCogCTBehaviour(casingShift,
                     Couple.create(encasedCogwheelVertical, encasedCogwheelHorizontal)));
 
-            CreateClient.CASING_CONNECTIVITY.make(encasedCogwheelBlock, casingShift,
+            com.simibubi.create.CreateClient.CASING_CONNECTIVITY.make(encasedCogwheelBlock, casingShift,
                     (blockState, face) ->
                             face.getAxis() == blockState.getValue(EncasedCogwheelBlock.AXIS)
                                     && !blockState.getValue(face.getAxisDirection() == Direction.AxisDirection.POSITIVE ? EncasedCogwheelBlock.TOP_SHAFT
@@ -81,7 +84,7 @@ public class CreateClientModule {
 
             registerCTBehviour(encasedLargCogwheelBlock, new EncasedCogCTBehaviour(casingShift));
 
-            CreateClient.CASING_CONNECTIVITY.make(encasedLargCogwheelBlock, casingShift,
+            com.simibubi.create.CreateClient.CASING_CONNECTIVITY.make(encasedLargCogwheelBlock, casingShift,
                     (blockState, face) ->
                             face.getAxis() == blockState.getValue(EncasedCogwheelBlock.AXIS)
                             && !blockState.getValue(face.getAxisDirection() == Direction.AxisDirection.POSITIVE ? EncasedCogwheelBlock.TOP_SHAFT
@@ -147,27 +150,27 @@ public class CreateClientModule {
 
 
     ///NOTE: texture filename with _connected is included
-    private static CTSpriteShiftEntry omni(String blockTexture) {
+    protected static CTSpriteShiftEntry omni(String blockTexture) {
         return getCT(AllCTTypes.OMNIDIRECTIONAL, ResourceLocation.parse(blockTexture), ResourceLocation.parse(blockTexture + "_connected"));
     }
 
     ///NOTE: texture filename with _connected is included
-    private static CTSpriteShiftEntry horizontal(String blockTexture) {
+    protected static CTSpriteShiftEntry horizontal(String blockTexture) {
         return getCT(AllCTTypes.HORIZONTAL, ResourceLocation.parse(blockTexture), ResourceLocation.parse(blockTexture +"_connected"));
     }
 
     ///NOTE: texture filename with _connected is included
-    private static CTSpriteShiftEntry vertical(String blockTexture) {
+    protected static CTSpriteShiftEntry vertical(String blockTexture) {
         return getCT(AllCTTypes.VERTICAL, ResourceLocation.parse(blockTexture), ResourceLocation.parse(blockTexture + "_connected"));
     }
 
     ///NOTE: texture filename with _connected is included
-    private static CTSpriteShiftEntry roof(String blockTexture, String connectedTexture) {
+    protected static CTSpriteShiftEntry roof(String blockTexture, String connectedTexture) {
         return getCT(AllCTTypes.ROOF, ResourceLocation.parse(blockTexture), ResourceLocation.parse(connectedTexture + "_connected"));
     }
 
-    private static void registerCTBehviour(Block entry, ConnectedTextureBehaviour behavior) {
-        CreateClient.MODEL_SWAPPER.getCustomBlockModels()
+    protected static void registerCTBehviour(Block entry, ConnectedTextureBehaviour behavior) {
+        com.simibubi.create.CreateClient.MODEL_SWAPPER.getCustomBlockModels()
                 .register(Utils.getID(entry), model -> new CTModel(model, behavior));
     }
 }

@@ -6,7 +6,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.metal.MetalType;
@@ -17,6 +19,7 @@ import java.util.function.Supplier;
 
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.*;
 
+@SuppressWarnings("CommentedOutCode")
 ///SUPPORT: v2.1.3-NEOFORGE
 public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
 
@@ -48,7 +51,10 @@ public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
                         this::newWindowBlock
                 )
                 .requiresChildren(INGOT) //REASON: recipes
-                .addTexture(modRes("block/palettes/windows/iron_window"))
+                .addTextureM(modRes("block/palettes/windows/iron_window"),
+                        GemsRealm.res("block/cd/windows/iron_window_m"))
+                .addTextureM(modRes("block/palettes/windows/iron_window_connected"),
+                        GemsRealm.res("block/cd/windows/iron_window_connected_m"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -60,8 +66,8 @@ public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
                         getModBlock("iron_window_pane"), () -> VanillaMetalTypes.IRON,
                         this::newConnectedGlassPaneBlock
                 )
-                .requiresFromMap(window.blocks) //REASON: recipes
-                //TEXTURES: iron_window
+                .requiresFromMap(window.blocks) //REASON: textures, recipes
+                //TEXTURES: iron_window, iron_window_connected
                 .addTexture(modRes("block/palettes/windows/iron_window_end"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
@@ -89,7 +95,7 @@ public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
                         getModBlock("brass_bars_overlay"), () -> MetalTypeRegistry.getMetalType("create:brass"),
                         this::newIronBarsBlock
                 )
-                //RECIPES: create:sheet
+                //INGREDIENTS: create:sheet
                 //TEXTURES: brass_bars
                 .addTexture(modRes("block/palettes/metal_bars/brass_bars_overlay"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -106,8 +112,7 @@ public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
                         getModBlock("iron_mesh_fence"), () -> VanillaMetalTypes.IRON,
                         this::newMeshFenceBlock
                 )
-                //RECIPES: create:sheet
-//                .requiresChildren("create:sheet") //REASON: recipes
+                //INGREDIENTS: create:sheet
                 .addTexture(modRes("block/palettes/sheet_metal/iron_sheet_metal"))
                 .addTexture(modRes("block/palettes/chain_link_fence/iron_chain_link"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -121,15 +126,17 @@ public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
                         getModBlock("iron_catwalk"), () -> VanillaMetalTypes.IRON,
                         this::newCatwalkBlock
                 )
-                //RECIPES: create:sheet, minecraft:bars
-                .requiresChildren(BARS, INGOT) //REASON: recipes & INGOT used for crafting CREATE:SHEET
+                //INGREDIENTS: create:sheet, minecraft:bars
+                .requiresChildren(BARS, INGOT) //REASON: recipes, INGOT used for crafting CREATE:SHEET
 //                .requiresChildren("create:sheet") //REASON: recipes
                 .addTexture(modRes("block/palettes/catwalks/iron_catwalk"))
+                .addTexture(modRes("block/palettes/catwalks/iron_catwalk_connected"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addRecipe(ResourceLocation.withDefaultNamespace("iron_catwalk_forge"))
                 .addRecipe(ResourceLocation.withDefaultNamespace("iron_catwalk_from_stonecutting"))
+                .addCustomItem((ignored, block, properties) -> newCatwalkBlockItem(block, properties))
                 .build();
         this.addEntry(catwalk);
 
@@ -138,12 +145,14 @@ public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
                         this::newCatwalkStairBlock
                 )
                 .requiresFromMap(catwalk.blocks) //REASON: recipes
-                .requiresChildren(BARS) //REASON: recipes
+                .requiresChildren(BARS, INGOT) //REASON: recipes, INGOT for stonecutting
                 .addTexture(modRes("block/palettes/catwalks/iron_catwalk_stairs"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
                 .setRenderType(RenderLayer.TRANSLUCENT)
                 .defaultRecipe()
+                .addRecipe(ResourceLocation.withDefaultNamespace("iron_catwalk_stairs_from_stonecutting"))
+                .addCustomItem((ignored, block, properties) -> newCatwalkStairBlockItem(block, properties))
                 .build();
         this.addEntry(catwalk_stairs);
 
@@ -151,14 +160,14 @@ public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
                         getModBlock("iron_catwalk_railing"), () -> VanillaMetalTypes.IRON,
                         this::newCatwalkRailingBlock
                 )
-                //RECIPES: create:sheet, minecraft:bars
-                .requiresChildren(BARS, INGOT) //REASON: recipes
-//                .requiresChildren("create:sheet" /*,"bars"*/) //REASON: recipes
+                //INGREDIENTS: create:sheet, minecraft:bars
+                .requiresChildren(BARS, INGOT) //REASON: recipes, INGOT used for crafting CREATE:SHEET
                 .addTexture(modRes("block/palettes/catwalks/iron_catwalk_rail"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
                 .setRenderType(RenderLayer.TRANSLUCENT)
-//                .defaultRecipe() // TODO: check
+                .addRecipe(ResourceLocation.withDefaultNamespace("iron_catwalk_railing_forge"))
+                .addRecipe(ResourceLocation.withDefaultNamespace("iron_catwalk_railing_from_stonecutting"))
                 .build();
         this.addEntry(catwalk_railing);
 
@@ -179,8 +188,8 @@ public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
                         getModBlock("iron_support_wedge"), () -> VanillaMetalTypes.IRON,
                         this::newSupportWedgeBlock
                 )
-                //RECIPES: create:sheet
-//                .requiresChildren("create:sheet") //REASON: recipes
+                //INGREDIENTS: create:sheet
+                .requiresChildren(INGOT) //REASON: recipes, INGOT used for crafting CREATE:SHEET
                 .addTexture(modRes("block/palettes/support_wedges/iron_support_wedge"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
@@ -188,7 +197,7 @@ public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
                 .defaultRecipe()
                 .build();
         this.addEntry(support_wedge);
-//
+
 //        facade = GemsRealmEntrySet.of(MetalType.class, "facade",
 //                        getModBlock("iron_facade"), () -> VanillaMetalTypes.IRON,
 //                        this::newFacadeBlock
@@ -219,7 +228,8 @@ public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
                         getModBlock("iron_hull"), () -> VanillaMetalTypes.IRON,
                         this::newHullBlock
                 )
-                .requiresChildren(INGOT) //REASON: recipes & INGOT used for crafting CREATE:SHEET
+                //INGREDIENTS: create:sheet
+                .requiresChildren(INGOT) //REASON: recipes, INGOT used for crafting CREATE:SHEET
                 //RECIPES: block
                 .addTexture(modRes("block/palettes/hull/iron_hull_front"))
                 .addTexture(modRes("block/palettes/hull/iron_hull_side"))
@@ -235,9 +245,10 @@ public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
                         getModBlock("iron_sheet_metal"), () -> VanillaMetalTypes.IRON,
                         this::newSheetMetalBlock
                 )
-                //RECIPES: create:sheet
+                //INGREDIENTS: create:sheet
                 .addTexture(modRes("block/palettes/sheet_metal/iron_sheet_metal"))
                 .addTexture(modRes("block/palettes/sheet_metal/iron_sheet_metal_top"))
+                .addTexture(modRes("block/palettes/sheet_metal/iron_sheet_metal_connected"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
                 .defaultRecipe()
@@ -248,8 +259,8 @@ public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
                         getModBlock("yellow_iron_lamp"), () -> VanillaMetalTypes.IRON,
                         this::newCageLampBlock
                 )
-                .requiresChildren(NUGGET, INGOT) //REASON: recipes & INGOT used for crafting CREATE:SHEET
-                //RECIPES: create:sheet, minecraft:nugget
+                .requiresChildren(NUGGET, INGOT) //REASON: recipes, INGOT used for crafting CREATE:SHEET
+                //INGREDIENTS: create:sheet, minecraft:nugget
                 .addTexture(modRes("block/palettes/cage_lamp/iron_lamp"))
                 .addTexture(modRes("block/palettes/cage_lamp/light_default"))
                 .addTexture(modRes("block/palettes/cage_lamp/light_default_off"))
@@ -264,8 +275,8 @@ public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
                         getModBlock("red_iron_lamp"), () -> VanillaMetalTypes.IRON,
                         this::newCageLampBlock
                 )
-                .requiresChildren(NUGGET, INGOT) //REASON: recipes & INGOT used for crafting CREATE:SHEET
-                //RECIPES: create:sheet, minecraft:nugget
+                .requiresChildren(NUGGET, INGOT) //REASON: recipes, INGOT used for crafting CREATE:SHEET
+                //INGREDIENTS: create:sheet, minecraft:nugget
                 //TEXTURES: iron_lamp
                 .addTexture(modRes("block/palettes/cage_lamp/light_redstone"))
                 .addTexture(modRes("block/palettes/cage_lamp/light_redstone_off"))
@@ -280,8 +291,8 @@ public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
                         getModBlock("green_iron_lamp"), () -> VanillaMetalTypes.IRON,
                         this::newCageLampBlock
                 )
-                .requiresChildren(NUGGET, INGOT) //REASON: recipes & INGOT used for crafting CREATE:SHEET
-                //RECIPES: create:sheet, minecraft:nugget
+                .requiresChildren(NUGGET, INGOT) //REASON: recipes, INGOT used for crafting CREATE:SHEET
+                //INGREDIENTS: create:sheet, minecraft:nugget
                 //TEXTURES: iron_lamp
                 .addTexture(modRes("block/palettes/cage_lamp/light_green"))
                 .addTexture(modRes("block/palettes/cage_lamp/light_green_off"))
@@ -296,8 +307,8 @@ public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
                         getModBlock("blue_iron_lamp"), () -> VanillaMetalTypes.IRON,
                         this::newCageLampBlock
                 )
-                .requiresChildren(NUGGET, INGOT) //REASON: recipes & INGOT used for crafting CREATE:SHEET
-                //RECIPES: create:sheet, minecraft:nugget
+                .requiresChildren(NUGGET, INGOT) //REASON: recipes, INGOT used for crafting CREATE:SHEET
+                //INGREDIENTS: create:sheet, minecraft:nugget
                 //TEXTURES: iron_lamp
                 .addTexture(modRes("block/palettes/cage_lamp/light_soul"))
                 .addTexture(modRes("block/palettes/cage_lamp/light_soul_off"))
@@ -316,7 +327,9 @@ public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
     protected abstract Block newMeshFenceBlock(MetalType metalType);
 
     protected abstract Block newCatwalkBlock(MetalType metalType);
+    protected abstract Item newCatwalkBlockItem(Block block, Item.Properties properties);
     protected abstract Block newCatwalkStairBlock(MetalType metalType);
+    protected abstract Item newCatwalkStairBlockItem(Block block, Item.Properties properties);
     protected abstract Block newCatwalkRailingBlock(MetalType metalType);
     protected abstract Block newSupportWedgeBlock(MetalType metalType);
     protected abstract Block newFacadeBlock(MetalType metalType);
@@ -326,24 +339,4 @@ public abstract class CreateDecoModuleAbstract extends GemsRealmModule {
     protected abstract Block newCageLampBlock(MetalType metalType); // Special
 
     protected abstract Block newSheetMetalBlock(MetalType metalType); // sheet_metal
-
-
-
-    /*
-iron_bars_overlay X
-iron_mesh_fence X
-iron_catwalk X
-iron_catwalk_stairs X
-iron_catwalk_railing X
-iron_support_wedge X
-iron_facade X
-iron_ladder X
-iron_hull X
-iron_support X
-yellow_iron_lamp
-red_iron_lamp
-green_iron_lamp
-blue_iron_lamp
-iron_sheet_metal
-     */
 }

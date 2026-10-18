@@ -206,7 +206,7 @@ public class CreateModule extends CreateModuleAbstract {
 
         CreateClientModule.registerCasingCTBehavior(this, casing, encased_shaft, encased_cogwheel, encased_large_cogwheel);
         CreateClientModule.registerScaffoldCTBehavior(this, scaffolding);
-        CreateClientModule.registerWindowCTBehavior(this, orante_window, ornate_window_pane);
+        CreateClientModule.registerWindowCTBehavior(this, "palettes/ornate_", orante_window, ornate_window_pane);
         CreateClientModule.registerShinglesCTBehavior(this, shingles);
         CreateClientModule.registerTilesCTBehavior(this, tiles);
 //        CreateClientModule.registerTunnelCTBehaviour(this, tunnel);

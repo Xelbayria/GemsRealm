@@ -160,13 +160,16 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                         m.replaceWithTextureFromChild("create:block/brass_block", BLOCK)
                 )
                 //TEXTURES: brass_block
-                .addTexture(modRes("block/funnel/brass_funnel"))
+                .addTextureM(modRes("block/funnel/brass_funnel"),
+                        GemsRealm.res("block/c/funnel/brass_funnel_m"))
                 .addTexture(modRes("block/funnel/brass_funnel_push"))
                 .addTexture(modRes("block/funnel/brass_funnel_neutral"))
                 .addTexture(modRes("block/funnel/brass_funnel_pull"))
                 .addTexture(modRes("block/funnel/brass_funnel_frame"))
-                .addTexture(modRes("block/funnel/brass_funnel_unpowered"))
-                .addTexture(modRes("block/funnel/brass_funnel_powered"))
+                .addTextureM(modRes("block/funnel/brass_funnel_unpowered"),
+                        GemsRealm.res("block/c/funnel/block/c/funnel/brass_funnel_xpowered_m"))
+                .addTextureM(modRes("block/funnel/brass_funnel_powered"),
+                        GemsRealm.res("block/c/funnel/block/c/funnel/brass_funnel_xpowered_m"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("safe_nbt"), Registries.BLOCK)
                 .addTag(modRes("contraption_controlled"), Registries.BLOCK)
