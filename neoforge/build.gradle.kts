@@ -77,8 +77,8 @@ dependencies {
 //    modRuntimeOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark //!!-1.20.1
 //    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | Chipped //!!-1.20.1
 //    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871") // v2.1.29 | ??? //!!-1.20.1
-//    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled //!!-1.20.1
-//    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled, Better-Archeology //!!-1.20.1
+//    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:9070353") // v1.3.16 | Rechiseled
+//    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:5546996") // v1.1.8 | Rechiseled, Better-Archeology
 //    modRuntimeOnly("curse.maven:mantle-74924:6041712") // v1.11.28 | Tinkers-Construct //!!-1.20.1
 //    modRuntimeOnly("curse.maven:blueprint-382216:6408581") // v7.1.3 | The-Outer-End //!!-1.20.1
 //    modRuntimeOnly("curse.maven:kotlin-for-forge-351264:5402061") // v4.11.0 | More-Geodes-Reforged //!!-1.20.1
@@ -98,7 +98,7 @@ dependencies {
     //+ REQUIRED - The modules access libaries from below - Only in NEOFORGE
 
     //+ MIRRORED FROM COMMON - Required because dependOn(common) compiles common sources with neoforge classpath
-    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:8623666") // v1.1.24 | Rechiseled
+    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:9083552") // v1.1.25 | Rechiseled
 
     // ---- OTHER MAVENS
     modCompileOnly("com.tterrag.registrate:Registrate:${property("registrate_version")}") // Create
