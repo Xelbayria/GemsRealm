@@ -1,6 +1,5 @@
 package net.xelbayria.gems_realm.modules.neoforge.lapidarist;
 
-import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -13,192 +12,174 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.set.dust.DustType;
 import net.xelbayria.gems_realm.api.set.dust.VanillaDustTypes;
+import net.xelbayria.gems_realm.common_classes.BlockSetEntries;
 import org.jetbrains.annotations.NotNull;
+
+import static net.xelbayria.gems_realm.common_classes.BlockSetEntries.getParentBlockstate;
 
 //See LapidaristModuleAbstract's SUPPORTED VERSION
 public class LapidaristModuleD extends LapidaristModuleAbstract {
 
-    public final SimpleEntrySet<DustType, Block> bricks;
-    public final SimpleEntrySet<DustType, Block> brick_stairs;
-    public final SimpleEntrySet<DustType, Block> brick_slab;
-    public final SimpleEntrySet<DustType, Block> cut;
-    public final SimpleEntrySet<DustType, Block> cut_stairs;
-    public final SimpleEntrySet<DustType, Block> cut_slab;
-    public final SimpleEntrySet<DustType, Block> tiles;
-    public final SimpleEntrySet<DustType, Block> tile_stairs;
-    public final SimpleEntrySet<DustType, Block> tile_slab;
-    public final SimpleEntrySet<DustType, Block> chiseled;
-    public final SimpleEntrySet<DustType, Block> pillar;
+    public final BlockSetEntries<DustType> bricksSet,
+            cutSet,
+            tilesSet,
+            chiseled,
+            pillar;
 
     public LapidaristModuleD(String modId) {
         super(modId);
 
-        bricks = GemsRealmEntrySet.of(DustType.class, "bricks",
-                        getModBlock("redstone_bricks"), () -> VanillaDustTypes.REDSTONE,
-                        dustType -> new PoweredBlock(copyPropertiesSafe(dustType))
+        bricksSet = BlockSetEntries.of3BlockFactory(
+                        this, DustType.class, VanillaDustTypes.REDSTONE,
+                        "redstone_bricks", dustType ->
+                                new PoweredBlock(copyPropertiesSafe(dustType)),
+                        "redstone_brick_slab", dustType ->
+                                new CompatRedstoneSlab(copyPropertiesSafe(dustType)),
+                        "redstone_brick_stairs", dustType ->
+                                new CompatRedstoneStair(getParentBlockstate(VanillaDustTypes.REDSTONE, this, "bricks"), copyPropertiesSafe(dustType)),
+                        tabSupplier
                 )
-                .addTexture(modRes("block/redstone_bricks"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTab(tab)
+                .block(builder -> builder
+                        .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
+                        .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
+                        .addRecipe(modRes("redstone_bricks_stonecutting"))
+                )
+                .slab(builder -> builder
+                        //TEXTURES: bricks
+                        .addTag(BlockTags.SLABS, Registries.BLOCK)
+                        .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
+                        .addRecipe(modRes("redstone_brick_slab_from_redstone_block"))
+                        .addRecipe(modRes("redstone_brick_slab_from_redstone_bricks"))
+                )
+                .stairs(builder-> builder
+                        //TEXTURES: bricks
+                        .addTag(BlockTags.STAIRS, Registries.BLOCK)
+                        .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
+                        .addRecipe(modRes("redstone_brick_stairs_from_redstone_block"))
+                        .addRecipe(modRes("redstone_brick_stairs_from_redstone_bricks"))
+                )
+                .defaultBlockTexture()
+                .pickaxeTag()
                 .defaultRecipe()
-                .addRecipe(modRes("redstone_bricks_stonecutting"))
                 .build();
-        this.addEntry(bricks);
+        this.addEntries(bricksSet);
 
-        brick_stairs = GemsRealmEntrySet.of(DustType.class, "brick_stairs",
-                        getModBlock("redstone_brick_stairs"), () -> VanillaDustTypes.REDSTONE,
-                        dustType -> new CompatRedstoneStair(bricks.blocks.get(dustType).defaultBlockState(),
-                                copyPropertiesSafe(dustType)
-                        )
+        cutSet = BlockSetEntries.of3BlockFactory(
+                        this, DustType.class, VanillaDustTypes.REDSTONE,
+                        "cut_redstone", dustType ->
+                                new PoweredBlock(copyPropertiesSafe(dustType)),
+                        "cut_redstone_slab", dustType ->
+                                new CompatRedstoneSlab(copyPropertiesSafe(dustType)),
+                        "cut_redstone_stairs", dustType ->
+                                new CompatRedstoneStair(getParentBlockstate(VanillaDustTypes.REDSTONE, this, "bricks"), copyPropertiesSafe(dustType)),
+                        tabSupplier
                 )
-                .requiresFromMap(bricks.blocks) //REASON: recipes. textures
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTab(tab)
+                .block(builder -> builder
+                        .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
+                        .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
+                        .addRecipe(modRes("redstone_bricks_stonecutting"))
+                )
+                .slab(builder -> builder
+                        //TEXTURES: bricks
+                        .addTag(BlockTags.SLABS, Registries.BLOCK)
+                        .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
+                        .addRecipe(modRes("cut_redstone_slab_from_redstone_block"))
+                        .addRecipe(modRes("cut_redstone_slab_from_cut_redstone"))
+                )
+                .stairs(builder-> builder
+                        //TEXTURES: bricks
+                        .addTag(BlockTags.STAIRS, Registries.BLOCK)
+                        .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
+                        .addRecipe(modRes("cut_redstone_stairs_from_redstone_block"))
+                        .addRecipe(modRes("cut_redstone_stairs_from_cut_redstone"))
+                )
+                .defaultBlockTexture()
+                .pickaxeTag()
                 .defaultRecipe()
-                .addRecipe(modRes("redstone_brick_stairs_from_redstone_block"))
-                .addRecipe(modRes("redstone_brick_stairs_from_redstone_bricks"))
                 .build();
-        this.addEntry(brick_stairs);
+        this.addEntries(cutSet);
 
-        brick_slab = GemsRealmEntrySet.of(DustType.class, "brick_slab",
-                        getModBlock("redstone_brick_slab"), () -> VanillaDustTypes.REDSTONE,
-                        dustType -> new CompatRedstoneSlab(copyPropertiesSafe(dustType))
+        tilesSet = BlockSetEntries.of3BlockFactory(
+                        this, DustType.class, VanillaDustTypes.REDSTONE,
+                        "redstone_tiles", dustType ->
+                                new PoweredBlock(copyPropertiesSafe(dustType)),
+                        "redstone_tile_slab", dustType ->
+                                new CompatRedstoneSlab(copyPropertiesSafe(dustType)),
+                        "redstone_tile_stairs", dustType ->
+                                new CompatRedstoneStair(getParentBlockstate(VanillaDustTypes.REDSTONE, this, "bricks"), copyPropertiesSafe(dustType)),
+                        tabSupplier
                 )
-                .requiresFromMap(bricks.blocks) //REASON: recipes. textures
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTab(tab)
+                .block(builder -> builder
+                        .requiresFromMap(cutSet.block.blocks) //REASON: recipes
+                        .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
+                        .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
+                        .addRecipe(modRes("redstone_tiles_from_redstone_block"))
+                        .addRecipe(modRes("redstone_tiles_from_redstone_bricks"))
+                        .addRecipe(modRes("redstone_tiles_from_cut_redstone"))
+                )
+                .slab(builder -> builder
+                        //TEXTURES: bricks
+                        .addTag(BlockTags.SLABS, Registries.BLOCK)
+                        .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
+                        .addRecipe(modRes("redstone_tile_slab_from_redstone_block"))
+                        .addRecipe(modRes("redstone_tile_slab_from_redstone_tiles"))
+                )
+                .stairs(builder-> builder
+                        //TEXTURES: bricks
+                        .addTag(BlockTags.STAIRS, Registries.BLOCK)
+                        .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
+                        .addRecipe(modRes("redstone_tile_stairs_from_redstone_block"))
+                        .addRecipe(modRes("redstone_tile_stairs_from_redstone_tiles"))
+                )
+                .defaultBlockTexture()
+                .pickaxeTag()
                 .defaultRecipe()
-                .addRecipe(modRes("redstone_brick_slab_from_redstone_block"))
-                .addRecipe(modRes("redstone_brick_slab_from_redstone_bricks"))
                 .build();
-        this.addEntry(brick_slab);
+        this.addEntries(tilesSet);
 
-        cut = GemsRealmEntrySet.of(DustType.class, "", "cut",
-                        getModBlock("cut_redstone"), () -> VanillaDustTypes.REDSTONE,
-                        dustType -> new PoweredBlock(copyPropertiesSafe(dustType))
+        chiseled = BlockSetEntries.ofBlockProperty(
+                        this, DustType.class, VanillaDustTypes.REDSTONE,
+                        "chiseled_redstone", this::copyPropertiesSafe,
+                        tabSupplier
                 )
-                .addTexture(modRes("block/cut_redstone"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTab(tab)
+                .block(builder -> builder
+                        .requiresFromMap(tilesSet.block.blocks) //REASON: recipes
+                        .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
+                        .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
+                        .addRecipe(modRes("chiseled_redstone_from_redstone_block"))
+                        .addRecipe(modRes("chiseled_redstone_from_redstone_bricks"))
+                )
+                .defaultBlockTexture()
+                .pickaxeTag()
                 .defaultRecipe()
-                .addRecipe(modRes("cut_redstone_stonecutting"))
                 .build();
-        this.addEntry(cut);
+        this.addEntries(chiseled);
 
-        cut_stairs = GemsRealmEntrySet.of(DustType.class, "stairs", "cut",
-                        getModBlock("cut_redstone_stairs"), () -> VanillaDustTypes.REDSTONE,
-                        dustType -> new CompatRedstoneStair(cut.blocks.get(dustType).defaultBlockState(),
-                                copyPropertiesSafe(dustType)
-                        )
+        pillar = BlockSetEntries.ofBlockFactory(
+                        this, DustType.class, VanillaDustTypes.REDSTONE,
+                        "redstone_pillar", metalType -> new RotatedPillarBlock(copyPropertiesSafe(metalType)),
+                        tabSupplier
                 )
-                .requiresFromMap(cut.blocks) //REASON: recipes, textures
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("cut_redstone_stairs_from_redstone_block"))
-                .addRecipe(modRes("cut_redstone_stairs_from_cut_redstone"))
-                .build();
-        this.addEntry(cut_stairs);
-
-        cut_slab = GemsRealmEntrySet.of(DustType.class, "slab", "cut",
-                        getModBlock("cut_redstone_slab"), () -> VanillaDustTypes.REDSTONE,
-                        dustType -> new CompatRedstoneSlab(copyPropertiesSafe(dustType))
+                .block(builder -> builder
+                        .requiresFromMap(tilesSet.block.blocks) //REASON: recipes
+                        .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
+                        .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
+                        .addRecipe(modRes("redstone_pillar_stonecutting"))
                 )
-                .requiresFromMap(cut.blocks) //REASON: recipes, textures
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTab(tab)
+                .defaultBlockTexture()
+                .defaultBlockTextureTop()
+                .pickaxeTag()
                 .defaultRecipe()
-                .addRecipe(modRes("cut_redstone_slab_from_redstone_block"))
-                .addRecipe(modRes("cut_redstone_slab_from_cut_redstone"))
                 .build();
-        this.addEntry(cut_slab);
-
-        tiles = GemsRealmEntrySet.of(DustType.class, "tiles",
-                        getModBlock("redstone_tiles"), () -> VanillaDustTypes.REDSTONE,
-                        dustType -> new PoweredBlock(copyPropertiesSafe(dustType))
-                )
-                .addTexture(modRes("block/redstone_tiles"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("redstone_tiles_stonecutting"))
-                .build();
-        this.addEntry(tiles);
-
-        tile_stairs = GemsRealmEntrySet.of(DustType.class, "tile_stairs",
-                        getModBlock("redstone_tile_stairs"), () -> VanillaDustTypes.REDSTONE,
-                        dustType -> new CompatRedstoneStair(tiles.blocks.get(dustType).defaultBlockState(),
-                                copyPropertiesSafe(dustType)
-                        )
-                )
-                .requiresFromMap(tiles.blocks) //REASON: recipes, textures
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("redstone_tile_stairs_from_redstone_block"))
-                .addRecipe(modRes("redstone_tile_stairs_from_redstone_tiles"))
-                .build();
-        this.addEntry(tile_stairs);
-
-        tile_slab = GemsRealmEntrySet.of(DustType.class, "tile_slab",
-                        getModBlock("redstone_tile_slab"), () -> VanillaDustTypes.REDSTONE,
-                        dustType -> new CompatRedstoneSlab(copyPropertiesSafe(dustType))
-                )
-                .requiresFromMap(tiles.blocks) //REASON: recipes, textures
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("redstone_tile_slab_from_redstone_block"))
-                .addRecipe(modRes("redstone_tile_slab_from_redstone_tiles"))
-                .build();
-        this.addEntry(tile_slab);
-
-        chiseled = GemsRealmEntrySet.of(DustType.class, "", "chiseled",
-                        getModBlock("chiseled_redstone"), () -> VanillaDustTypes.REDSTONE,
-                        dustType -> new Block(Utils.copyPropertySafe(dustType.block))
-                )
-                .addTexture(modRes("block/chiseled_redstone"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("chiseled_redstone_stonecutting"))
-                .build();
-        this.addEntry(chiseled);
-
-        pillar = GemsRealmEntrySet.of(DustType.class, "pillar",
-                        getModBlock("redstone_pillar"), () -> VanillaDustTypes.REDSTONE,
-                        dustType -> new RotatedPillarBlock(Utils.copyPropertySafe(dustType.block))
-                )
-                .addTexture(modRes("block/redstone_pillar"))
-                .addTexture(modRes("block/redstone_pillar_top"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(ResourceLocation.parse("minecraft:needs_wooden_tool"), Registries.BLOCK)
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("redstone_pillar_stonecutting"))
-                .build();
-        this.addEntry(pillar);
+        this.addEntries(pillar);
 
     }
+
+    //      ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+    //      │                                          Utilities                                           │
+    //      └──────────────────────────────────────────────────────────────────────────────────────────────┘
 
     public BlockBehaviour.Properties copyPropertiesSafe(DustType dustType) {
         return Utils.copyPropertySafe(dustType.block)
@@ -206,6 +187,10 @@ public class LapidaristModuleD extends LapidaristModuleAbstract {
                 .strength(5.0F, 6.0F)
                 .requiresCorrectToolForDrops();
     }
+
+    //      ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+    //      │                                           CLASSES                                            │
+    //      └──────────────────────────────────────────────────────────────────────────────────────────────┘
 
 //    public static class CompatRedstoneBlock extends PoweredBlock {
 //        public static final EnumProperty<Direction.Axis> AXIS;
@@ -226,11 +211,11 @@ public class LapidaristModuleD extends LapidaristModuleAbstract {
             super(block, properties);
         }
 
-        public boolean isSignalSource(@NotNull BlockState p_55213_) {
+        public boolean isSignalSource(@NotNull BlockState blockState) {
             return true;
         }
 
-        public int getSignal(@NotNull BlockState p_55208_, @NotNull BlockGetter p_55209_, @NotNull BlockPos p_55210_, @NotNull Direction p_55211_) {
+        public int getSignal(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos, @NotNull Direction direction) {
             return 15;
         }
 
@@ -246,11 +231,11 @@ public class LapidaristModuleD extends LapidaristModuleAbstract {
             super(properties);
         }
 
-        public boolean isSignalSource(@NotNull BlockState p_55213_) {
+        public boolean isSignalSource(@NotNull BlockState blockState) {
             return true;
         }
 
-        public int getSignal(@NotNull BlockState p_55208_, @NotNull BlockGetter p_55209_, @NotNull BlockPos p_55210_, @NotNull Direction p_55211_) {
+        public int getSignal(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos, @NotNull Direction direction) {
             return 15;
         }
 

@@ -1,208 +1,153 @@
 package net.xelbayria.gems_realm.modules.neoforge.lapidarist;
 
-import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.set.gem.GemType;
 import net.xelbayria.gems_realm.api.set.gem.VanillaGemTypes;
+import net.xelbayria.gems_realm.common_classes.BlockSetEntries;
 
 //See LapidaristModuleAbstract's SUPPORTED VERSION
 public class LapidaristModuleG extends LapidaristModuleAbstract {
 
-    public final SimpleEntrySet<GemType, Block> bricks;
-    public final SimpleEntrySet<GemType, Block> brick_stairs;
-    public final SimpleEntrySet<GemType, Block> brick_slab;
-    public final SimpleEntrySet<GemType, Block> cut;
-    public final SimpleEntrySet<GemType, Block> cut_stairs;
-    public final SimpleEntrySet<GemType, Block> cut_slab;
-    public final SimpleEntrySet<GemType, Block> tiles;
-    public final SimpleEntrySet<GemType, Block> tile_stairs;
-    public final SimpleEntrySet<GemType, Block> tile_slab;
-    public final SimpleEntrySet<GemType, Block> chiseled;
-    public final SimpleEntrySet<GemType, Block> pillar;
+    public final BlockSetEntries<GemType> bricksSet,
+            cutSet,
+            tilesSet,
+            chiseledBlock,
+            pillarBlock;
 
     public LapidaristModuleG(String modId) {
         super(modId);
 
-        bricks = GemsRealmEntrySet.of(GemType.class, "bricks",
-                        getModBlock("diamond_bricks"), () -> VanillaGemTypes.DIAMOND,
-                        gemType -> new Block(copyPropertiesSafe(gemType))
+        bricksSet = BlockSetEntries.of3DefaultProperty(
+                        this, GemType.class, VanillaGemTypes.DIAMOND,
+                        "diamond_bricks", this::copyPropertiesSafe,
+                        "diamond_brick_slab", this::copyPropertiesSafe,
+                        "diamond_brick_stairs", this::copyPropertiesSafe,
+                        tabSupplier
                 )
-                .addTexture(modRes("block/diamond_bricks"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
-                .setTab(tab)
+                .block(builder -> builder
+                        .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
+                        .defaultRecipe()
+                        .addRecipe(modRes("diamond_bricks_stonecutting"))
+                ).defaultBlockTexture()
+                .slab(builder -> builder
+                        //TEXTURES: bricks
+                        .addTag(BlockTags.STAIRS, Registries.BLOCK)
+                        .addRecipe(modRes("diamond_brick_slab_from_diamond_block"))
+                        .addRecipe(modRes("diamond_brick_slab_from_diamond_bricks"))
+                )
+                .stairs(builder -> builder
+                        //TEXTURES: bricks
+                        .addTag(BlockTags.STAIRS, Registries.BLOCK)
+                        .addRecipe(modRes("diamond_brick_stairs_from_diamond_block"))
+                        .addRecipe(modRes("diamond_brick_stairs_from_diamond_bricks"))
+                )
+                .pickaxeTag()
                 .defaultRecipe()
-                .addRecipe(modRes("diamond_bricks_stonecutting"))
                 .build();
-        this.addEntry(bricks);
+        this.addEntries(bricksSet);
 
-        brick_stairs = GemsRealmEntrySet.of(GemType.class, "brick_stairs",
-                        getModBlock("diamond_brick_stairs"), () -> VanillaGemTypes.DIAMOND,
-                        gemType -> new StairBlock(bricks.blocks.get(gemType).defaultBlockState(),
-                                copyPropertiesSafe(gemType)
-                        )
+        cutSet = BlockSetEntries.of3DefaultProperty(
+                        this, GemType.class, VanillaGemTypes.DIAMOND,
+                        "cut_diamond", this::copyPropertiesSafe,
+                        "cut_diamond_slab", this::copyPropertiesSafe,
+                        "cut_diamond_stairs", this::copyPropertiesSafe,
+                        tabSupplier
                 )
-                .requiresFromMap(bricks.blocks) //REASON: recipes, textures
-                //TEXTURES: bricks
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .setTab(tab)
+                .block(builder -> builder
+                        .requiresFromMap(bricksSet.block.blocks) //REASON: recipes
+                        .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
+                        .defaultRecipe()
+                        .addRecipe(modRes("cut_diamond_from_diamond_block"))
+                        .addRecipe(modRes("cut_diamond_from_diamond_bricks"))
+                ).defaultBlockTexture()
+                .slab(builder -> builder
+                        //TEXTURES: cut
+                        .addTag(BlockTags.STAIRS, Registries.BLOCK)
+                        .addRecipe(modRes("cut_diamond_slab_from_diamond_block"))
+                        .addRecipe(modRes("cut_diamond_slab_from_cut_diamond"))
+                )
+                .stairs(builder -> builder
+                        //TEXTURES: cut
+                        .addTag(BlockTags.STAIRS, Registries.BLOCK)
+                        .addRecipe(modRes("cut_diamond_stairs_from_diamond_block"))
+                        .addRecipe(modRes("cut_diamond_stairs_from_cut_diamond"))
+                )
+                .pickaxeTag()
                 .defaultRecipe()
-                .addRecipe(modRes("diamond_brick_stairs_from_diamond_block"))
-                .addRecipe(modRes("diamond_brick_stairs_from_diamond_bricks"))
                 .build();
-        this.addEntry(brick_stairs);
+        this.addEntries(cutSet);
 
-        brick_slab = GemsRealmEntrySet.of(GemType.class, "brick_slab",
-                        getModBlock("diamond_brick_slab"), () -> VanillaGemTypes.DIAMOND,
-                        gemType -> new SlabBlock(copyPropertiesSafe(gemType))
+        tilesSet = BlockSetEntries.of3DefaultProperty(
+                        this, GemType.class, VanillaGemTypes.DIAMOND,
+                        "diamond_tiles", this::copyPropertiesSafe,
+                        "diamond_tile_slab", this::copyPropertiesSafe,
+                        "diamond_tile_stairs", this::copyPropertiesSafe,
+                        tabSupplier
                 )
-                .requiresFromMap(bricks.blocks) //REASON: recipes, textures
-                //TEXTURES: bricks
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .setTab(tab)
+                .block(builder -> builder
+                        .requiresFromMap(cutSet.block.blocks) //REASON: recipes
+                        .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
+                        .defaultRecipe()
+                        .addRecipe(modRes("diamond_tiles_from_diamond_block"))
+                        .addRecipe(modRes("diamond_tiles_from_diamond_bricks"))
+                        .addRecipe(modRes("diamond_tiles_from_cut_diamond"))
+                ).defaultBlockTexture()
+                .slab(builder -> builder
+                        //TEXTURES: tiles
+                        .addTag(BlockTags.STAIRS, Registries.BLOCK)
+                        .addRecipe(modRes("diamond_tile_slab_from_diamond_block"))
+                        .addRecipe(modRes("diamond_tile_slab_from_diamond_tiles"))
+                )
+                .stairs(builder -> builder
+                        //TEXTURES: tiles
+                        .addTag(BlockTags.STAIRS, Registries.BLOCK)
+                        .defaultRecipe()
+                        .addRecipe(modRes("diamond_tile_stairs_from_diamond_block"))
+                        .addRecipe(modRes("diamond_tile_stairs_from_diamond_tiles"))
+                )
+                .pickaxeTag()
                 .defaultRecipe()
-                .addRecipe(modRes("diamond_brick_slab_from_diamond_block"))
-                .addRecipe(modRes("diamond_brick_slab_from_diamond_bricks"))
                 .build();
-        this.addEntry(brick_slab);
+        this.addEntries(tilesSet);
 
-        cut = GemsRealmEntrySet.of(GemType.class, "", "cut",
-                        getModBlock("cut_diamond"), () -> VanillaGemTypes.DIAMOND,
-                        gemType -> new Block(copyPropertiesSafe(gemType))
+        chiseledBlock = BlockSetEntries.ofBlockProperty(
+                        this, GemType.class, VanillaGemTypes.DIAMOND,
+                        "chiseled_diamond", this::copyPropertiesSafe,
+                        tabSupplier
                 )
-                .requiresFromMap(bricks.blocks) //REASON: recipesrr
-                .addTexture(modRes("block/cut_diamond"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("cut_diamond_stonecutting"))
+                .block(builder -> builder
+                        .requiresFromMap(bricksSet.slabOrExtra != null ? bricksSet.slabOrExtra.blocks : null) //REASON: recipes
+                        .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
+                        .defaultRecipe()
+                        .addRecipe(modRes("chiseled_diamond_from_diamond_block"))
+                        .addRecipe(modRes("chiseled_diamond_from_diamond_bricks"))
+                )
+                .defaultBlockTexture()
+                .IronToolTag()
                 .build();
-        this.addEntry(cut);
+        this.addEntry(chiseledBlock.block);
 
-        cut_stairs = GemsRealmEntrySet.of(GemType.class, "stairs", "cut",
-                        getModBlock("cut_diamond_stairs"), () -> VanillaGemTypes.DIAMOND,
-                        gemType -> new StairBlock(cut.blocks.get(gemType).defaultBlockState(),
-                                copyPropertiesSafe(gemType)
-                        )
+        pillarBlock = BlockSetEntries.ofBlockFactory(
+                        this, GemType.class, VanillaGemTypes.DIAMOND,
+                        "diamond_pillar",
+                        type -> new RotatedPillarBlock(copyPropertiesSafe(type)),
+                        tabSupplier
                 )
-                .requiresFromMap(cut.blocks) //REASON: recipes, textures
-                //TEXTURES: bricks
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("cut_diamond_stairs_from_diamond_block"))
-                .addRecipe(modRes("cut_diamond_stairs_from_cut_diamond"))
-                .build();
-        this.addEntry(cut_stairs);
-
-        cut_slab = GemsRealmEntrySet.of(GemType.class, "slab", "cut",
-                        getModBlock("cut_diamond_slab"), () -> VanillaGemTypes.DIAMOND,
-                        gemType -> new SlabBlock(copyPropertiesSafe(gemType))
+                .block(builder -> builder
+                        .addTexture(modRes("block/diamond_pillar_top"))
+                        .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
+                        .defaultRecipe()
+                        .addRecipe(modRes("diamond_pillar_stonecutting"))
                 )
-                .requiresFromMap(cut.blocks) //REASON: recipes, textures
-                //TEXTURES: bricks
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("cut_diamond_slab_from_diamond_block"))
-                .addRecipe(modRes("cut_diamond_slab_from_cut_diamond"))
+                .defaultBlockTexture()
+                .IronToolTag()
                 .build();
-        this.addEntry(cut_slab);
-
-        tiles = GemsRealmEntrySet.of(GemType.class, "tiles",
-                        getModBlock("diamond_tiles"), () -> VanillaGemTypes.DIAMOND,
-                        gemType -> new Block(copyPropertiesSafe(gemType))
-                )
-                .requiresFromMap(cut.blocks) //REASON: recipes
-                .addTexture(modRes("block/diamond_tiles"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("diamond_tiles_stonecutting"))
-                .build();
-        this.addEntry(tiles);
-
-        tile_stairs = GemsRealmEntrySet.of(GemType.class, "tile_stairs",
-                        getModBlock("diamond_tile_stairs"), () -> VanillaGemTypes.DIAMOND,
-                        gemType -> new StairBlock(tiles.blocks.get(gemType).defaultBlockState(),
-                                copyPropertiesSafe(gemType)
-                        )
-                )
-                .requiresFromMap(tiles.blocks) //REASON: recipes, textures
-                //TEXTURES: bricks
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("diamond_tile_stairs_from_diamond_block"))
-                .addRecipe(modRes("diamond_tile_stairs_from_diamond_tiles"))
-                .build();
-        this.addEntry(tile_stairs);
-
-        tile_slab = GemsRealmEntrySet.of(GemType.class, "tile_slab",
-                        getModBlock("diamond_tile_slab"), () -> VanillaGemTypes.DIAMOND,
-                        gemType -> new SlabBlock(copyPropertiesSafe(gemType))
-                )
-                .requiresFromMap(tiles.blocks) //REASON: recipes, textures
-                //TEXTURES: bricks
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("diamond_tile_slab_from_diamond_block"))
-                .addRecipe(modRes("diamond_tile_slab_from_diamond_tiles"))
-                .build();
-        this.addEntry(tile_slab);
-
-        chiseled = GemsRealmEntrySet.of(GemType.class, "", "chiseled",
-                        getModBlock("chiseled_diamond"), () -> VanillaGemTypes.DIAMOND,
-                        gemType -> new Block(copyPropertiesSafe(gemType))
-                )
-                .requiresFromMap(brick_slab.blocks) //REASON: recipes
-                .addTexture(modRes("block/chiseled_diamond"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("chiseled_diamond_stonecutting"))
-                .build();
-        this.addEntry(chiseled);
-
-        pillar = GemsRealmEntrySet.of(GemType.class, "pillar",
-                        getModBlock("diamond_pillar"), () -> VanillaGemTypes.DIAMOND,
-                        gemType -> new RotatedPillarBlock(copyPropertiesSafe(gemType))
-                )
-                .addTexture(modRes("block/diamond_pillar"))
-                .addTexture(modRes("block/diamond_pillar_top"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.NEEDS_IRON_TOOL, Registries.BLOCK)
-                .addTag(BlockTags.BEACON_BASE_BLOCKS, Registries.BLOCK)
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("diamond_pillar_stonecutting"))
-                .build();
-        this.addEntry(pillar);
+        this.addEntry(pillarBlock.block);
 
     }
 
