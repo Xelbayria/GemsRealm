@@ -54,7 +54,7 @@ public abstract class MacawWindowsAbstractModule extends GemsRealmModule {
                 .requiresChildren("ingot", "nugget") //REASON: recipes
                 //TEXTURES: block (original: anvil)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(curtain_rod);
@@ -70,7 +70,7 @@ public abstract class MacawWindowsAbstractModule extends GemsRealmModule {
                 //TEXTURES: block (original: anvil)
                 .excludeTextureFromTinting("#0") //REASON: glass
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(window);
@@ -86,7 +86,7 @@ public abstract class MacawWindowsAbstractModule extends GemsRealmModule {
                 //TEXTURES: block (original: anvil)
                 .excludeTextureFromTinting("#0") //REASON: glass
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(window2);
@@ -102,7 +102,7 @@ public abstract class MacawWindowsAbstractModule extends GemsRealmModule {
                 //TEXTURES: block (original: anvil)
                 .excludeTextureFromTinting("#0") //REASON: glass
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(four_window);
@@ -118,7 +118,7 @@ public abstract class MacawWindowsAbstractModule extends GemsRealmModule {
                 //TEXTURES: block (original: anvil)
                 .excludeTextureFromTinting("#0") //REASON: glass
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(pane_window);
