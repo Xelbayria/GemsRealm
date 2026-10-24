@@ -17,6 +17,11 @@ mod {
     additional.add("everycomp_required_version")
 }
 
+buildscript {
+    extra.apply {
+            set("mod_version", "${property("minecraft_min_version")}-${property("major_version")}.${property("minor_version")}.${property("patch_version")}")
+    }
+}
 
 subprojects {
 

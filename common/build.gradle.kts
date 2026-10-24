@@ -9,7 +9,7 @@ common {
 }
 
 val modId: String = property("mod_id").toString()
-val modVersion: String = property("mod_version").toString()
+val modVersion: String = "${rootProject.extra["mod_version"]}"
 tasks.named<Jar>("jar") {
     archiveBaseName.set(modId)
     archiveVersion.set(modVersion)
