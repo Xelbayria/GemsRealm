@@ -3,8 +3,8 @@ package net.xelbayria.gems_realm.modules.macaws;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -14,6 +14,8 @@ import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.metal.MetalType;
 import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
+
+import java.util.function.Supplier;
 
 
 //SUPPORT: v3.1.0+
@@ -25,7 +27,9 @@ public abstract class MacawBridgesAbstractModule extends GemsRealmModule {
 
     public MacawBridgesAbstractModule(String modId) {
         super(modId, "mcb");
-        ResourceLocation tab = (PlatHelper.getPlatform().isFabric()) ? modRes("bridges") : modRes("mcwbridges");
+        Supplier<CreativeModeTab> tab = (PlatHelper.getPlatform().isFabric())
+                ? getModTab("bridges")
+                : getModTab("mcwbridges");
 
         bridge = GemsRealmEntrySet.of(MetalType.class, "bridge",
                         getModBlock("iron_bridge"), () -> VanillaMetalTypes.IRON,
@@ -48,7 +52,7 @@ public abstract class MacawBridgesAbstractModule extends GemsRealmModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.COMBINATION_STEP_SOUND_BLOCKS, Registries.BLOCK)
                 .addTag(modRes("metal_bridges"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("iron_bridge_middle"))
                 .build();
         this.addEntry(bridge);
@@ -67,7 +71,7 @@ public abstract class MacawBridgesAbstractModule extends GemsRealmModule {
                                                 metalType.createFullIdWith(GemsRealm.MOD_ID, "block", shortenedId(), "", "bridge_2"))
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("iron_bridge_stair_recycle"))
                 .build();
@@ -89,7 +93,7 @@ public abstract class MacawBridgesAbstractModule extends GemsRealmModule {
                                                 metalType.createFullIdWith(GemsRealm.MOD_ID, "block", shortenedId(), "", "bridge_3"))
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(bridge_pier);

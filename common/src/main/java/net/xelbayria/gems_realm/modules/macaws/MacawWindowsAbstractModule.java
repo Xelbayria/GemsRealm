@@ -2,14 +2,16 @@ package net.xelbayria.gems_realm.modules.macaws;
 
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.MetalPaletteStrategies;
 import net.xelbayria.gems_realm.api.set.metal.MetalType;
 import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
+
+import java.util.function.Supplier;
 
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.TRAPDOOR;
 
@@ -26,7 +28,7 @@ public abstract class MacawWindowsAbstractModule extends GemsRealmModule {
 
     public MacawWindowsAbstractModule(String modId) {
         super(modId, "mcw");
-        ResourceLocation tab = modRes(modId);
+        Supplier<CreativeModeTab> tab = getModTab(modId);
 
         shutter = GemsRealmEntrySet.of(MetalType.class, "shutter",
                         getModBlock("iron_shutter"), () -> VanillaMetalTypes.IRON,
@@ -35,7 +37,7 @@ public abstract class MacawWindowsAbstractModule extends GemsRealmModule {
                 .requiresChildren(TRAPDOOR) //REASON: recipes, textures
                 .addTexture(modRes("block/iron_shutter"), MetalPaletteStrategies.TRAPDOOR_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(shutter);
