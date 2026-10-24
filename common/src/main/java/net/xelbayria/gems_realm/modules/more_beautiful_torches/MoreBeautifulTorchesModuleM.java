@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.*;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
+import net.xelbayria.gems_realm.api.MetalPaletteStrategies;
 import net.xelbayria.gems_realm.api.set.metal.MetalType;
 import net.xelbayria.gems_realm.api.set.metal.VanillaMetalTypes;
 
@@ -141,9 +142,10 @@ public class MoreBeautifulTorchesModuleM extends GemsRealmModule {
                                                         .lightLevel(l -> 14)
                         )
                 )
-                .createPaletteFromRockChild("raw_block")
                 .requiresChildren(RAW_BLOCK) //REASON: recipes, textures
-                .addTextureM(modRes("block/raw_gold_block_torch"), GemsRealm.res("block/common_torch_m"))
+                .addTextureM(modRes("block/raw_gold_block_torch"),
+                        GemsRealm.res("block/common_torch_m"),
+                        MetalPaletteStrategies.RAW_BLOCK_STANDARD)
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
                 .noItem()
@@ -174,9 +176,10 @@ public class MoreBeautifulTorchesModuleM extends GemsRealmModule {
                         getModBlock("raw_gold_block_soul_wall_torch"), () -> VanillaMetalTypes.GOLD,
                         metalType -> new WallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH))
                 )
-                .createPaletteFromRockChild("raw_block")
                 .requiresChildren(RAW_BLOCK) //REASON: recipes, textures
-                .addTextureM(modRes("block/raw_gold_block_soul_torch"), GemsRealm.res("block/common_torch_m"))
+                .addTextureM(modRes("block/raw_gold_block_soul_torch"),
+                        GemsRealm.res("block/common_torch_m"),
+                        MetalPaletteStrategies.RAW_BLOCK_STANDARD)
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
                 .noItem()
