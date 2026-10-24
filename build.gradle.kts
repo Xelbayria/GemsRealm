@@ -121,6 +121,11 @@ subprojects {
     tasks.withType<JavaCompile> {
         options.compilerArgs.addAll(listOf("-Xmaxerrs", "4000"))
     }
+    // Suppressed warning in class that are missing comments and others
+    tasks.withType<Javadoc>().configureEach {
+        enabled = false
+        group = ""
+    }
 
     repositories {
         // Standard repositories
