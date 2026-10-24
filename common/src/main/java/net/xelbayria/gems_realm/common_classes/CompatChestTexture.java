@@ -5,6 +5,7 @@ import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Respriter;
 import net.mehvahdjukaar.moonlight.api.resources.textures.TextureImage;
+import net.mehvahdjukaar.moonlight.api.resources.textures.TextureOps;
 import net.mehvahdjukaar.moonlight.api.util.math.colors.HCLColor;
 import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.minecraft.resources.ResourceLocation;
@@ -107,15 +108,17 @@ public class CompatChestTexture {
 
         TextureImage recoloredBase = respriter.recolorWithAnimation(basePalette, baseMeta);
         TextureImage recoloredOverlay = respriterO.recolorWithAnimation(overlayPalette, baseMeta);
-        recoloredBase.applyOverlay(recoloredOverlay);
 
         if (trappedOverlay != null) {
             TextureImage trapped = recoloredBase.makeCopy();
-            trapped.applyOverlay(trappedOverlay.makeCopy());
+            TextureOps.applyOverlay(trapped, recoloredOverlay);
             sink.addTexture(trappedRLoc, trapped);
         }
 
-        sink.addTexture(normalRLoc, recoloredBase);
+        sink.addAndCloseTexture(normalRLoc, () -> {
+            TextureOps.applyOverlay(recoloredBase, recoloredOverlay);
+            return recoloredBase;
+        });
     }
 
 }
