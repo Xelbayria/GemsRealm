@@ -40,7 +40,7 @@ public class ChippedModuleG extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/diamond_block/diamond_block_panels"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(block_panels);
 
@@ -50,7 +50,7 @@ public class ChippedModuleG extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/diamond_block/ancient_diamond_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(ancient_block);
 
@@ -60,7 +60,7 @@ public class ChippedModuleG extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/diamond_block/chipped_diamond_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(chipped_block);
 
@@ -70,7 +70,7 @@ public class ChippedModuleG extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/diamond_block/embossed_diamond_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(embossed_block);
 
@@ -80,7 +80,7 @@ public class ChippedModuleG extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/diamond_block/engraved_diamond_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(engraved_block);
 
@@ -90,7 +90,7 @@ public class ChippedModuleG extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/diamond_block/layered_diamond_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(layered_block);
 
@@ -100,7 +100,7 @@ public class ChippedModuleG extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/diamond_block/plated_diamond_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(plated_block);
 
@@ -110,7 +110,7 @@ public class ChippedModuleG extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/diamond_block/pressed_diamond_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(pressed_block);
 
@@ -120,7 +120,7 @@ public class ChippedModuleG extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/diamond_block/reinforced_diamond_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(reinforced_block);
 
@@ -130,7 +130,7 @@ public class ChippedModuleG extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/diamond_block/sheet_diamond_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(sheet_block);
 
@@ -140,7 +140,7 @@ public class ChippedModuleG extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/diamond_block/shuttered_diamond_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(shuttered_block);
 
@@ -150,7 +150,7 @@ public class ChippedModuleG extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/diamond_block/stacked_diamond_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(stacked_block);
 

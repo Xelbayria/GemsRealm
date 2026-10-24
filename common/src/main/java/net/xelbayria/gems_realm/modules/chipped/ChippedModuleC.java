@@ -101,7 +101,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 .addTexture(modRes("block/amethyst_block/ctm/common_textures/2"))
                 .addTexture(modRes("block/amethyst_block/ctm/common_textures/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(angry_block);
@@ -112,7 +112,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/blank_amethyst_block_carving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(blank_block_carving);
@@ -127,7 +127,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 .addTexture(modRes("block/amethyst_block/ctm/bordered_amethyst_block_ctm/2"))
                 .addTexture(modRes("block/amethyst_block/ctm/bordered_amethyst_block_ctm/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(bordered_block);
@@ -142,7 +142,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 .addTexture(modRes("block/amethyst_block/ctm/brick_bordered_amethyst_block_ctm/2"))
                 .addTexture(modRes("block/amethyst_block/ctm/brick_bordered_amethyst_block_ctm/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(brick_bordered_block);
@@ -153,7 +153,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/carved_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(carved_block);
@@ -164,7 +164,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/checkered_amethyst_block_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(checkered_block_tiles);
@@ -175,7 +175,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/cobbled_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(cobbled_block);
@@ -186,7 +186,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/cracked_disordered_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(cracked_disordered_block_bricks);
@@ -197,7 +197,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/cracked_flat_amethyst_block_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(cracked_flat_block_tiles);
@@ -208,7 +208,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/cracked_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(cracked_block_bricks);
@@ -219,7 +219,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/creeper_amethyst_block_carving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(creeper_block_carving);
@@ -230,7 +230,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/crying_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(crying_block);
@@ -245,7 +245,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 .addTexture(modRes("block/amethyst_block/ctm/curly_amethyst_block_pillar/1"))
                 .addTexture(modRes("block/amethyst_block/ctm/curly_amethyst_block_pillar/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(curly_block_pillar);
@@ -256,7 +256,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/cut_blank_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(cut_blank_block);
@@ -271,7 +271,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 .addTexture(modRes("block/amethyst_block/ctm/cut_amethyst_block_column_ctm/2"))
                 .addTexture(modRes("block/amethyst_block/ctm/cut_amethyst_block_column_ctm/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(cut_block_column);
@@ -282,7 +282,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/duh_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(duh_block);
@@ -297,7 +297,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 .addTexture(modRes("block/amethyst_block/ctm/edged_amethyst_block_bricks_ctm/2"))
                 .addTexture(modRes("block/amethyst_block/ctm/edged_amethyst_block_bricks_ctm/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(edged_block_bricks);
@@ -308,7 +308,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/engraved_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(engraved_block);
@@ -319,7 +319,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/eroded_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(eroded_block);
@@ -330,7 +330,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/etched_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(etched_block_bricks);
@@ -345,7 +345,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 .addTexture(modRes("block/amethyst_block/ctm/fine_amethyst_block_pillar/1"))
                 .addTexture(modRes("block/amethyst_block/ctm/fine_amethyst_block_pillar/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(fine_block_pillar);
@@ -356,7 +356,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/flat_amethyst_block_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(flat_block_tiles);
@@ -367,7 +367,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/glad_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(glad_block);
@@ -378,7 +378,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/inlayed_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(inlayed_block);
@@ -389,7 +389,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/inscribed_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(inscribed_block);
@@ -400,7 +400,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/layed_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(layed_block_bricks);
@@ -411,7 +411,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/loded_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(loded_block);
@@ -426,7 +426,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 .addTexture(modRes("block/amethyst_block/ctm/massive_amethyst_block_bricks/2"))
                 .addTexture(modRes("block/amethyst_block/ctm/massive_amethyst_block_bricks/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(massive_block_bricks);
@@ -437,7 +437,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/offset_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(offset_block_bricks);
@@ -452,7 +452,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 .addTexture(modRes("block/amethyst_block/ctm/ornate_amethyst_block_pillar/1"))
                 .addTexture(modRes("block/amethyst_block/ctm/ornate_amethyst_block_pillar/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(ornate_block_pillar);
@@ -467,7 +467,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 .addTexture(modRes("block/amethyst_block/ctm/overlapping_amethyst_block_tiles_ctm/2"))
                 .addTexture(modRes("block/amethyst_block/ctm/overlapping_amethyst_block_tiles_ctm/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(overlapping_block_tiles);
@@ -478,7 +478,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/pillar_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(pillar_block_bricks);
@@ -493,7 +493,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 .addTexture(modRes("block/amethyst_block/ctm/polished_amethyst_block_ctm/2"))
                 .addTexture(modRes("block/amethyst_block/ctm/polished_amethyst_block_ctm/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(polished_block);
@@ -504,7 +504,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/prismal_amethyst_block_remnants"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(prismal_block_remnants);
@@ -515,7 +515,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_bricks);
@@ -526,7 +526,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/amethyst_block_mini_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_mini_tiles);
@@ -537,7 +537,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/amethyst_block_pillar"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_pillar);
@@ -548,7 +548,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/amethyst_block_pillar_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_pillar_top);
@@ -559,7 +559,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/amethyst_block_scales"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_scales);
@@ -570,7 +570,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/rough_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(rough_block);
@@ -581,7 +581,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/rounded_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(rounded_block_bricks);
@@ -592,7 +592,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/runic_carved_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(runic_carved_block);
@@ -603,7 +603,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/sad_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(sad_block);
@@ -614,7 +614,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/sanded_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(sanded_block);
@@ -629,7 +629,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 .addTexture(modRes("block/amethyst_block/ctm/simple_amethyst_block_pillar/1"))
                 .addTexture(modRes("block/amethyst_block/ctm/simple_amethyst_block_pillar/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(simple_block_pillar);
@@ -640,7 +640,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/small_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(small_block_bricks);
@@ -651,7 +651,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/smooth_inlayed_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(smooth_inlayed_block);
@@ -666,7 +666,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 .addTexture(modRes("block/amethyst_block/ctm/smooth_amethyst_block_column_ctm/2"))
                 .addTexture(modRes("block/amethyst_block/ctm/smooth_amethyst_block_column_ctm/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(smooth_block_column);
@@ -677,7 +677,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/smooth_ringed_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(smooth_ringed_block);
@@ -688,7 +688,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/smoothed_double_inlayed_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(smoothed_double_inlayed_block);
@@ -699,7 +699,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/spider_amethyst_block_carving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(spider_block_carving);
@@ -710,7 +710,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/spiraled_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(spiraled_block);
@@ -721,7 +721,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/stacked_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(stacked_block_bricks);
@@ -736,7 +736,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 .addTexture(modRes("block/amethyst_block/ctm/thick_inlayed_amethyst_block_ctm/1"))
                 .addTexture(modRes("block/amethyst_block/ctm/thick_inlayed_amethyst_block_ctm/2"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(thick_inlayed_block);
@@ -751,7 +751,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 .addTexture(modRes("block/amethyst_block/ctm/tiled_bordered_amethyst_block_ctm/2"))
                 .addTexture(modRes("block/amethyst_block/ctm/tiled_bordered_amethyst_block_ctm/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(tiled_bordered_block);
@@ -762,7 +762,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/tiled_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(tiled_block);
@@ -777,7 +777,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 .addTexture(modRes("block/amethyst_block/ctm/tiled_amethyst_block_column_ctm/2"))
                 .addTexture(modRes("block/amethyst_block/ctm/tiled_amethyst_block_column_ctm/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(tiled_block_column);
@@ -792,7 +792,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 .addTexture(modRes("block/amethyst_block/ctm/tiny_brick_bordered_amethyst_block_ctm/1"))
                 .addTexture(modRes("block/amethyst_block/ctm/tiny_brick_bordered_amethyst_block_ctm/2"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(tiny_brick_bordered_block);
@@ -803,7 +803,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/tiny_layered_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(tiny_layered_block_bricks);
@@ -814,7 +814,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/tiny_layered_amethyst_block_slabs"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(tiny_layered_block_slabs);
@@ -825,7 +825,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/tiny_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(tiny_block_bricks);
@@ -836,7 +836,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/trodden_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(trodden_block);
@@ -847,7 +847,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/unamused_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(unamused_block);
@@ -858,7 +858,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/vertical_cut_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(vertical_cut_block);
@@ -869,7 +869,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/vertical_disordered_amethyst_block_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(vertical_disordered_block_bricks);
@@ -880,7 +880,7 @@ public class ChippedModuleC extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/amethyst_block/weathered_amethyst_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(weathered_block);

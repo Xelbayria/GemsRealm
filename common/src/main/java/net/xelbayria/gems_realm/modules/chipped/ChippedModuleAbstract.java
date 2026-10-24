@@ -9,10 +9,12 @@ import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
+
+import java.util.function.Supplier;
 
 import static net.xelbayria.gems_realm.api.set.VanillaRockChildKeys.BLOCK;
 import static net.xelbayria.gems_realm.api.set.VanillaRockChildKeys.RAW_BLOCK;
@@ -22,7 +24,7 @@ import static net.xelbayria.gems_realm.misc.HardcodedBlockType.isKnownVanillaBlo
 ///SUPPORT: v4.0.2+
 public class ChippedModuleAbstract extends GemsRealmModule {
 
-    public final ResourceLocation tab = modRes("main");
+    public final Supplier<CreativeModeTab> tab = getModTab("main");
 
     public ChippedModuleAbstract(String modId) {
         super(modId, "ch");

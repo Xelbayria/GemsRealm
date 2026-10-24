@@ -73,7 +73,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/gold_block/gold_block_panels"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(block_panels);
@@ -84,7 +84,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/gold_block/ancient_gold_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(ancient_block);
@@ -95,7 +95,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/gold_block/chipped_gold_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(chipped_block);
@@ -106,7 +106,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/gold_block/embossed_gold_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(embossed_block);
@@ -117,7 +117,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/gold_block/engraved_gold_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(engraved_block);
@@ -128,7 +128,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/gold_block/layered_gold_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(layered_block);
@@ -139,7 +139,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/gold_block/plated_gold_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(plated_block);
@@ -150,7 +150,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/gold_block/pressed_gold_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(pressed_block);
@@ -161,7 +161,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/gold_block/reinforced_gold_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(reinforced_block);
@@ -172,7 +172,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/gold_block/sheet_gold_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(sheet_block);
@@ -183,7 +183,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/gold_block/shuttered_gold_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(shuttered_block);
@@ -194,7 +194,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 )
                 .addTexture(modRes("block/gold_block/stacked_gold_block"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(stacked_block);
@@ -208,7 +208,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/iron_bars_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -221,7 +221,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/barbed_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -234,7 +234,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/bolted_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -247,7 +247,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/chained_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -260,7 +260,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/crossbolted_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -273,7 +273,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/crossed_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -286,7 +286,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/floral_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -299,7 +299,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/harp_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -312,7 +312,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/linked_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -325,7 +325,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/loose_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -338,7 +338,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/piked_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -351,7 +351,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/railed_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -364,7 +364,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/sighthole_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -377,7 +377,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/stepped_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -390,7 +390,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/sturdy_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -403,7 +403,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/supported_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -416,7 +416,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/thorned_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -429,7 +429,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/vined_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -442,7 +442,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/woven_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -455,7 +455,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/zippered_iron_bars"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();
@@ -468,7 +468,7 @@ public class ChippedModuleM extends ChippedModuleAbstract {
                 .requiresChildren(INGOT) //REASON: recipes for minecraft:bars
                 .addTexture(modRes("block/iron_bars/victorian_iron_bars_pikes"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //RECIPES: see addDynamicServerResources
                 .build();

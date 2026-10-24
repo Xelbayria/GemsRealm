@@ -103,7 +103,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .addTexture(modRes("block/raw_iron_block/ctm/common_textures/2"), RAW_BLOCK_STANDARD)
                 .addTexture(modRes("block/raw_iron_block/ctm/common_textures/3"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(angry_raw_block);
@@ -115,7 +115,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/blank_raw_iron_block_carving"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(blank_raw_block_carving);
@@ -131,7 +131,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .addTexture(modRes("block/raw_iron_block/ctm/bordered_raw_iron_block_ctm/2"), RAW_BLOCK_STANDARD)
                 .addTexture(modRes("block/raw_iron_block/ctm/bordered_raw_iron_block_ctm/3"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(bordered_raw_block);
@@ -147,7 +147,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .addTexture(modRes("block/raw_iron_block/ctm/brick_bordered_raw_iron_block_ctm/2"), RAW_BLOCK_STANDARD)
                 .addTexture(modRes("block/raw_iron_block/ctm/brick_bordered_raw_iron_block_ctm/3"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(brick_bordered_raw_block);
@@ -159,7 +159,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/carved_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(carved_raw_block);
@@ -171,7 +171,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/checkered_raw_iron_block_tiles"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(checkered_raw_block_tiles);
@@ -183,7 +183,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/cobbled_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(cobbled_raw_block);
@@ -195,7 +195,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/cracked_disordered_raw_iron_block_bricks"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(cracked_disordered_raw_block_bricks);
@@ -207,7 +207,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/cracked_flat_raw_iron_block_tiles"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(cracked_flat_raw_block_tiles);
@@ -219,7 +219,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/cracked_raw_iron_block_bricks"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(cracked_raw_block_bricks);
@@ -231,7 +231,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/creeper_raw_iron_block_carving"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(creeper_raw_block_carving);
@@ -243,7 +243,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/crying_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(crying_raw_block);
@@ -259,7 +259,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .addTexture(modRes("block/raw_iron_block/ctm/curly_raw_iron_block_pillar/1"), RAW_BLOCK_STANDARD)
                 .addTexture(modRes("block/raw_iron_block/ctm/curly_raw_iron_block_pillar/3"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(curly_raw_block_pillar);
@@ -271,7 +271,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/cut_blank_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(cut_blank_raw_block);
@@ -287,7 +287,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .addTexture(modRes("block/raw_iron_block/ctm/cut_raw_iron_block_column_ctm/2"), RAW_BLOCK_STANDARD)
                 .addTexture(modRes("block/raw_iron_block/ctm/cut_raw_iron_block_column_ctm/3"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(cut_raw_block_column);
@@ -299,7 +299,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/duh_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(duh_raw_block);
@@ -315,7 +315,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .addTexture(modRes("block/raw_iron_block/ctm/edged_raw_iron_block_bricks_ctm/2"), RAW_BLOCK_STANDARD)
                 .addTexture(modRes("block/raw_iron_block/ctm/edged_raw_iron_block_bricks_ctm/3"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(edged_raw_block_bricks);
@@ -327,7 +327,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/engraved_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(engraved_raw_block);
@@ -339,7 +339,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/eroded_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(eroded_raw_block);
@@ -351,7 +351,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/etched_raw_iron_block_bricks"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(etched_raw_block_bricks);
@@ -367,7 +367,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .addTexture(modRes("block/raw_iron_block/ctm/fine_raw_iron_block_pillar/1"), RAW_BLOCK_STANDARD)
                 .addTexture(modRes("block/raw_iron_block/ctm/fine_raw_iron_block_pillar/3"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(fine_raw_block_pillar);
@@ -379,7 +379,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/flat_raw_iron_block_tiles"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(flat_raw_block_tiles);
@@ -391,7 +391,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/glad_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(glad_raw_block);
@@ -403,7 +403,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/inlayed_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(inlayed_raw_block);
@@ -415,7 +415,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/inscribed_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(inscribed_raw_block);
@@ -427,7 +427,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/layed_raw_iron_block_bricks"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(layed_raw_block_bricks);
@@ -439,7 +439,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/loded_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(loded_raw_block);
@@ -455,7 +455,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .addTexture(modRes("block/raw_iron_block/ctm/massive_raw_iron_block_bricks/2"), RAW_BLOCK_STANDARD)
                 .addTexture(modRes("block/raw_iron_block/ctm/massive_raw_iron_block_bricks/3"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(massive_raw_block_bricks);
@@ -467,7 +467,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/offset_raw_iron_block_bricks"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(offset_raw_block_bricks);
@@ -483,7 +483,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .addTexture(modRes("block/raw_iron_block/ctm/ornate_raw_iron_block_pillar/1"), RAW_BLOCK_STANDARD)
                 .addTexture(modRes("block/raw_iron_block/ctm/ornate_raw_iron_block_pillar/3"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(ornate_raw_block_pillar);
@@ -499,7 +499,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .addTexture(modRes("block/raw_iron_block/ctm/overlapping_raw_iron_block_tiles_ctm/2"), RAW_BLOCK_STANDARD)
                 .addTexture(modRes("block/raw_iron_block/ctm/overlapping_raw_iron_block_tiles_ctm/3"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(overlapping_raw_block_tiles);
@@ -511,7 +511,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/pillar_raw_iron_block_bricks"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(pillar_raw_block_bricks);
@@ -527,7 +527,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .addTexture(modRes("block/raw_iron_block/ctm/polished_raw_iron_block_ctm/2"), RAW_BLOCK_STANDARD)
                 .addTexture(modRes("block/raw_iron_block/ctm/polished_raw_iron_block_ctm/3"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(polished_raw_block);
@@ -539,7 +539,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/prismal_raw_iron_block_remnants"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(prismal_raw_block_remnants);
@@ -551,7 +551,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/raw_iron_block_bricks"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(raw_block_bricks);
@@ -563,7 +563,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/raw_iron_block_mini_tiles"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(raw_block_mini_tiles);
@@ -575,7 +575,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/raw_iron_block_pillar"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(raw_block_pillar);
@@ -587,7 +587,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/raw_iron_block_pillar_top"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(raw_block_pillar_top);
@@ -599,7 +599,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/raw_iron_block_scales"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(raw_block_scales);
@@ -611,7 +611,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/rough_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(rough_raw_block);
@@ -623,7 +623,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/rounded_raw_iron_block_bricks"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(rounded_raw_block_bricks);
@@ -635,7 +635,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/runic_carved_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(runic_carved_raw_block);
@@ -647,7 +647,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/sad_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(sad_raw_block);
@@ -659,7 +659,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/sanded_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(sanded_raw_block);
@@ -675,7 +675,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .addTexture(modRes("block/raw_iron_block/ctm/simple_raw_iron_block_pillar/1"), RAW_BLOCK_STANDARD)
                 .addTexture(modRes("block/raw_iron_block/ctm/simple_raw_iron_block_pillar/3"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(simple_raw_block_pillar);
@@ -687,7 +687,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/small_raw_iron_block_bricks"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(small_raw_block_bricks);
@@ -699,7 +699,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/smooth_inlayed_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(smooth_inlayed_raw_block);
@@ -715,7 +715,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .addTexture(modRes("block/raw_iron_block/ctm/smooth_raw_iron_block_column_ctm/2"), RAW_BLOCK_STANDARD)
                 .addTexture(modRes("block/raw_iron_block/ctm/smooth_raw_iron_block_column_ctm/3"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(smooth_raw_block_column);
@@ -727,7 +727,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/smooth_ringed_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(smooth_ringed_raw_block);
@@ -739,7 +739,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/smoothed_double_inlayed_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(smoothed_double_inlayed_raw_block);
@@ -751,7 +751,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/spider_raw_iron_block_carving"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(spider_raw_block_carving);
@@ -763,7 +763,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/spiraled_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(spiraled_raw_block);
@@ -775,7 +775,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/stacked_raw_iron_block_bricks"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(stacked_raw_block_bricks);
@@ -791,7 +791,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .addTexture(modRes("block/raw_iron_block/ctm/thick_inlayed_raw_iron_block_ctm/1"), RAW_BLOCK_STANDARD)
                 .addTexture(modRes("block/raw_iron_block/ctm/thick_inlayed_raw_iron_block_ctm/2"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(thick_inlayed_raw_block);
@@ -807,7 +807,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .addTexture(modRes("block/raw_iron_block/ctm/tiled_bordered_raw_iron_block_ctm/2"), RAW_BLOCK_STANDARD)
                 .addTexture(modRes("block/raw_iron_block/ctm/tiled_bordered_raw_iron_block_ctm/3"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(tiled_bordered_raw_block);
@@ -819,7 +819,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/tiled_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(tiled_raw_block);
@@ -835,7 +835,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .addTexture(modRes("block/raw_iron_block/ctm/tiled_raw_iron_block_column_ctm/2"), RAW_BLOCK_STANDARD)
                 .addTexture(modRes("block/raw_iron_block/ctm/tiled_raw_iron_block_column_ctm/3"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(tiled_raw_block_column);
@@ -851,7 +851,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .addTexture(modRes("block/raw_iron_block/ctm/tiny_brick_bordered_raw_iron_block_ctm/1"), RAW_BLOCK_STANDARD)
                 .addTexture(modRes("block/raw_iron_block/ctm/tiny_brick_bordered_raw_iron_block_ctm/2"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(tiny_brick_bordered_raw_block);
@@ -863,7 +863,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/tiny_layered_raw_iron_block_bricks"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(tiny_layered_raw_block_bricks);
@@ -875,7 +875,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/tiny_layered_raw_iron_block_slabs"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(tiny_layered_raw_block_slabs);
@@ -887,7 +887,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/tiny_raw_iron_block_bricks"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(tiny_raw_block_bricks);
@@ -899,7 +899,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/trodden_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(trodden_raw_block);
@@ -911,7 +911,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/unamused_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(unamused_raw_block);
@@ -923,7 +923,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/vertical_cut_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(vertical_cut_raw_block);
@@ -935,7 +935,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/vertical_disordered_raw_iron_block_bricks"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(vertical_disordered_raw_block_bricks);
@@ -947,7 +947,7 @@ public class ChippedModuleRBM extends ChippedModuleAbstract {
                 .requiresChildren(RAW_BLOCK) //REASON: textures, recipes
                 .addTexture(modRes("block/raw_iron_block/weathered_raw_iron_block"), RAW_BLOCK_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 //RECIPES: see addDynamicServerResources
                 .build();
         this.addEntry(weathered_raw_block);
