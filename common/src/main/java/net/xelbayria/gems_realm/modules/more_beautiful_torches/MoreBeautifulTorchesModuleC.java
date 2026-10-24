@@ -1,7 +1,5 @@
 package net.xelbayria.gems_realm.modules.more_beautiful_torches;
 
-import net.mehvahdjukaar.every_compat.api.PaletteStrategies;
-import net.mehvahdjukaar.every_compat.api.PaletteStrategy;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
@@ -14,6 +12,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.*;
 import net.xelbayria.gems_realm.GemsRealm;
+import net.xelbayria.gems_realm.api.CrystalPaletteStrategies;
 import net.xelbayria.gems_realm.api.GemsRealmEntrySet;
 import net.xelbayria.gems_realm.api.GemsRealmModule;
 import net.xelbayria.gems_realm.api.set.crystal.CrystalType;
@@ -21,7 +20,6 @@ import net.xelbayria.gems_realm.api.set.crystal.VanillaCrystalTypes;
 
 import java.util.function.Supplier;
 
-import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.registerCached;
 import static net.xelbayria.gems_realm.api.set.crystal.VanillaCrystalChildKeys.CLUSTER;
 
 //SUPPORT: v3.0.0+
@@ -141,9 +139,10 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                                                         .lightLevel(l -> 14)
                         )
                 )
-                .createPaletteFromRockChild(CLUSTER)
                 .requiresChildren(CLUSTER) //REASON: recipes, textures
-                .addTextureM(modRes("block/amethyst_cluster_torch"), GemsRealm.res("block/common_torch_m"))
+                .addTextureM(modRes("block/amethyst_cluster_torch"),
+                        GemsRealm.res("block/common_torch_m"),
+                        CrystalPaletteStrategies.CLUSTER_STANDARD)
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
                 .noItem()
@@ -174,9 +173,10 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                         getModBlock("amethyst_cluster_soul_wall_torch"), () -> VanillaCrystalTypes.AMETHYST,
                         crystalType -> new WallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH))
                 )
-                .createPaletteFromRockChild(CLUSTER)
                 .requiresChildren(CLUSTER) //REASON: recipes, textures
-                .addTextureM(modRes("block/amethyst_cluster_soul_torch"), GemsRealm.res("block/common_torch_m"))
+                .addTextureM(modRes("block/amethyst_cluster_soul_torch"),
+                        GemsRealm.res("block/common_torch_m"),
+                        CrystalPaletteStrategies.CLUSTER_STANDARD)
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
                 .noItem()
@@ -203,8 +203,12 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
                         crystalType -> new RedstoneWallTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_WALL_TORCH))
                 )
                 .requiresChildren(CLUSTER) //REASON: recipes, textures
-                .addTextureM(modRes("block/amethyst_cluster_redstone_torch"), GemsRealm.res("block/common_redstone_torch_m"), CLUSTER_STANDARD)
-                .addTextureM(modRes("block/amethyst_cluster_redstone_torch_off"), GemsRealm.res("block/common_torch_m"), CLUSTER_STANDARD)
+                .addTextureM(modRes("block/amethyst_cluster_redstone_torch"),
+                        GemsRealm.res("block/common_redstone_torch_m"),
+                        CrystalPaletteStrategies.CLUSTER_STANDARD)
+                .addTextureM(modRes("block/amethyst_cluster_redstone_torch_off"),
+                        GemsRealm.res("block/common_torch_m"),
+                        CrystalPaletteStrategies.CLUSTER_STANDARD)
                 .noTab()
                 .noItem()
                 .setRenderType(RenderLayer.CUTOUT)
@@ -226,6 +230,4 @@ public class MoreBeautifulTorchesModuleC extends GemsRealmModule {
 
     }
 
-    public static final PaletteStrategy CLUSTER_STANDARD = registerCached((blockType, manager) -> PaletteStrategies.makePaletteFromChild(
-            blockType, manager, CLUSTER, null, null));
 }

@@ -9,4 +9,8 @@ public class CrystalPaletteStrategies extends PaletteStrategies {
     public static final PaletteStrategy BUDDING_STANDARD = registerCached((blockType, manager) -> PaletteStrategies.makePaletteFromChild(
             blockType, manager, VanillaCrystalChildKeys.BUDDING, null, null));
 
+    public static final PaletteStrategy CLUSTER_STANDARD = registerCached((blockType, manager) -> PaletteStrategies.makePaletteFromChild(
+            blockType, manager, VanillaCrystalChildKeys.CLUSTER, null, null));
+
+
 }
