@@ -34,7 +34,7 @@ public class CompatCrystalType extends CompatBlockType {
 
         CrystalTypeRegistry crystalReg = CrystalTypeRegistry.INSTANCE;
 
-        // The Outer End - REASON: Undetected-Children
+        // -------------------- The Outer End - REASON: Undetected-Children
         crystalReg.addSimpleFinder("outer_end:rose_crystal")
                 .crystalBlockSuffix("");
         crystalReg.addSimpleFinder("outer_end:mint_crystal")
@@ -42,22 +42,33 @@ public class CompatCrystalType extends CompatBlockType {
         crystalReg.addSimpleFinder("outer_end:cobalt_crystal")
                 .crystalBlockSuffix("");
 
-        // Excessive Building - REASON: Undetected-Children
+        // -------------------- Excessive Building - REASON: Undetected-Children
         crystalReg.addSimpleFinder("excessive_building:prismarine_crystal")
                 .childItem(SHARD, ResourceLocation.parse("minecraft:prismarine_crystals"));
 
-        // Divine RPG - REASON: Undetected-Children
+        // -------------------- Divine RPG - REASON: Undetected-Children
         crystalReg.addSimpleFinder("divinerpg", "olivine")
-                .childItem(SHARD, "olivine");
+                .childItemSuffix(SHARD, "");
 
-        // Biomes O' Plenty - REASON: 2-Words
+        // -------------------- Biomes O' Plenty - REASON: 2-Words
         crystalReg.addSimpleFinder("biomesoplenty:rose_quartz");
 
-        // CrystalCraft-Unlimited-Java - REASON: 2-Words
-        crystalReg.addSimpleFinder("crystalcraft_unlimited_java:aura_quartz")
+        // -------------------- CrystalCraft-Unlimited-Java
+        String crystalcraft_id = "crystalcraft_unlimited_java";
+
+        // REASON: 2-Words
+        crystalReg.addSimpleFinder(crystalcraft_id,"aura_quartz")
                 .childBlock(CLUSTER, "aura_crystal");
 
-        // More Geodes Reforge
+        String[] cc_names = {
+                "chevron_amethyst", //REASON: 2-Words
+                "rhodochrosite" //REASON: ???
+        };
+
+        for (String current : cc_names) crystalReg.addSimpleFinder(crystalcraft_id, current);
+
+
+        // -------------------- More Geodes Reforge
         crystalReg.addSimpleFinder("geodes:echo")
                 .childItem(SHARD, ResourceLocation.parse("minecraft:echo_shard")) //REASON: Vanilla-Children
                 .childBlock(BUDDING, "budding_echo_block"); //REASON: Undetected-Children

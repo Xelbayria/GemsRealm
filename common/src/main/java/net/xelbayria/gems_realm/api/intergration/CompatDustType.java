@@ -44,23 +44,23 @@ public class CompatDustType extends CompatBlockType {
 
         // -------------------- CrystalCraft-Unlimited-Java - REASON: Undetected-Children
         dustReg.addSimpleFinder("crystalcraft_unlimited_java:ikegamini")
-                .childItem(DUST, "ikegamini");
+                .childItemSuffix(DUST, "");
         dustReg.addSimpleFinder("crystalcraft_unlimited_java:ikegamonium")
-                .childItem(DUST, "ikegamonium");
+                .childItemSuffix(DUST, "");
         dustReg.addSimpleFinder("crystalcraft_unlimited_java:ikegamium")
-                .childItem(DUST, "ikegamium");
+                .childItemSuffix(DUST, "");
         dustReg.addSimpleFinder("crystalcraft_unlimited_java:simonium")
-                .childItem(DUST, "simonium");
+                .childItemSuffix(DUST, "");
         dustReg.addSimpleFinder("crystalcraft_unlimited_java:simoganium")
-                .childItem(DUST, "simoganium");
+                .childItemSuffix(DUST, "");
         dustReg.addSimpleFinder("crystalcraft_unlimited_java:chloronium")
-                .childItem(DUST, "chloronium");
+                .childItemSuffix(DUST, "");
         dustReg.addSimpleFinder("crystalcraft_unlimited_java:whitestone")
-                .childItem(DUST, "whitestone");
+                .childItemSuffix(DUST, "");
         dustReg.addSimpleFinder("crystalcraft_unlimited_java:blackstone")
-                .childItem(DUST, "blackstone");
+                .childItemSuffix(DUST, "");
         dustReg.addSimpleFinder("crystalcraft_unlimited_java:sulfur")
-                .childItem(DUST, "sulfur");
+                .childItemSuffix(DUST, "");
     }
 
 }

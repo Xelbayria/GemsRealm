@@ -104,108 +104,93 @@ public class CompatGemType extends CompatBlockType{
                 .gemBlock("fire_gem_block");
 
         // -------------------- Crystal Unlimited Edition
+        String crystalcraft_id = "crystalcraft_unlimited_java";
+
         for (int num = 1; num < 15; num++) { //REASON: Naming-Convention
             String zircon = "zircon_";
             if (num == 13) continue; // doesn't exist
             switch (num) {
-                case 1, 4, 6, 9 -> gemReg.addSimpleFinder("crystalcraft_unlimited_java", zircon + num)
+                case 1, 4, 6, 9 -> gemReg.addSimpleFinder(crystalcraft_id, zircon + num)
                         .gemBlock(zircon + "block_" + num);
-                default -> gemReg.addSimpleFinder("crystalcraft_unlimited_java", zircon + num);
+                default -> gemReg.addSimpleFinder(crystalcraft_id, zircon + num);
             }
         }
 
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "bixbite") //REASON: Id-Block
+        gemReg.addSimpleFinder(crystalcraft_id, "bixbite") //REASON: Id-Block
                 .gemBlock("bixite_block");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "pearl_item") //REASON: Id-Block, ???
+        gemReg.addSimpleFinder(crystalcraft_id, "pearl_item") //REASON: Id-Block, ???
                 .gemBlock("pearl_block");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "pink_catseye") //REASON: Id-Block, 2-Words
+        gemReg.addSimpleFinder(crystalcraft_id, "pink_catseye") //REASON: Id-Block, 2-Words
                 .gemBlock("pink_tigerseye_block");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "brown_catseye") //REASON: Id-Block, 2-Words
+        gemReg.addSimpleFinder(crystalcraft_id, "brown_catseye") //REASON: Id-Block, 2-Words
                 .gemBlock("tigerseye_block");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "dark_blue_diamond") //REASON: Id-Block, 2-Words
+        gemReg.addSimpleFinder(crystalcraft_id, "dark_blue_diamond") //REASON: Id-Block, 2-Words
                 .gemBlock("blue_diamond");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "solar_diamond") //REASON: Id-Block, 2-Words
+        gemReg.addSimpleFinder(crystalcraft_id, "solar_diamond") //REASON: Id-Block, 2-Words
                 .gemBlock("solar_block");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "eclipse_diamond") //REASON: Id-Block, 2-Words
+        gemReg.addSimpleFinder(crystalcraft_id, "eclipse_diamond") //REASON: Id-Block, 2-Words
                 .gemBlock("eclipse_block");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "snowflake_obsidian") //REASON: Id-Block, 2-Words
+        gemReg.addSimpleFinder(crystalcraft_id, "snowflake_obsidian") //REASON: Id-Block, 2-Words
                 .gemBlock("snowflake_block");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "matrix_opal") //REASON: Id-Block, 2-Words
+        gemReg.addSimpleFinder(crystalcraft_id, "matrix_opal") //REASON: Id-Block, 2-Words
                 .gemBlock("matrix_block");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "medusa_quartz") //REASON: Id-Block, 2-Words
+        gemReg.addSimpleFinder(crystalcraft_id, "medusa_quartz") //REASON: Id-Block, 2-Words
                 .gemBlock("medusa_block");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "dragon_scale") //REASON: Id-Block, 2-Words
+        gemReg.addSimpleFinder(crystalcraft_id, "dragon_scale") //REASON: Id-Block, 2-Words
                 .gemBlock("dragon_block");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "watermelon_tourmaline") //REASON: Id-Block, 2-Words
+        gemReg.addSimpleFinder(crystalcraft_id, "watermelon_tourmaline") //REASON: Id-Block, 2-Words
                 .gemBlock("watermelon_block");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "orange_star_sapphire") //REASON: Id-Block, 2-Words
+        gemReg.addSimpleFinder(crystalcraft_id, "orange_star_sapphire") //REASON: Id-Block, 2-Words
                 .gemBlock("orange_star_block");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "australian_sapphire") //REASON: Id-Block, 2-Words
+        gemReg.addSimpleFinder(crystalcraft_id, "australian_sapphire") //REASON: Id-Block, 2-Words
                 .gemBlock("rare_sapphire_block");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "saphire") //REASON: Id-Block, Spelling-Convention
+        gemReg.addSimpleFinder(crystalcraft_id, "saphire") //REASON: Id-Block, Spelling-Convention
                 .gemBlock("sapphire_block");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "sapphire") //REASON: Id-Block
+        gemReg.addSimpleFinder(crystalcraft_id, "sapphire") //REASON: Id-Block
                 .gemBlock("blue_sapphire_block");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "green_star_sapphire") //REASON: Id-Block, 3-Words
+        gemReg.addSimpleFinder(crystalcraft_id, "green_star_sapphire") //REASON: Id-Block, 3-Words
                 .gemBlock("green_star_sapphire_block_2");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "dark_green_star_sapphire") //REASON: Id-Block, 4-Words
+        gemReg.addSimpleFinder(crystalcraft_id, "dark_green_star_sapphire") //REASON: Id-Block, 4-Words
                 .gemBlock("green_star_sapphire_block");
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "rare_sapphire") //REASON: Id-Block, 2-Words
+        gemReg.addSimpleFinder(crystalcraft_id, "rare_sapphire") //REASON: Id-Block, 2-Words
                 .gemBlock("rare_sapphire_block_recipe");
 
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "angerite"); //REASON: ???
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "black_pearl"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "blue_pearl"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "brown_pearl"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "dark_blue_pearl"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "green_pearl"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "olive_pearl"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "orange_pearl"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "pink_pearl"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "purple_pearl"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "red_pearl"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "white_pearl"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "yellow_pearl"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "purple_catseye"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "white_catseye"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "red_catseye"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "orange_catseye"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "yellow_catseye"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "black_catseye"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "blue_catseye"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "crystal"); //REASON: ???
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "cyber_crystal"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "corrupted_cyber_crystal"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "yellow_diamond"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "olive_diamond"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "green_diamond"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "brown_diamond"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "shadow_diamond"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "raspberry_diamond"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "maroon_diamond"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "anti_humoranium"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "sunset_jasper"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "zebra_jasper"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "pitambari_neelam"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "ice_opal"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "peacock"); //REASON: ???
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "peacock_topaz"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "smoky_quartz"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "soul_quartz"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "ghoul_quartz"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "blood_quartz"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "star_sapphire"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "rare_star_sapphire"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "yellow_star_sapphire"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "purple_star_sapphire"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "pink_star_sapphire"); //REASON: 3-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "iris_agate"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "painite"); //REASON: ???
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "rainbow_opal"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "rose_quartz"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "star_ruby"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "titanium_quartz"); //REASON: 2-Words
-        gemReg.addSimpleFinder("crystalcraft_unlimited_java", "umbranova"); //REASON: ???
+        String[] cc_undetected = {
+                //REASON: ???
+                "angerite",
+                "aquamorganite",
+                "painite",
+                "umbranova",
+
+                //REASON: 2-Words+
+                "black_pearl", "blue_pearl", "brown_pearl", "dark_blue_pearl", "green_pearl", "olive_pearl",
+                "orange_pearl", "pink_pearl", "purple_pearl", "red_pearl", "white_pearl", "yellow_pearl",
+
+                "purple_catseye", "white_catseye", "red_catseye", "orange_catseye", "yellow_catseye", "black_catseye", "blue_catseye",
+                "crystal", "cyber_crystal", "corrupted_cyber_crystal",
+                "yellow_diamond", "olive_diamond", "green_diamond", "brown_diamond", "shadow_diamond", "raspberry_diamond", "maroon_diamond",
+                "anti_humoranium",
+                "sunset_jasper", "zebra_jasper",
+                "pitambari_neelam",
+                "ice_opal", "rainbow_opal",
+                "peacock", "peacock_topaz",
+                "smoky_quartz", "soul_quartz", "ghoul_quartz", "blood_quartz",
+                "star_sapphire", "rare_star_sapphire", "yellow_star_sapphire", "purple_star_sapphire", "pink_star_sapphire",
+                "iris_agate",
+                "rose_quartz",
+                "star_ruby",
+                "titanium_quartz",
+
+                "blue_john_fluorite",
+                "moss_agate",
+                "mystic_topaz",
+                "rare_tourmaline",
+                "rainbow_fluorite",
+        };
+        for (String current : cc_undetected) {
+            gemReg.addSimpleFinder(crystalcraft_id, current);
+        }
+
     }
 
 }
