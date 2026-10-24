@@ -13,6 +13,7 @@ import net.xelbayria.gems_realm.api.set.crystal.CrystalType;
 import net.xelbayria.gems_realm.api.set.dust.DustType;
 import net.xelbayria.gems_realm.api.set.gem.GemType;
 import net.xelbayria.gems_realm.api.set.metal.MetalType;
+import net.xelbayria.gems_realm.common_classes.BlockSetEntries;
 import net.xelbayria.gems_realm.misc.HardcodedCrystalType;
 import net.xelbayria.gems_realm.misc.HardcodedDustType;
 import net.xelbayria.gems_realm.misc.HardcodedGemType;
@@ -95,6 +96,13 @@ public class GemsRealmModule extends EveryCompatModule {
                 }
             })
         );
+    }
+
+    public  <T extends BlockType> void addEntries(BlockSetEntries<T> blockSet) {
+        this.addEntry(blockSet.block);
+        if (blockSet.slabOrExtra != null) this.addEntry(blockSet.slabOrExtra);
+        if (blockSet.stairs != null) this.addEntry(blockSet.stairs);
+        if (blockSet.wall != null) this.addEntry(blockSet.wall);
     }
 
 }
