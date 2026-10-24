@@ -12,6 +12,32 @@
 |                                                                                                                                   |
 
 ---
+## v2.11.6
+
+### CHANGES: 
+- **Rechiseled** (C): Reduced 4 files' size
+- **Lapidarist** (C): Reduced 4 files' size
+
+### FIXES:
+- **LANG** (en_us): Forgot to change lapidary to lapidarist due to supported_block from Lapidarist not having LANG 
+
+### Create Deco (NF): 
+- Corrected WINDOW_PANE was using the wrong class, ConnectedPillarBlock to ConnectedGlassPaneBlock - [#78](https://github.com/Xelbayria/GemsRealm/issues/78)
+- Updated registerWindowCTBehavior for 2 different module: Create Module & Create Deco Module
+- Added registerCatwalkCTBeahvior for CATWALK
+- Added missing texture with "_connected" for CATWALK
+- Added custom BlockItem for CATWALK and CATWALK_STAIR
+- Ensure CATWALK & its child get generated
+- Added missing recipes for CATWALK_RAILING
+- Added missing texture with "_connected" for SHEET_METAL
+- Added registerSheetMetalCTBehavior for SHEET_METAL
+- Added missing mask texture for WINDOW
+
+### Create (NF):  
+- Added missing mask texture for FUNNEL
+
+---
+
 ## v2.11.5
 
 ### FIXES: 
@@ -98,13 +124,3 @@ Have fun Minecraft-ing!
 - **Gems Realm** (C): Added 2 new configs - [Every Compat#1203](https://github.com/MehVahdJukaar/WoodGood/issues/1203) 
   - `DISABLE_CYCLE_ITEM_RENDERER` - disable creative-tab from showing the iteration of every item from Gems Realm 
   - `CREATIVE_TAB_ICON` - Choose one item (can be from Gems Realm or Minecraft) to replace the icon instead of iterating every item from Gems Realm
-
----
-
-## v2.11.0
-
-## Changes:
-- **Gems Realm** (C): Updated to 1.21.1
-- **Rechiseled** (C): Re-enabled & Supported v1.2.0+
-
-# Sorry for the long waiting, so have fun minecraft-ing! 
