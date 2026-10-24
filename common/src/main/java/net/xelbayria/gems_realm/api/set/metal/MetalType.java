@@ -10,6 +10,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.xelbayria.gems_realm.GemsRealm;
 import net.xelbayria.gems_realm.api.set.RockType;
+import net.xelbayria.gems_realm.misc.HardcodedBlockType;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
@@ -128,6 +129,17 @@ public class MetalType extends RockType {
          */
         public MetalType.Finder metalBlockSuffix(String suffix) {
             return metalBlock(id.getPath() + suffix);
+        }
+
+        /**
+         * Will be add to {@link HardcodedBlockType#detectedBlockTypes} if the suffix is blank
+         * See the detectedBlockTypes' javadoc for reasons
+         * @param suffix include the underscore, "_" if the blockId has one
+         */
+        @Override
+        public SetFinderBuilder<MetalType> childItemSuffix(String childType, String suffix) {
+            if (suffix.isBlank()) HardcodedBlockType.detectedBlockTypes.add(id.toString());
+            return super.childItemSuffix(childType, suffix);
         }
 
         @Override

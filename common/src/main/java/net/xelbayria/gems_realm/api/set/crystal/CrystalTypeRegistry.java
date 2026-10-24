@@ -47,7 +47,7 @@ public class CrystalTypeRegistry extends BlockTypeRegistry<CrystalType> {
         boolean noMetalType = !isInItemRegistry(namespace, blockPath, "block", INGOT);
         boolean noWoodType = !isInItemRegistry(namespace, blockPath, "block", VanillaWoodChildKeys.LOG);
 
-        return newSubBlockType(CrystalType::new, baseBlock, blockId, blockPath, "(?<typename>\\w+)_block",
+        return newSubBlockType(CrystalType::new, blockId, blockPath, "(?<typename>\\w+)_block",
                 valuesReg, BLACKLISTED_CRYSTALTYPES, BLACKLISTED_MODS,
                 (hasCluster || hasShard), noWoodType, noMetalType, noGemType);
     }

@@ -44,7 +44,7 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
             // Ensure the detected block is actually MetalType
             boolean hasIngot = isInItemRegistry(namespace, blockPath, "block", "ingot");
 
-            return newSubBlockType(MetalType::new, baseBlock, blockId, blockPath, "metal/block/(?<typename>\\w+)(?<!slab|stairs)",
+            return newSubBlockType(MetalType::new, blockId, blockPath, "metal/block/(?<typename>\\w+)(?<!slab|stairs)",
                     valuesReg, hasIngot);
         }
 
@@ -58,7 +58,7 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
                     )
             );
 
-            return newSubBlockType(MetalType::new, baseBlock, blockId, blockPath, "resources/(?<typename>[a-z]+)_block",
+            return newSubBlockType(MetalType::new, blockId, blockPath, "resources/(?<typename>[a-z]+)_block",
                     valuesReg, BLACKLISTED_METALTYPES, hasIngot);
         }
 
@@ -70,7 +70,7 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
             boolean hasIngot = isInItemRegistry(namespace, blockPath, blockSuffix, "ingot");
             boolean noGemType = !isInItemRegistry(namespace, blockPath, blockSuffix, "gem");
 
-            return newSubBlockType(MetalType::new, baseBlock, blockId, blockPath, "(?<typename>\\w+)_"+blockSuffix,
+            return newSubBlockType(MetalType::new, blockId, blockPath, "(?<typename>\\w+)_"+blockSuffix,
                     valuesReg, hasIngot, noGemType);
         }
 
@@ -80,7 +80,7 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
         boolean noWoodType = !isInItemRegistry(namespace, blockPath, "block", "log");
         boolean noGemType = !isInItemRegistry(namespace, blockPath, "_block", "");
 
-        return newSubBlockType(MetalType::new, baseBlock, blockId, blockPath, "(?<typename>\\w+)_block",
+        return newSubBlockType(MetalType::new, blockId, blockPath, "(?<typename>\\w+)_block",
                 valuesReg, BLACKLISTED_METALTYPES, hasIngot, noWoodType, noGemType);
 
     }

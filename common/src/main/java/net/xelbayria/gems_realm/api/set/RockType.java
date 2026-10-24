@@ -2,12 +2,14 @@ package net.xelbayria.gems_realm.api.set;
 
 import net.mehvahdjukaar.moonlight.api.misc.MapRegistry;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
+import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.xelbayria.gems_realm.GemsRealm;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
@@ -163,10 +165,19 @@ public abstract class RockType extends BlockType {
         return resources.toArray(new ResourceLocation[0]);
     }
 
+    /// @return an Id gemsrealm:shortenedId/namespace/prefix_ blocktype _suffix
+    public String CreateStandardId(String shortenedId, String prefix, String suffix) {
+        return createFullIdWith(GemsRealm.MOD_ID, "", shortenedId, prefix, suffix);
+    }
+
+    //      ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+    //      │                                        Sub BlockTypes                                        │
+    //      └──────────────────────────────────────────────────────────────────────────────────────────────┘
+
     /// Create new BlockType using the subclass: CrystalType, DustType, GemType, Or MetalType
     /// @param factory use 1 of 4 subclass, example: CrystalType::new
     public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<ResourceLocation, Block, T> factory,
-                                                                    Block baseBlock, ResourceLocation blockId,
+                                                                    ResourceLocation blockId,
                                                                     String blockPath, String blockPathRegex,
                                                                     MapRegistry<T> valuesReg,
                                                                     Set<String> blockTypeBlacklist,
@@ -192,29 +203,32 @@ public abstract class RockType extends BlockType {
                     if (!pass) return Optional.empty();
                 }
 
-                return Optional.of(factory.apply(idBlockType, baseBlock));
+                ResourceLocation[] tests = makeKnownIDConventions(idBlockType, "block");
+                Block block = Utils.findFirstInRegistry(BuiltInRegistries.BLOCK, tests);
+
+                if (block != null) return Optional.of(factory.apply(idBlockType, block));
             }
         }
         return Optional.empty();
     }
 
     public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<ResourceLocation, Block, T> factory,
-                                                                    Block baseBlock, ResourceLocation blockId,
+                                                                    ResourceLocation blockId,
                                                                     String blockPath, String blockPathRegex,
                                                                     MapRegistry<T> valuesReg,
                                                                     Set<String> blockTypeBlacklist,
                                                                     Boolean ... checks
     ) {
-        return newSubBlockType(factory, baseBlock, blockId, blockPath, blockPathRegex, valuesReg, blockTypeBlacklist, null, checks);
+        return newSubBlockType(factory, blockId, blockPath, blockPathRegex, valuesReg, blockTypeBlacklist, null, checks);
     }
 
     public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<ResourceLocation, Block, T> factory,
-                                                                    Block baseBlock, ResourceLocation blockId,
+                                                                    ResourceLocation blockId,
                                                                     String blockPath, String blockPathRegex,
                                                                     MapRegistry<T> valuesReg,
                                                                     Boolean ... checks
     ) {
-        return newSubBlockType(factory, baseBlock, blockId, blockPath, blockPathRegex, valuesReg, null, null, checks);
+        return newSubBlockType(factory, blockId, blockPath, blockPathRegex, valuesReg, null, null, checks);
     }
 
     public static boolean isInItemRegistry(String namespace, String prefix, String blockPath, String target, String replacement) {

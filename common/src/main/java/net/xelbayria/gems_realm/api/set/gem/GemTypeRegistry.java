@@ -3,6 +3,7 @@ package net.xelbayria.gems_realm.api.set.gem;
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.xelbayria.gems_realm.misc.HardcodedBlockType;
 
 import java.util.Optional;
 
@@ -42,7 +43,7 @@ public class GemTypeRegistry extends BlockTypeRegistry<GemType> {
             boolean hasGem = isInItemRegistry(namespace, blockPath, blockSuffix, "gem");
             boolean noMetalType = !isInItemRegistry(namespace, blockPath, blockSuffix, "ingot");
 
-            return newSubBlockType(GemType::new, baseBlock, blockId, blockPath, "(?<typename>\\w+)_"+blockSuffix,
+            return newSubBlockType(GemType::new, blockId, blockPath, "(?<typename>\\w+)_"+blockSuffix,
                     valuesReg, hasGem, noMetalType);
         }
 
@@ -60,9 +61,14 @@ public class GemTypeRegistry extends BlockTypeRegistry<GemType> {
         // Checking for word1_word2_TYPE_block - NOTE: word1, word2 can be present or not
         String blockPathRegex = "^(?<typename>(?:rare|dark|black|white|cyan|pink|yellow|blue|green|purple|red|orange|brown|olive)?_?(?:ice|fire|star|blue)?_?[a-z]+)_block$";
 
-        return newSubBlockType(GemType::new, baseBlock, blockId, blockPath, blockPathRegex, valuesReg,
+        var test = newSubBlockType(GemType::new, blockId, blockPath, blockPathRegex, valuesReg,
                 BLACKLISTED_GEMTYPES, BLACKLISTED_MODS,
                 hasOre, hasGem, noWoodType, noCrystalType, noDustType, noMetalType);
+
+        // Some BlockTypes' item has no suffix just like GemType's Gem has no suffix. This prevent other non-GemTypes from being added
+        if (test.isPresent() && HardcodedBlockType.detectedBlockTypes.contains(test.get().getId().toString())) return Optional.empty();
+
+        return test;
     }
 
 

@@ -40,7 +40,7 @@ public class DustTypeRegistry extends BlockTypeRegistry<DustType> {
         boolean noMetalType = !isInItemRegistry(namespace, blockPath, "block", "ingot");
         boolean noGemType = !isInItemRegistry(namespace, blockPath, "_block", "");
 
-        return newSubBlockType(DustType::new, baseBlock, blockId, blockPath, "(?<typename>\\w+)_block",
+        return newSubBlockType(DustType::new, blockId, blockPath, "(?<typename>\\w+)_block",
                 valuesReg, BLACKLISTED_DUSTTYPES, BLACKLISTED_MODS,
                 hasDust, noWoodType, noMetalType, noGemType,
                 !BLACKLISTED_DUST_MODS.contains(blockId.getNamespace()) //TEMP
