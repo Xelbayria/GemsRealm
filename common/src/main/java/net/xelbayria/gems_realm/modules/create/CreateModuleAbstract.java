@@ -95,8 +95,10 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                         this::newCasingBlock
                 )
                 .requiresChildren(INGOT) //REASON: recipes
-                .addTextureM(modRes("block/brass_casing"), GemsRealm.res("block/c/copper_casing_m"))
-                .addTextureM(modRes("block/brass_casing_connected"), GemsRealm.res("block/c/copper_casing_connected_m"))
+                .addTextureM(modRes("block/brass_casing"),
+                        GemsRealm.res("block/c/copper_casing_m"))
+                .addTextureM(modRes("block/brass_casing_connected"),
+                        GemsRealm.res("block/c/copper_casing_connected_m"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("casing"), Registries.BLOCK, Registries.ITEM)
@@ -112,7 +114,8 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .requiresFromMap(casing.blocks) //REASON: It's one of the main block's blockstate
                 .addTile(getModTile("encased_shaft"))
                 //TEXTURES: brass_casing
-                .addTextureM(modRes("block/brass_gearbox"), GemsRealm.res("block/c/brass_innerby2pixel_m"))
+                .addTextureM(modRes("block/brass_gearbox"),
+                        GemsRealm.res("block/c/brass_innerby2pixel_m"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .noTab() //REASON: doesn't require item/tab
@@ -126,7 +129,8 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .requiresFromMap(casing.blocks) //REASON: It's one of the main block's blockstate
                 .addTile(getModTile("encased_cogwheel"))
                 //TEXTURES: brass_casing, brass_gearbox
-                .addTextureM(modRes("block/brass_encased_cogwheel_side"), GemsRealm.res("block/c/brass_innerby2pixel_m"))
+                .addTextureM(modRes("block/brass_encased_cogwheel_side"),
+                        GemsRealm.res("block/c/brass_innerby2pixel_m"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -142,7 +146,8 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .requiresFromMap(casing.blocks) //REASON: It's one of the main block's blockstate
                 .addTile(getModTile("encased_large_cogwheel"))
                 //TEXTURES: brass_casing, brass_gearbox
-                .addTextureM(modRes("block/brass_encased_cogwheel_side_connected"), GemsRealm.res("block/c/brass_encased_cogwheel_side_connected_m"))
+                .addTextureM(modRes("block/brass_encased_cogwheel_side_connected"),
+                        GemsRealm.res("block/c/brass_encased_cogwheel_side_connected_m"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -167,9 +172,9 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTexture(modRes("block/funnel/brass_funnel_pull"))
                 .addTexture(modRes("block/funnel/brass_funnel_frame"))
                 .addTextureM(modRes("block/funnel/brass_funnel_unpowered"),
-                        GemsRealm.res("block/c/funnel/block/c/funnel/brass_funnel_xpowered_m"))
+                        GemsRealm.res("block/c/funnel/brass_funnel_xpowered_m"))
                 .addTextureM(modRes("block/funnel/brass_funnel_powered"),
-                        GemsRealm.res("block/c/funnel/block/c/funnel/brass_funnel_xpowered_m"))
+                        GemsRealm.res("block/c/funnel/brass_funnel_xpowered_m"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("safe_nbt"), Registries.BLOCK)
                 .addTag(modRes("contraption_controlled"), Registries.BLOCK)
@@ -232,10 +237,14 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .addTile(getModTile("sliding_door"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .includeModelsBlock(true, modRes("block/copper_door/fold_left"), modRes("block/copper_door/fold_right"))
-                .addTextureM(modRes("block/copper_door_bottom"), GemsRealm.res("block/c/copper_door_bottom_m"))
-                .addTextureM(modRes("block/copper_door_side"), GemsRealm.res("block/c/copper_door_side_m"))
-                .addTextureM(modRes("block/copper_door_top"), GemsRealm.res("block/c/copper_door_top_m"))
-                .addTextureM(modRes("item/copper_door"), GemsRealm.res("item/c/copper_door_m"))
+                .addTextureM(modRes("block/copper_door_bottom"),
+                        GemsRealm.res("block/c/copper_door_bottom_m"))
+                .addTextureM(modRes("block/copper_door_side"),
+                        GemsRealm.res("block/c/copper_door_side_m"))
+                .addTextureM(modRes("block/copper_door_top"),
+                        GemsRealm.res("block/c/copper_door_top_m"))
+                .addTextureM(modRes("item/copper_door"),
+                        GemsRealm.res("item/c/copper_door_m"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
                 .addRecipe(modRes("crafting/kinetics/copper_door"))
@@ -386,7 +395,8 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 )
                 .addTile(getModTile("table_cloth"))
                 .requiresChildren(INGOT) //REASON: recipes
-                .addTextureM(modRes("block/table_cloth/copper"), GemsRealm.res("block/c/copper_table_cloth_m"))
+                .addTextureM(modRes("block/table_cloth/copper"),
+                        GemsRealm.res("block/c/copper_table_cloth_m"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.INSIDE_STEP_SOUND_BLOCKS, Registries.BLOCK)
                 .addTag(modRes("table_cloths"), Registries.BLOCK, Registries.ITEM)
@@ -435,7 +445,8 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 .requiresChildren(INGOT) //REASON: recipes - INGOT is used for crafting create:sheet
                 .includeModelsBlock(ResourceLocation.parse("block/valve_handle"))
                 .addTile(getModTile("valve_handle"))
-                .addTextureM(modRes("block/valve_handle/valve_handle_copper"), GemsRealm.res("block/c/valve_handle_copper_m"))
+                .addTextureM(modRes("block/valve_handle/valve_handle_copper"),
+                        GemsRealm.res("block/c/valve_handle_copper_m"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("valve_handles"), Registries.BLOCK, Registries.ITEM)
                 .addTag(modRes("brittle"), Registries.BLOCK)
