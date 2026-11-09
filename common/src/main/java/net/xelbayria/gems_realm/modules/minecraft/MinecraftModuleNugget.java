@@ -37,7 +37,7 @@ public class MinecraftModuleNugget extends GemsRealmModule {
                 .requiresChildren(INGOT) //REASON: recipes, textures
                 .addTexture(modRes("item/iron_nugget"), MetalPaletteStrategies.INGOT_STANDARD)
                 .includeModelsItem(ResourceLocation.withDefaultNamespace("item/iron_nugget"))
-                .addTag(UtilityTag.platformTag("nuggets"), Registries.ITEM)
+                .addTag(UtilityTag.commonTag("nuggets"), Registries.ITEM)
                 .setTab(ingredients)
                 .defaultRecipe()
                 .build();
@@ -58,7 +58,7 @@ public class MinecraftModuleNugget extends GemsRealmModule {
 
                 String tagPath = "nuggets/" + metalType.getTypeName();
 
-                SimpleTagBuilder tagBuilder = SimpleTagBuilder.of(UtilityTag.platformTag(tagPath, tagPath));
+                SimpleTagBuilder tagBuilder = SimpleTagBuilder.of(UtilityTag.commonTag(tagPath));
 
                 if (Objects.nonNull(item)) {
                     tagBuilder.addEntry(item);
