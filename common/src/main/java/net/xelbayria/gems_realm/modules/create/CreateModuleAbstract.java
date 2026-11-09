@@ -42,7 +42,8 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import static net.mehvahdjukaar.every_compat.misc.UtilityTag.*;
+import static net.mehvahdjukaar.every_compat.misc.UtilityTag.commonTag;
+import static net.mehvahdjukaar.every_compat.misc.UtilityTag.getATagId;
 import static net.xelbayria.gems_realm.api.set.VanillaRockChildKeys.BLOCK;
 import static net.xelbayria.gems_realm.api.set.metal.VanillaMetalChildKeys.INGOT;
 
@@ -83,7 +84,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 )
                 .requiresChildren(INGOT) //REASON: recipes
                 .addTexture(modRes("item/iron_sheet"))
-                .addTag(platformTag("plates"), Registries.ITEM)
+                .addTag(commonTag("plates"), Registries.ITEM)
                 //TAG: forge:plates/<type>
                 .setTab(tab)
                 //RECIPES: manually created
@@ -430,7 +431,7 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 //TEXTURES: orante_iron_window
                 .addTexture(modRes("block/palettes/ornate_iron_window_pane_top"))
                 .addTag(BlockTags.IMPERMEABLE, Registries.BLOCK)
-                .addTag(platformTag("glass_panes"), Registries.BLOCK, Registries.ITEM)
+                .addTag(commonTag("glass_panes"), Registries.BLOCK, Registries.ITEM)
                 .setTab(paletteTab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.TRANSLUCENT)
@@ -553,8 +554,8 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
                 ResourceLocation newRecipeLoc = GemsRealm.res(pathValveHandle.replace("copper", metalType.getTypeName()))
                         .withPrefix(shortenedId() +"/"+ metalType.getNamespace());
                 UtilityRecipe.createRecipeWithTag(modRes(pathValveHandle), newRecipeLoc,
-                        platformTag("plates/copper").toString(),
-                        platformTag("plates/" + metalType.getTypeName()).toString(),
+                        commonTag("plates/copper").toString(),
+                        commonTag("plates/" + metalType.getTypeName()).toString(),
                         block, sink, manager);
             });
 
@@ -572,18 +573,18 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
         String tagPath = "ingots/" + typeName(metalType);
 
         Pair<ResourceLocation, Boolean> existingTagId = getATagId(
-                platformTag(tagPath).toString(),
-                platformTag(tagPath.replace("_", "")).toString(),
+                commonTag(tagPath).toString(),
+                commonTag(tagPath.replace("_", "")).toString(),
                 manager);
 
         if (existingTagId.getSecond()) {
-                UtilityRecipe.createRecipeWithTag(modRes(recipeLoc), newRecipeLoc, platformTag(oldTagPath).toString(),
+                UtilityRecipe.createRecipeWithTag(modRes(recipeLoc), newRecipeLoc, commonTag(oldTagPath).toString(),
                     existingTagId.getFirst().toString(), newResult, sink, manager);
         }
         else {
             ResourceLocation newTag = GemsRealm.res("ingots/" + metalType.getTypeName());
             boolean isTagCreated = UtilityTag.createAndAddCustomTags(newTag, sink, metalType.getItemOfThis(INGOT));
-            UtilityRecipe.createRecipeWithTag(modRes(recipeLoc), newRecipeLoc, platformTag(oldTagPath).toString(),
+            UtilityRecipe.createRecipeWithTag(modRes(recipeLoc), newRecipeLoc, commonTag(oldTagPath).toString(),
                     newTag.toString(), newResult, sink, manager);
 
             if (!isTagCreated) GemsRealm.LOGGER.error("Failed to create a tag for {} in {}", newTag.toString(), Utils.getID(newResult));
@@ -608,10 +609,10 @@ public abstract class CreateModuleAbstract extends GemsRealmModule {
         boolean isItemTagCreated = false;
         SimpleTagBuilder itemtagBuilder;
 
-        Pair<ResourceLocation, Boolean> existingTag = getATagId(neoforgeTag(tagPath).toString(), fabricTag(tagPath).toString(), manager);
+        Pair<ResourceLocation, Boolean> existingTag = getATagId(commonTag(tagPath).toString(), commonTag(tagPath).toString(), manager);
 
         if (existingTag.getSecond()) itemtagBuilder = SimpleTagBuilder.of(existingTag.getFirst());
-        else itemtagBuilder = SimpleTagBuilder.of(platformTag(tagPath));
+        else itemtagBuilder = SimpleTagBuilder.of(commonTag(tagPath));
 
         if (Objects.nonNull(item)) {
             itemtagBuilder.addEntry(item);
