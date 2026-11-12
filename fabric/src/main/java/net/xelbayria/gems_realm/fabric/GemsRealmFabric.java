@@ -5,11 +5,6 @@ import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.xelbayria.gems_realm.GemsRealmClient;
 import net.xelbayria.gems_realm.GemsRealmCommon;
-import net.xelbayria.gems_realm.modules.fabric.macaws.MacawBridgesModule;
-import net.xelbayria.gems_realm.modules.fabric.macaws.MacawFencesModule;
-import net.xelbayria.gems_realm.modules.fabric.macaws.MacawWindowsModule;
-
-import static net.mehvahdjukaar.every_compat.api.EveryCompatAPI.addIfLoaded;
 
 
 public class GemsRealmFabric extends GemsRealmCommon implements ModInitializer {
@@ -23,21 +18,4 @@ public class GemsRealmFabric extends GemsRealmCommon implements ModInitializer {
         }
     }
 
-    @Override
-    protected void addModules() {
-        super.addModules();
-
-//!! =================================================== Add Modules ================================================ \\
-
-        // Macaw's
-        addIfLoaded("mcwbridges", () -> MacawBridgesModule.class);
-        addIfLoaded("mcwfences", () -> MacawFencesModule.class);
-        addIfLoaded("mcwwindows", () -> MacawWindowsModule.class);
-
-        // General
-//        addIfLoaded("create", () -> CreateModule.class); //!! NOT AVAILABLE YET
-
-//!! ====================================================== OTHERS ================================================== \\
-
-    }
 }

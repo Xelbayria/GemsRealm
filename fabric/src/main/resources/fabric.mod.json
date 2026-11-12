@@ -21,6 +21,9 @@
     ],
     "modmenu": [
       "net.xelbayria.gems_realm.modmenu.ModMenuCompat"
+    ],
+    "everycomp": [
+      "net.xelbayria.gems_realm.fabric.GemsRealmFabricPlugin"
     ]
   },
   "depends": {
