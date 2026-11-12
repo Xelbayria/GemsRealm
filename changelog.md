@@ -12,6 +12,19 @@
 |                                                                                                                                   |
 
 ---
+## v2.11.7
+
+### CHANGES:
+- **Gems Realm** (C): 
+  - Replaced the deprecated methods with new methods for adding modules
+  - Added **TerraFirmaCraft**'s new Addon, **DecoFirmaCraft (dfc)** in BlockType Detection
+- **Create** (C): Updated the outdated tag methods - [#79](https://github.com/Xelbayria/GemsRealm/issues/79)
+
+### FIXES:
+- **Create** (NF): Corrected brass_funnel_xpowered_m's ResourceLocation
+
+---
+
 ## v2.11.6
 
 ### CHANGES: 
