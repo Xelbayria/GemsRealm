@@ -27,7 +27,7 @@ public class MinecraftModuleBars extends GemsRealmModule {
     public MinecraftModuleBars(String modId) {
         super(modId, "mc");
         Supplier<CreativeModeTab> building_block = getTab(CreativeModeTabs.BUILDING_BLOCKS);
-        setBlockType("Bar");
+        extendModuleName("'s Bar");
 
         bars = GemsRealmEntrySet.of(MetalType.class, "bars",
                         getModBlock("iron_bars"), () -> VanillaMetalTypes.IRON,

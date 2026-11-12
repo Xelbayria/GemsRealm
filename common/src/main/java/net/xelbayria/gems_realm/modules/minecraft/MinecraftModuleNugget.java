@@ -28,7 +28,7 @@ public class MinecraftModuleNugget extends GemsRealmModule {
     public MinecraftModuleNugget(String modId) {
         super(modId, "mc");
         Supplier<CreativeModeTab> ingredients = getTab(CreativeModeTabs.INGREDIENTS.location());
-        setBlockType("Nugget");
+        extendModuleName("'s Nugget");
 
         nugget = ItemOnlyEntrySet.builder(MetalType.class, "nugget",
                         getModItem("iron_nugget"), () -> VanillaMetalTypes.IRON,
