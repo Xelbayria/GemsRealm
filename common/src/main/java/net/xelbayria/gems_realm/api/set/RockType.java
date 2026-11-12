@@ -21,12 +21,8 @@ import static net.xelbayria.gems_realm.api.set.VanillaRockChildKeys.*;
 
 /**
  * Childkey Availability:
- * block, raw_block,
- * stairs, slab, fence,
- * chiseled, bricks, brick_stairs, brick_slab, brick_wall, brick_tiles,
- * cracked_bricks, mossy_bricks, mossy_brick_slab, mossy_brick_stairs, mossy_brick_wall,
- * smooth, smooth_stairs, smooth_slab, smooth_wall
-**/
+ * Use {@link VanillaRockChildKeys}
+ **/
 @SuppressWarnings("SameParameterValue")
 public abstract class RockType extends BlockType {
 
@@ -96,20 +92,15 @@ public abstract class RockType extends BlockType {
 
     /// Checking the id for "bricks" or "brick"
     private @Nullable Block findBrickEntry(String prefix, String suffix) {
-        String suffixed = (suffix.isEmpty()) ? "" : "_" + suffix;
+        String _suffix = (suffix.isEmpty()) ? "" : "_" + suffix;
+//        String prefix_ = (prefix.isEmpty()) ? "" : prefix + "_";
 
-        Block first = this.findRelatedEntry(prefix, "brick" + suffixed, BuiltInRegistries.BLOCK);
-        if (first != null) return first;
+        // Without the "s"
+        Block brick = this.findRelatedEntry(prefix, "brick" + _suffix, BuiltInRegistries.BLOCK);
+        if (brick != null) return brick;
 
-        return this.findRelatedEntry(prefix, "bricks" + suffixed, BuiltInRegistries.BLOCK);
-    }
-
-    protected @Nullable Block findRelatedBlock(String prefixOrInfix, String suffix) {
-        return findRelatedEntry(prefixOrInfix, suffix, BuiltInRegistries.BLOCK);
-    }
-
-    protected @Nullable Item findRelatedItem(String prefixOrInfix, String suffix) {
-        return findRelatedEntry(prefixOrInfix, suffix, BuiltInRegistries.ITEM);
+        // DEFAULT
+        return this.findRelatedEntry(prefix, "bricks" + _suffix, BuiltInRegistries.BLOCK);
     }
 
     @Override
@@ -143,6 +134,15 @@ public abstract class RockType extends BlockType {
             }
         }
         return found;
+    }
+
+    protected @Nullable Block findRelatedBlock(String prefixOrInfix, String suffix) {
+        return findRelatedEntry(prefixOrInfix, suffix, BuiltInRegistries.BLOCK);
+    }
+
+    @SuppressWarnings("unused")
+    protected @Nullable Item findRelatedItem(String prefixOrInfix, String suffix) {
+        return findRelatedEntry(prefixOrInfix, suffix, BuiltInRegistries.ITEM);
     }
 
     @Override

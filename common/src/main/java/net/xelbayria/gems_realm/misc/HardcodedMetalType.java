@@ -59,7 +59,7 @@ public class HardcodedMetalType extends HardcodedBlockType{
 
     public static boolean isMetalRegistryInTFC(MetalType metalType, String supportedBlockName, String childKey) {
         Block block = metalType.getBlockOfThis(childKey);
-        if (metalType.getNamespace().equals("tfc") && Objects.nonNull(block)) {
+        if (metalType.getNamespace().equals("tfc") && block != null) {
             String[] split = Utils.getID(block).getPath().split("/"); // tfc: metal / childKey / metalType
             String baseName = split[2] +"_"+ childKey; // create a baseName: metalType _ childKey
 

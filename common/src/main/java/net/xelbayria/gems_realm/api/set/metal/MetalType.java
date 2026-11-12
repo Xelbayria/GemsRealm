@@ -14,7 +14,6 @@ import net.xelbayria.gems_realm.misc.HardcodedBlockType;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -55,20 +54,20 @@ public class MetalType extends RockType {
     }
 
     @Override
+    @SuppressWarnings("UnnecessaryLocalVariable")
     protected @Nullable <V> V findRelatedEntry(String prefixOrInfix, String suffix, Registry<V> reg) {
         var block = super.findRelatedEntry(prefixOrInfix, suffix, reg);
-        if (Objects.nonNull(block)) return block;
+        if (block != null) return block;
 
-        if (this.getId().getNamespace().matches("tfc|afc")) {
+        if (this.getId().getNamespace().matches("tfc|afc|dfc")) {
             String prefix = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
-            String withoutUnderscore = suffix;
-            if (!suffix.isEmpty()) suffix = "_" + suffix;
+            String _suffix = suffix;
 
             ResourceLocation[] targets = { //!! CHECK FOR GEM in TFC
-                    // TFC & AFC: Include children of metal_type: block
-                    ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "metal/" + prefix + withoutUnderscore +"/"+ id.getPath()),
+                    // TFC & AFC: Include children of metal_type: block - NOTE: prefix + suffix is without the underscore
+                    ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "metal/" + prefix + suffix +"/"+ id.getPath()),
                     // TFC & AFC: Include children of metal_type: trapdoor, lamp, bars, anvil, ingot, block
-                    ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "metal/"+ prefixOrInfix +"/"+ id.getPath() + suffix),
+                    ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "metal/"+ prefixOrInfix +"/"+ id.getPath() + _suffix),
             };
             V found = null;
             for (var r : targets) {

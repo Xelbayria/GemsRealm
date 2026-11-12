@@ -39,8 +39,8 @@ public class MetalTypeRegistry extends BlockTypeRegistry<MetalType> {
         String namespace = blockId.getNamespace();
         String blockPath = blockId.getPath();
 
-        /// ─────────── Support Terrafirmacraft (tfc) & Arborfirmacraft (afc) ───────────
-        if (namespace.matches("tfc|afc")) {
+        /// ─────────── Support Terrafirmacraft (tfc) & Addons ───────────
+        if (namespace.matches("tfc|afc|dfc")) {
             // Ensure the detected block is actually MetalType
             boolean hasIngot = isInItemRegistry(namespace, blockPath, "block", "ingot");
 
